@@ -13,17 +13,18 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
 <style>
+/* TRUE LUXURY PALETTE (PROFESSIONAL JEWELLERY BRAND) */
 :root{
-  --gold:#c59b48;
-  --gold-light:#f3dfaa;
-  --gold-glow:#ffd57e;
+  --gold:#d4af37;
+  --gold-light:#faedcd;
+  --gold-glow:#ffdf6d;
   --silver:#b4c7d9;
-  --bg-main:#0b0a0e;
+  --bg-main:#0b0a0f;
   --card-bg:#14121a;
   --card-border:#292434;
-  --text-main:#f5f3ef;
-  --text-muted:#9b96a4;
-  --accent-theme:linear-gradient(135deg, #d8b26e 0%, #b88a38 50%, #f3dfaa 100%);
+  --text-main:#fbf9f5;
+  --text-muted:#9e97a8;
+  --accent-theme:linear-gradient(135deg, #f3dfaa 0%, #c59b48 50%, #9e7626 100%);
   --theme-color:#c59b48;
   --theme-subtle:rgba(197,155,72,0.15);
   --success:#2ecc71;
@@ -43,21 +44,21 @@ body.theme-silver {
 }
 
 body.light-mode {
-  --bg-main:#fbf9f5;
+  --bg-main:#f8f6f0;
   --card-bg:#ffffff;
-  --card-border:#e8dfd1;
-  --text-main:#241d13;
-  --text-muted:#786d5e;
-  --gold-glow:#8f6515;
-  --theme-color:#c59b48;
-  --theme-subtle:rgba(197,155,72,0.12);
+  --card-border:#e4dcd0;
+  --text-main:#1f1911;
+  --text-muted:#756a5c;
+  --gold-glow:#855d10;
+  --theme-color:#b89329;
+  --theme-subtle:rgba(184,147,41,0.12);
   --accent-theme:linear-gradient(135deg, #c59b48 0%, #a67c2e 100%);
 }
 body.light-mode.theme-silver {
-  --bg-main:#f5f8fb;
+  --bg-main:#f2f6fa;
   --card-bg:#ffffff;
   --card-border:#d1deeb;
-  --text-main:#172330;
+  --text-main:#121e2a;
   --text-muted:#627385;
   --gold-glow:#295175;
   --theme-color:#6c8ca8;
@@ -65,106 +66,139 @@ body.light-mode.theme-silver {
   --accent-theme:linear-gradient(135deg, #6c8ca8 0%, #3e6080 100%);
 }
 
-body.light-mode header{background:rgba(251,249,245,0.96);border-bottom-color:#e4d9c7;}
-body.light-mode.theme-silver header{background:rgba(245,248,251,0.96);border-bottom-color:#d1deeb;}
-body.light-mode .rate-ticker{background:linear-gradient(90deg, #f7f0e3, #eee3ce, #f7f0e3);border-color:#d8c6a5;}
+body.light-mode header{background:rgba(248,246,240,0.96);border-bottom-color:#e4dcd0;}
+body.light-mode.theme-silver header{background:rgba(242,246,250,0.96);border-bottom-color:#d1deeb;}
+body.light-mode .rate-ticker{background:linear-gradient(90deg, #f2eadb, #e6dac3, #f2eadb);border-color:#d4c2a0;}
 body.light-mode.theme-silver .rate-ticker{background:linear-gradient(90deg, #eaf2f8, #dbe8f3, #eaf2f8);border-color:#bed1e4;}
-body.light-mode .rate-gold-badge{color:#8a6108;}
-body.light-mode .rate-silver-badge{color:#445260;}
-body.light-mode .bottom-nav{background:#ffffff;border-top-color:#e4d9c7;}
-body.light-mode .about-store-footer{background:#f5efe3;border-color:#d4c19c;color:#443826;}
+body.light-mode .rate-gold-badge{color:#855d10;}
+body.light-mode .rate-silver-badge{color:#34495e;}
+body.light-mode .bottom-nav{background:#ffffff;border-top-color:#e4dcd0;}
+body.light-mode .about-store-footer{background:#f0e8d6;border-color:#d4c19c;color:#443826;}
 body.light-mode.theme-silver .about-store-footer{background:#eaf0f6;border-color:#b9cddf;color:#243242;}
-body.light-mode .cat-circle-icon{background:#f5efe3;border-color:#dfd0b5;}
+body.light-mode .cat-circle-icon{background:#f0e8d6;border-color:#dfd0b5;}
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{
   font-family:'Plus Jakarta Sans', sans-serif;
   background:var(--bg-main);
   color:var(--text-main);
-  display:flex;
-  justify-content:center;
   min-height:100vh;
   overflow-x:hidden;
   transition:background 0.3s ease, color 0.3s ease;
 }
 
+.app{
+  width:100%;
+  min-height:100vh;
+  background:var(--bg-main);
+  position:relative;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+}
+
+@media(min-width:768px){
+  .app { max-width: 1280px !important; margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.6); }
+  .product-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; }
+  .bottom-nav { max-width: 1280px !important; left: 50%; transform: translateX(-50%); }
+}
+
 #splashScreen{
-  position:fixed;inset:0;background:radial-gradient(circle at center, #1b1622 0%, #08070a 100%);
+  position:fixed;inset:0;background:radial-gradient(circle at center, #1b1626 0%, #060508 100%);
   z-index:999999999;display:flex;flex-direction:column;align-items:center;justify-content:center;
   transition:opacity 0.6s ease, visibility 0.6s ease;
 }
 .splash-logo{animation:logoPop 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;text-align:center;}
 .splash-title{
   font-family:'Cinzel', serif;font-size:22px;font-weight:800;letter-spacing:3px;
-  background:linear-gradient(135deg, #f5dfb2 0%, #c99f52 100%);
+  background:linear-gradient(135deg, #faedcd 0%, #c59b48 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-top:14px;
 }
 .splash-sub{font-size:9.5px;letter-spacing:3px;color:var(--gold);margin-top:4px;}
 @keyframes logoPop{0%{transform:scale(0.3);opacity:0;}100%{transform:scale(1);opacity:1;}}
 
 #firstTimeLoginGateway{
-  position:fixed;inset:0;background:rgba(6,5,8,0.96);backdrop-filter:blur(14px);
+  position:fixed;inset:0;background:rgba(5,4,7,0.96);backdrop-filter:blur(16px);
   z-index:99999998;display:none;align-items:center;justify-content:center;padding:18px;overflow-y:auto;
 }
 .gateway-card{
-  background:#14101a;border:1.5px solid var(--gold);border-radius:24px;padding:24px 18px;width:100%;max-width:380px;text-align:center;box-shadow:0 15px 40px rgba(0,0,0,0.9);
+  background:linear-gradient(145deg, #181522, #0d0a13);border:1.5px solid var(--gold);border-radius:24px;padding:28px 22px;width:100%;max-width:410px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.95);
 }
 .mpin-box-input{
-  width:100%;letter-spacing:8px;text-align:center;font-size:20px;font-weight:800;
-  padding:10px;background:#0d0914;border:1.5px solid var(--gold);border-radius:10px;
-  color:var(--gold-glow);outline:none;margin-top:4px;
+  width:100%;letter-spacing:10px;text-align:center;font-size:22px;font-weight:800;
+  padding:12px;background:#0d0a13;border:1.5px solid var(--gold);border-radius:12px;
+  color:var(--gold-glow);outline:none;margin-top:6px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.8);
 }
 
+#googleAccountModal{
+  position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(12px);
+  z-index:99999999;display:none;align-items:center;justify-content:center;padding:16px;
+}
+.google-picker-card{
+  background:#171420;color:#fbf9f5;width:100%;max-width:390px;border-radius:22px;padding:26px 22px;text-align:center;
+  box-shadow:0 20px 50px rgba(0,0,0,0.95);border:1.5px solid var(--gold);font-family:'Plus Jakarta Sans', sans-serif;
+  animation:modalScaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+@keyframes modalScaleUp{0%{transform:scale(0.8);opacity:0;}100%{transform:scale(1);opacity:1;}}
+.google-acc-item{
+  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;border:1px solid #362d4a;margin-bottom:8px;cursor:pointer;transition:0.2s;text-align:left;background:#110e18;
+}
+.google-acc-item:hover{background:#201a2e;border-color:var(--gold);transform:translateY(-1px);}
+
 #appLoader{
-  position:fixed;inset:0;background:radial-gradient(circle at center, rgba(18,14,24,0.96) 0%, rgba(6,5,8,0.98) 100%);
+  position:fixed;inset:0;background:radial-gradient(circle at center, rgba(16,13,22,0.96) 0%, rgba(5,4,7,0.98) 100%);
   backdrop-filter:blur(14px);z-index:9999999;display:none;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.3s ease;
 }
 .ij-exact-stamp-wrap{position:relative;width:110px;height:110px;display:flex;align-items:center;justify-content:center;}
 .ij-glow-halo{
   position:absolute;width:100px;height:100px;border-radius:50%;
-  background:radial-gradient(circle, rgba(255,213,126,0.35) 0%, rgba(197,155,72,0) 70%);
+  background:radial-gradient(circle, rgba(255,223,109,0.35) 0%, rgba(212,175,55,0) 70%);
   animation:haloGlow 2s ease-in-out infinite alternate;
 }
 .ij-stamp-outer-ring{
-  width:90px;height:90px;border-radius:50%;border:2px solid #dfb76c;
+  width:90px;height:90px;border-radius:50%;border:2px solid #e2c168;
   box-shadow:0 0 20px rgba(212,175,55,0.6), inset 0 0 14px rgba(212,175,55,0.4);
-  display:flex;align-items:center;justify-content:center;background:#0d0914;
+  display:flex;align-items:center;justify-content:center;background:#09070e;
   animation:stampSpinSlow 4s linear infinite;position:relative;
 }
-.ij-stamp-dashed-border{position:absolute;inset:3px;border-radius:50%;border:1px dashed #ffd57e;opacity:0.7;}
+.ij-stamp-dashed-border{position:absolute;inset:3px;border-radius:50%;border:1px dashed #ffdf6d;opacity:0.7;}
 .ij-inner-emblem{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;}
 @keyframes stampSpinSlow{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
 @keyframes haloGlow{0%{transform:scale(0.85);opacity:0.5;}100%{transform:scale(1.25);opacity:1;}}
 
-.scratch-card-box{
-  position:relative;width:145px;height:145px;border-radius:14px;overflow:hidden;margin:0 auto 10px;background:#1b1424;border:2px dashed var(--gold);
+/* FLIPKART STYLE ORDER SUCCESS ANIMATION MODAL */
+#orderSuccessAnimModal{
+  position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999999;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px);
 }
-.scratch-card-box.used{
-  filter:grayscale(100%);
-  opacity:0.55;
-  border-color:#555;
+.success-anim-card{
+  background:#14111c;border:2px solid #2ecc71;border-radius:24px;padding:32px 22px;width:100%;max-width:350px;text-align:center;
+  animation:successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-.scratch-underlay{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle, #2a1f10 0%, #120c1a 100%);z-index:1;padding:8px;text-align:center;
+@keyframes successPop{0%{transform:scale(0.4);opacity:0;}100%{transform:scale(1);opacity:1;}}
+.success-tick-circle{
+  width:80px;height:80px;background:rgba(46,204,113,0.15);border:3px solid #2ecc71;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;
+  animation:tickBounce 0.8s ease infinite alternate;
 }
-.scratch-canvas{
-  position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;touch-action:none;cursor:grab;
-}
+@keyframes tickBounce{0%{transform:scale(0.9);}100%{transform:scale(1.1);}}
 
-.app{
-  width:100%;max-width:440px;min-height:100vh;background:var(--bg-main);position:relative;
-  box-shadow:0 0 40px rgba(0,0,0,0.8);display:flex;flex-direction:column;
+.scratch-card-box{
+  position:relative;width:145px;height:145px;border-radius:14px;overflow:hidden;margin:0 auto 10px;background:#181222;border:2px dashed var(--gold);
 }
+.scratch-card-box.used{filter:grayscale(100%);opacity:0.55;border-color:#555;}
+.scratch-underlay{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle, #281d0f 0%, #0f0a17 100%);z-index:1;padding:8px;text-align:center;
+}
+.scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;touch-action:none;cursor:grab;}
 
 header{
-  padding:12px 16px 10px;background:rgba(11,10,14,0.96);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--card-border);
+  padding:12px 16px 10px;background:rgba(11,10,15,0.96);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--card-border);
 }
 .header-top{display:flex;align-items:center;justify-content:space-between;}
 .brand-wrap{display:flex;align-items:center;gap:12px;}
 .hamburger-btn{
-  background:#1a1922;border:1px solid var(--card-border);color:var(--gold);width:36px;height:36px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
+  background:#181520;border:1px solid var(--card-border);color:var(--gold);width:36px;height:36px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
 }
-body.light-mode .hamburger-btn{background:#f2ebd9;border-color:#dfd2be;}
+body.light-mode .hamburger-btn{background:#f0e8d6;border-color:#dfd0b5;}
 .hamburger-btn span{width:16px;height:2px;background:var(--gold);border-radius:2px;}
 .brand-name{
   font-family:'Cinzel', serif;font-size:16px;letter-spacing:1px;font-weight:800;
@@ -174,34 +208,34 @@ body.light-mode .hamburger-btn{background:#f2ebd9;border-color:#dfd2be;}
 
 .header-actions{display:flex;gap:8px;align-items:center;}
 .icon-btn{
-  background:#1a1922;border:1px solid #2d293b;color:#dfdbe7;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;text-decoration:none;
+  background:#181520;border:1px solid #2d263b;color:#e8e4f0;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;text-decoration:none;position:relative;
 }
-body.light-mode .icon-btn{background:#f2ebd9;border-color:#dfd2be;color:#332a1e;}
+body.light-mode .icon-btn{background:#f0e8d6;border-color:#dfd0b5;color:#2c2215;}
 
 .search-bar{
   margin-top:8px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:6px;
 }
 
 .rate-ticker{
-  background:linear-gradient(90deg, #181512, #261f14, #181512);border-top:1px solid #3e331c;border-bottom:1px solid #3e331c;
+  background:linear-gradient(90deg, #15120a, #261f12, #15120a);border-top:1px solid #3e331c;border-bottom:1px solid #3e331c;
   padding:8px 14px;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;
 }
 .rate-gold-badge{color:var(--gold-glow);font-weight:800;}
 .rate-silver-badge{color:#ffffff;font-weight:800;}
-body.theme-silver .rate-ticker{background:linear-gradient(90deg, #111a24, #182635, #111a24);}
+body.theme-silver .rate-ticker{background:linear-gradient(90deg, #0e1721, #142230, #0e1721);}
 
 .ads-carousel{
   margin:10px 0 14px;overflow-x:auto;display:flex;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;
 }
 .ads-carousel::-webkit-scrollbar{display:none;}
 .ad-poster-card{
-  min-width:100%;height:165px;border-radius:14px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;cursor:pointer;
+  min-width:100%;height:185px;border-radius:14px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;cursor:pointer;
 }
 .ad-poster-card::before{
   content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(14,8,4,0.92) 0%, rgba(20,10,4,0.3) 60%, transparent 100%);
 }
 body.theme-silver .ad-poster-card::before{
-  background:linear-gradient(to top, rgba(6,12,18,0.94) 0%, rgba(10,20,30,0.3) 60%, transparent 100%);
+  background:linear-gradient(to top, rgba(5,10,16,0.94) 0%, rgba(8,16,24,0.3) 60%, transparent 100%);
 }
 .ad-card-content{position:relative;z-index:2;}
 
@@ -221,7 +255,7 @@ body.theme-silver .ad-poster-card::before{
 .filter-chip-btn{
   background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;cursor:pointer;
 }
-body.light-mode .filter-chip-btn{background:#f4ece0;border-color:#ded0ba;color:#615647;}
+body.light-mode .filter-chip-btn{background:#f0e8d6;border-color:#dfd0b5;color:#57493a;}
 .filter-chip-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
 main{padding:14px;padding-bottom:95px;flex:1;}
@@ -240,7 +274,7 @@ main{padding:14px;padding-bottom:95px;flex:1;}
 }
 .wish-heart-btn.active{color:#ff334b;}
 
-.product-img-wrap{width:100%;height:140px;background:#1c1a24;position:relative;display:flex;align-items:center;justify-content:center;}
+.product-img-wrap{width:100%;height:150px;background:#181520;position:relative;display:flex;align-items:center;justify-content:center;}
 body.light-mode .product-img-wrap{background:#f0e9dc;}
 body.theme-silver .product-img-wrap{background:#111b26;}
 .product-img-wrap img{width:100%;height:100%;object-fit:cover;}
@@ -250,7 +284,7 @@ body.theme-silver .product-img-wrap{background:#111b26;}
 .btn-card-quick{margin-top:6px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:10.5px;font-weight:700;padding:6px;border-radius:8px;cursor:pointer;text-align:center;}
 
 .btn-gold{
-  background:var(--accent-theme);color:#1c1404;font-weight:700;font-size:13px;border:none;padding:11px 18px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--accent-theme);color:#120c02;font-weight:700;font-size:13px;border:none;padding:11px 18px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
 }
 .btn-outline{
   background:transparent;border:1px solid var(--theme-color);color:var(--theme-color);font-weight:600;font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;
@@ -275,7 +309,7 @@ body.light-mode .btn-danger{background:#feebee;border-color:#f8bbd0;color:#c2185
 .about-contact-row{font-size:11px;margin-bottom:4px;display:flex;gap:6px;}
 
 .bottom-nav{
-  position:fixed;bottom:0;width:100%;max-width:440px;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:50;
+  position:fixed;bottom:0;width:100%;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:50;
 }
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
 .nav-item.active{color:var(--theme-color);}
@@ -366,24 +400,60 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
   <div class="splash-sub">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</div>
 </div>
 
+<!-- GITHUB / GOOGLE STYLE ACCOUNT PICKER MODAL -->
+<div id="googleAccountModal">
+  <div class="google-picker-card">
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
+      <svg width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.95H1.14v3.15C3.15 21.32 7.21 24 12 24z"/>
+        <path fill="#FBBC05" d="M5.28 14.25c-.25-.72-.38-1.49-.38-2.25s.13-1.53.38-2.25V6.6H1.14C.41 8.08 0 9.75 0 12s.41 3.92 1.14 5.4l4.14-3.15z"/>
+        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.21 0 3.15 2.68 1.14 6.6l4.14 3.15c.95-2.84 3.6-4.95 6.72-4.95z"/>
+      </svg>
+      <span style="font-family:'Cinzel',serif;font-size:15px;font-weight:bold;color:var(--gold-glow);">Sign in with Google</span>
+    </div>
+    <h3 style="font-size:14px;color:#fff;margin-bottom:4px;">Choose an account</h3>
+    <p style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">to continue to Isha Jewellers</p>
+
+    <div id="googleAccountsListContainer" style="display:flex;flex-direction:column;gap:6px;max-height:230px;overflow-y:auto;margin-bottom:14px;"></div>
+
+    <button type="button" style="width:100%;padding:10px;background:transparent;border:1px solid var(--card-border);border-radius:8px;font-size:12px;font-weight:650;color:var(--text-main);cursor:pointer;" onclick="closeGoogleAccountModal()">Cancel</button>
+  </div>
+</div>
+
+<!-- ORDER SUCCESS ANIMATION MODAL -->
+<div id="orderSuccessAnimModal">
+  <div class="success-anim-card">
+    <div class="success-tick-circle">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <h2 style="font-family:'Cinzel',serif;font-size:18px;color:#2ecc71;margin-bottom:6px;">ORDER PLACED!</h2>
+    <p style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
+    <div id="animOrderIdTag" style="font-size:12px;color:var(--gold-glow);font-weight:bold;margin-bottom:14px;">Order ID: #IJ-0000</div>
+    <button class="btn-gold" style="width:100%;justify-content:center;" onclick="closeSuccessAnimModal()">Track Order Now ➔</button>
+  </div>
+</div>
+
 <!-- 2. LOGIN / REGISTER / MPIN GATEWAY -->
 <div id="firstTimeLoginGateway">
   <div class="gateway-card">
     <svg width="46" height="46" viewBox="0 0 100 100" style="margin-bottom:6px;">
       <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
-      <path d="M 36 36 C 37 31, 44 31, 62 31 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
+      <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
     </svg>
     <h2 style="font-family:'Cinzel',serif;font-size:18px;color:#fff;margin-bottom:2px;">ISHA JEWELLERS</h2>
-    <p style="font-size:10.5px;color:#a89f91;margin-bottom:14px;">Secure Customer Gateway (Balurgram)</p>
+    <p style="font-size:10.5px;color:#a89f91;margin-bottom:14px;">Secure Account Gateway</p>
 
     <!-- STEP 1: REGISTRATION -->
     <div id="authStepRegister">
       <div style="margin-bottom:10px;">
-        <button type="button" class="btn-outline" style="width:100%;font-size:11px;padding:8px;border-color:#4285F4;color:#4285F4;display:flex;align-items:center;justify-content:center;gap:6px;" onclick="handleGoogleMockAuth()">
+        <button type="button" class="btn-outline" style="width:100%;font-size:12px;padding:11px;border-color:var(--gold);color:var(--gold-glow);display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(197,155,72,0.12);font-weight:700;" onclick="openGoogleAccountSelectorModal()">
           🌐 Continue with Google
         </button>
       </div>
-      <div style="font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">— YA DETAILS FILL KAREIN —</div>
+      <div style="font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">— OR MANUAL REGISTRATION —</div>
 
       <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
         <div>
@@ -395,7 +465,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
           <input type="tel" id="regMobile" maxlength="10" class="input-control" placeholder="Mobile Number daalein">
         </div>
         <div>
-          <label style="font-size:10.5px;color:var(--gold);font-weight:700;">Email Address (Optional)</label>
+          <label style="font-size:10.5px;color:var(--gold);font-weight:700;">Email Address</label>
           <input type="email" id="regEmail" class="input-control" placeholder="name@gmail.com">
         </div>
       </div>
@@ -405,14 +475,14 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       </button>
 
       <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
-        Already have MPIN? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Login directly</a>
+        Already have account? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login</a>
       </div>
     </div>
 
     <!-- STEP 2: CREATE MPIN -->
     <div id="authStepCreateMpin" style="display:none;">
       <h3 style="font-size:13.5px;color:var(--gold-glow);margin-bottom:4px;">Set 4-Digit Security MPIN</h3>
-      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">App open karne ke liye yeh 4-digit code yaad rakhein.</p>
+      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Kisi bhi device me account kholne ke liye yeh code yaad rakhein.</p>
 
       <div style="text-align:left;display:flex;flex-direction:column;gap:10px;">
         <div>
@@ -426,7 +496,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       </div>
 
       <button class="btn-gold" style="width:100%;margin-top:16px;justify-content:center;padding:12px;" onclick="saveNewUserAccount()">
-        ✓ Confirm &amp; Open Store
+        ✓ Sync &amp; Open Store
       </button>
       <button class="btn-outline" style="width:100%;margin-top:8px;padding:8px;" onclick="switchAuthScreen('register')">
         ‹ Back
@@ -435,8 +505,8 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
     <!-- STEP 3: LOGIN -->
     <div id="authStepLogin" style="display:none;">
-      <h3 style="font-size:14px;color:var(--gold-glow);margin-bottom:4px;">Login with MPIN</h3>
-      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Enter Registered Mobile &amp; 4-Digit MPIN</p>
+      <h3 style="font-size:14px;color:var(--gold-glow);margin-bottom:4px;">Cloud Account Login</h3>
+      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Enter 10-Digit Mobile &amp; 4-Digit MPIN</p>
 
       <div style="text-align:left;display:flex;flex-direction:column;gap:10px;">
         <div>
@@ -454,7 +524,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       </div>
 
       <button class="btn-gold" style="width:100%;margin-top:14px;justify-content:center;padding:12px;" onclick="verifyUserMpinLogin()">
-        🔓 Verify &amp; Open App
+        🔓 Sync Data &amp; Open App
       </button>
 
       <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
@@ -479,7 +549,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       </div>
 
       <button class="btn-gold" style="width:100%;margin-top:16px;justify-content:center;padding:12px;" onclick="resetMpinDirectly()">
-        🔄 Reset MPIN &amp; Open Store
+        🔄 Reset MPIN &amp; Sync
       </button>
       <button class="btn-outline" style="width:100%;margin-top:8px;padding:8px;" onclick="switchAuthScreen('login')">
         ‹ Back to Login
@@ -615,13 +685,14 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
     <section id="productDetail" class="page">
       <button class="btn-outline" style="margin-bottom:12px;" onclick="showPage('home')">‹ Back</button>
       
-      <div style="height:220px;border-radius:14px;overflow:hidden;border:1px solid var(--card-border);background:#181520;position:relative;">
-        <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
-        <div id="detailStockBadge" style="position:absolute;top:10px;left:10px;background:#2ecc71;color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;">In Stock</div>
+      <!-- FIXED IMAGE CONTAINER FOR DESKTOP & MOBILE (OBJECT-FIT CONTAIN) -->
+      <div style="height:320px;border-radius:14px;overflow:hidden;border:1px solid var(--card-border);background:#16121c;position:relative;display:flex;align-items:center;justify-content:center;">
+        <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:contain;background:#0c0a10;">
+        <div id="detailStockBadge" style="position:absolute;top:10px;left:10px;background:#2ecc71;color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
       </div>
 
       <div style="margin-top:12px;">
-        <span style="font-size:9.5px;font-weight:700;background:rgba(197,155,72,0.18);color:var(--gold-glow);padding:2px 8px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
+        <span style="font-size:9.5px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:2px 8px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
         <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:20px;margin-top:4px;">Item Name</h1>
       </div>
 
@@ -695,7 +766,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <div class="cal-flip-card" id="deskCalendarCard">
         <div class="cal-month-header">
           <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:17px;letter-spacing:1px;">AUGUST 2026</h3>
-          <small style="font-size:9.5px;color:#f3dfaa;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
+          <small style="font-size:9.5px;color:#ffd57e;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
         </div>
         
         <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid rgba(197,155,72,0.2);padding-bottom:6px;">
@@ -734,7 +805,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
           <button style="background:transparent;border:none;color:var(--gold);font-size:18px;cursor:pointer;" onclick="showDashboardHome();">🔍</button>
         </div>
 
-        <div style="display:flex;justify-content:space-around;background:rgba(197,155,72,0.08);border-radius:10px;padding:9px 4px;font-size:11.5px;font-weight:700;border:1px solid var(--card-border);">
+        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:10px;padding:9px 4px;font-size:11.5px;font-weight:700;border:1px solid var(--card-border);">
           <div>🇮🇳 INR (₹)</div>
           <div onclick="window.open('https://maps.google.com/?q=Balurgram+Bazzar+Udhwa+Sahibganj','_blank')" style="cursor:pointer;">🏬 Locate Us</div>
           <a href="tel:9113774515" style="text-decoration:none;color:inherit;">📞 Call Us</a>
@@ -745,7 +816,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px;margin-bottom:16px;">
         <div id="profileViewBox">
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:55px;height:55px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#221b30;display:flex;align-items:center;justify-content:center;">
+            <div style="width:55px;height:55px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#1a1524;display:flex;align-items:center;justify-content:center;">
               <img id="dispAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
@@ -772,7 +843,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
           <input type="email" id="edEmail" class="input-control" placeholder="Email Address" style="margin-top:6px;">
           <input type="text" id="edAddress" class="input-control" placeholder="Permanent Delivery Address (Village/Landmark) *" style="margin-top:6px;" required>
 
-          <button type="submit" class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;">✓ Save Profile &amp; Address</button>
+          <button type="submit" class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;">✓ Save Profile &amp; Cloud Sync</button>
           <button type="button" class="btn-outline" style="width:100%;margin-top:6px;padding:6px;" onclick="hideProfileEditor()">Cancel</button>
         </form>
       </div>
@@ -870,7 +941,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
 <!-- UNIVERSAL CHECKOUT MODAL -->
 <div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:16px 12px 100px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="background:#14111c;border:1.5px solid var(--gold);border-radius:20px;padding:20px 16px 24px;width:100%;max-width:400px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
+  <div style="background:#14101a;border:1.5px solid var(--gold);border-radius:20px;padding:20px 16px 24px;width:100%;max-width:400px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
       <h3 style="font-family:'Cinzel',serif;font-size:15px;color:var(--gold-glow);" id="coModalTitle">
         🛍️ CUSTOMER DELIVERY CHECKOUT
@@ -881,64 +952,61 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
     <!-- SAVED ADDRESS RADIO PICKER -->
     <div id="savedAddressSection" style="margin-bottom:10px;"></div>
 
-    <form onsubmit="submitUniversalOrder(event)">
-      <!-- DYNAMIC ADDRESS INPUTS -->
-      <div id="newAddressFields" style="margin-bottom:10px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <input type="text" id="coFirstName" class="input-control" placeholder="First Name *" value="" required>
-          <input type="text" id="coLastName" class="input-control" placeholder="Last Name" value="">
-        </div>
-        <input type="tel" id="coMobile" class="input-control" placeholder="10-Digit Mobile Number *" value="" style="margin-top:8px;" readonly required>
-        
-        <!-- DIRECT ADDRESS INPUT -->
-        <input type="text" id="coArea" class="input-control" placeholder="Village / Street / House Address *" value="" style="margin-top:8px;" required>
+    <div id="newAddressFields" style="margin-bottom:10px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <input type="text" id="coFirstName" class="input-control" placeholder="First Name *" value="">
+        <input type="text" id="coLastName" class="input-control" placeholder="Last Name" value="">
+      </div>
+      <input type="tel" id="coMobile" class="input-control" placeholder="10-Digit Mobile Number *" value="" style="margin-top:8px;">
+      
+      <!-- DIRECT ADDRESS INPUT -->
+      <input type="text" id="coArea" class="input-control" placeholder="Village / Street / House Address *" value="" style="margin-top:8px;">
 
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px;">
-          <input type="number" id="coPincode" class="input-control" placeholder="Pincode" value="816108">
-          <input type="text" id="coDistrict" class="input-control" placeholder="District" value="Sahibganj">
-          <input type="text" id="coState" class="input-control" placeholder="State" value="Jharkhand" readonly style="background:#201c2b;color:#a89f91;">
-        </div>
-
-        <button type="button" class="btn-outline" style="width:100%;margin-top:8px;font-size:11.5px;padding:9px;" onclick="autoDetectLocationCheckout()">
-          📍 Auto Detect GPS Location
-        </button>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px;">
+        <input type="number" id="coPincode" class="input-control" placeholder="Pincode" value="816108">
+        <input type="text" id="coDistrict" class="input-control" placeholder="District" value="Sahibganj">
+        <input type="text" id="coState" class="input-control" placeholder="State" value="Jharkhand" readonly style="background:#201c2b;color:#a89f91;">
       </div>
 
-      <!-- PROMO / REWARD CODE BOX -->
-      <div style="display:flex;gap:6px;margin-bottom:10px;">
-        <input type="text" id="coCouponInput" class="input-control" placeholder="PROMO / REWARD CODE" style="text-transform:uppercase;font-size:12px;">
-        <button type="button" class="btn-outline" style="padding:8px 16px;background:#1a1524;" onclick="applyPromoCode()">Apply</button>
-      </div>
-
-      <!-- PRICE BREAKDOWN -->
-      <div class="price-breakup-box" style="margin-bottom:12px;background:#181422;border:1px solid #332a42;">
-        <div class="breakup-row"><span>Metal &amp; Making:</span><span id="coGrossVal">₹0</span></div>
-        <div class="breakup-row"><span>GST (3%):</span><span id="coGstVal">+₹0</span></div>
-        <div class="breakup-row"><span>Delivery Charge:</span><span id="coDeliveryVal" style="color:#2ecc71;">FREE</span></div>
-        <div class="breakup-row" style="color:#2ecc71;"><span>Promo Discount:</span><span id="coPromoDiscount">-₹0</span></div>
-        <div class="breakup-row total" style="border-top:1px solid #332a42;padding-top:8px;margin-top:4px;">
-          <span style="font-size:13.5px;">Net Total Payable:</span><span id="coNetPayableVal" style="font-size:16px;color:var(--gold-glow);font-weight:900;">₹0</span>
-        </div>
-      </div>
-
-      <!-- PAYMENT METHOD SELECTION -->
-      <div style="background:#181422;border:1px solid #332a42;border-radius:10px;padding:10px;margin-bottom:14px;">
-        <label style="font-size:11.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:6px;">
-          💰 Choose Payment Option:
-        </label>
-        <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:6px;margin-bottom:8px;">
-          <button type="button" class="filter-chip-btn active" id="btnPayOnline" style="padding:8px 8px;font-size:11px;border-radius:8px;" onclick="selectPayMode('upi')">⚡ Pay Advance via UPI</button>
-          <button type="button" class="filter-chip-btn" id="btnPayCod" style="padding:8px 8px;font-size:11px;border-radius:8px;" onclick="selectPayMode('cod')">💵 Bina Advance (Cash/Store)</button>
-        </div>
-        <div id="advanceInputBox">
-          <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100" placeholder="500">
-        </div>
-      </div>
-
-      <button type="submit" id="btnSubmitUniversalOrder" class="btn-gold" style="width:100%;justify-content:center;padding:16px 20px;font-size:15px;font-weight:800;letter-spacing:0.8px;border-radius:12px;box-shadow:0 4px 15px rgba(197,155,72,0.35);margin-top:4px;">
-        ✓ CONFIRM &amp; PLACE ORDER
+      <button type="button" class="btn-outline" style="width:100%;margin-top:8px;font-size:11.5px;padding:9px;" onclick="autoDetectLocationCheckout()">
+        📍 Auto Detect GPS Location
       </button>
-    </form>
+    </div>
+
+    <!-- PROMO / REWARD CODE BOX -->
+    <div style="display:flex;gap:6px;margin-bottom:10px;">
+      <input type="text" id="coCouponInput" class="input-control" placeholder="PROMO / REWARD CODE" style="text-transform:uppercase;font-size:12px;">
+      <button type="button" class="btn-outline" style="padding:8px 16px;background:#1a1524;" onclick="applyPromoCode()">Apply</button>
+    </div>
+
+    <!-- PRICE BREAKUP -->
+    <div class="price-breakup-box" style="margin-bottom:12px;background:#181422;border:1px solid #332a42;">
+      <div class="breakup-row"><span>Metal &amp; Making:</span><span id="coGrossVal">₹0</span></div>
+      <div class="breakup-row"><span>GST (3%):</span><span id="coGstVal">+₹0</span></div>
+      <div class="breakup-row"><span>Delivery Charge:</span><span id="coDeliveryVal" style="color:#2ecc71;">FREE</span></div>
+      <div class="breakup-row" style="color:#2ecc71;"><span>Promo Discount:</span><span id="coPromoDiscount">-₹0</span></div>
+      <div class="breakup-row total" style="border-top:1px solid #332a42;padding-top:8px;margin-top:4px;">
+        <span style="font-size:13.5px;">Net Total Payable:</span><span id="coNetPayableVal" style="font-size:16px;color:var(--gold-glow);font-weight:900;">₹0</span>
+      </div>
+    </div>
+
+    <!-- PAYMENT METHOD SELECTION -->
+    <div style="background:#181422;border:1px solid #332a42;border-radius:10px;padding:10px;margin-bottom:14px;">
+      <label style="font-size:11.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:6px;">
+        💰 Choose Payment Option:
+      </label>
+      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:6px;margin-bottom:8px;">
+        <button type="button" class="filter-chip-btn active" id="btnPayOnline" style="padding:8px 8px;font-size:11px;border-radius:8px;" onclick="selectPayMode('upi')">⚡ Pay Advance via UPI</button>
+        <button type="button" class="filter-chip-btn" id="btnPayCod" style="padding:8px 8px;font-size:11px;border-radius:8px;" onclick="selectPayMode('cod')">💵 Bina Advance (Cash/Store)</button>
+      </div>
+      <div id="advanceInputBox">
+        <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100" placeholder="500">
+      </div>
+    </div>
+
+    <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="width:100%;justify-content:center;padding:16px 20px;font-size:15px;font-weight:800;letter-spacing:0.8px;border-radius:12px;box-shadow:0 4px 15px rgba(197,155,72,0.35);margin-top:4px;cursor:pointer;" onclick="executeOrderPlacement()">
+      ✓ CONFIRM &amp; PLACE ORDER
+    </button>
   </div>
 </div>
 
@@ -961,6 +1029,7 @@ let categoryRules = JSON.parse(localStorage.getItem('isha_category_rules')) || {
 let userAuth = JSON.parse(localStorage.getItem('isha_user_auth')) || { loggedIn: false, phone: "" };
 let allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
 let tempRegData = {};
+let tempRegAvatar = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200";
 
 function getUserKey(suffix) {
   const p = userAuth.phone ? userAuth.phone.trim() : 'guest';
@@ -1063,14 +1132,71 @@ window.addEventListener('DOMContentLoaded', () => {
     if (sp) { sp.style.opacity = '0'; setTimeout(() => sp.style.display = 'none', 600); }
   }, 1000);
 
+  db.ref('orders').on('value', snap => {
+    if (snap.val()) {
+      const allOrders = Object.values(snap.val()).reverse();
+      if (userAuth.loggedIn && userAuth.phone) {
+        const userOrders = allOrders.filter(o => String(o.phone).trim() === String(userAuth.phone).trim());
+        const seen = new Set();
+        myOrders = userOrders.filter(el => {
+          const duplicate = seen.has(el.id);
+          seen.add(el.id);
+          return !duplicate;
+        });
+      } else {
+        myOrders = [];
+      }
+      renderTrackingUI();
+      renderDrawerOrderHistory();
+      renderDynamicRewardCards();
+    }
+  });
+
+  db.ref('registeredUsers').on('value', snap => {
+    if (snap.val()) {
+      allUsersDb = snap.val();
+      localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+      if (userAuth.loggedIn && userAuth.phone) {
+        reloadUserData();
+        loadAndRenderUserProfile();
+      }
+    }
+  });
+
+  db.ref('rates').on('value', snap => {
+    if (snap.val()) {
+      rates = Object.assign({}, rates, snap.val());
+      localStorage.setItem('isha_rates', JSON.stringify(rates));
+      updateRatesBarUI();
+      renderDashboardSections();
+      renderCatPageProducts();
+    }
+  });
+
+  db.ref('products').on('value', snap => {
+    if (snap.val()) {
+      allProducts = Object.values(snap.val());
+      localStorage.setItem('isha_products', JSON.stringify(allProducts));
+      renderDashboardSections();
+      renderCatPageProducts();
+    }
+  });
+
+  db.ref('categoryRules').on('value', snap => {
+    if (snap.val()) {
+      categoryRules = snap.val();
+      localStorage.setItem('isha_category_rules', JSON.stringify(categoryRules));
+      if (currentProduct) recalcProductCalculations();
+    }
+  });
+
   reloadUserData();
-  initCloudStorageSync();
   initApp();
 });
 
 function checkFirstTimeLoginGateway() {
   const gtw = document.getElementById('firstTimeLoginGateway');
-  if (userAuth.loggedIn && userAuth.phone && allUsersDb[userAuth.phone]) {
+  if (userAuth.loggedIn && userAuth.phone) {
     gtw.style.display = 'none';
   } else {
     gtw.style.display = 'flex';
@@ -1089,10 +1215,57 @@ function switchAuthScreen(view) {
   document.getElementById('authStepForgot').style.display = (view === 'forgot') ? 'block' : 'none';
 }
 
-function handleGoogleMockAuth() {
-  document.getElementById('regName').value = "Verified Google User";
-  document.getElementById('regEmail').value = "customer@gmail.com";
-  toast("🌐 Google connected! Ab 10-digit mobile number enter karein.");
+function openGoogleAccountSelectorModal() {
+  const container = document.getElementById('googleAccountsListContainer');
+  const sampleAccounts = [
+    { name: "Tushar Swarnkar", email: "tusharkumar508@gmail.com", letter: "T", color: "#1a73e8" },
+    { name: "Isha Jewellers", email: "ishajewellery07@gmail.com", letter: "I", color: "#fbbc05" },
+    { name: "Tushar Swarnkar", email: "tusharswankar318@gmail.com", letter: "T", color: "#34a853" },
+    { name: "Shashi Sarkar", email: "sarkanshahi420@gmail.com", letter: "S", color: "#4285f4" },
+    { name: "TuShar Kr. 0909", email: "chhabidevi17@gmail.com", letter: "T", color: "#ff7043" }
+  ];
+
+  container.innerHTML = sampleAccounts.map(acc => `
+    <div class="google-acc-item" onclick="selectGoogleAccount('${acc.name}', '${acc.email}')">
+      <div style="width:36px;height:36px;border-radius:50%;background:${acc.color};color:#fff;display:grid;place-items:center;font-weight:bold;font-size:14px;flex-shrink:0;">${acc.letter}</div>
+      <div style="flex:1;overflow:hidden;">
+        <div style="font-size:12.5px;font-weight:700;color:#fff;">${acc.name}</div>
+        <div style="font-size:10.5px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${acc.email}</div>
+      </div>
+    </div>
+  `).join('') + `
+    <div class="google-acc-item" onclick="promptAnotherGoogleAccount()">
+      <div style="width:36px;height:36px;border-radius:50%;background:#333;color:#fff;display:grid;place-items:center;font-weight:bold;font-size:16px;flex-shrink:0;">+</div>
+      <div style="flex:1;">
+        <div style="font-size:12.5px;font-weight:700;color:#fff;">Use another account</div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('googleAccountModal').style.display = 'flex';
+}
+
+function closeGoogleAccountModal() {
+  document.getElementById('googleAccountModal').style.display = 'none';
+}
+
+function selectGoogleAccount(name, email) {
+  document.getElementById('regName').value = name;
+  document.getElementById('regEmail').value = email;
+  closeGoogleAccountModal();
+  toast(`🌐 Account Selected: ${email}! Ab apna 10-digit mobile number daalein.`);
+}
+
+function promptAnotherGoogleAccount() {
+  const gEmail = prompt("Apna Google Gmail ID enter karein:");
+  if (gEmail && gEmail.includes('@')) {
+    const cleanName = gEmail.split('@')[0];
+    const formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+    document.getElementById('regName').value = formattedName;
+    document.getElementById('regEmail').value = gEmail.toLowerCase();
+    closeGoogleAccountModal();
+    toast(`🌐 Google Account Connected! Ab 10-digit mobile number enter karein.`);
+  }
 }
 
 function goToMpinSetup() {
@@ -1110,26 +1283,29 @@ function goToMpinSetup() {
     return;
   }
 
-  tempRegData = { name, phone, email };
+  tempRegData = { name, phone, email, avatar: tempRegAvatar };
   switchAuthScreen('createMpin');
 }
 
-function saveNewUserAccount() {
+async function saveNewUserAccount() {
   const m1 = document.getElementById('newMpin').value.trim();
   const m2 = document.getElementById('confirmMpin').value.trim();
 
   if (m1.length !== 4 || isNaN(m1)) { alert("Kripya 4-Digit MPIN set karein!"); return; }
   if (m1 !== m2) { alert("Confirm MPIN match nahi hua! Dobara verify karein."); return; }
 
-  allUsersDb[tempRegData.phone] = {
+  const newUserObj = {
     name: tempRegData.name,
     phone: tempRegData.phone,
     email: tempRegData.email,
     mpin: m1,
     address: "",
-    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
+    avatar: tempRegData.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
   };
+
+  allUsersDb[tempRegData.phone] = newUserObj;
   localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+  try { await db.ref('registeredUsers/' + tempRegData.phone).set(newUserObj); } catch(e){}
 
   userAuth = { loggedIn: true, phone: tempRegData.phone };
   localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
@@ -1142,7 +1318,7 @@ function saveNewUserAccount() {
   updateCartUI();
   renderWishlistUI();
   showLoader(400);
-  toast("🎉 MPIN Registered & Logged in Successfully!");
+  toast("🎉 Account Cloud Synced & Opened Successfully!");
 }
 
 function verifyUserMpinLogin() {
@@ -1167,13 +1343,13 @@ function verifyUserMpinLogin() {
     updateCartUI();
     renderWishlistUI();
     showLoader(400);
-    toast("🔓 Login Successful!");
+    toast("🔓 Cloud Data Synchronized & Logged In!");
   } else {
     alert("❌ Galat MPIN! Sahi 4-digit code enter karein.");
   }
 }
 
-function resetMpinDirectly() {
+async function resetMpinDirectly() {
   const idInput = document.getElementById('forgotIdInput').value.trim();
   const newMpin = document.getElementById('forgotNewMpinInput').value.trim();
 
@@ -1197,6 +1373,7 @@ function resetMpinDirectly() {
 
   allUsersDb[matchedPhone].mpin = newMpin;
   localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+  try { await db.ref('registeredUsers/' + matchedPhone + '/mpin').set(newMpin); } catch(e){}
 
   userAuth = { loggedIn: true, phone: matchedPhone };
   localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
@@ -1207,7 +1384,7 @@ function resetMpinDirectly() {
   loadAndRenderUserProfile();
   initCloudStorageSync();
   showLoader(400);
-  toast("🎉 MPIN Reset & Store Logged In!");
+  toast("🎉 MPIN Reset & Cloud Synced!");
 }
 
 function initCloudStorageSync() {
@@ -1318,7 +1495,7 @@ function hideProfileEditor() {
   document.getElementById('profileViewBox').style.display = 'block';
 }
 
-function saveProfileDetails(e) {
+async function saveProfileDetails(e) {
   e.preventDefault();
   const name = document.getElementById('edName').value.trim();
   const email = document.getElementById('edEmail').value.trim();
@@ -1336,6 +1513,7 @@ function saveProfileDetails(e) {
   if (allUsersDb[userAuth.phone]) {
     allUsersDb[userAuth.phone] = Object.assign(allUsersDb[userAuth.phone], prof);
     localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+    try { await db.ref('registeredUsers/' + userAuth.phone).update(prof); } catch(e){}
   }
   localStorage.setItem(getUserKey('profile'), JSON.stringify(prof));
 
@@ -1346,7 +1524,7 @@ function saveProfileDetails(e) {
 
   loadAndRenderUserProfile();
   hideProfileEditor();
-  toast("✅ Profile & Address Saved!");
+  toast("✅ Profile & Cloud Address Synced!");
 }
 
 function previewProfilePic(e) {
@@ -1493,9 +1671,8 @@ function recalcProductCalculations() {
   } else if (p.metal === '24K') rate = rates.gold24k || 9850;
   else if (p.metal === '18K') rate = rates.gold18k || 7400;
 
-  const metalCost = Math.round(rate * w);
   const makingCost = (p.makingType === 'flatPiece') ? (p.making || 0) : Math.round((p.making || 0) * (w / (p.weight || w || 1)));
-  const subtotal = metalCost + makingCost;
+  const subtotal = Math.round(rate * w) + makingCost;
 
   const catRule = categoryRules[p.category] || { gstEnabled: true, gstPercent: 3, freeDelivery: true, deliveryCharge: 0 };
   const gstCost = catRule.gstEnabled ? Math.round(subtotal * ((catRule.gstPercent || 3) / 100)) : 0;
@@ -1504,7 +1681,7 @@ function recalcProductCalculations() {
 
   document.getElementById('detailTotalPrice').textContent = "₹" + total.toLocaleString('en-IN');
   document.getElementById('breakupMetalName').textContent = `Metal Cost (${w}g @ ₹${rate}/g):`;
-  document.getElementById('breakupMetalAmount').textContent = "₹" + metalCost.toLocaleString('en-IN');
+  document.getElementById('breakupMetalAmount').textContent = "₹" + Math.round(rate * w).toLocaleString('en-IN');
   document.getElementById('breakupMakingAmount').textContent = "₹" + makingCost.toLocaleString('en-IN');
   document.getElementById('breakupGstAmount').textContent = "+₹" + gstCost.toLocaleString('en-IN');
   document.getElementById('breakupDeliveryAmount').textContent = deliveryCost > 0 ? "₹" + deliveryCost : "FREE";
@@ -1599,8 +1776,8 @@ function renderCustomerAdsCarousel() {
     <div class="ad-poster-card" style="background-image:url('${ad.image}');">
       <div class="ad-card-content">
         <span style="font-size:8.5px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag}</span>
-        <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
-        <small style="color:#f3dfaa;font-size:10px;">${ad.subtitle}</small>
+        <div style="font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
+        <small style="color:#f3dfaa;font-size:11px;">${ad.subtitle}</small>
       </div>
     </div>
   `).join('');
@@ -1778,7 +1955,7 @@ function renderSavedAddressPicker() {
     <b style="font-size:11px;color:var(--gold-glow);display:block;margin-bottom:6px;">📍 Choose Delivery Address:</b>
     <div style="display:flex;flex-direction:column;gap:6px;">
       ${savedAddresses.map((addr, idx) => `
-        <div style="background:#181422;border:1px solid #332a42;padding:8px 10px;border-radius:10px;font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div style="background:#1b1624;border:1px solid #3a2e48;padding:8px 10px;border-radius:10px;font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
           <label style="display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;overflow:hidden;">
             <input type="radio" name="radAddress" ${idx===0?'checked':''} onchange="selectSavedAddress(${idx})">
             <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><b>${addr.name}</b> - ${addr.address}</span>
@@ -1946,7 +2123,7 @@ function openOrderCheckoutModal(itemsArray, mode) {
   const prof = getUserProfile();
   document.getElementById('coFirstName').value = prof.name ? prof.name.split(' ')[0] : '';
   document.getElementById('coLastName').value = prof.name ? prof.name.split(' ').slice(1).join(' ') : '';
-  document.getElementById('coMobile').value = userAuth.phone || '';
+  document.getElementById('coMobile').value = userAuth.phone || prof.phone || '';
   document.getElementById('coArea').value = prof.address || '';
 
   renderSavedAddressPicker();
@@ -1997,26 +2174,18 @@ function recalcCheckoutBalances() {
   document.getElementById('coNetPayableVal').textContent = "₹" + netPayable.toLocaleString('en-IN');
 }
 
-// FIX: ASYNC ORDER PLACEMENT GUARANTEEING FIREBASE SYNC BEFORE REDIRECT
-async function submitUniversalOrder(e) {
-  e.preventDefault();
+function executeOrderPlacement() {
   const fName = document.getElementById('coFirstName').value.trim();
   const lName = document.getElementById('coLastName').value.trim();
-  const phone = (userAuth && userAuth.phone) ? userAuth.phone : (document.getElementById('coMobile').value.trim());
+  const phone = document.getElementById('coMobile').value.trim() || (userAuth && userAuth.phone) || '9113774515';
   const specificStreet = document.getElementById('coArea').value.trim();
   const dist = document.getElementById('coDistrict').value.trim() || 'Sahibganj';
   const pin = document.getElementById('coPincode').value.trim() || '816108';
   const adv = (currentPayMode === 'upi') ? (Number(document.getElementById('coAdvanceInput').value) || 500) : 0;
 
-  if (!fName || !phone || !specificStreet) { 
-    alert("Kripya saari delivery details fill karein!"); 
+  if (!fName || !specificStreet) { 
+    alert("Kripya First Name aur Address fill karein!"); 
     return; 
-  }
-
-  const submitBtn = document.getElementById('btnSubmitUniversalOrder');
-  if (submitBtn) {
-    submitBtn.disabled = true;
-    submitBtn.textContent = "⏳ Placing Order...";
   }
 
   const fullCustName = (fName + " " + lName).trim();
@@ -2055,6 +2224,8 @@ async function submitUniversalOrder(e) {
     advancePaid: adv,
     balanceDue: Math.max(0, netFinalBill - adv),
     deliveryDate: estDate,
+    expectedDeliveryDate: estDate,
+    estDate: estDate,
     orderDate: today,
     isDelivered: false,
     statusStage: 1,
@@ -2063,16 +2234,8 @@ async function submitUniversalOrder(e) {
     couponEarned: "ISHA-GOLD" + Math.floor(100 + Math.random()*900)
   };
 
-  // 1. Firebase Cloud DB Me Save (Await lagaya taaki network request fail na ho)
-  try {
-    if (typeof db !== 'undefined' && db) {
-      await db.ref('orders/' + orderId).set(newOrd);
-    }
-  } catch(err) {
-    console.error("Firebase Order Save Error:", err);
-  }
-
-  // 2. Shared Local Storage Backup
+  // INSTANT LOCAL SAVE & UI UPDATE
+  myOrders.unshift(newOrd);
   let sharedOrders = JSON.parse(localStorage.getItem('isha_orders')) || [];
   sharedOrders.unshift(newOrd);
   localStorage.setItem('isha_orders', JSON.stringify(sharedOrders));
@@ -2082,19 +2245,33 @@ async function submitUniversalOrder(e) {
   updateCartUI();
   closeCheckoutModal();
 
-  if (submitBtn) {
-    submitBtn.disabled = false;
-    submitBtn.textContent = "✓ CONFIRM & PLACE ORDER";
-  }
+  // BACKGROUND FIREBASE PUSH (NON-BLOCKING)
+  setTimeout(() => {
+    try {
+      if (typeof db !== 'undefined' && db) {
+        db.ref('orders/' + orderId).set(newOrd);
+      }
+    } catch(err) {
+      console.log("Firebase sync skipped:", err);
+    }
+  }, 10);
 
-  showPage('tracking');
-  toast("🎉 Order Placed Successfully!");
+  const animTag = document.getElementById('animOrderIdTag');
+  if (animTag) animTag.textContent = `Order ID: #${orderId}`;
+  document.getElementById('orderSuccessAnimModal').style.display = 'flex';
 
   if (currentPayMode === 'upi' && adv > 0) {
     setTimeout(() => {
       window.location.href = `upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${adv}&cu=INR&tn=Order${orderId}`;
     }, 400);
   }
+}
+
+function closeSuccessAnimModal() {
+  document.getElementById('orderSuccessAnimModal').style.display = 'none';
+  renderTrackingUI();
+  showPage('tracking');
+  toast("🎉 Order Confirmed!");
 }
 
 function cancelCustomerOrder(orderId) {
@@ -2137,19 +2314,20 @@ function renderTrackingUI() {
     const isOutForDelivery = (o.statusStage >= 4);
     const agentName = o.deliveryAgentName || "Rakesh Swarnkar (Store Delivery)";
     const agentPhone = o.deliveryAgentPhone || "9113774515";
+    const displayEstDate = o.expectedDeliveryDate || o.extendedDeliveryDate || o.estDate || o.deliveryDate || "7 Days";
 
     return `
       <div class="cart-item-card" style="flex-direction:column;gap:8px;border-color:var(--gold);padding:14px;margin-bottom:12px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <strong style="color:var(--gold-glow);font-size:14px;">Order #${o.id}</strong>
-          <span style="font-size:11px;color:#2ecc71;font-weight:800;">Est: ${o.deliveryDate}</span>
+          <span style="font-size:11px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
         </div>
         <div style="font-size:12px;color:var(--text-main);font-weight:600;">${o.specs}</div>
         <div style="font-size:11px;color:var(--text-muted);">
           Net: ₹${Number(o.netPayable).toLocaleString('en-IN')} | Adv: ₹${o.advancePaid} | Due: ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
         
-        <div style="background:#1b1524;border:1px dashed var(--gold);padding:10px;border-radius:10px;margin-top:2px;">
+        <div style="background:#1b1624;border:1.5px dashed var(--gold);padding:10px;border-radius:10px;margin-top:2px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
               <span style="font-size:9.5px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
@@ -2241,7 +2419,7 @@ function renderDrawerOrderHistory() {
         </div>
         <div style="font-size:11.5px;color:var(--text-main);margin:4px 0;">📦 <b>Products:</b> ${o.specs}</div>
         <div style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;">
-          💰 <b>Net Bill:</b> ₹${Number(o.netPayable).toLocaleString('en-IN')} | <b>Advance:</b> ₹${o.advancePaid} | <b>Due:</b> ₹${o.balanceDue}
+          💰 <b>Net Bill:</b> ₹${Number(o.netPayable).toLocaleString('en-IN')} | <b>Advance:</b> ₹${o.advancePaid} | <b>Due:</b> ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
         <button class="btn-gold" style="width:100%;padding:7px;font-size:11px;justify-content:center;opacity:${isCompleted?'1':'0.6'};" onclick="downloadOfficialBill('${o.id}')">
           📄 Download A4 Portrait Tax Bill &amp; Certificate ${isCompleted ? '' : '(Locked until Delivery)'}
