@@ -12,6 +12,9 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
+<!-- GOOGLE OFFICIAL ONE-TAP SIGN-IN SDK -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 <style>
 /* TRUE LUXURY PALETTE (PROFESSIONAL JEWELLERY BRAND) */
 :root{
@@ -1104,55 +1107,62 @@ function switchAuthScreen(view) {
 }
 
 function openGoogleAccountSelectorModal() {
-  const container = document.getElementById('googleAccountsListContainer');
-  const sampleAccounts = [
-    { name: "Tushar Swarnkar", email: "tusharkumar508@gmail.com", letter: "T", color: "#1a73e8" },
-    { name: "Isha Jewellers", email: "ishajewellery07@gmail.com", letter: "I", color: "#fbbc05" },
-    { name: "Tushar Swarnkar", email: "tusharswankar318@gmail.com", letter: "T", color: "#34a853" },
-    { name: "Shashi Sarkar", email: "sarkanshahi420@gmail.com", letter: "S", color: "#4285f4" },
-    { name: "TuShar Kr. 0909", email: "chhabidevi17@gmail.com", letter: "T", color: "#ff7043" }
-  ];
-
-  container.innerHTML = sampleAccounts.map(acc => `
-    <div class="google-acc-item" onclick="selectGoogleAccount('${acc.name}', '${acc.email}')">
-      <div style="width:36px;height:36px;border-radius:50%;background:${acc.color};color:#fff;display:grid;place-items:center;font-weight:bold;font-size:14px;flex-shrink:0;">${acc.letter}</div>
-      <div style="flex:1;overflow:hidden;">
-        <div style="font-size:12.5px;font-weight:700;color:#fff;">${acc.name}</div>
-        <div style="font-size:10.5px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${acc.email}</div>
-      </div>
-    </div>
-  `).join('') + `
-    <div class="google-acc-item" onclick="promptAnotherGoogleAccount()">
-      <div style="width:36px;height:36px;border-radius:50%;background:#333;color:#fff;display:grid;place-items:center;font-weight:bold;font-size:16px;flex-shrink:0;">+</div>
-      <div style="flex:1;">
-        <div style="font-size:12.5px;font-weight:700;color:#fff;">Use another account</div>
-      </div>
-    </div>
-  `;
-  document.getElementById('googleAccountModal').style.display = 'flex';
+  if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
+    try {
+      google.accounts.id.initialize({
+        client_id: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+        callback: handleGoogleSignInResponse,
+        auto_select: false,
+        cancel_on_tap_outside: true
+      });
+      google.accounts.id.prompt((notification) => {
+        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
+          fallbackManualGooglePrompt();
+        }
+      });
+      return;
+    } catch(err) {
+      console.log("Google GIS error fallback", err);
+    }
+  }
+  fallbackManualGooglePrompt();
 }
 
-function closeGoogleAccountModal() {
-  document.getElementById('googleAccountModal').style.display = 'none';
+function handleGoogleSignInResponse(response) {
+  try {
+    const base64Url = response.credential.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+      return '%' + ('00 ' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    const profile = JSON.parse(jsonPayload);
+    document.getElementById('regName').value = profile.name || "";
+    document.getElementById('regEmail').value = profile.email || "";
+    if (profile.picture) tempRegAvatar = profile.picture;
+
+    closeGoogleAccountModal();
+    toast(`🌐 Google Account Connected: ${profile.email}`);
+  } catch (e) {
+    fallbackManualGooglePrompt();
+  }
 }
 
-function selectGoogleAccount(name, email) {
-  document.getElementById('regName').value = name;
-  document.getElementById('regEmail').value = email;
-  closeGoogleAccountModal();
-  toast(`🌐 Account Selected: ${email}! Ab apna 10-digit mobile number daalein.`);
-}
-
-function promptAnotherGoogleAccount() {
+function fallbackManualGooglePrompt() {
   const gEmail = prompt("Apna Google Gmail ID enter karein:");
   if (gEmail && gEmail.includes('@')) {
     const cleanName = gEmail.split('@')[0];
     const formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+    
     document.getElementById('regName').value = formattedName;
     document.getElementById('regEmail').value = gEmail.toLowerCase();
     closeGoogleAccountModal();
-    toast(`🌐 Google Account Connected! Ab 10-digit mobile number enter karein.`);
+    toast(`🌐 Google Account Linked: ${gEmail.toLowerCase()}`);
   }
+}
+
+function closeGoogleAccountModal() {
+  document.getElementById('googleAccountModal').style.display = 'none';
 }
 
 function goToMpinSetup() {
