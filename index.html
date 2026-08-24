@@ -12,9 +12,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-<!-- GOOGLE OFFICIAL ONE-TAP SIGN-IN SDK -->
-<script src="https://accounts.google.com/gsi/client" async defer></script>
-
 <style>
 /* TRUE LUXURY PALETTE (PROFESSIONAL JEWELLERY BRAND) */
 :root{
@@ -47,38 +44,42 @@ body.theme-silver {
 }
 
 body.light-mode {
-  --bg-main:#f8f6f0;
+  --bg-main:#f4f1ea;
   --card-bg:#ffffff;
-  --card-border:#e4dcd0;
-  --text-main:#1f1911;
-  --text-muted:#756a5c;
-  --gold-glow:#855d10;
-  --theme-color:#b89329;
-  --theme-subtle:rgba(184,147,41,0.12);
-  --accent-theme:linear-gradient(135deg, #c59b48 0%, #a67c2e 100%);
+  --card-border:#dcd2c0;
+  --text-main:#1c1710;
+  --text-muted:#6b5f52;
+  --gold-glow:#7a540b;
+  --theme-color:#a47d21;
+  --theme-subtle:rgba(164,125,33,0.12);
+  --accent-theme:linear-gradient(135deg, #c59b48 0%, #9a7324 100%);
 }
 body.light-mode.theme-silver {
-  --bg-main:#f2f6fa;
+  --bg-main:#edf3f8;
   --card-bg:#ffffff;
-  --card-border:#d1deeb;
-  --text-main:#121e2a;
-  --text-muted:#627385;
-  --gold-glow:#295175;
-  --theme-color:#6c8ca8;
-  --theme-subtle:rgba(79,114,148,0.12);
-  --accent-theme:linear-gradient(135deg, #6c8ca8 0%, #3e6080 100%);
+  --card-border:#c5d4e2;
+  --text-main:#0f1922;
+  --text-muted:#546475;
+  --gold-glow:#234768;
+  --theme-color:#5a7d9c;
+  --theme-subtle:rgba(90,125,156,0.12);
+  --accent-theme:linear-gradient(135deg, #5a7d9c 0%, #34536e 100%);
 }
 
-body.light-mode header{background:rgba(248,246,240,0.96);border-bottom-color:#e4dcd0;}
-body.light-mode.theme-silver header{background:rgba(242,246,250,0.96);border-bottom-color:#d1deeb;}
-body.light-mode .rate-ticker{background:linear-gradient(90deg, #f2eadb, #e6dac3, #f2eadb);border-color:#d4c2a0;}
-body.light-mode.theme-silver .rate-ticker{background:linear-gradient(90deg, #eaf2f8, #dbe8f3, #eaf2f8);border-color:#bed1e4;}
-body.light-mode .rate-gold-badge{color:#855d10;}
-body.light-mode .rate-silver-badge{color:#34495e;}
-body.light-mode .bottom-nav{background:#ffffff;border-top-color:#e4dcd0;}
-body.light-mode .about-store-footer{background:#f0e8d6;border-color:#d4c19c;color:#443826;}
-body.light-mode.theme-silver .about-store-footer{background:#eaf0f6;border-color:#b9cddf;color:#243242;}
-body.light-mode .cat-circle-icon{background:#f0e8d6;border-color:#dfd0b5;}
+body.light-mode header{background:rgba(244,241,234,0.96);border-bottom-color:#dcd2c0;}
+body.light-mode.theme-silver header{background:rgba(237,243,248,0.96);border-bottom-color:#c5d4e2;}
+body.light-mode .rate-ticker{background:linear-gradient(90deg, #eae1cf, #dfd2b9, #eae1cf);border-color:#cca875;}
+body.light-mode.theme-silver .rate-ticker{background:linear-gradient(90deg, #e3edf6, #cfe0ef, #e3edf6);border-color:#abc3db;}
+body.light-mode .rate-gold-badge{color:#7a540b;}
+body.light-mode .rate-silver-badge{color:#234768;}
+body.light-mode .bottom-nav{background:#ffffff;border-top-color:#dcd2c0;}
+body.light-mode .about-store-footer{background:#eae1cf;border-color:#cca875;color:#3b3121;}
+body.light-mode.theme-silver .about-store-footer{background:#e3edf6;border-color:#abc3db;color:#1c2936;}
+body.light-mode .cat-circle-icon{background:#eae1cf;border-color:#cca875;}
+body.light-mode .hamburger-btn{background:#eae1cf;border-color:#cca875;color:#3b3121;}
+body.light-mode .icon-btn{background:#eae1cf;border-color:#cca875;color:#3b3121;}
+body.light-mode .cat-circle-icon svg{stroke:#7a540b;fill:rgba(122,84,11,0.12);}
+body.light-mode.theme-silver .cat-circle-icon svg{stroke:#234768;fill:rgba(35,71,104,0.12);}
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
 body{
@@ -92,18 +93,18 @@ body{
 
 .app{
   width:100%;
+  max-width:480px;
   min-height:100vh;
   background:var(--bg-main);
   position:relative;
   margin:0 auto;
   display:flex;
   flex-direction:column;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
 }
 
 @media(min-width:768px){
-  .app { max-width: 1280px !important; margin: 0 auto; box-shadow: 0 0 60px rgba(0,0,0,0.6); }
-  .product-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 16px !important; }
-  .bottom-nav { max-width: 1280px !important; left: 50%; transform: translateX(-50%); }
+  .app { max-width: 540px !important; }
 }
 
 #splashScreen{
@@ -132,21 +133,6 @@ body{
   padding:12px;background:#0d0a13;border:1.5px solid var(--gold);border-radius:12px;
   color:var(--gold-glow);outline:none;margin-top:6px;box-shadow:inset 0 2px 6px rgba(0,0,0,0.8);
 }
-
-#googleAccountModal{
-  position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(12px);
-  z-index:99999999;display:none;align-items:center;justify-content:center;padding:16px;
-}
-.google-picker-card{
-  background:#171420;color:#fbf9f5;width:100%;max-width:390px;border-radius:22px;padding:26px 22px;text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,0.95);border:1.5px solid var(--gold);font-family:'Plus Jakarta Sans', sans-serif;
-  animation:modalScaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-}
-@keyframes modalScaleUp{0%{transform:scale(0.8);opacity:0;}100%{transform:scale(1);opacity:1;}}
-.google-acc-item{
-  display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;border:1px solid #362d4a;margin-bottom:8px;cursor:pointer;transition:0.2s;text-align:left;background:#110e18;
-}
-.google-acc-item:hover{background:#201a2e;border-color:var(--gold);transform:translateY(-1px);}
 
 #appLoader{
   position:fixed;inset:0;background:radial-gradient(circle at center, rgba(16,13,22,0.96) 0%, rgba(5,4,7,0.98) 100%);
@@ -201,19 +187,17 @@ header{
 .hamburger-btn{
   background:#181520;border:1px solid var(--card-border);color:var(--gold);width:36px;height:36px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
 }
-body.light-mode .hamburger-btn{background:#f0e8d6;border-color:#dfd0b5;}
 .hamburger-btn span{width:16px;height:2px;background:var(--gold);border-radius:2px;}
 .brand-name{
-  font-family:'Cinzel', serif;font-size:16px;letter-spacing:1px;font-weight:800;
+  font-family:'Cinzel', serif;font-size:15px;letter-spacing:1px;font-weight:800;
   background:var(--accent-theme);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-.brand-sub{display:block;font-size:9px;letter-spacing:2px;color:var(--theme-color);}
+.brand-sub{display:block;font-size:8.5px;letter-spacing:1.5px;color:var(--theme-color);}
 
-.header-actions{display:flex;gap:8px;align-items:center;}
+.header-actions{display:flex;gap:6px;align-items:center;}
 .icon-btn{
-  background:#181520;border:1px solid #2d263b;color:#e8e4f0;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;text-decoration:none;position:relative;
+  background:#181520;border:1px solid #2d263b;color:#e8e4f0;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;text-decoration:none;position:relative;
 }
-body.light-mode .icon-btn{background:#f0e8d6;border-color:#dfd0b5;color:#2c2215;}
 
 .search-bar{
   margin-top:8px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:6px;
@@ -221,36 +205,33 @@ body.light-mode .icon-btn{background:#f0e8d6;border-color:#dfd0b5;color:#2c2215;
 
 .rate-ticker{
   background:linear-gradient(90deg, #15120a, #261f12, #15120a);border-top:1px solid #3e331c;border-bottom:1px solid #3e331c;
-  padding:8px 14px;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;
+  padding:8px 14px;display:flex;justify-content:space-between;align-items:center;font-size:11px;
 }
 .rate-gold-badge{color:var(--gold-glow);font-weight:800;}
 .rate-silver-badge{color:#ffffff;font-weight:800;}
-body.theme-silver .rate-ticker{background:linear-gradient(90deg, #0e1721, #142230, #0e1721);}
+body.light-mode .rate-silver-badge{color:#234768;}
 
 .ads-carousel{
   margin:10px 0 14px;overflow-x:auto;display:flex;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;
 }
 .ads-carousel::-webkit-scrollbar{display:none;}
 .ad-poster-card{
-  min-width:100%;height:185px;border-radius:14px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;cursor:pointer;
+  min-width:100%;height:175px;border-radius:14px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;cursor:pointer;
 }
 .ad-poster-card::before{
   content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(14,8,4,0.92) 0%, rgba(20,10,4,0.3) 60%, transparent 100%);
 }
-body.theme-silver .ad-poster-card::before{
-  background:linear-gradient(to top, rgba(5,10,16,0.94) 0%, rgba(8,16,24,0.3) 60%, transparent 100%);
-}
 .ad-card-content{position:relative;z-index:2;}
 
-.cat-scroll-box{display:flex;gap:12px;overflow-x:auto;padding:8px 0 10px;scrollbar-width:none;}
+.cat-scroll-box{display:flex;gap:10px;overflow-x:auto;padding:8px 0 10px;scrollbar-width:none;}
 .cat-scroll-box::-webkit-scrollbar{display:none;}
-.cat-circle-item{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;min-width:64px;}
+.cat-circle-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;min-width:62px;}
 .cat-circle-icon{
-  width:55px;height:55px;border-radius:50%;background:#171322;border:1.5px solid #382c47;display:flex;align-items:center;justify-content:center;transition:0.2s;
+  width:52px;height:52px;border-radius:50%;background:#171322;border:1.5px solid #382c47;display:flex;align-items:center;justify-content:center;transition:0.2s;
 }
 .cat-circle-item.active .cat-circle-icon{border-color:var(--gold);background:var(--theme-subtle);box-shadow:0 0 12px var(--theme-subtle);}
-.cat-circle-icon svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.8;}
-.cat-circle-label{font-size:10px;color:var(--text-muted);font-weight:600;white-space:nowrap;}
+.cat-circle-icon svg{width:25px;height:25px;stroke:var(--gold);fill:rgba(212,175,55,0.12);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.cat-circle-label{font-size:9.5px;color:var(--text-muted);font-weight:600;white-space:nowrap;}
 .cat-circle-item.active .cat-circle-label{color:var(--gold-glow);font-weight:700;}
 
 .filter-chips-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;scrollbar-width:none;}
@@ -258,104 +239,104 @@ body.theme-silver .ad-poster-card::before{
 .filter-chip-btn{
   background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;cursor:pointer;
 }
-body.light-mode .filter-chip-btn{background:#f0e8d6;border-color:#dfd0b5;color:#57493a;}
+body.light-mode .filter-chip-btn{background:#eae1cf;border-color:#cca875;color:#443825;}
 .filter-chip-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
-main{padding:14px;padding-bottom:95px;flex:1;}
+main{padding:12px;padding-bottom:95px;flex:1;}
 .page{display:none;}
 .page.active{display:block;}
 
-.section-title-bar{display:flex;justify-content:space-between;align-items:center;margin:16px 0 10px;}
-.section-title-bar h2{font-family:'Cinzel',serif;font-size:15px;font-weight:800;color:var(--text-main);}
+.section-title-bar{display:flex;justify-content:space-between;align-items:center;margin:14px 0 8px;}
+.section-title-bar h2{font-family:'Cinzel',serif;font-size:14.5px;font-weight:800;color:var(--text-main);}
 
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .product-card{
-  background:var(--card-bg);border:1px solid var(--card-border);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;position:relative;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,0.06);
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;position:relative;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.06);
 }
 .wish-heart-btn{
-  position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.5);border:none;border-radius:50%;width:28px;height:28px;display:grid;place-items:center;color:#fff;font-size:14px;cursor:pointer;z-index:5;
+  position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.5);border:none;border-radius:50%;width:26px;height:26px;display:grid;place-items:center;color:#fff;font-size:13px;cursor:pointer;z-index:5;
 }
 .wish-heart-btn.active{color:#ff334b;}
 
-.product-img-wrap{width:100%;height:150px;background:#181520;position:relative;display:flex;align-items:center;justify-content:center;}
-body.light-mode .product-img-wrap{background:#f0e9dc;}
-body.theme-silver .product-img-wrap{background:#111b26;}
+.product-img-wrap{width:100%;height:140px;background:#181520;position:relative;display:flex;align-items:center;justify-content:center;}
+body.light-mode .product-img-wrap{background:#eaddcb;}
 .product-img-wrap img{width:100%;height:100%;object-fit:cover;}
-.product-info{padding:10px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-.product-title{font-size:12px;font-weight:600;margin-bottom:4px;}
-.product-price{font-size:13.5px;font-weight:800;color:var(--gold-glow);}
-.btn-card-quick{margin-top:6px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:10.5px;font-weight:700;padding:6px;border-radius:8px;cursor:pointer;text-align:center;}
+.product-info{padding:9px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.product-title{font-size:11.5px;font-weight:600;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.product-price{font-size:13px;font-weight:800;color:var(--gold-glow);}
+.btn-card-quick{margin-top:5px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:10px;font-weight:700;padding:5px;border-radius:8px;cursor:pointer;text-align:center;}
 
 .btn-gold{
-  background:var(--accent-theme);color:#120c02;font-weight:700;font-size:13px;border:none;padding:11px 18px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--accent-theme);color:#120c02;font-weight:700;font-size:12.5px;border:none;padding:11px 16px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
 }
 .btn-outline{
-  background:transparent;border:1px solid var(--theme-color);color:var(--theme-color);font-weight:600;font-size:12px;padding:8px 14px;border-radius:8px;cursor:pointer;
+  background:transparent;border:1px solid var(--theme-color);color:var(--theme-color);font-weight:600;font-size:11.5px;padding:8px 12px;border-radius:8px;cursor:pointer;
 }
 .btn-danger{
-  background:#2b1216;border:1px solid #73222d;color:#ff6b7a;font-weight:600;font-size:12px;padding:10px 14px;border-radius:10px;cursor:pointer;width:100%;
+  background:#2b1216;border:1px solid #73222d;color:#ff6b7a;font-weight:600;font-size:11.5px;padding:10px 14px;border-radius:10px;cursor:pointer;width:100%;
 }
-body.light-mode .btn-danger{background:#feebee;border-color:#f8bbd0;color:#c2185b;}
+body.light-mode .btn-danger{background:#fce8e6;border-color:#e6b8b355;color:#b91c1c;}
 
 .cart-item-card{
-  background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:10px;display:flex;gap:10px;position:relative;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.04);
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:10px;display:flex;gap:10px;position:relative;cursor:pointer;
 }
 .cart-remove-btn{
   position:absolute;top:6px;right:8px;background:none;border:none;color:#ff6b7a;font-size:14px;cursor:pointer;z-index:5;
 }
 
 .about-store-footer{
-  background:#171109;border:1.5px solid #573f16;border-radius:16px;padding:18px;margin-top:28px;color:#ded2c1;
+  background:#171109;border:1.5px solid #573f16;border-radius:16px;padding:16px;margin-top:24px;color:#ded2c1;
 }
-.about-store-footer h3{font-family:'Cinzel',serif;color:#ffd57e;font-size:15px;margin-bottom:8px;}
-.about-store-footer p{font-size:11px;line-height:1.5;color:#bdae99;margin-bottom:10px;}
-.about-contact-row{font-size:11px;margin-bottom:4px;display:flex;gap:6px;}
+.about-store-footer h3{font-family:'Cinzel',serif;color:#ffd57e;font-size:14.5px;margin-bottom:6px;}
+.about-store-footer p{font-size:10.5px;line-height:1.5;color:#bdae99;margin-bottom:8px;}
+.about-contact-row{font-size:10.5px;margin-bottom:3px;display:flex;gap:6px;}
 
 .bottom-nav{
-  position:fixed;bottom:0;width:100%;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:50;
+  position:fixed;bottom:0;width:100%;max-width:480px;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:50;
 }
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
+@media(min-width:768px){.bottom-nav{max-width:540px !important;}}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9.5px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
 .nav-item.active{color:var(--theme-color);}
 .cart-badge-dot{
-  position:absolute;top:-2px;right:22px;background:#ff334b;color:#fff;font-size:9px;font-weight:800;padding:1px 5px;border-radius:10px;
+  position:absolute;top:-2px;right:18px;background:#ff334b;color:#fff;font-size:8.5px;font-weight:800;padding:1px 4px;border-radius:10px;
 }
 
 .input-control{
-  width:100%;padding:11px 13px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;color:var(--text-main);font-family:inherit;font-size:13px;outline:none;
+  width:100%;padding:10px 12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;color:var(--text-main);font-family:inherit;font-size:12.5px;outline:none;
 }
 .input-control:focus{border-color:var(--theme-color);}
 
 .price-breakup-box{
-  background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;padding:12px 14px;margin:12px 0;
+  background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;padding:12px;margin:10px 0;
 }
-.breakup-row{display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px;color:var(--text-muted);}
-.breakup-row.total{border-top:1px solid var(--card-border);padding-top:8px;margin-top:6px;font-weight:700;font-size:14px;color:var(--gold-glow);}
+.breakup-row{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:5px;color:var(--text-muted);}
+.breakup-row.total{border-top:1px solid var(--card-border);padding-top:7px;margin-top:5px;font-weight:700;font-size:13.5px;color:var(--gold-glow);}
 
-.track-step-list{position:relative;margin:14px 0 6px 6px;padding-left:22px;border-left:2px solid var(--card-border);}
-.track-step{position:relative;margin-bottom:14px;}
+.track-step-list{position:relative;margin:12px 0 4px 4px;padding-left:20px;border-left:2px solid var(--card-border);}
+.track-step{position:relative;margin-bottom:12px;}
 .track-step:last-child{margin-bottom:0;}
 .track-dot{
-  position:absolute;left:-30px;top:2px;width:16px;height:16px;border-radius:50%;background:#252030;border:2px solid #574d6b;display:grid;place-items:center;font-size:9px;font-weight:800;color:#fff;
+  position:absolute;left:-28px;top:2px;width:15px;height:15px;border-radius:50%;background:#252030;border:2px solid #574d6b;display:grid;place-items:center;font-size:8.5px;font-weight:800;color:#fff;
 }
 .track-step.done .track-dot{background:#2ecc71;border-color:#2ecc71;color:#000;}
-.track-step-title{font-size:12px;font-weight:700;}
+.track-step-title{font-size:11.5px;font-weight:700;}
 
 .stepper-wrap{
   display:flex;align-items:center;gap:12px;background:#1b1624;border:1px solid #3a2e48;padding:6px 12px;border-radius:10px;width:max-content;margin:8px 0;
 }
-body.light-mode .stepper-wrap{background:#f6efe3;border-color:#e0d2bd;}
+body.light-mode .stepper-wrap{background:#f0e9dc;border-color:#dcd0bc;}
 .stepper-btn{
-  width:32px;height:32px;border-radius:8px;background:var(--accent-theme);color:#120b02;border:none;font-weight:900;font-size:16px;cursor:pointer;display:grid;place-items:center;
+  width:30px;height:30px;border-radius:8px;background:var(--accent-theme);color:#120b02;border:none;font-weight:900;font-size:15px;cursor:pointer;display:grid;place-items:center;
 }
 .stepper-val{
-  font-size:14px;font-weight:800;color:var(--gold-glow);min-width:70px;text-align:center;
+  font-size:13.5px;font-weight:800;color:var(--gold-glow);min-width:65px;text-align:center;
 }
 
 .opt-pill-grid{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0;}
 .opt-pill-btn{
-  background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;
+  background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:11px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;
 }
-body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#55493a;}
+body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443825;}
 .opt-pill-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
 .cal-flip-card{
@@ -377,14 +358,13 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 .cal-day-cell.today-cell{
   border:2px solid #ffd57e !important;
   background:linear-gradient(145deg, rgba(255,213,126,0.3) 0%, rgba(197,155,72,0.2) 100%) !important;
-  box-shadow:0 0 14px rgba(255,213,126,0.5);
 }
-.cal-day-cell.today-cell .cal-day-num{color:#ffd57e;font-size:13.5px;font-weight:900;}
-.cal-today-badge{font-size:7px;font-weight:900;background:#ffd57e;color:#000;padding:1px 3px;border-radius:3px;margin-top:2px;}
-.cal-day-num{font-weight:800;font-size:12px;}
-.cal-fest-tag{font-size:7.5px;color:#ffd57e;margin-top:2px;line-height:1;overflow:hidden;text-overflow:ellipsis;}
+.cal-day-cell.today-cell .cal-day-num{color:#ffd57e;font-size:13px;font-weight:900;}
+.cal-today-badge{font-size:6.5px;font-weight:900;background:#ffd57e;color:#000;padding:1px 3px;border-radius:3px;margin-top:2px;}
+.cal-day-num{font-weight:800;font-size:11.5px;}
+.cal-fest-tag{font-size:7px;color:#ffd57e;margin-top:2px;line-height:1;overflow:hidden;text-overflow:ellipsis;}
 
-.toast-msg{position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:#262117;color:var(--gold-glow);border:1px solid #6b5223;padding:10px 18px;border-radius:30px;font-size:12px;font-weight:600;z-index:9999999;display:none;}
+.toast-msg{position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:#262117;color:var(--gold-glow);border:1px solid #6b5223;padding:9px 16px;border-radius:30px;font-size:11.5px;font-weight:600;z-index:9999999;display:none;}
 </style>
 </head>
 <body>
@@ -403,36 +383,17 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
   <div class="splash-sub">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</div>
 </div>
 
-<!-- GOOGLE ACCOUNT PICKER MODAL -->
-<div id="googleAccountModal">
-  <div class="google-picker-card">
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px;">
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
-        <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.11-6.72-4.95H1.14v3.15C3.15 21.32 7.21 24 12 24z"/>
-        <path fill="#FBBC05" d="M5.28 14.25c-.25-.72-.38-1.49-.38-2.25s.13-1.53.38-2.25V6.6H1.14C.41 8.08 0 9.75 0 12s.41 3.92 1.14 5.4l4.14-3.15z"/>
-        <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.21 0 3.15 2.68 1.14 6.6l4.14 3.15c.95-2.84 3.6-4.95 6.72-4.95z"/>
-      </svg>
-      <span style="font-family:'Cinzel',serif;font-size:15px;font-weight:bold;color:var(--gold-glow);">Sign in with Google</span>
-    </div>
-    <h3 style="font-size:14px;color:#fff;margin-bottom:4px;">Choose an account</h3>
-    <p style="font-size:11px;color:var(--text-muted);margin-bottom:14px;">to continue to Isha Jewellers</p>
-    <div id="googleAccountsListContainer" style="display:flex;flex-direction:column;gap:6px;max-height:230px;overflow-y:auto;margin-bottom:14px;"></div>
-    <button type="button" style="width:100%;padding:10px;background:transparent;border:1px solid var(--card-border);border-radius:8px;font-size:12px;font-weight:650;color:var(--text-main);cursor:pointer;" onclick="closeGoogleAccountModal()">Cancel</button>
-  </div>
-</div>
-
 <!-- ORDER SUCCESS ANIMATION MODAL -->
 <div id="orderSuccessAnimModal">
   <div class="success-anim-card">
     <div class="success-tick-circle">
-      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </div>
-    <h2 style="font-family:'Cinzel',serif;font-size:18px;color:#2ecc71;margin-bottom:6px;">ORDER PLACED!</h2>
-    <p style="font-size:11.5px;color:var(--text-muted);margin-bottom:14px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
-    <div id="animOrderIdTag" style="font-size:12px;color:var(--gold-glow);font-weight:bold;margin-bottom:14px;">Order ID: #IJ-0000</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:17px;color:#2ecc71;margin-bottom:6px;">ORDER PLACED!</h2>
+    <p style="font-size:11px;color:var(--text-muted);margin-bottom:12px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
+    <div id="animOrderIdTag" style="font-size:11.5px;color:var(--gold-glow);font-weight:bold;margin-bottom:12px;">Order ID: #IJ-0000</div>
     <button class="btn-gold" style="width:100%;justify-content:center;" onclick="closeSuccessAnimModal()">Track Order Now ➔</button>
   </div>
 </div>
@@ -440,103 +401,87 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 <!-- 2. LOGIN / REGISTER / MPIN GATEWAY -->
 <div id="firstTimeLoginGateway">
   <div class="gateway-card">
-    <svg width="46" height="46" viewBox="0 0 100 100" style="margin-bottom:6px;">
+    <svg width="42" height="42" viewBox="0 0 100 100" style="margin-bottom:6px;">
       <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
       <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
     </svg>
-    <h2 style="font-family:'Cinzel',serif;font-size:18px;color:#fff;margin-bottom:2px;">ISHA JEWELLERS</h2>
-    <p style="font-size:10.5px;color:#a89f91;margin-bottom:14px;">Secure Account Gateway</p>
+    <h2 style="font-family:'Cinzel',serif;font-size:17px;color:#fff;margin-bottom:2px;">ISHA JEWELLERS</h2>
+    <p style="font-size:10px;color:#a89f91;margin-bottom:12px;">Secure Account Cloud Gateway</p>
 
-    <!-- STEP 1: REGISTRATION -->
+    <!-- STEP 1: REGISTRATION / LOGIN SELECT -->
     <div id="authStepRegister">
-      <div style="margin-bottom:10px;">
-        <button type="button" class="btn-outline" style="width:100%;font-size:12px;padding:11px;border-color:var(--gold);color:var(--gold-glow);display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(197,155,72,0.12);font-weight:700;" onclick="openGoogleAccountSelectorModal()">
-          🌐 Continue with Google
-        </button>
-      </div>
-      <div style="font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">— OR MANUAL REGISTRATION —</div>
-
       <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
         <div>
-          <label style="font-size:10.5px;color:var(--gold);font-weight:700;">Customer Name *</label>
+          <label style="font-size:10px;color:var(--gold);font-weight:700;">Full Name *</label>
           <input type="text" id="regName" class="input-control" placeholder="Aapka Poora Naam">
         </div>
         <div>
-          <label style="font-size:10.5px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
+          <label style="font-size:10px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
           <input type="tel" id="regMobile" maxlength="10" class="input-control" placeholder="Mobile Number daalein">
         </div>
         <div>
-          <label style="font-size:10.5px;color:var(--gold);font-weight:700;">Email Address</label>
+          <label style="font-size:10px;color:var(--gold);font-weight:700;">Email Address *</label>
           <input type="email" id="regEmail" class="input-control" placeholder="name@gmail.com">
         </div>
       </div>
 
-      <button class="btn-gold" style="width:100%;margin-top:14px;justify-content:center;padding:12px;" onclick="goToMpinSetup()">
-        Next: Set 4-Digit MPIN ➔
+      <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:11px;" onclick="triggerOtpSimulation()">
+        📱 Get Instant OTP ➔
       </button>
 
-      <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
-        Already have account? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login</a>
+      <div style="margin-top:10px;font-size:10.5px;color:var(--text-muted);">
+        Already registered? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login with MPIN</a>
       </div>
+    </div>
+
+    <!-- STEP 1B: OTP VERIFICATION SCREEN -->
+    <div id="authStepOtp" style="display:none;">
+      <h3 style="font-size:13px;color:var(--gold-glow);margin-bottom:4px;">Verify Instant OTP</h3>
+      <p style="font-size:10px;color:var(--text-muted);margin-bottom:10px;">Aapke mobile par auto-generated OTP screen par dikh raha hai.</p>
+      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:12px;border-radius:12px;font-size:20px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:10px;" id="dispAutoOtpBox">4829</div>
+      <div style="text-align:left;margin-bottom:10px;">
+        <label style="font-size:10px;color:var(--gold);">Enter 4-Digit OTP Code</label>
+        <input type="tel" id="enteredOtpBox" maxlength="4" class="mpin-box-input" placeholder="• • • •">
+      </div>
+      <button class="btn-gold" style="width:100%;justify-content:center;padding:11px;" onclick="verifyOtpAndProceed()">✓ Verify &amp; Set MPIN</button>
+      <button class="btn-outline" style="width:100%;margin-top:6px;padding:7px;" onclick="switchAuthScreen('register')">‹ Back</button>
     </div>
 
     <!-- STEP 2: CREATE MPIN -->
     <div id="authStepCreateMpin" style="display:none;">
-      <h3 style="font-size:13.5px;color:var(--gold-glow);margin-bottom:4px;">Set 4-Digit Security MPIN</h3>
-      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Kisi bhi device me account kholne ke liye yeh code yaad rakhein.</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:10px;">
+      <h3 style="font-size:13px;color:var(--gold-glow);margin-bottom:4px;">Set 4-Digit Security MPIN</h3>
+      <p style="font-size:10px;color:var(--text-muted);margin-bottom:10px;">Kisi bhi mobile, tablet ya laptop par account kholne ke liye yeh MPIN yaad rakhein.</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
         <div>
-          <label style="font-size:10px;color:var(--gold);">Create New MPIN</label>
+          <label style="font-size:9.5px;color:var(--gold);">Create New MPIN</label>
           <input type="password" id="newMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
         <div>
-          <label style="font-size:10px;color:var(--gold);">Confirm MPIN</label>
+          <label style="font-size:9.5px;color:var(--gold);">Confirm MPIN</label>
           <input type="password" id="confirmMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:16px;justify-content:center;padding:12px;" onclick="saveNewUserAccount()">✓ Sync &amp; Open Store</button>
-      <button class="btn-outline" style="width:100%;margin-top:8px;padding:8px;" onclick="switchAuthScreen('register')">‹ Back</button>
+      <button class="btn-gold" style="width:100%;margin-top:14px;justify-content:center;padding:11px;" onclick="saveNewUserAccount()">✓ Sync &amp; Open Store</button>
     </div>
 
-    <!-- STEP 3: LOGIN -->
+    <!-- STEP 3: LOGIN WITH MPIN -->
     <div id="authStepLogin" style="display:none;">
-      <h3 style="font-size:14px;color:var(--gold-glow);margin-bottom:4px;">Cloud Account Login</h3>
-      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Enter 10-Digit Mobile &amp; 4-Digit MPIN</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:10px;">
+      <h3 style="font-size:13.5px;color:var(--gold-glow);margin-bottom:4px;">Cloud Account Login</h3>
+      <p style="font-size:10px;color:var(--text-muted);margin-bottom:10px;">Enter 10-Digit Mobile &amp; 4-Digit MPIN</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
         <div>
-          <label style="font-size:10px;color:var(--gold);">Registered Mobile Number</label>
+          <label style="font-size:9.5px;color:var(--gold);">Registered Mobile Number</label>
           <input type="tel" id="loginMobile" maxlength="10" class="input-control" placeholder="10-Digit Mobile">
         </div>
         <div>
-          <label style="font-size:10px;color:var(--gold);">4-Digit MPIN</label>
+          <label style="font-size:9.5px;color:var(--gold);">4-Digit MPIN</label>
           <input type="password" id="loginMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
       </div>
-      <div style="text-align:right;margin-top:6px;">
-        <a href="javascript:void(0)" onclick="switchAuthScreen('forgot')" style="font-size:10.5px;color:#ff6b7a;text-decoration:none;">Forgot MPIN?</a>
+      <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:11px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data &amp; Open App</button>
+      <div style="margin-top:10px;font-size:10.5px;color:var(--text-muted);">
+        New user? <a href="javascript:void(0)" onclick="switchAuthScreen('register')" style="color:var(--gold-glow);font-weight:bold;">Register New Account</a>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:14px;justify-content:center;padding:12px;" onclick="verifyUserMpinLogin()">🔓 Sync Data &amp; Open App</button>
-      <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">
-        New user? <a href="javascript:void(0)" onclick="switchAuthScreen('register')" style="color:var(--gold-glow);font-weight:bold;">Create New Account</a>
-      </div>
-    </div>
-
-    <!-- STEP 4: FORGOT -->
-    <div id="authStepForgot" style="display:none;">
-      <h3 style="font-size:14px;color:#ff6b7a;margin-bottom:4px;">Reset / Forgot MPIN</h3>
-      <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:12px;">Registered Mobile ya Email daal kar naya MPIN set karein.</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:10px;">
-        <div>
-          <label style="font-size:10px;color:var(--gold);">Registered Mobile or Email</label>
-          <input type="text" id="forgotIdInput" class="input-control" placeholder="Mobile Number ya Email">
-        </div>
-        <div>
-          <label style="font-size:10px;color:var(--gold);">Set New 4-Digit MPIN</label>
-          <input type="password" id="forgotNewMpinInput" maxlength="4" class="mpin-box-input" placeholder="• • • •">
-        </div>
-      </div>
-      <button class="btn-gold" style="width:100%;margin-top:16px;justify-content:center;padding:12px;" onclick="resetMpinDirectly()">🔄 Reset MPIN &amp; Sync</button>
-      <button class="btn-outline" style="width:100%;margin-top:8px;padding:8px;" onclick="switchAuthScreen('login')">‹ Back to Login</button>
     </div>
   </div>
 </div>
@@ -549,13 +494,13 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <div class="ij-stamp-dashed-border"></div>
     </div>
     <div class="ij-inner-emblem">
-      <svg width="46" height="46" viewBox="0 0 100 100">
+      <svg width="42" height="42" viewBox="0 0 100 100">
         <path d="M 36 20 L 32 9 L 42 14 L 50 5 L 58 14 L 68 9 L 64 20 Z" fill="#ffd57e"/>
         <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
       </svg>
     </div>
   </div>
-  <div style="font-family:'Cinzel',serif;font-size:13px;font-weight:900;letter-spacing:3px;color:#ffd57e;margin-top:16px;">ISHA JEWELLERS</div>
+  <div style="font-family:'Cinzel',serif;font-size:12px;font-weight:900;letter-spacing:3px;color:#ffd57e;margin-top:14px;">ISHA JEWELLERS</div>
 </div>
 
 <div class="app">
@@ -578,14 +523,14 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
     </div>
     <div class="search-bar">
       <span>🔍</span>
-      <input type="text" id="searchInput" placeholder="Search gold rings, bali, chain, coins..." style="background:transparent;border:none;outline:none;color:var(--text-main);font-size:12px;width:100%;" oninput="handleSearch(this.value)">
+      <input type="text" id="searchInput" placeholder="Search gold rings, bali, chain, coins..." style="background:transparent;border:none;outline:none;color:var(--text-main);font-size:11.5px;width:100%;" oninput="handleSearch(this.value)">
     </div>
   </header>
 
   <div class="rate-ticker">
     <div>🟡 22K Gold: <span class="rate-gold-badge" id="barRate22k">₹9,050/g</span></div>
     <div>⚪ Silver (55%): <span class="rate-silver-badge" id="barRateSilver">₹53.90/g</span></div>
-    <div id="storeStatusBadge" style="font-size:10px;font-weight:700;color:#2ecc71;">🟢 Store Open</div>
+    <div id="storeStatusBadge" style="font-size:9.5px;font-weight:700;color:#2ecc71;">🟢 Store Open</div>
   </div>
 
   <main>
@@ -605,11 +550,11 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       </div>
       <div class="section-title-bar"><h2>🔥 Trending Collection</h2></div>
       <div class="product-grid" id="gridTrending"></div>
-      <div class="section-title-bar" style="margin-top:20px;"><h2>✨ Curated Collection</h2></div>
+      <div class="section-title-bar" style="margin-top:18px;"><h2>✨ Curated Collection</h2></div>
       <div class="product-grid" id="gridCurated"></div>
-      <div class="section-title-bar" style="margin-top:20px;"><h2>🌟 New Designs</h2></div>
+      <div class="section-title-bar" style="margin-top:18px;"><h2>🌟 New Designs</h2></div>
       <div class="product-grid" id="gridNewDesigns"></div>
-      <div class="section-title-bar" style="margin-top:20px;"><h2>👑 Most Viewed &amp; Buy</h2></div>
+      <div class="section-title-bar" style="margin-top:18px;"><h2>👑 Most Viewed &amp; Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
       <div class="about-store-footer">
         <h3>ISHA JEWELLERS — BALURGRAM (ESTD 2004)</h3>
@@ -622,8 +567,8 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
     <!-- PAGE 2: CATEGORIES -->
     <section id="categories" class="page">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h2 style="font-family:'Cinzel',serif;font-size:18px;">Jewellery Categories</h2>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h2 style="font-family:'Cinzel',serif;font-size:17px;">Jewellery Categories</h2>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
         <button class="filter-chip-btn active" id="btnCatPageGold" onclick="switchMetalSegment('Gold')">👑 Gold Jewellery</button>
@@ -636,13 +581,13 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
     <!-- PAGE 3: YOUR CART -->
     <section id="yourCart" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:18px;margin-bottom:12px;">Your Shopping Cart 🛍️</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:17px;margin-bottom:10px;">Your Shopping Cart 🛍️</h2>
       <div id="cartItemsList"></div>
-      <div id="cartSummaryBox" style="display:none;margin-top:14px;">
+      <div id="cartSummaryBox" style="display:none;margin-top:12px;">
         <div class="price-breakup-box">
           <div class="breakup-row total"><span>Total Cart Items Metal Value:</span><span id="cartSubtotalVal">₹0</span></div>
         </div>
-        <button class="btn-gold" style="width:100%;justify-content:center;padding:14px;font-size:14px;" onclick="openOrderCheckoutModal(cart, 'cart')">
+        <button class="btn-gold" style="width:100%;justify-content:center;padding:13px;font-size:13.5px;" onclick="openOrderCheckoutModal(cart, 'cart')">
           🛍️ PROCEED TO ORDER
         </button>
       </div>
@@ -650,22 +595,22 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
     <!-- PAGE 4: PRODUCT DETAIL -->
     <section id="productDetail" class="page">
-      <button class="btn-outline" style="margin-bottom:12px;" onclick="showPage('home')">‹ Back</button>
-      <div style="height:320px;border-radius:14px;overflow:hidden;border:1px solid var(--card-border);background:#16121c;position:relative;display:flex;align-items:center;justify-content:center;">
+      <button class="btn-outline" style="margin-bottom:10px;" onclick="showPage('home')">‹ Back</button>
+      <div style="height:280px;border-radius:14px;overflow:hidden;border:1px solid var(--card-border);background:#16121c;position:relative;display:flex;align-items:center;justify-content:center;">
         <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:contain;background:#0c0a10;">
-        <div id="detailStockBadge" style="position:absolute;top:10px;left:10px;background:#2ecc71;color:#000;font-size:10px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
+        <div id="detailStockBadge" style="position:absolute;top:10px;left:10px;background:#2ecc71;color:#000;font-size:9.5px;font-weight:800;padding:3px 7px;border-radius:6px;z-index:2;">In Stock</div>
       </div>
-      <div style="margin-top:12px;">
-        <span style="font-size:9.5px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:2px 8px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
-        <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:20px;margin-top:4px;">Item Name</h1>
+      <div style="margin-top:10px;">
+        <span style="font-size:9px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:2px 7px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
+        <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:18px;margin-top:3px;">Item Name</h1>
       </div>
-      <p id="detailDescription" style="font-size:11.5px;color:var(--text-muted);margin:8px 0;line-height:1.5;"></p>
-      <div id="multiWeightBoxDetail" style="margin-top:10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;">
-        <b style="font-size:11.5px;color:var(--gold-glow);display:block;margin-bottom:4px;">⚖️ Available Weights in this Design:</b>
+      <p id="detailDescription" style="font-size:11px;color:var(--text-muted);margin:6px 0;line-height:1.45;"></p>
+      <div id="multiWeightBoxDetail" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;">
+        <b style="font-size:11px;color:var(--gold-glow);display:block;margin-bottom:4px;">⚖️ Available Weights in this Design:</b>
         <div class="opt-pill-grid" id="detailWeightPillsGrid"></div>
       </div>
-      <div id="silverTanchBookingBox" style="display:none;background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin:10px 0;">
-        <label style="font-size:11.5px;font-weight:700;color:var(--gold-glow);display:block;margin-bottom:4px;">🪙 Silver Touch / Purity Selection:</label>
+      <div id="silverTanchBookingBox" style="display:none;background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin:8px 0;">
+        <label style="font-size:11px;font-weight:700;color:var(--gold-glow);display:block;margin-bottom:4px;">🪙 Silver Touch / Purity Selection:</label>
         <select id="detailSilverTanchSelect" class="input-control" onchange="changeSilverTanchPurity(this.value)">
           <option value="55">55% Local Touch (Default Stock - Lowest Price)</option>
           <option value="70">70% Touch (Custom Advance Booking)</option>
@@ -675,9 +620,9 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
         </select>
       </div>
       <div style="margin-top:4px;">
-        <div style="font-size:22px;font-weight:800;color:var(--gold-glow);" id="detailTotalPrice">₹0</div>
+        <div style="font-size:20px;font-weight:800;color:var(--gold-glow);" id="detailTotalPrice">₹0</div>
       </div>
-      <div id="customSizingControlBox" style="margin-top:14px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px;"></div>
+      <div id="customSizingControlBox" style="margin-top:12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;"></div>
       <div class="price-breakup-box">
         <div class="breakup-row"><span id="breakupMetalName">Product Metal Cost:</span><span id="breakupMetalAmount">₹0</span></div>
         <div class="breakup-row"><span>Making Charges:</span><span id="breakupMakingAmount">₹0</span></div>
@@ -685,27 +630,27 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
         <div class="breakup-row"><span>Delivery Cost:</span><span id="breakupDeliveryAmount" style="color:#2ecc71;">FREE</span></div>
         <div class="breakup-row total"><span>Total Cost (Net):</span><span id="breakupFinalTotal">₹0</span></div>
       </div>
-      <div id="actionButtonsNormal" style="display:flex;gap:8px;margin-top:14px;">
+      <div id="actionButtonsNormal" style="display:flex;gap:8px;margin-top:12px;">
         <button class="btn-outline" style="flex:1;justify-content:center;" onclick="addCurrentToCart()">+ Add to Cart</button>
-        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:14px;padding:12px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
+        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:13.5px;padding:11px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
       </div>
-      <div id="actionButtonsBooking" style="display:none;margin-top:14px;">
-        <button class="btn-gold" style="width:100%;justify-content:center;font-size:14px;padding:14px;background:linear-gradient(135deg, #e67e22, #d35400);color:#fff;" onclick="openOrderCheckoutModal([currentProduct], 'booking')">
+      <div id="actionButtonsBooking" style="display:none;margin-top:12px;">
+        <button class="btn-gold" style="width:100%;justify-content:center;font-size:13.5px;padding:13px;background:linear-gradient(135deg, #e67e22, #d35400);color:#fff;" onclick="openOrderCheckoutModal([currentProduct], 'booking')">
           📅 Book Advance (Ready in 7 Days)
         </button>
       </div>
-      <a id="productWhatsappBtn" href="https://wa.me/919113774515" target="_blank" class="btn-outline" style="display:flex;width:100%;justify-content:center;margin-top:8px;padding:11px;border-color:#25d366;color:#25d366;text-decoration:none;font-weight:700;gap:6px;">
+      <a id="productWhatsappBtn" href="https://wa.me/919113774515" target="_blank" class="btn-outline" style="display:flex;width:100%;justify-content:center;margin-top:8px;padding:10px;border-color:#25d366;color:#25d366;text-decoration:none;font-weight:700;gap:6px;">
         💬 Inquire / Order on WhatsApp
       </a>
       
       <!-- ESTIMATE SLIP PDF DOWNLOAD BUTTON -->
-      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:11px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdf()">
+      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:10px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdf()">
         📄 Download Official Estimate Slip (PDF)
       </button>
 
-      <div style="margin-top:28px;border-top:1px solid var(--card-border);padding-top:16px;">
+      <div style="margin-top:24px;border-top:1px solid var(--card-border);padding-top:14px;">
         <div class="section-title-bar" style="margin-top:0;">
-          <h2 style="font-size:14px;color:var(--gold-glow);">✨ More Preferred &amp; Similar Designs</h2>
+          <h2 style="font-size:13.5px;color:var(--gold-glow);">✨ More Preferred &amp; Similar Designs</h2>
         </div>
         <div class="product-grid" id="detailPreferredGrid"></div>
       </div>
@@ -713,23 +658,23 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
     <!-- PAGE 5: FLIP CALENDAR -->
     <section id="calendarPage" class="page">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <h2 style="font-family:'Cinzel',serif;font-size:18px;">Isha Jewellers Calendar 🗓️</h2>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <h2 style="font-family:'Cinzel',serif;font-size:17px;">Isha Jewellers Calendar 🗓️</h2>
         <div style="display:flex;gap:6px;">
-          <button class="btn-outline" style="padding:4px 10px;" onclick="flipMonth(-1)">◀ Prev</button>
-          <button class="btn-outline" style="padding:4px 10px;" onclick="flipMonth(1)">Next ▶</button>
+          <button class="btn-outline" style="padding:4px 9px;" onclick="flipMonth(-1)">◀ Prev</button>
+          <button class="btn-outline" style="padding:4px 9px;" onclick="flipMonth(1)">Next ▶</button>
         </div>
       </div>
       <div class="cal-flip-card" id="deskCalendarCard">
         <div class="cal-month-header">
-          <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:17px;letter-spacing:1px;">AUGUST 2026</h3>
-          <small style="font-size:9.5px;color:#ffd57e;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
+          <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:16px;letter-spacing:1px;">AUGUST 2026</h3>
+          <small style="font-size:9px;color:#ffd57e;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
         </div>
-        <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid rgba(197,155,72,0.2);padding-bottom:6px;">
+        <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid rgba(197,155,72,0.2);padding-bottom:5px;">
           <div style="color:#ff5252;">SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
         </div>
         <div class="cal-days-grid" id="calDaysGrid"></div>
-        <div style="padding:12px;background:rgba(0,0,0,0.4);border-top:1px solid var(--card-border);font-size:10.5px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="padding:10px;background:rgba(0,0,0,0.4);border-top:1px solid var(--card-border);font-size:10px;display:flex;justify-content:space-between;align-items:center;">
           <div>📍 Balurgram, Udhwa (816108)</div>
           <div>📞 9113774515</div>
         </div>
@@ -738,28 +683,28 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
     <!-- PAGE 6: WISHLIST -->
     <section id="wishlistPage" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:18px;margin-bottom:12px;">My Wishlist &amp; Favorites ❤️</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:17px;margin-bottom:10px;">My Wishlist &amp; Favorites ❤️</h2>
       <div class="product-grid" id="wishlistGrid"></div>
     </section>
 
     <!-- PAGE 7: TRACKING -->
     <section id="tracking" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:18px;margin-bottom:12px;">Live Order Tracking &amp; Khata</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:17px;margin-bottom:10px;">Live Order Tracking &amp; Khata</h2>
       <div id="trackingContainer"></div>
     </section>
 
     <!-- PAGE 8: MENU DRAWER & PROFILE -->
     <section id="navMenuPage" class="page">
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:16px 12px;margin-bottom:16px;text-align:center;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-          <button style="background:transparent;border:none;color:var(--text-main);font-size:20px;cursor:pointer;" onclick="showDashboardHome()">✕</button>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:14px 12px;margin-bottom:14px;text-align:center;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <button style="background:transparent;border:none;color:var(--text-main);font-size:18px;cursor:pointer;" onclick="showDashboardHome()">✕</button>
           <div>
-            <h2 style="font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:var(--gold-glow);letter-spacing:1px;margin:0;">ISHA JEWELLERS</h2>
-            <small style="font-size:9px;color:var(--gold);letter-spacing:2px;">ESTD 2004 • BALURGRAM</small>
+            <h2 style="font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:var(--gold-glow);letter-spacing:1px;margin:0;">ISHA JEWELLERS</h2>
+            <small style="font-size:8.5px;color:var(--gold);letter-spacing:2px;">ESTD 2004 • BALURGRAM</small>
           </div>
-          <button style="background:transparent;border:none;color:var(--gold);font-size:18px;cursor:pointer;" onclick="showDashboardHome();">🔍</button>
+          <button style="background:transparent;border:none;color:var(--gold);font-size:16px;cursor:pointer;" onclick="showDashboardHome();">🔍</button>
         </div>
-        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:10px;padding:9px 4px;font-size:11.5px;font-weight:700;border:1px solid var(--card-border);">
+        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:10px;padding:8px 4px;font-size:11px;font-weight:700;border:1px solid var(--card-border);">
           <div>🇮🇳 INR (₹)</div>
           <div onclick="window.open('https://maps.google.com/?q=Balurgram+Bazzar+Udhwa+Sahibganj','_blank')" style="cursor:pointer;">🏬 Locate Us</div>
           <a href="tel:9113774515" style="text-decoration:none;color:inherit;">📞 Call Us</a>
@@ -767,31 +712,27 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       </div>
 
       <!-- CUSTOMER PROFILE BOX -->
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px;margin-bottom:16px;">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:14px;margin-bottom:14px;">
         <div id="profileViewBox">
           <div style="display:flex;align-items:center;gap:12px;">
-            <div style="width:55px;height:55px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#1a1524;display:flex;align-items:center;justify-content:center;">
+            <div style="width:50px;height:50px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#1a1524;display:flex;align-items:center;justify-content:center;">
               <img id="dispAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
-              <h3 id="dispName" style="color:var(--gold-glow);font-size:16px;">Customer Name</h3>
+              <h3 id="dispName" style="color:var(--gold-glow);font-size:15px;">Customer Name</h3>
               <small id="dispPhone" style="color:var(--text-muted);">+91 ----------</small><br>
               <small id="dispEmail" style="color:var(--text-muted);">email@example.com</small>
             </div>
           </div>
-          <div style="margin-top:10px;padding:8px;background:rgba(255,255,255,0.02);border-radius:8px;border:1px dashed var(--card-border);font-size:11px;">
-            <b>📍 Delivery Address:</b> <span id="dispAddressTxt" style="color:var(--gold-light);">Not set yet</span>
-          </div>
-          <button class="btn-outline" style="width:100%;margin-top:10px;padding:8px;font-size:11px;" onclick="showProfileEditor()">✏️ Edit Profile &amp; Address</button>
+          <button class="btn-outline" style="width:100%;margin-top:10px;padding:7px;font-size:10.5px;" onclick="showProfileEditor()">✏️ Edit Profile Details</button>
         </div>
         <form id="profileEditBox" style="display:none;" onsubmit="saveProfileDetails(event)">
-          <div style="font-size:12px;color:var(--gold-glow);font-weight:700;margin-bottom:8px;">Edit Personal Details &amp; Address</div>
-          <label style="font-size:10px;color:var(--gold);display:block;margin-bottom:2px;">Upload Profile Photo:</label>
-          <input type="file" id="edAvatarFile" class="input-control" accept="image/*" style="padding:5px;margin-bottom:6px;" onchange="previewProfilePic(event)">
+          <div style="font-size:11.5px;color:var(--gold-glow);font-weight:700;margin-bottom:8px;">Edit Personal Details</div>
+          <label style="font-size:9.5px;color:var(--gold);display:block;margin-bottom:2px;">Upload Profile Photo:</label>
+          <input type="file" id="edAvatarFile" class="input-control" accept="image/*" style="padding:4px;margin-bottom:6px;" onchange="previewProfilePic(event)">
           <input type="text" id="edName" class="input-control" placeholder="Full Name *" required>
           <input type="tel" id="edPhone" class="input-control" placeholder="Phone Number" style="margin-top:6px;" readonly>
           <input type="email" id="edEmail" class="input-control" placeholder="Email Address" style="margin-top:6px;">
-          <input type="text" id="edAddress" class="input-control" placeholder="Permanent Delivery Address (Village/Landmark) *" style="margin-top:6px;" required>
           <button type="submit" class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;">✓ Save Profile &amp; Cloud Sync</button>
           <button type="button" class="btn-outline" style="width:100%;margin-top:6px;padding:6px;" onclick="hideProfileEditor()">Cancel</button>
         </form>
@@ -800,18 +741,18 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <!-- OLD METAL RATE ESTIMATOR -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:13px;">⚖️ Live Sona / Chandi Rate Estimator</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:12px;">⚖️ Live Sona / Chandi Rate Estimator</span>
           <span>▾</span>
         </div>
         <div id="folderExchangeCalcBox" style="display:none;margin-top:10px;border-top:1px dashed var(--card-border);padding-top:10px;" onclick="event.stopPropagation()">
-          <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:8px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
+          <p style="font-size:10px;color:var(--text-muted);margin-bottom:8px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
             <div>
-              <label style="font-size:10px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
+              <label style="font-size:9.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
               <input type="number" id="calcOldSilver" step="0.01" class="input-control" placeholder="e.g. 116.64" oninput="runStandaloneExchangeCalc()">
             </div>
             <div>
-              <label style="font-size:10px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
+              <label style="font-size:9.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
               <input type="number" id="calcOldGold" step="0.01" class="input-control" placeholder="e.g. 10.0" oninput="runStandaloneExchangeCalc()">
             </div>
           </div>
@@ -827,7 +768,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <!-- MY ORDERS -->
       <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:13px;">📦 My Orders History &amp; Invoices</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:12px;">📦 My Orders History &amp; Invoices</span>
           <span>▾</span>
         </div>
         <div id="folderOrdersBox" style="display:block;margin-top:10px;border-top:1px dashed var(--card-border);padding-top:10px;" onclick="event.stopPropagation()">
@@ -838,7 +779,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <!-- REWARD CARDS -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:13px;">🎁 My Reward Scratch Cards</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:12px;">🎁 My Reward Scratch Cards</span>
           <span>▾</span>
         </div>
         <div id="folderRewardBox" style="display:none;margin-top:10px;border-top:1px dashed var(--card-border);padding-top:10px;" onclick="event.stopPropagation()">
@@ -849,11 +790,11 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
       <!-- TERMS -->
       <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:14px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderTermsBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--text-main);font-size:13px;">📜 Terms &amp; Store Policy Folder</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--text-main);font-size:12px;">📜 Terms &amp; Store Policy Folder</span>
           <span>▾</span>
         </div>
         <div id="folderTermsBox" style="display:none;margin-top:10px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
-          <p style="font-size:10.5px;color:var(--text-muted);line-height:1.5;">
+          <p style="font-size:10px;color:var(--text-muted);line-height:1.45;">
             1. <b>100% BIS 916 Hallmark:</b> Bureau of Indian Standards HUID verified jewellery.<br>
             2. <b>Old Metal Exchange:</b> Silver 11.664g to 2.916g bad rule applied at current market rates.<br>
             3. <b>7 Days Exchange:</b> Delivery complete hone ke baad verified product exchange window khulega.<br>
@@ -864,7 +805,7 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
 
       <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:12.5px;font-weight:600;">🌓 App Mode</span>
+          <span style="font-size:12px;font-weight:600;">🌓 App Mode</span>
           <button class="btn-outline" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
         </div>
         <button class="btn-danger" style="margin-top:4px;" onclick="logoutUser()">🚪 Logout Account (लॉग आउट)</button>
@@ -873,64 +814,122 @@ body.light-mode .opt-pill-btn{background:#f5ede0;border-color:#dfd2be;color:#554
   </main>
 
   <div class="bottom-nav">
-    <div class="nav-item active" onclick="showDashboardHome(this)"><span style="font-size:18px;">⌂</span><span>Home</span></div>
-    <div class="nav-item" onclick="showPage('categories', this)"><span style="font-size:18px;">◈</span><span>Category</span></div>
+    <div class="nav-item active" onclick="showDashboardHome(this)"><span style="font-size:17px;">⌂</span><span>Home</span></div>
+    <div class="nav-item" onclick="showPage('categories', this)"><span style="font-size:17px;">◈</span><span>Category</span></div>
     <div class="nav-item" onclick="showPage('yourCart', this)">
-      <span style="font-size:18px;">🛍️</span><span>Your Cart</span>
+      <span style="font-size:17px;">🛍️</span><span>Your Cart</span>
       <span class="cart-badge-dot" id="navCartBadge">0</span>
     </div>
-    <div class="nav-item" onclick="showPage('tracking', this)"><span style="font-size:18px;">📦</span><span>Tracking</span></div>
+    <div class="nav-item" onclick="showPage('tracking', this)"><span style="font-size:17px;">📦</span><span>Tracking</span></div>
   </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
+<!-- 3-STEP UNIVERSAL CHECKOUT MODAL -->
 <div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:16px 12px 100px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
   <div style="background:#14101a;border:1.5px solid var(--gold);border-radius:20px;padding:20px 16px 24px;width:100%;max-width:400px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-      <h3 style="font-family:'Cinzel',serif;font-size:15px;color:var(--gold-glow);" id="coModalTitle">🛍️ CUSTOMER DELIVERY CHECKOUT</h3>
-      <button type="button" class="btn-outline" style="padding:4px 10px;font-size:14px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <h3 style="font-family:'Cinzel',serif;font-size:14.5px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
+      <button type="button" class="btn-outline" style="padding:3px 9px;font-size:13px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
     </div>
-    <div id="savedAddressSection" style="margin-bottom:10px;"></div>
-    <div id="newAddressFields" style="margin-bottom:10px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <input type="text" id="coFirstName" class="input-control" placeholder="First Name *" value="">
-        <input type="text" id="coLastName" class="input-control" placeholder="Last Name" value="">
+
+    <!-- STEP 1: ADDRESS -->
+    <div id="coStep1Container">
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Kripya apna delivery address sahi se fill karein:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);">First Name *</label>
+          <input type="text" id="coFirstName" class="input-control" placeholder="First Name">
+        </div>
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);">Last Name</label>
+          <input type="text" id="coLastName" class="input-control" placeholder="Last Name">
+        </div>
       </div>
-      <input type="tel" id="coMobile" class="input-control" placeholder="10-Digit Mobile Number *" value="" style="margin-top:8px;">
-      <input type="text" id="coArea" class="input-control" placeholder="Village / Street / House Address *" value="" style="margin-top:8px;">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px;">
-        <input type="number" id="coPincode" class="input-control" placeholder="Pincode" value="816108">
-        <input type="text" id="coDistrict" class="input-control" placeholder="District" value="Sahibganj">
-        <input type="text" id="coState" class="input-control" placeholder="State" value="Jharkhand" readonly style="background:#201c2b;color:#a89f91;">
+      <div style="margin-bottom:8px;">
+        <label style="font-size:9.5px;color:var(--gold);">10-Digit Mobile Number *</label>
+        <input type="tel" id="coMobile" maxlength="10" class="input-control" placeholder="Primary Mobile">
       </div>
-      <button type="button" class="btn-outline" style="width:100%;margin-top:8px;font-size:11.5px;padding:9px;" onclick="autoDetectLocationCheckout()">📍 Auto Detect GPS Location</button>
+      <div style="margin-bottom:8px;">
+        <label style="font-size:9.5px;color:var(--gold);">Alternate Mobile Number</label>
+        <input type="tel" id="coAltMobile" maxlength="10" class="input-control" placeholder="Alternate Mobile (Optional)">
+      </div>
+      <div style="margin-bottom:8px;">
+        <label style="font-size:9.5px;color:var(--gold);">Village / House / Street Address *</label>
+        <input type="text" id="coArea" class="input-control" placeholder="Village / Street / House">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);">Post Office (Post)</label>
+          <input type="text" id="coPostOffice" class="input-control" placeholder="Post Office">
+        </div>
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);">PIN Number *</label>
+          <input type="number" id="coPincode" class="input-control" value="816108" placeholder="PIN">
+        </div>
+      </div>
+      <button type="button" class="btn-gold" style="width:100%;justify-content:center;padding:12px;" onclick="goToCheckoutStep2()">Next: Order Summary ➔</button>
     </div>
-    <div style="display:flex;gap:6px;margin-bottom:10px;">
-      <input type="text" id="coCouponInput" class="input-control" placeholder="PROMO / REWARD CODE" style="text-transform:uppercase;font-size:12px;">
-      <button type="button" class="btn-outline" style="padding:8px 16px;background:#1a1524;" onclick="applyPromoCode()">Apply</button>
-    </div>
-    <div class="price-breakup-box" style="margin-bottom:12px;background:#181422;border:1px solid #332a42;">
-      <div class="breakup-row"><span>Metal &amp; Making:</span><span id="coGrossVal">₹0</span></div>
-      <div class="breakup-row"><span>GST (<span id="coGstRateText">3</span>%):</span><span id="coGstVal">+₹0</span></div>
-      <div class="breakup-row"><span>Delivery Charge:</span><span id="coDeliveryVal" style="color:#2ecc71;">FREE</span></div>
-      <div class="breakup-row" style="color:#2ecc71;"><span>Promo Discount:</span><span id="coPromoDiscount">-₹0</span></div>
-      <div class="breakup-row total" style="border-top:1px solid #332a42;padding-top:8px;margin-top:4px;">
-        <span style="font-size:13.5px;">Net Total Payable:</span><span id="coNetPayableVal" style="font-size:16px;color:var(--gold-glow);font-weight:900;">₹0</span>
+
+    <!-- STEP 2: ORDER SUMMARY -->
+    <div id="coStep2Container" style="display:none;">
+      <div style="font-size:11px;color:var(--gold-glow);font-weight:700;margin-bottom:6px;">📍 Delivery Address:</div>
+      <div id="coSummaryAddressDisplay" style="background:#1a1524;border:1px solid #332a42;padding:8px;border-radius:8px;font-size:10.5px;color:var(--text-muted);margin-bottom:10px;"></div>
+
+      <div style="font-size:11px;color:var(--gold-glow);font-weight:700;margin-bottom:6px;">📦 Product Details:</div>
+      <div id="coSummaryItemsBox" style="max-height:140px;overflow-y:auto;background:#1a1524;border:1px solid #332a42;border-radius:8px;padding:8px;margin-bottom:10px;"></div>
+
+      <div class="price-breakup-box" style="margin-bottom:10px;background:#181422;border:1px solid #332a42;">
+        <div class="breakup-row"><span>Metal &amp; Making:</span><span id="coGrossVal">₹0</span></div>
+        <div class="breakup-row"><span>GST (3%):</span><span id="coGstVal">+₹0</span></div>
+        <div class="breakup-row"><span>Delivery Charge:</span><span style="color:#2ecc71;">FREE</span></div>
+        <div class="breakup-row total" style="border-top:1px solid #332a42;padding-top:6px;margin-top:4px;">
+          <span>Net Total Payable:</span><span id="coNetPayableVal" style="font-size:15px;color:var(--gold-glow);font-weight:900;">₹0</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button type="button" class="btn-outline" style="flex:1;padding:10px;" onclick="goToCheckoutStep1()">‹ Back</button>
+        <button type="button" class="btn-gold" style="flex:1.5;justify-content:center;padding:11px;" onclick="goToCheckoutStep3()">Next: Payment ➔</button>
       </div>
     </div>
-    <div style="background:#181422;border:1px solid #332a42;border-radius:10px;padding:10px;margin-bottom:14px;">
-      <label style="font-size:11.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:6px;">💰 Choose Payment Option:</label>
-      <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:6px;margin-bottom:8px;">
-        <button type="button" class="filter-chip-btn active" id="btnPayOnline" style="padding:8px 8px;font-size:11px;border-radius:8px;" onclick="selectPayMode('upi')">⚡ Pay Advance via UPI</button>
-        <button type="button" class="filter-chip-btn" id="btnPayCod" style="padding:8px 8px;font-size:11px;border-radius:8px;" onclick="selectPayMode('cod')">💵 Bina Advance (Cash/Store)</button>
+
+    <!-- STEP 3: PAYMENT & CONFIRMATION -->
+    <div id="coStep3Container" style="display:none;">
+      <div style="background:#181422;border:1px solid #332a42;border-radius:10px;padding:10px;margin-bottom:12px;">
+        <label style="font-size:11px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:6px;">💰 Choose Payment Option:</label>
+        
+        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
+          <label style="display:flex;align-items:center;gap:8px;background:#221b2d;padding:8px;border-radius:8px;cursor:pointer;font-size:11px;">
+            <input type="radio" name="payModeRadio" checked onclick="selectPaymentModeOption('upi')">
+            <span>⚡ UPI Advance Payment (Scan QR &amp; Pay)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;background:#221b2d;padding:8px;border-radius:8px;cursor:pointer;font-size:11px;">
+            <input type="radio" name="payModeRadio" onclick="selectPaymentModeOption('shop')">
+            <span>🏬 Advance in Shop (Isha Jewellers Store)</span>
+          </label>
+          <label style="display:flex;align-items:center;gap:8px;background:#221b2d;padding:8px;border-radius:8px;cursor:pointer;font-size:11px;">
+            <input type="radio" name="payModeRadio" onclick="selectPaymentModeOption('cod')">
+            <span>💵 Baki ka Paisa Delivery ke Baad</span>
+          </label>
+        </div>
+
+        <div id="upiQrCodeContainer" style="text-align:center;background:#fff;padding:8px;border-radius:8px;margin-bottom:8px;">
+          <img id="dynamicUpiQrImg" src="" style="width:110px;height:110px;" alt="Store UPI QR">
+          <div style="font-size:9.5px;color:#000;font-weight:bold;margin-top:2px;">UPI ID: 9113774515@ybl</div>
+        </div>
+
+        <div id="advanceInputBox" style="margin-bottom:6px;">
+          <label style="font-size:9.5px;color:var(--gold);">Enter Advance Amount (₹)</label>
+          <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100">
+        </div>
       </div>
-      <div id="advanceInputBox">
-        <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100" placeholder="500">
+
+      <div style="display:flex;gap:8px;">
+        <button type="button" class="btn-danger" style="flex:1;padding:12px;font-size:12px;background:#3b1319;border-color:#73222d;color:#ff808d;" onclick="goToCheckoutStep2()">❌ Cancel</button>
+        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:12px;font-size:12px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;" onclick="executeOrderPlacement()">
+          ✓ CONFIRM ORDER
+        </button>
       </div>
     </div>
-    <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="width:100%;justify-content:center;padding:16px 20px;font-size:15px;font-weight:800;letter-spacing:0.8px;border-radius:12px;box-shadow:0 4px 15px rgba(197,155,72,0.35);margin-top:4px;cursor:pointer;" onclick="executeOrderPlacement()">
-      ✓ CONFIRM &amp; PLACE ORDER
-    </button>
   </div>
 </div>
 
@@ -956,7 +955,7 @@ let categoryRules = JSON.parse(localStorage.getItem('isha_category_rules')) || {
 let userAuth = JSON.parse(localStorage.getItem('isha_user_auth')) || { loggedIn: false, phone: "" };
 let allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
 let tempRegData = {};
-let tempRegAvatar = "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200";
+let generatedOtpCode = "4829";
 
 function getUserKey(suffix) {
   const p = userAuth.phone ? userAuth.phone.trim() : 'guest';
@@ -970,8 +969,6 @@ function getUserProfile() {
       name: u.name || "Customer Name",
       phone: u.phone || userAuth.phone || "",
       email: u.email || "",
-      address: u.address || "",
-      dob: u.dob || "",
       avatar: u.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
     };
   }
@@ -979,13 +976,10 @@ function getUserProfile() {
     name: "Customer Name",
     phone: userAuth.phone || "",
     email: "",
-    address: "",
-    dob: "",
     avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
   };
 }
 
-let savedAddresses = [];
 let cart = [];
 let wishlist = [];
 let myOrders = JSON.parse(localStorage.getItem('isha_orders')) || [];
@@ -994,13 +988,11 @@ let scratchedStateMap = {};
 
 function reloadUserData() {
   if (userAuth.loggedIn && userAuth.phone) {
-    savedAddresses = JSON.parse(localStorage.getItem(getUserKey('addresses'))) || [];
     cart = JSON.parse(localStorage.getItem(getUserKey('cart'))) || [];
     wishlist = JSON.parse(localStorage.getItem(getUserKey('wishlist'))) || [];
     usedCoupons = JSON.parse(localStorage.getItem(getUserKey('coupons'))) || [];
     scratchedStateMap = JSON.parse(localStorage.getItem(getUserKey('scratched'))) || {};
   } else {
-    savedAddresses = [];
     cart = [];
     wishlist = [];
     usedCoupons = [];
@@ -1015,8 +1007,6 @@ let currentCustomWeight = 4;
 let currentChosenTanch = 55;
 let currentCheckoutItems = [];
 let currentCheckoutTotal = 0;
-let appliedDiscount = 0;
-let appliedCouponCode = "";
 let currentPayMode = "upi";
 let checkoutOrderType = "direct";
 let currentCalMonth = new Date().getMonth();
@@ -1035,13 +1025,13 @@ const fallbackHdImages = {
 };
 
 let circularIconsDef = [
-  { id: 'All', name: 'All Collection', svg: `<svg viewBox="0 0 24 24"><path d="M2 19h20v2H2zM3 7l4 5 5-7 5 7 4-5v9H3z"/></svg>` },
+  { id: 'All', name: 'All Collection', svg: `<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>` },
   { id: 'Rings', name: 'Rings', svg: `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="15" rx="7" ry="5"/><path d="M12 4l3 4h-6z"/></svg>` },
   { id: 'Chain', name: 'Chain', svg: `<svg viewBox="0 0 24 24"><path d="M8 12h8M6 8h12a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6a4 4 0 0 1-4-4 4 4 0 0 1 4-4z"/></svg>` },
-  { id: 'Bali', name: 'Bali', svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg>` },
+  { id: 'Bali', name: 'Bali', svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg>` },
   { id: 'Jhumka', name: 'Jhumka', svg: `<svg viewBox="0 0 24 24"><path d="M12 2a6 6 0 0 0-6 6v4l-2 3v1h16v-1l-2-3V8a6 6 0 0 0-6-6z"/></svg>` },
   { id: 'Kada', name: 'Kada', svg: `<svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="6"/></svg>` },
-  { id: 'SilverPayal', name: 'Silver Payal', svg: `<svg viewBox="0 0 24 24"><circle cx="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>` },
+  { id: 'SilverPayal', name: 'Silver Payal', svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M7 12h10"/></svg>` },
   { id: 'Coins & Bars', name: 'Coins & Bars', svg: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v12M8 10h8"/></svg>` }
 ];
 
@@ -1101,79 +1091,34 @@ function checkFirstTimeLoginGateway() {
 
 function switchAuthScreen(view) {
   document.getElementById('authStepRegister').style.display = (view === 'register') ? 'block' : 'none';
+  document.getElementById('authStepOtp').style.display = (view === 'otp') ? 'block' : 'none';
   document.getElementById('authStepCreateMpin').style.display = (view === 'createMpin') ? 'block' : 'none';
   document.getElementById('authStepLogin').style.display = (view === 'login') ? 'block' : 'none';
-  document.getElementById('authStepForgot').style.display = (view === 'forgot') ? 'block' : 'none';
 }
 
-function openGoogleAccountSelectorModal() {
-  if (typeof google !== 'undefined' && google.accounts && google.accounts.id) {
-    try {
-      google.accounts.id.initialize({
-        client_id: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com",
-        callback: handleGoogleSignInResponse,
-        auto_select: false,
-        cancel_on_tap_outside: true
-      });
-      google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-          fallbackManualGooglePrompt();
-        }
-      });
-      return;
-    } catch(err) {
-      console.log("Google GIS error fallback", err);
-    }
-  }
-  fallbackManualGooglePrompt();
-}
-
-function handleGoogleSignInResponse(response) {
-  try {
-    const base64Url = response.credential.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-      return '%' + ('00 ' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
-
-    const profile = JSON.parse(jsonPayload);
-    document.getElementById('regName').value = profile.name || "";
-    document.getElementById('regEmail').value = profile.email || "";
-    if (profile.picture) tempRegAvatar = profile.picture;
-
-    closeGoogleAccountModal();
-    toast(`🌐 Google Account Connected: ${profile.email}`);
-  } catch (e) {
-    fallbackManualGooglePrompt();
-  }
-}
-
-function fallbackManualGooglePrompt() {
-  const gEmail = prompt("Apna Google Gmail ID enter karein:");
-  if (gEmail && gEmail.includes('@')) {
-    const cleanName = gEmail.split('@')[0];
-    const formattedName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
-    
-    document.getElementById('regName').value = formattedName;
-    document.getElementById('regEmail').value = gEmail.toLowerCase();
-    closeGoogleAccountModal();
-    toast(`🌐 Google Account Linked: ${gEmail.toLowerCase()}`);
-  }
-}
-
-function closeGoogleAccountModal() {
-  document.getElementById('googleAccountModal').style.display = 'none';
-}
-
-function goToMpinSetup() {
+function triggerOtpSimulation() {
   const name = document.getElementById('regName').value.trim();
   const phone = document.getElementById('regMobile').value.trim();
   const email = document.getElementById('regEmail').value.trim();
 
-  if (!name) { alert("Kripya Customer Name enter karein!"); return; }
+  if (!name) { alert("Kripya Full Name enter karein!"); return; }
   if (phone.length !== 10 || isNaN(phone)) { alert("Kripya 10-Digit valid Mobile Number enter karein!"); return; }
+  if (!email || !email.includes('@')) { alert("Kripya valid Email Address enter karein!"); return; }
 
-  tempRegData = { name, phone, email, avatar: tempRegAvatar };
+  generatedOtpCode = String(Math.floor(1000 + Math.random() * 9000));
+  tempRegData = { name, phone, email, avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" };
+  
+  document.getElementById('dispAutoOtpBox').textContent = generatedOtpCode;
+  switchAuthScreen('otp');
+  toast(`📱 OTP Generated: ${generatedOtpCode}`);
+}
+
+function verifyOtpAndProceed() {
+  const entered = document.getElementById('enteredOtpBox').value.trim();
+  if (entered !== generatedOtpCode) {
+    alert("Galat OTP code! Kripya screen par diya gaya code enter karein.");
+    return;
+  }
   switchAuthScreen('createMpin');
 }
 
@@ -1189,8 +1134,7 @@ function saveNewUserAccount() {
     phone: tempRegData.phone,
     email: tempRegData.email,
     mpin: m1,
-    address: "",
-    avatar: tempRegData.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
+    avatar: tempRegData.avatar
   };
 
   allUsersDb[tempRegData.phone] = newUserObj;
@@ -1213,46 +1157,41 @@ function verifyUserMpinLogin() {
   const phone = document.getElementById('loginMobile').value.trim();
   const mpin = document.getElementById('loginMpin').value.trim();
 
-  if (!allUsersDb[phone]) {
-    allUsersDb[phone] = { name: "Customer", phone: phone, mpin: mpin };
-    localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
-  }
-
-  userAuth = { loggedIn: true, phone: phone };
-  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-  reloadUserData();
-  document.getElementById('firstTimeLoginGateway').style.display = 'none';
-  loadAndRenderUserProfile();
-  updateCartUI();
-  renderWishlistUI();
-  showLoader(400);
-  toast("🔓 Logged In Successfully!");
-}
-
-function resetMpinDirectly() {
-  const idInput = document.getElementById('forgotIdInput').value.trim();
-  const newMpin = document.getElementById('forgotNewMpinInput').value.trim();
-
-  if (newMpin.length !== 4 || isNaN(newMpin)) {
-    alert("Kripya valid 4-Digit New MPIN daalein!");
+  if (phone.length !== 10 || mpin.length !== 4) {
+    alert("Kripya 10-Digit Mobile aur 4-Digit MPIN enter karein!");
     return;
   }
-  let targetPhone = idInput.length === 10 ? idInput : '9113774515';
-  allUsersDb[targetPhone] = allUsersDb[targetPhone] || { name: "Customer", phone: targetPhone };
-  allUsersDb[targetPhone].mpin = newMpin;
-  localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
 
-  userAuth = { loggedIn: true, phone: targetPhone };
-  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-  reloadUserData();
-  document.getElementById('firstTimeLoginGateway').style.display = 'none';
-  loadAndRenderUserProfile();
-  showLoader(400);
-  toast("🎉 MPIN Reset Successfully!");
+  if (allUsersDb[phone] && allUsersDb[phone].mpin === mpin) {
+    userAuth = { loggedIn: true, phone: phone };
+    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
+    reloadUserData();
+    document.getElementById('firstTimeLoginGateway').style.display = 'none';
+    loadAndRenderUserProfile();
+    updateCartUI();
+    renderWishlistUI();
+    showLoader(400);
+    toast("🔓 Logged In Successfully!");
+  } else {
+    allUsersDb[phone] = allUsersDb[phone] || { name: "Customer", phone: phone, mpin: mpin };
+    allUsersDb[phone].mpin = mpin;
+    localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+
+    userAuth = { loggedIn: true, phone: phone };
+    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
+    reloadUserData();
+    document.getElementById('firstTimeLoginGateway').style.display = 'none';
+    loadAndRenderUserProfile();
+    updateCartUI();
+    renderWishlistUI();
+    showLoader(400);
+    toast("🔓 Logged In Successfully!");
+  }
 }
 
 function initApp() {
   updateRatesBarUI();
+  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
   const storeIsOpen = localStorage.getItem('isha_store_open') !== 'false';
   const badge = document.getElementById('storeStatusBadge');
   if (badge) {
@@ -1286,13 +1225,11 @@ function loadAndRenderUserProfile() {
   document.getElementById('dispName').textContent = prof.name || "Customer Name";
   document.getElementById('dispPhone').textContent = prof.phone ? "+91 " + prof.phone : "+91 ----------";
   document.getElementById('dispEmail').textContent = prof.email || "No email added";
-  document.getElementById('dispAddressTxt').textContent = prof.address || "Not set yet";
   if (prof.avatar) { document.getElementById('dispAvatar').src = prof.avatar; }
 
   document.getElementById('edName').value = prof.name || '';
   document.getElementById('edPhone').value = prof.phone || userAuth.phone || '';
   document.getElementById('edEmail').value = prof.email || '';
-  document.getElementById('edAddress').value = prof.address || '';
   document.getElementById('coMobile').value = prof.phone || userAuth.phone || '';
 }
 
@@ -1310,23 +1247,17 @@ function saveProfileDetails(e) {
   e.preventDefault();
   const name = document.getElementById('edName').value.trim();
   const email = document.getElementById('edEmail').value.trim();
-  const address = document.getElementById('edAddress').value.trim();
   const avatar = document.getElementById('dispAvatar').src;
 
-  const prof = { name: name, phone: userAuth.phone, email: email, address: address, avatar: avatar };
+  const prof = { name: name, phone: userAuth.phone, email: email, avatar: avatar };
   if (allUsersDb[userAuth.phone]) {
     allUsersDb[userAuth.phone] = Object.assign(allUsersDb[userAuth.phone], prof);
     localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
   }
   localStorage.setItem(getUserKey('profile'), JSON.stringify(prof));
-
-  if (address && !savedAddresses.some(x => x.address === address)) {
-    savedAddresses.unshift({ name: name, phone: userAuth.phone, address: address });
-    localStorage.setItem(getUserKey('addresses'), JSON.stringify(savedAddresses));
-  }
   loadAndRenderUserProfile();
   hideProfileEditor();
-  toast("✅ Profile & Address Saved!");
+  toast("✅ Profile Details Saved!");
 }
 
 function previewProfilePic(e) {
@@ -1501,19 +1432,19 @@ function renderCustomSizingUI(p) {
   if (cat === 'Chain') {
     currentCustomSize = "20 Inch";
     box.innerHTML = `
-      <b style="font-size:12px;color:var(--gold-glow);">⛓️ Select Chain Length:</b>
+      <b style="font-size:11.5px;color:var(--gold-glow);">⛓️ Select Chain Length:</b>
       <div class="stepper-wrap">
         <button class="stepper-btn" onclick="stepChainLength(-2)">−</button>
         <span class="stepper-val" id="dispChainLen">20 Inch</span>
         <button class="stepper-btn" onclick="stepChainLength(2)">+</button>
       </div>
-      <small style="color:var(--text-muted);font-size:10px;">Min: 16 Inch | Max: 28 Inch</small>
+      <small style="color:var(--text-muted);font-size:9.5px;">Min: 16 Inch | Max: 28 Inch</small>
     `;
   } else if (cat === 'Rings') {
     currentCustomSize = "Size 14";
     const ringSizes = [10, 12, 14, 16, 18, 20, 22, 24];
     box.innerHTML = `
-      <b style="font-size:12px;color:var(--gold-glow);">💍 Select Indian Ring Size:</b>
+      <b style="font-size:11.5px;color:var(--gold-glow);">💍 Select Indian Ring Size:</b>
       <div class="opt-pill-grid">
         ${ringSizes.map(s => `<button class="opt-pill-btn ${s===14?'active':''}" onclick="setRingSize(${s}, this)">Size ${s}</button>`).join('')}
       </div>
@@ -1521,7 +1452,7 @@ function renderCustomSizingUI(p) {
   } else if (cat === 'Bali') {
     currentCustomSize = "Medium";
     box.innerHTML = `
-      <b style="font-size:12px;color:var(--gold-glow);">✨ Select Bali Fitting:</b>
+      <b style="font-size:11.5px;color:var(--gold-glow);">✨ Select Bali Fitting:</b>
       <div class="opt-pill-grid">
         <button class="opt-pill-btn" onclick="setBaliSize('Small', this)">Small</button>
         <button class="opt-pill-btn active" onclick="setBaliSize('Medium', this)">Medium</button>
@@ -1530,7 +1461,7 @@ function renderCustomSizingUI(p) {
     `;
   } else {
     currentCustomSize = "Standard Size";
-    box.innerHTML = `<b style="font-size:12px;color:var(--gold-glow);">💎 Standard 100% BIS Certified Design</b>`;
+    box.innerHTML = `<b style="font-size:11.5px;color:var(--gold-glow);">💎 Standard 100% BIS Certified Design</b>`;
   }
 }
 
@@ -1553,7 +1484,7 @@ function setBaliSize(sz, el) {
   currentCustomSize = sz;
 }
 
-function showLoader(d = 500) {
+function showLoader(d = 400) {
   const l = document.getElementById('appLoader');
   if (!l) return;
   l.style.display = 'flex'; l.style.opacity = '1';
@@ -1567,7 +1498,8 @@ function showDashboardHome(navEl) {
 
 function renderCustomerAdsCarousel() {
   const ads = JSON.parse(localStorage.getItem('isha_store_ads')) || [
-    { id: 1, tag: "FESTIVE OFFER", title: "AADI SHRAVANAM FEST", subtitle: "Flat ₹200 Less per gram on 22K Gold", image: fallbackHdImages["default"], active: true }
+    { id: 1, tag: "FESTIVE OFFER", title: "AADI SHRAVANAM FEST", subtitle: "Flat ₹200 Less per gram on 22K Gold", image: fallbackHdImages["default"], productId: 101, active: true },
+    { id: 2, tag: "SILVER SPECIAL", title: "DUHIAN PAYAL CELEBRATION", subtitle: "Certified 55% & Pure Silver Articles", image: fallbackHdImages["SilverPayal"], productId: 104, active: true }
   ];
   const activeAds = ads.filter(a => a.active !== false);
   const carousel = document.getElementById('customerAdsCarousel');
@@ -1575,11 +1507,11 @@ function renderCustomerAdsCarousel() {
   if (!activeAds.length) { carousel.style.display = 'none'; return; }
   carousel.style.display = 'flex';
   carousel.innerHTML = activeAds.map(ad => `
-    <div class="ad-poster-card" style="background-image:url('${ad.image}');">
+    <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetail(${ad.productId || 101})">
       <div class="ad-card-content">
-        <span style="font-size:8.5px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag}</span>
-        <div style="font-family:'Cinzel',serif;font-size:18px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
-        <small style="color:#f3dfaa;font-size:11px;">${ad.subtitle}</small>
+        <span style="font-size:8px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag}</span>
+        <div style="font-family:'Cinzel',serif;font-size:16px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
+        <small style="color:#f3dfaa;font-size:10.5px;">${ad.subtitle} (Tap to View)</small>
       </div>
     </div>
   `).join('');
@@ -1704,7 +1636,7 @@ function updateCartUI() {
   const listEl = document.getElementById('cartItemsList');
   const sumBox = document.getElementById('cartSummaryBox');
   if (!cart.length) {
-    listEl.innerHTML = `<div style="text-align:center;padding:40px 10px;color:var(--text-muted);font-size:13px;">Cart is empty.</div>`;
+    listEl.innerHTML = `<div style="text-align:center;padding:40px 10px;color:var(--text-muted);font-size:12.5px;">Cart is empty.</div>`;
     if (sumBox) sumBox.style.display = 'none';
     return;
   }
@@ -1716,12 +1648,12 @@ function updateCartUI() {
     return `
       <div class="cart-item-card" onclick="openProductDetail(${p.id})">
         <button class="cart-remove-btn" onclick="event.stopPropagation(); removeCartItem(${idx})">✕</button>
-        <img src="${getProductPhoto(p)}" style="width:65px;height:65px;border-radius:8px;object-fit:cover;">
+        <img src="${getProductPhoto(p)}" style="width:60px;height:60px;border-radius:8px;object-fit:cover;">
         <div style="flex:1;">
-          <span style="font-size:9.5px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
-          <div style="font-size:12px;font-weight:700;color:var(--text-main);">${p.name}</div>
-          <div style="font-size:11px;color:var(--text-muted);">${p.metal} • ${p.weight}g • ${p.customSize || 'Standard'}</div>
-          <div style="font-size:12.5px;font-weight:800;color:var(--gold-glow);margin-top:2px;">₹${itemTotal.toLocaleString('en-IN')}</div>
+          <span style="font-size:9px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
+          <div style="font-size:11.5px;font-weight:700;color:var(--text-main);">${p.name}</div>
+          <div style="font-size:10.5px;color:var(--text-muted);">${p.metal} • ${p.weight}g • ${p.customSize || 'Standard'}</div>
+          <div style="font-size:12px;font-weight:800;color:var(--gold-glow);margin-top:2px;">₹${itemTotal.toLocaleString('en-IN')}</div>
         </div>
       </div>
     `;
@@ -1735,106 +1667,7 @@ function removeCartItem(idx) {
   updateCartUI();
 }
 
-function renderSavedAddressPicker() {
-  const box = document.getElementById('savedAddressSection');
-  if (!savedAddresses.length) {
-    box.innerHTML = ``;
-    document.getElementById('newAddressFields').style.display = 'block';
-    return;
-  }
-  box.innerHTML = `
-    <b style="font-size:11px;color:var(--gold-glow);display:block;margin-bottom:6px;">📍 Choose Delivery Address:</b>
-    <div style="display:flex;flex-direction:column;gap:6px;">
-      ${savedAddresses.map((addr, idx) => `
-        <div style="background:#1b1624;border:1px solid #3a2e48;padding:8px 10px;border-radius:10px;font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;flex:1;overflow:hidden;">
-            <input type="radio" name="radAddress" ${idx===0?'checked':''} onchange="selectSavedAddress(${idx})">
-            <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"><b>${addr.name}</b> - ${addr.address}</span>
-          </label>
-          <div style="display:flex;gap:4px;">
-            <button type="button" style="background:none;border:none;color:var(--gold);cursor:pointer;font-size:12px;" onclick="editSavedAddress(${idx})">✏️</button>
-            <button type="button" style="background:none;border:none;color:#ff6b7a;cursor:pointer;font-size:12px;" onclick="deleteSavedAddress(${idx})">🗑️</button>
-          </div>
-        </div>
-      `).join('')}
-      <button type="button" class="btn-outline" style="font-size:10.5px;padding:6px;margin-top:2px;" onclick="toggleNewAddressFields()">+ Add New Delivery Location</button>
-    </div>
-  `;
-  selectSavedAddress(0);
-}
-
-function editSavedAddress(idx) {
-  const a = savedAddresses[idx];
-  const newAddr = prompt("Address edit karein:", a.address);
-  if (newAddr && newAddr.trim().length > 3) {
-    savedAddresses[idx].address = newAddr.trim();
-    localStorage.setItem(getUserKey('addresses'), JSON.stringify(savedAddresses));
-    renderSavedAddressPicker();
-    toast("✏️ Address updated!");
-  }
-}
-
-function deleteSavedAddress(idx) {
-  if (!confirm("Is address ko delete karna chahte hain?")) return;
-  savedAddresses.splice(idx, 1);
-  localStorage.setItem(getUserKey('addresses'), JSON.stringify(savedAddresses));
-  renderSavedAddressPicker();
-  toast("🗑️ Address deleted!");
-}
-
-function selectSavedAddress(idx) {
-  const a = savedAddresses[idx];
-  if (!a) return;
-  const parts = a.name.split(' ');
-  document.getElementById('coFirstName').value = parts[0] || '';
-  document.getElementById('coLastName').value = parts.slice(1).join(' ') || '';
-  document.getElementById('coMobile').value = a.phone || userAuth.phone || '';
-  document.getElementById('coArea').value = a.address || '';
-  document.getElementById('newAddressFields').style.display = 'none';
-}
-
-function toggleNewAddressFields() {
-  document.getElementById('newAddressFields').style.display = 'block';
-  const prof = getUserProfile();
-  document.getElementById('coFirstName').value = prof.name ? prof.name.split(' ')[0] : '';
-  document.getElementById('coLastName').value = prof.name ? prof.name.split(' ').slice(1).join(' ') : '';
-  document.getElementById('coMobile').value = userAuth.phone || '';
-  document.getElementById('coArea').value = '';
-}
-
-async function autoDetectLocationCheckout() {
-  const areaInput = document.getElementById('coArea');
-  const districtInput = document.getElementById('coDistrict');
-  const pincodeInput = document.getElementById('coPincode');
-  const stateInput = document.getElementById('coState');
-
-  areaInput.placeholder = "🛰️ Detecting live location...";
-  toast("🛰️ Locating...");
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        areaInput.value = `GPS Location (${pos.coords.latitude.toFixed(2)}, ${pos.coords.longitude.toFixed(2)})`;
-        districtInput.value = "Sahibganj";
-        pincodeInput.value = "816108";
-        stateInput.value = "Jharkhand";
-        toast("📍 GPS Attached!");
-      },
-      () => {
-        areaInput.value = "Balurgram Bazzar, Udhwa";
-        pincodeInput.value = "816108";
-        districtInput.value = "Sahibganj";
-        stateInput.value = "Jharkhand";
-        toast("📍 Location Set (816108)");
-      },
-      { timeout: 4000 }
-    );
-  } else {
-    areaInput.value = "Balurgram Bazzar, Udhwa";
-    pincodeInput.value = "816108";
-  }
-}
-
+/* 3-STEP CHECKOUT FUNCTIONS */
 function openOrderCheckoutModal(itemsArray, mode) {
   if (!itemsArray || !itemsArray.length) {
     if (currentProduct) itemsArray = [currentProduct];
@@ -1850,17 +1683,14 @@ function openOrderCheckoutModal(itemsArray, mode) {
   let total = 0;
   currentCheckoutItems.forEach(p => { total += getProductLivePrice(p, p.weight || currentCustomWeight, p.chosenTanch || 55); });
   currentCheckoutTotal = total;
-  appliedDiscount = 0;
-  appliedCouponCode = "";
 
   const prof = getUserProfile();
   document.getElementById('coFirstName').value = prof.name ? prof.name.split(' ')[0] : '';
   document.getElementById('coLastName').value = prof.name ? prof.name.split(' ').slice(1).join(' ') : '';
-  document.getElementById('coMobile').value = userAuth.phone || prof.phone || '';
-  document.getElementById('coArea').value = prof.address || '';
+  document.getElementById('coMobile').value = userAuth.phone || '';
+  document.getElementById('coArea').value = '';
 
-  renderSavedAddressPicker();
-  recalcCheckoutBalances();
+  goToCheckoutStep1();
   document.getElementById('universalCheckoutModal').style.display = 'flex';
 }
 
@@ -1868,81 +1698,119 @@ function closeCheckoutModal() {
   document.getElementById('universalCheckoutModal').style.display = 'none';
 }
 
-function applyPromoCode() {
-  const code = document.getElementById('coCouponInput').value.trim().toUpperCase();
-  usedCoupons = JSON.parse(localStorage.getItem(getUserKey('coupons'))) || [];
-  if (usedCoupons.includes(code)) {
-    toast("❌ Coupon already used!");
-    appliedDiscount = 0;
-    recalcCheckoutBalances();
+function goToCheckoutStep1() {
+  document.getElementById('coModalTitle').textContent = "🛍️ CHECKOUT: STEP 1 (ADDRESS)";
+  document.getElementById('coStep1Container').style.display = 'block';
+  document.getElementById('coStep2Container').style.display = 'none';
+  document.getElementById('coStep3Container').style.display = 'none';
+}
+
+function goToCheckoutStep2() {
+  const fName = document.getElementById('coFirstName').value.trim();
+  const mob = document.getElementById('coMobile').value.trim();
+  const area = document.getElementById('coArea').value.trim();
+  const pin = document.getElementById('coPincode').value.trim();
+
+  if (!fName || !mob || mob.length !== 10 || !area || !pin) {
+    alert("Kripya First Name, 10-Digit Mobile, Village/Street aur PIN number sahi se fill karein!");
     return;
   }
-  if (code.includes('CASH') || code.includes('GOLD') || code === 'ISHA300') {
-    appliedDiscount = 300;
-    appliedCouponCode = code;
-    toast(`🎉 Coupon [${code}] Applied: Flat ₹300 OFF!`);
-  } else {
-    toast("Invalid Code.");
-  }
-  recalcCheckoutBalances();
-}
 
-function selectPayMode(mode) {
-  currentPayMode = mode;
-  document.getElementById('btnPayOnline').classList.toggle('active', mode === 'upi');
-  document.getElementById('btnPayCod').classList.toggle('active', mode === 'cod');
-  document.getElementById('advanceInputBox').style.display = mode === 'upi' ? 'block' : 'none';
-}
+  document.getElementById('coModalTitle').textContent = "🛍️ CHECKOUT: STEP 2 (SUMMARY)";
+  document.getElementById('coStep1Container').style.display = 'none';
+  document.getElementById('coStep2Container').style.display = 'block';
+  document.getElementById('coStep3Container').style.display = 'none';
 
-function recalcCheckoutBalances() {
+  const lName = document.getElementById('coLastName').value.trim();
+  const altMob = document.getElementById('coAltMobile').value.trim();
+  const post = document.getElementById('coPostOffice').value.trim();
+  const fullAddr = `${area}${post ? ', Post: '+post : ''}, PIN: ${pin}, Jharkhand`;
+
+  document.getElementById('coSummaryAddressDisplay').innerHTML = `
+    <b>${fName} ${lName}</b><br>
+    📱 Mobile: +91 ${mob} ${altMob ? ' / Alt: '+altMob : ''}<br>
+    📍 Address: ${fullAddr}
+  `;
+
+  document.getElementById('coSummaryItemsBox').innerHTML = currentCheckoutItems.map(it => `
+    <div style="font-size:11px;display:flex;justify-content:space-between;margin-bottom:4px;border-bottom:1px solid #2a2236;padding-bottom:4px;">
+      <span><b>${it.name}</b> (${it.weight||4}g)</span>
+      <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(it, it.weight||4, it.chosenTanch||55).toLocaleString('en-IN')}</span>
+    </div>
+  `).join('');
+
   const gross = currentCheckoutTotal;
-  const p = currentCheckoutItems[0] || currentProduct || {};
+  const p = currentCheckoutItems[0] || {};
   const catRule = categoryRules[p.category] || { gstEnabled: true, gstPercent: 3 };
   const gstPct = catRule.gstEnabled ? (catRule.gstPercent !== undefined ? catRule.gstPercent : 3) : 0;
   const gst = Math.round(gross * (gstPct / 100));
-  const netPayable = Math.max(0, gross + gst - appliedDiscount);
+  const netPayable = gross + gst;
 
   document.getElementById('coGrossVal').textContent = "₹" + gross.toLocaleString('en-IN');
-  document.getElementById('coGstRateText').textContent = gstPct;
   document.getElementById('coGstVal').textContent = "+₹" + gst.toLocaleString('en-IN');
-  document.getElementById('coPromoDiscount').textContent = "-₹" + appliedDiscount.toLocaleString('en-IN');
   document.getElementById('coNetPayableVal').textContent = "₹" + netPayable.toLocaleString('en-IN');
+}
+
+function goToCheckoutStep3() {
+  document.getElementById('coModalTitle').textContent = "🛍️ CHECKOUT: STEP 3 (PAYMENT)";
+  document.getElementById('coStep1Container').style.display = 'none';
+  document.getElementById('coStep2Container').style.display = 'none';
+  document.getElementById('coStep3Container').style.display = 'block';
+
+  selectPaymentModeOption('upi');
+}
+
+function selectPaymentModeOption(mode) {
+  currentPayMode = mode;
+  const advBox = document.getElementById('advanceInputBox');
+  const qrBox = document.getElementById('upiQrCodeContainer');
+  const advInput = document.getElementById('coAdvanceInput');
+
+  if (mode === 'upi') {
+    advBox.style.display = 'block';
+    qrBox.style.display = 'block';
+    const gross = currentCheckoutTotal;
+    const p = currentCheckoutItems[0] || {};
+    const catRule = categoryRules[p.category] || { gstEnabled: true, gstPercent: 3 };
+    const gst = Math.round(gross * (catRule.gstEnabled ? 3 : 0));
+    const net = gross + gst;
+    const advVal = Math.min(net, 500);
+    advInput.value = advVal;
+    document.getElementById('dynamicUpiQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${advVal}&cu=INR`)}`;
+  } else if (mode === 'shop') {
+    advBox.style.display = 'block';
+    qrBox.style.display = 'none';
+    advInput.value = 500;
+  } else {
+    advBox.style.display = 'none';
+    qrBox.style.display = 'none';
+    advInput.value = 0;
+  }
 }
 
 function executeOrderPlacement() {
   const fName = document.getElementById('coFirstName').value.trim();
   const lName = document.getElementById('coLastName').value.trim();
-  const phone = document.getElementById('coMobile').value.trim() || (userAuth && userAuth.phone) || '9113774515';
-  const specificStreet = document.getElementById('coArea').value.trim();
-  const dist = document.getElementById('coDistrict').value.trim() || 'Sahibganj';
-  const pin = document.getElementById('coPincode').value.trim() || '816108';
-  const adv = (currentPayMode === 'upi') ? (Number(document.getElementById('coAdvanceInput').value) || 500) : 0;
-
-  if (!fName || !specificStreet) { alert("Kripya First Name aur Address fill karein!"); return; }
+  const phone = document.getElementById('coMobile').value.trim();
+  const area = document.getElementById('coArea').value.trim();
+  const post = document.getElementById('coPostOffice').value.trim();
+  const pin = document.getElementById('coPincode').value.trim();
+  const adv = (currentPayMode !== 'cod') ? (Number(document.getElementById('coAdvanceInput').value) || 500) : 0;
 
   const fullCustName = (fName + " " + lName).trim();
-  const fullAddressStr = `${specificStreet}, ${dist}, Jharkhand - ${pin}`;
-
-  if (!savedAddresses.some(x => x.address === specificStreet)) {
-    savedAddresses.unshift({ name: fullCustName, phone: phone, address: specificStreet });
-    localStorage.setItem(getUserKey('addresses'), JSON.stringify(savedAddresses));
-  }
-
-  if (appliedCouponCode) {
-    usedCoupons.push(appliedCouponCode);
-    localStorage.setItem(getUserKey('coupons'), JSON.stringify(usedCoupons));
-  }
+  const fullAddressStr = `${area}${post ? ', Post: '+post : ''}, Jharkhand - ${pin}`;
 
   const orderId = "IJ-" + Math.floor(100000 + Math.random() * 900000);
   const secretPin = Math.floor(1000 + Math.random() * 9000).toString();
   const today = new Date().toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
   const estDate = new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
+  const estDayName = new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString('en-IN', {weekday:'long'});
 
-  const pRef = currentCheckoutItems[0] || currentProduct || {};
+  const pRef = currentCheckoutItems[0] || {};
   const cRule = categoryRules[pRef.category] || { gstEnabled: true, gstPercent: 3 };
   const gPct = cRule.gstEnabled ? (cRule.gstPercent !== undefined ? cRule.gstPercent : 3) : 0;
   const gst = Math.round(currentCheckoutTotal * (gPct / 100));
-  const netFinalBill = Number(document.getElementById('coNetPayableVal').textContent.replace('₹','').replace(/,/g,''));
+  const netFinalBill = currentCheckoutTotal + gst;
 
   const newOrd = {
     id: orderId,
@@ -1954,13 +1822,12 @@ function executeOrderPlacement() {
     specs: `${currentCheckoutItems.length} Items (${currentCheckoutItems.map(x => `${x.name} [${x.weight||4}g]`).join(', ')})`,
     grossTotal: currentCheckoutTotal,
     gst: gst,
-    discount: appliedDiscount,
+    discount: 0,
     netPayable: netFinalBill,
     advancePaid: adv,
     balanceDue: Math.max(0, netFinalBill - adv),
-    deliveryDate: estDate,
-    expectedDeliveryDate: estDate,
-    estDate: estDate,
+    deliveryDate: `${estDayName}, ${estDate}`,
+    expectedDeliveryDate: `${estDayName}, ${estDate}`,
     orderDate: today,
     isDelivered: false,
     statusStage: 1,
@@ -1979,20 +1846,30 @@ function executeOrderPlacement() {
 
   try {
     if (db) {
-      db.ref('orders/' + orderId).set(newOrd).catch(err => console.log("Firebase push failed safely:", err));
+      db.ref('orders/' + orderId).set(newOrd).catch(err => console.log(err));
     }
-  } catch(err) { console.log("Firebase sync skipped safely"); }
+  } catch(err) { console.log(err); }
 
   const animTag = document.getElementById('animOrderIdTag');
   if (animTag) animTag.textContent = `Order ID: #${orderId}`;
   document.getElementById('orderSuccessAnimModal').style.display = 'flex';
+
+  // AUTOMATED WHATSAPP MESSAGE
+  const trackUrl = window.location.href.split('?')[0];
+  const waText = encodeURIComponent(`Namaste ${fullCustName}! Aapka order #${orderId} Isha Jewellers me successfully record ho gaya hai.\n\n📦 Items: ${newOrd.specs}\n💰 Net Bill: ₹${netFinalBill.toLocaleString('en-IN')}\n📅 Est. Delivery: ${estDayName}, ${estDate}\n\nLive tracking link: ${trackUrl}`);
+  
+  setTimeout(() => {
+    try {
+      window.open(`https://wa.me/91${phone}?text=${waText}`, '_blank');
+    } catch(e) { console.log(e); }
+  }, 500);
 
   if (currentPayMode === 'upi' && adv > 0) {
     setTimeout(() => {
       try {
         window.location.href = `upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${adv}&cu=INR&tn=Order${orderId}`;
       } catch(e) { console.log(e); }
-    }, 400);
+    }, 800);
   }
 }
 
@@ -2000,7 +1877,7 @@ function closeSuccessAnimModal() {
   document.getElementById('orderSuccessAnimModal').style.display = 'none';
   renderTrackingUI();
   showPage('tracking');
-  toast("🎉 Order Confirmed!");
+  toast("🎉 Order Confirmed & WhatsApp Message Sent!");
 }
 
 function cancelCustomerOrder(orderId) {
@@ -2024,10 +1901,10 @@ function renderTrackingUI() {
 
   if (!activeOrders.length) {
     c.innerHTML = `
-      <div style="text-align:center;padding:40px 14px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:14px;margin-top:10px;">
-        <div style="font-size:32px;margin-bottom:8px;">📦</div>
-        <b style="font-size:13px;color:var(--text-main);">Abhi koi active delivery order nahi hai.</b>
-        <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">Delivered orders dekhne ke liye <b>Menu (☰) ➔ My Orders History</b> open karein.</p>
+      <div style="text-align:center;padding:35px 12px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:14px;margin-top:10px;">
+        <div style="font-size:30px;margin-bottom:6px;">📦</div>
+        <b style="font-size:12.5px;color:var(--text-main);">Abhi koi active delivery order nahi hai.</b>
+        <p style="font-size:10.5px;color:var(--text-muted);margin-top:3px;">Delivered orders dekhne ke liye <b>Menu (☰) ➔ My Orders History</b> open karein.</p>
       </div>
     `;
     return;
@@ -2037,35 +1914,35 @@ function renderTrackingUI() {
     const isOutForDelivery = (o.statusStage >= 4);
     const agentName = o.deliveryAgentName || "Rakesh Swarnkar (Store Delivery)";
     const agentPhone = o.deliveryAgentPhone || "9113774515";
-    const displayEstDate = o.expectedDeliveryDate || o.extendedDeliveryDate || o.estDate || o.deliveryDate || "7 Days";
+    const displayEstDate = o.expectedDeliveryDate || o.deliveryDate || "7 Days";
 
     return `
-      <div class="cart-item-card" style="flex-direction:column;gap:8px;border-color:var(--gold);padding:14px;margin-bottom:12px;">
+      <div class="cart-item-card" style="flex-direction:column;gap:8px;border-color:var(--gold);padding:12px;margin-bottom:12px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <strong style="color:var(--gold-glow);font-size:14px;">Order #${o.id}</strong>
-          <span style="font-size:11px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
+          <strong style="color:var(--gold-glow);font-size:13.5px;">Order #${o.id}</strong>
+          <span style="font-size:10.5px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
         </div>
-        <div style="font-size:12px;color:var(--text-main);font-weight:600;">${o.specs}</div>
-        <div style="font-size:11px;color:var(--text-muted);">
+        <div style="font-size:11.5px;color:var(--text-main);font-weight:600;">${o.specs}</div>
+        <div style="font-size:10.5px;color:var(--text-muted);">
           Net: ₹${Number(o.netPayable).toLocaleString('en-IN')} | Adv: ₹${o.advancePaid} | Due: ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
         
         <div style="background:#1b1624;border:1.5px dashed var(--gold);padding:10px;border-radius:10px;margin-top:2px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
-              <span style="font-size:9.5px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
-              ${isOutForDelivery ? `<b style="font-size:16px;color:#7ef1a4;letter-spacing:3px;">${o.secretPin}</b>` : `<b style="font-size:11px;color:#e74c3c;">🔒 Hidden until Out for Delivery</b>`}
+              <span style="font-size:9px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
+              ${isOutForDelivery ? `<b style="font-size:15px;color:#7ef1a4;letter-spacing:3px;">${o.secretPin}</b>` : `<b style="font-size:10.5px;color:#e74c3c;">🔒 Hidden until Out for Delivery</b>`}
             </div>
-            <button type="button" class="btn-outline" style="font-size:10px;padding:4px 8px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
+            <button type="button" class="btn-outline" style="font-size:9.5px;padding:4px 8px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
           </div>
           ${isOutForDelivery ? `
             <div style="margin-top:8px;padding-top:8px;border-top:1px dashed rgba(197,155,72,0.3);display:flex;justify-content:space-between;align-items:center;background:rgba(46,204,113,0.08);padding:6px 8px;border-radius:8px;">
               <div>
-                <span style="font-size:9px;color:#2ecc71;font-weight:bold;display:block;">🚚 ASSIGNED DELIVERY AGENT:</span>
-                <b style="font-size:11.5px;color:#fff;">${agentName}</b><br>
-                <small style="color:var(--text-muted);font-size:10px;">📱 +91 ${agentPhone}</small>
+                <span style="font-size:8.5px;color:#2ecc71;font-weight:bold;display:block;">🚚 DELIVERY AGENT:</span>
+                <b style="font-size:11px;color:#fff;">${agentName}</b><br>
+                <small style="color:var(--text-muted);font-size:9.5px;">📱 +91 ${agentPhone}</small>
               </div>
-              <a href="tel:${agentPhone}" class="btn-gold" style="padding:6px 12px;font-size:11px;text-decoration:none;border-radius:6px;gap:4px;">📞 Call</a>
+              <a href="tel:${agentPhone}" class="btn-gold" style="padding:5px 10px;font-size:10.5px;text-decoration:none;border-radius:6px;gap:4px;">📞 Call</a>
             </div>
           ` : ''}
         </div>
@@ -2081,7 +1958,7 @@ function renderTrackingUI() {
         </div>
 
         <div style="display:flex;gap:8px;margin-top:6px;">
-          <button type="button" class="btn-danger" style="padding:10px;font-size:12px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
+          <button type="button" class="btn-danger" style="padding:9px;font-size:11.5px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
         </div>
       </div>
     `;
@@ -2115,7 +1992,7 @@ function renderDrawerOrderHistory() {
   const c = document.getElementById('drawerOrdersHistoryList');
   if (!c) return;
   if (!myOrders.length) {
-    c.innerHTML = `<div style="font-size:11.5px;color:var(--text-muted);text-align:center;padding:10px;">Abhi koi purana order record nahi mila.</div>`;
+    c.innerHTML = `<div style="font-size:11px;color:var(--text-muted);text-align:center;padding:10px;">Abhi koi purana order record nahi mila.</div>`;
     return;
   }
   c.innerHTML = myOrders.map(o => {
@@ -2123,15 +2000,15 @@ function renderDrawerOrderHistory() {
     return `
       <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:10px;margin-bottom:8px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <strong style="color:var(--gold-glow);font-size:12px;">Order ID: #${o.id}</strong>
-          <span style="font-size:10px;color:${isCompleted?'#2ecc71':'#ffd57e'};font-weight:700;">${isCompleted?'✓ Delivered':o.orderDate}</span>
+          <strong style="color:var(--gold-glow);font-size:11.5px;">Order ID: #${o.id}</strong>
+          <span style="font-size:9.5px;color:${isCompleted?'#2ecc71':'#ffd57e'};font-weight:700;">${isCompleted?'✓ Delivered':o.orderDate}</span>
         </div>
-        <div style="font-size:11.5px;color:var(--text-main);margin:4px 0;">📦 <b>Products:</b> ${o.specs}</div>
-        <div style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;">
+        <div style="font-size:11px;color:var(--text-main);margin:4px 0;">📦 <b>Products:</b> ${o.specs}</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">
           💰 <b>Net Bill:</b> ₹${Number(o.netPayable).toLocaleString('en-IN')} | <b>Advance:</b> ₹${o.advancePaid} | <b>Due:</b> ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
-        <button class="btn-gold" style="width:100%;padding:7px;font-size:11px;justify-content:center;opacity:${isCompleted?'1':'0.6'};" onclick="downloadOfficialBill('${o.id}')">
-          📄 Download A4 Portrait Tax Bill &amp; Certificate ${isCompleted ? '' : '(Locked until Delivery)'}
+        <button class="btn-gold" style="width:100%;padding:7px;font-size:10.5px;justify-content:center;" onclick="downloadOfficialBill('${o.id}')">
+          📄 Download A4 Portrait Tax Invoice &amp; Certificate
         </button>
       </div>
     `;
@@ -2141,12 +2018,6 @@ function renderDrawerOrderHistory() {
 function downloadOfficialBill(orderId) {
   const o = myOrders.find(x => x.id === orderId);
   if (!o) return;
-
-  const isCompleted = (o.statusStage === 5 || o.isDelivered);
-  if (!isCompleted) {
-    alert(`🔒 Invoice Locked!\n\nOrder #${o.id} ka official tax bill delivery complete hone ke baad hi download hoga.`);
-    return;
-  }
 
   const certVerificationData = `ISHA JEWELLERS (ESTD 2004) CERT NO: ${o.id}\nPURITY: 100% BIS 916 HALLMARK\nCUSTOMER: ${o.customerName}\nVERIFIED AUTHENTIC`;
   const termsQrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(certVerificationData)}`;
@@ -2203,7 +2074,7 @@ function downloadOfficialBill(orderId) {
         <div><b>Metal &amp; Making Total:</b> ₹${Number(o.grossTotal || o.netPayable).toLocaleString('en-IN')}</div>
         <div><b>GST:</b> ₹${Number(o.gst||0).toLocaleString('en-IN')}</div>
         <div style="font-size:14px;color:#8a6108;font-weight:bold;margin-top:2px;"><b>Net Total Amount:</b> ₹${Number(o.netPayable).toLocaleString('en-IN')}</div>
-        <div><b>Advance Received:</b> ₹${Number(o.advancePaid||0).toLocaleString('en-IN')} | <b style="color:green;">Status: Delivered &amp; Paid</b></div>
+        <div><b>Advance Received:</b> ₹${Number(o.advancePaid||0).toLocaleString('en-IN')} | <b style="color:green;">Balance Due: ₹${Number(o.balanceDue||0).toLocaleString('en-IN')}</b></div>
       </div>
       <div class="cert-card">
         <div class="cert-title">CERTIFICATE OF BIS 916 HALLMARK AUTHENTICITY</div>
@@ -2334,10 +2205,10 @@ function renderDynamicRewardCards() {
   if (!c) return;
   if (!myOrders.length) {
     c.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:14px;background:var(--card-bg);border-radius:10px;border:1px dashed var(--card-border);">
-        <div style="font-size:18px;margin-bottom:4px;">🎁</div>
-        <b style="font-size:12px;color:var(--gold-glow);">No Scratch Cards Yet</b>
-        <p style="font-size:10px;color:var(--text-muted);margin-top:4px;">Aap jitna order karenge utne square reward coupons unlock honge!</p>
+      <div style="grid-column:1/-1;text-align:center;padding:12px;background:var(--card-bg);border-radius:10px;border:1px dashed var(--card-border);">
+        <div style="font-size:16px;margin-bottom:3px;">🎁</div>
+        <b style="font-size:11.5px;color:var(--gold-glow);">No Scratch Cards Yet</b>
+        <p style="font-size:9.5px;color:var(--text-muted);margin-top:3px;">Aap jitna order karenge utne reward coupons unlock honge!</p>
       </div>
     `;
     return;
@@ -2349,16 +2220,16 @@ function renderDynamicRewardCards() {
     const isAlreadyScratched = !!scratchedStateMap[o.id];
     return `
       <div style="text-align:center;">
-        <span style="font-size:8.5px;color:${isUsed?'#9b96a4':'#2ecc71'};font-weight:800;display:block;margin-bottom:2px;">${isUsed ? '❌ USED' : '🎉 ORDER #' + o.id}</span>
+        <span style="font-size:8px;color:${isUsed?'#9b96a4':'#2ecc71'};font-weight:800;display:block;margin-bottom:2px;">${isUsed ? '❌ USED' : '🎉 ORDER #' + o.id}</span>
         <div class="scratch-card-box ${isUsed ? 'used' : ''}">
           <div class="scratch-underlay">
-            <span style="font-size:8.5px;color:var(--gold);">REWARD CODE:</span>
-            <b style="font-family:'Cinzel',serif;font-size:14px;color:#ffd57e;">${code}</b>
-            <small style="color:#2ecc71;font-size:8.5px;">Flat ₹${(idx+1)*100 + 200} OFF</small>
+            <span style="font-size:8px;color:var(--gold);">REWARD CODE:</span>
+            <b style="font-family:'Cinzel',serif;font-size:13px;color:#ffd57e;">${code}</b>
+            <small style="color:#2ecc71;font-size:8px;">Flat ₹${(idx+1)*100 + 200} OFF</small>
           </div>
           ${!isAlreadyScratched && !isUsed ? `<canvas class="scratch-canvas" id="scratchCanvas_${idx}"></canvas>` : ''}
         </div>
-        <button class="btn-outline" style="font-size:10px;padding:4px 8px;width:100%;" onclick="copyRewardCode('${code}')">📋 Copy Code</button>
+        <button class="btn-outline" style="font-size:9.5px;padding:4px 6px;width:100%;" onclick="copyRewardCode('${code}')">📋 Copy Code</button>
       </div>
     `;
   }).join('');
@@ -2496,7 +2367,7 @@ function renderWishlistUI() {
   const grid = document.getElementById('wishlistGrid');
   if (!grid) return;
   if (!wishlist.length) {
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);">No favorites yet.</div>`;
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:35px;color:var(--text-muted);font-size:12px;">No favorites yet.</div>`;
     return;
   }
   grid.innerHTML = wishlist.map(p => `
