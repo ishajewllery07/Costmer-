@@ -87,24 +87,28 @@ body{
   color:var(--text-main);
   min-height:100vh;
   overflow-x:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
   transition:background 0.3s ease, color 0.3s ease;
 }
 
+/* COMPACT APP FRAME (LIKE POPULAR APPS) */
 .app{
   width:100%;
-  max-width:480px;
+  max-width:420px;
   min-height:100vh;
   background:var(--bg-main);
   position:relative;
   margin:0 auto;
   display:flex;
   flex-direction:column;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  box-shadow: 0 0 50px rgba(0,0,0,0.8);
   padding-bottom:10px;
 }
 
 @media(min-width:768px){
-  .app { max-width: 500px !important; }
+  .app { max-width: 420px !important; margin: 0 auto; }
 }
 
 #splashScreen{
@@ -126,7 +130,7 @@ body{
   z-index:99999998;display:none;align-items:center;justify-content:center;padding:18px;overflow-y:auto;
 }
 .gateway-card{
-  background:linear-gradient(145deg, #181522, #0d0a13);border:1.5px solid var(--gold);border-radius:24px;padding:28px 22px;width:100%;max-width:410px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.95);
+  background:linear-gradient(145deg, #181522, #0d0a13);border:1.5px solid var(--gold);border-radius:24px;padding:28px 22px;width:100%;max-width:380px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.95);
 }
 .mpin-box-input{
   width:100%;letter-spacing:10px;text-align:center;font-size:22px;font-weight:800;
@@ -160,7 +164,7 @@ body{
   position:fixed;inset:0;background:rgba(5,4,8,0.96);z-index:99999999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(16px);overflow-y:auto;
 }
 .success-anim-card{
-  background:#14111c;border:2px solid #2ecc71;border-radius:24px;padding:24px 18px;width:100%;max-width:360px;text-align:center;
+  background:#14111c;border:2px solid #2ecc71;border-radius:24px;padding:24px 18px;width:100%;max-width:350px;text-align:center;
   animation:successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 @keyframes successPop{0%{transform:scale(0.4);opacity:0;}100%{transform:scale(1);opacity:1;}}
@@ -205,7 +209,7 @@ header{
 
 .rate-ticker{
   background:linear-gradient(90deg, #15120a, #261f12, #15120a);border-top:1px solid #3e331c;border-bottom:1px solid #3e331c;
-  padding:7px 12px;display:flex;justify-content:space-between;align-items:center;font-size:10.5px;
+  padding:7px 12px;display:flex;justify-content:space-between;align-items:center;font-size:10px;
 }
 .rate-gold-badge{color:var(--gold-glow);font-weight:800;}
 .rate-silver-badge{color:#ffffff;font-weight:800;}
@@ -216,7 +220,7 @@ body.light-mode .rate-silver-badge{color:#234768;}
 }
 .ads-carousel::-webkit-scrollbar{display:none;}
 .ad-poster-card{
-  min-width:100%;height:165px;border-radius:14px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;cursor:pointer;
+  min-width:100%;height:155px;border-radius:12px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;cursor:pointer;
 }
 .ad-poster-card::before{
   content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(14,8,4,0.92) 0%, rgba(20,10,4,0.3) 60%, transparent 100%);
@@ -225,29 +229,29 @@ body.light-mode .rate-silver-badge{color:#234768;}
 
 .cat-scroll-box{display:flex;gap:8px;overflow-x:auto;padding:6px 0 8px;scrollbar-width:none;}
 .cat-scroll-box::-webkit-scrollbar{display:none;}
-.cat-circle-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;min-width:58px;}
+.cat-circle-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;min-width:54px;}
 .cat-circle-icon{
-  width:48px;height:48px;border-radius:50%;background:#171322;border:1.5px solid #382c47;display:flex;align-items:center;justify-content:center;transition:0.2s;
+  width:44px;height:44px;border-radius:50%;background:#171322;border:1.5px solid #382c47;display:flex;align-items:center;justify-content:center;transition:0.2s;
 }
 .cat-circle-item.active .cat-circle-icon{border-color:var(--gold);background:var(--theme-subtle);box-shadow:0 0 10px var(--theme-subtle);}
-.cat-circle-icon svg{width:22px;height:22px;stroke:var(--gold);fill:rgba(212,175,55,0.12);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
-.cat-circle-label{font-size:9px;color:var(--text-muted);font-weight:600;white-space:nowrap;}
+.cat-circle-icon svg{width:20px;height:20px;stroke:var(--gold);fill:rgba(212,175,55,0.12);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.cat-circle-label{font-size:8.5px;color:var(--text-muted);font-weight:600;white-space:nowrap;}
 .cat-circle-item.active .cat-circle-label{color:var(--gold-glow);font-weight:700;}
 
-.filter-chips-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
+.filter-chips-row{display:flex;gap:5px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
 .filter-chips-row::-webkit-scrollbar{display:none;}
 .filter-chip-btn{
-  background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:20px;white-space:nowrap;cursor:pointer;
+  background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:10px;font-weight:600;padding:4px 10px;border-radius:20px;white-space:nowrap;cursor:pointer;
 }
 body.light-mode .filter-chip-btn{background:#eae1cf;border-color:#cca875;color:#443825;}
 .filter-chip-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
-main{padding:10px;padding-bottom:90px;flex:1;}
+main{padding:10px;padding-bottom:85px;flex:1;}
 .page{display:none;}
 .page.active{display:block;}
 
-.section-title-bar{display:flex;justify-content:space-between;align-items:center;margin:12px 0 6px;}
-.section-title-bar h2{font-family:'Cinzel',serif;font-size:14px;font-weight:800;color:var(--text-main);}
+.section-title-bar{display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px;}
+.section-title-bar h2{font-family:'Cinzel',serif;font-size:13.5px;font-weight:800;color:var(--text-main);}
 
 .product-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
 .product-card{
@@ -259,100 +263,100 @@ main{padding:10px;padding-bottom:90px;flex:1;}
 }
 .wish-heart-btn.active{color:#ff334b;}
 
-.product-img-wrap{width:100%;height:130px;background:#181520;position:relative;display:flex;align-items:center;justify-content:center;}
+.product-img-wrap{width:100%;height:120px;background:#181520;position:relative;display:flex;align-items:center;justify-content:center;}
 body.light-mode .product-img-wrap{background:#eaddcb;}
 .product-img-wrap img{width:100%;height:100%;object-fit:cover;}
 .product-info{padding:8px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-.product-title{font-size:11px;font-weight:600;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.product-price{font-size:12.5px;font-weight:800;color:var(--gold-glow);}
-.btn-card-quick{margin-top:4px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:9.5px;font-weight:700;padding:4px;border-radius:6px;cursor:pointer;text-align:center;z-index:3;position:relative;}
+.product-title{font-size:10.5px;font-weight:600;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.product-price{font-size:12px;font-weight:800;color:var(--gold-glow);}
+.btn-card-quick{margin-top:4px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:9px;font-weight:700;padding:4px;border-radius:6px;cursor:pointer;text-align:center;z-index:3;position:relative;}
 
 .btn-gold{
-  background:var(--accent-theme);color:#120c02;font-weight:700;font-size:12px;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  background:var(--accent-theme);color:#120c02;font-weight:700;font-size:11.5px;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
 }
 .btn-outline{
-  background:transparent;border:1px solid var(--theme-color);color:var(--theme-color);font-weight:600;font-size:11px;padding:7px 10px;border-radius:8px;cursor:pointer;
+  background:transparent;border:1px solid var(--theme-color);color:var(--theme-color);font-weight:600;font-size:10.5px;padding:6px 10px;border-radius:8px;cursor:pointer;
 }
 .btn-danger{
-  background:#2b1216;border:1px solid #73222d;color:#ff6b7a;font-weight:600;font-size:11px;padding:9px 12px;border-radius:10px;cursor:pointer;width:100%;
+  background:#2b1216;border:1px solid #73222d;color:#ff6b7a;font-weight:600;font-size:10.5px;padding:8px 12px;border-radius:10px;cursor:pointer;width:100%;
 }
 body.light-mode .btn-danger{background:#fce8e6;border-color:#e6b8b355;color:#b91c1c;}
 
 .cart-item-card{
-  background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:8px;display:flex;gap:8px;position:relative;cursor:pointer;
+  background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:9px;margin-bottom:8px;display:flex;gap:8px;position:relative;cursor:pointer;
 }
 .cart-remove-btn{
-  position:absolute;top:6px;right:8px;background:none;border:none;color:#ff6b7a;font-size:13px;cursor:pointer;z-index:5;
+  position:absolute;top:6px;right:8px;background:none;border:none;color:#ff6b7a;font-size:12px;cursor:pointer;z-index:5;
 }
 
 .about-store-footer{
-  background:#171109;border:1.5px solid #573f16;border-radius:14px;padding:14px;margin-top:20px;color:#ded2c1;
+  background:#171109;border:1.5px solid #573f16;border-radius:14px;padding:12px;margin-top:16px;color:#ded2c1;
 }
-.about-store-footer h3{font-family:'Cinzel',serif;color:#ffd57e;font-size:13.5px;margin-bottom:5px;}
-.about-store-footer p{font-size:10px;line-height:1.45;color:#bdae99;margin-bottom:6px;}
-.about-contact-row{font-size:10px;margin-bottom:2px;display:flex;gap:5px;}
+.about-store-footer h3{font-family:'Cinzel',serif;color:#ffd57e;font-size:13px;margin-bottom:4px;}
+.about-store-footer p{font-size:9.5px;line-height:1.4;color:#bdae99;margin-bottom:6px;}
+.about-contact-row{font-size:9.5px;margin-bottom:2px;display:flex;gap:5px;}
 
 .bottom-nav{
-  position:fixed;bottom:0;width:100%;max-width:480px;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:7px 4px 9px;z-index:50;
+  position:fixed;bottom:0;width:100%;max-width:420px;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:6px 4px 8px;z-index:50;
 }
-@media(min-width:768px){.bottom-nav{max-width:500px !important;}}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
+@media(min-width:768px){.bottom-nav{max-width:420px !important;}}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:8.5px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
 .nav-item.active{color:var(--theme-color);}
 .cart-badge-dot{
-  position:absolute;top:-2px;right:18px;background:#ff334b;color:#fff;font-size:8px;font-weight:800;padding:1px 3px;border-radius:10px;
+  position:absolute;top:-2px;right:16px;background:#ff334b;color:#fff;font-size:7.5px;font-weight:800;padding:1px 3px;border-radius:10px;
 }
 
 .input-control{
-  width:100%;padding:9px 11px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;color:var(--text-main);font-family:inherit;font-size:12px;outline:none;
+  width:100%;padding:8px 10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;color:var(--text-main);font-family:inherit;font-size:11.5px;outline:none;
 }
 .input-control:focus{border-color:var(--theme-color);}
 
 .price-breakup-box{
-  background:var(--card-bg);border:1px dashed var(--card-border);border-radius:10px;padding:10px;margin:8px 0;
+  background:var(--card-bg);border:1px dashed var(--card-border);border-radius:10px;padding:9px;margin:8px 0;
 }
-.breakup-row{display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;color:var(--text-muted);}
-.breakup-row.total{border-top:1px solid var(--card-border);padding-top:6px;margin-top:4px;font-weight:700;font-size:13px;color:var(--gold-glow);}
+.breakup-row{display:flex;justify-content:space-between;font-size:10.5px;margin-bottom:4px;color:var(--text-muted);}
+.breakup-row.total{border-top:1px solid var(--card-border);padding-top:6px;margin-top:4px;font-weight:700;font-size:12.5px;color:var(--gold-glow);}
 
-.track-step-list{position:relative;margin:10px 0 4px 4px;padding-left:18px;border-left:2px solid var(--card-border);}
-.track-step{position:relative;margin-bottom:10px;}
+.track-step-list{position:relative;margin:8px 0 4px 4px;padding-left:16px;border-left:2px solid var(--card-border);}
+.track-step{position:relative;margin-bottom:8px;}
 .track-step:last-child{margin-bottom:0;}
 .track-dot{
-  position:absolute;left:-26px;top:2px;width:14px;height:14px;border-radius:50%;background:#252030;border:2px solid #574d6b;display:grid;place-items:center;font-size:8px;font-weight:800;color:#fff;
+  position:absolute;left:-24px;top:2px;width:13px;height:13px;border-radius:50%;background:#252030;border:2px solid #574d6b;display:grid;place-items:center;font-size:7.5px;font-weight:800;color:#fff;
 }
 .track-step.done .track-dot{background:#2ecc71;border-color:#2ecc71;color:#000;}
-.track-step-title{font-size:11px;font-weight:700;}
+.track-step-title{font-size:10.5px;font-weight:700;}
 
 .stepper-wrap{
-  display:flex;align-items:center;gap:10px;background:#1b1624;border:1px solid #3a2e48;padding:5px 10px;border-radius:10px;width:max-content;margin:6px 0;
+  display:flex;align-items:center;gap:8px;background:#1b1624;border:1px solid #3a2e48;padding:4px 10px;border-radius:10px;width:max-content;margin:5px 0;
 }
 body.light-mode .stepper-wrap{background:#f0e9dc;border-color:#dcd0bc;}
 .stepper-btn{
-  width:28px;height:28px;border-radius:8px;background:var(--accent-theme);color:#120b02;border:none;font-weight:900;font-size:14px;cursor:pointer;display:grid;place-items:center;
+  width:26px;height:26px;border-radius:7px;background:var(--accent-theme);color:#120b02;border:none;font-weight:900;font-size:13px;cursor:pointer;display:grid;place-items:center;
 }
 .stepper-val{
-  font-size:13px;font-weight:800;color:var(--gold-glow);min-width:60px;text-align:center;
+  font-size:12px;font-weight:800;color:var(--gold-glow);min-width:55px;text-align:center;
 }
 
-.opt-pill-grid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;}
+.opt-pill-grid{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0;}
 .opt-pill-btn{
-  background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:8px;cursor:pointer;
+  background:#14111c;border:1px solid #2d263a;color:#9b96a4;font-size:10px;font-weight:700;padding:4px 10px;border-radius:7px;cursor:pointer;
 }
 body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443825;}
 .opt-pill-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
 .cal-flip-card{
   background:linear-gradient(145deg, #181322, #0d0a13);
-  border:2px solid var(--gold);border-radius:16px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.8);
-  position:relative;margin-bottom:12px;
+  border:2px solid var(--gold);border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.8);
+  position:relative;margin-bottom:10px;
 }
 .cal-month-header{
-  background:linear-gradient(90deg, #3c2c10, #73531b, #3c2c10);padding:12px;text-align:center;color:#ffd57e;border-bottom:2px solid var(--gold);
+  background:linear-gradient(90deg, #3c2c10, #73531b, #3c2c10);padding:10px;text-align:center;color:#ffd57e;border-bottom:2px solid var(--gold);
 }
 .cal-days-grid{
-  display:grid;grid-template-columns:repeat(7, 1fr);gap:3px;padding:10px;text-align:center;font-size:10.5px;
+  display:grid;grid-template-columns:repeat(7, 1fr);gap:2px;padding:8px;text-align:center;font-size:10px;
 }
 .cal-day-cell{
-  padding:7px 2px;border-radius:6px;background:rgba(255,255,255,0.03);min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;
+  padding:6px 2px;border-radius:5px;background:rgba(255,255,255,0.03);min-height:40px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;
 }
 .cal-day-cell.sunday{color:#ff5252;background:rgba(255,82,82,0.08);font-weight:bold;}
 .cal-day-cell.fest{border:1px solid var(--gold);background:rgba(197,155,72,0.18);}
@@ -360,12 +364,12 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
   border:2px solid #ffd57e !important;
   background:linear-gradient(145deg, rgba(255,213,126,0.3) 0%, rgba(197,155,72,0.2) 100%) !important;
 }
-.cal-day-cell.today-cell .cal-day-num{color:#ffd57e;font-size:12px;font-weight:900;}
-.cal-today-badge{font-size:6px;font-weight:900;background:#ffd57e;color:#000;padding:1px 3px;border-radius:3px;margin-top:2px;}
-.cal-day-num{font-weight:800;font-size:11px;}
-.cal-fest-tag{font-size:6.5px;color:#ffd57e;margin-top:2px;line-height:1;overflow:hidden;text-overflow:ellipsis;}
+.cal-day-cell.today-cell .cal-day-num{color:#ffd57e;font-size:11.5px;font-weight:900;}
+.cal-today-badge{font-size:5.5px;font-weight:900;background:#ffd57e;color:#000;padding:1px 3px;border-radius:3px;margin-top:2px;}
+.cal-day-num{font-weight:800;font-size:10.5px;}
+.cal-fest-tag{font-size:6px;color:#ffd57e;margin-top:2px;line-height:1;overflow:hidden;text-overflow:ellipsis;}
 
-.toast-msg{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:#262117;color:var(--gold-glow);border:1px solid #6b5223;padding:8px 14px;border-radius:30px;font-size:11px;font-weight:600;z-index:9999999;display:none;}
+.toast-msg{position:fixed;bottom:65px;left:50%;transform:translateX(-50%);background:#262117;color:var(--gold-glow);border:1px solid #6b5223;padding:7px 14px;border-radius:30px;font-size:10.5px;font-weight:600;z-index:9999999;display:none;}
 </style>
 </head>
 <body>
@@ -373,8 +377,8 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
 <!-- 1. SPLASH SCREEN -->
 <div id="splashScreen">
   <div class="splash-logo">
-    <div style="width:75px;height:75px;border-radius:50%;border:2px solid #c59b48;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 20px rgba(197,155,72,0.4);">
-      <svg width="45" height="45" viewBox="0 0 100 100">
+    <div style="width:70px;height:70px;border-radius:50%;border:2px solid #c59b48;display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 18px rgba(197,155,72,0.4);">
+      <svg width="40" height="40" viewBox="0 0 100 100">
         <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
         <path d="M 36 36 C 37 31, 44 31, 62 31 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
       </svg>
@@ -384,107 +388,107 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
   <div class="splash-sub">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</div>
 </div>
 
-<!-- FULL SCREEN ORDER SUCCESS ANIMATION & SCRATCH CARD MODAL -->
+<!-- FULL SCREEN ORDER SUCCESS MODAL WITH SCRATCH CARD -->
 <div id="orderSuccessAnimModal">
   <div class="success-anim-card">
     <div class="success-tick-circle">
-      <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </div>
-    <h2 style="font-family:'Cinzel',serif;font-size:16px;color:#2ecc71;margin-bottom:4px;">ORDER PLACED!</h2>
-    <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:8px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
-    <div id="animOrderIdTag" style="font-size:11px;color:var(--gold-glow);font-weight:bold;margin-bottom:8px;">Order ID: #IJ-0000</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:#2ecc71;margin-bottom:3px;">ORDER PLACED!</h2>
+    <p style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
+    <div id="animOrderIdTag" style="font-size:10.5px;color:var(--gold-glow);font-weight:bold;margin-bottom:6px;">Order ID: #IJ-0000</div>
     
-    <div style="font-size:10px;color:var(--gold);margin-bottom:4px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
+    <div style="font-size:9.5px;color:var(--gold);margin-bottom:3px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
     <div id="successModalScratchContainer"></div>
 
-    <button class="btn-gold" style="width:100%;justify-content:center;margin-top:6px;padding:10px;" onclick="closeSuccessAnimModal()">Thanks for Shopping with Us! ➔ Track Order</button>
+    <button class="btn-gold" style="width:100%;justify-content:center;margin-top:5px;padding:9px;" onclick="closeSuccessAnimModal()">Thanks for Shopping with Us! ➔ Track Order</button>
   </div>
 </div>
 
-<!-- 2. LOGIN / REGISTER / MPIN GATEWAY -->
+<!-- 2. LOGIN / REGISTER / MPIN GATEWAY (UPDATED LABEL TO 'Full Name') -->
 <div id="firstTimeLoginGateway">
   <div class="gateway-card">
-    <svg width="40" height="40" viewBox="0 0 100 100" style="margin-bottom:6px;">
+    <svg width="38" height="38" viewBox="0 0 100 100" style="margin-bottom:5px;">
       <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
       <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
     </svg>
-    <h2 style="font-family:'Cinzel',serif;font-size:16px;color:#fff;margin-bottom:2px;">ISHA JEWELLERS</h2>
-    <p style="font-size:9.5px;color:#a89f91;margin-bottom:10px;">Secure Account Cloud Gateway</p>
+    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:#fff;margin-bottom:2px;">ISHA JEWELLERS</h2>
+    <p style="font-size:9px;color:#a89f91;margin-bottom:8px;">Secure Account Cloud Gateway</p>
 
     <!-- STEP 1: REGISTRATION / LOGIN SELECT -->
     <div id="authStepRegister">
-      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
         <div>
-          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Full Name *</label>
-          <input type="text" id="regName" class="input-control" placeholder="Aapka Poora Naam">
+          <label style="font-size:9px;color:var(--gold);font-weight:700;">Full Name *</label>
+          <input type="text" id="regName" class="input-control" placeholder="Enter Full Name">
         </div>
         <div>
-          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
+          <label style="font-size:9px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
           <input type="tel" id="regMobile" maxlength="10" class="input-control" placeholder="Mobile Number daalein">
         </div>
         <div>
-          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Email Address *</label>
+          <label style="font-size:9px;color:var(--gold);font-weight:700;">Email Address *</label>
           <input type="email" id="regEmail" class="input-control" placeholder="name@gmail.com">
         </div>
       </div>
 
-      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:10px;" onclick="triggerOtpSimulation()">
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="triggerOtpSimulation()">
         📱 Get Instant OTP ➔
       </button>
 
-      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
+      <div style="margin-top:8px;font-size:9.5px;color:var(--text-muted);">
         Already registered? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login with MPIN</a>
       </div>
     </div>
 
     <!-- STEP 1B: OTP VERIFICATION SCREEN -->
     <div id="authStepOtp" style="display:none;">
-      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:4px;">Verify Instant OTP</h3>
-      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">Aapke mobile par auto-generated OTP screen par dikh raha hai.</p>
-      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:10px;border-radius:10px;font-size:18px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:8px;" id="dispAutoOtpBox">4829</div>
-      <div style="text-align:left;margin-bottom:8px;">
-        <label style="font-size:9.5px;color:var(--gold);">Enter 4-Digit OTP Code</label>
+      <h3 style="font-size:11.5px;color:var(--gold-glow);margin-bottom:4px;">Verify Instant OTP</h3>
+      <p style="font-size:9px;color:var(--text-muted);margin-bottom:6px;">Aapke mobile par auto-generated OTP screen par dikh raha hai.</p>
+      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:9px;border-radius:8px;font-size:17px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:6px;" id="dispAutoOtpBox">4829</div>
+      <div style="text-align:left;margin-bottom:6px;">
+        <label style="font-size:9px;color:var(--gold);">Enter 4-Digit OTP Code</label>
         <input type="tel" id="enteredOtpBox" maxlength="4" class="mpin-box-input" placeholder="• • • •">
       </div>
-      <button class="btn-gold" style="width:100%;justify-content:center;padding:10px;" onclick="verifyOtpAndProceed()">✓ Verify &amp; Set MPIN</button>
-      <button class="btn-outline" style="width:100%;margin-top:6px;padding:6px;" onclick="switchAuthScreen('register')">‹ Back</button>
+      <button class="btn-gold" style="width:100%;justify-content:center;padding:9px;" onclick="verifyOtpAndProceed()">✓ Verify &amp; Set MPIN</button>
+      <button class="btn-outline" style="width:100%;margin-top:5px;padding:5px;" onclick="switchAuthScreen('register')">‹ Back</button>
     </div>
 
     <!-- STEP 2: CREATE MPIN -->
     <div id="authStepCreateMpin" style="display:none;">
-      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:4px;">Set 4-Digit Security MPIN</h3>
-      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">Kisi bhi mobile, tablet ya laptop par account kholne ke liye yeh MPIN yaad rakhein.</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
+      <h3 style="font-size:11.5px;color:var(--gold-glow);margin-bottom:4px;">Set 4-Digit Security MPIN</h3>
+      <p style="font-size:9px;color:var(--text-muted);margin-bottom:6px;">Kisi bhi mobile, tablet ya laptop par account kholne ke liye yeh MPIN yaad rakhein.</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
         <div>
-          <label style="font-size:9px;color:var(--gold);">Create New MPIN</label>
+          <label style="font-size:8.5px;color:var(--gold);">Create New MPIN</label>
           <input type="password" id="newMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
         <div>
-          <label style="font-size:9px;color:var(--gold);">Confirm MPIN</label>
+          <label style="font-size:8.5px;color:var(--gold);">Confirm MPIN</label>
           <input type="password" id="confirmMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:10px;" onclick="saveNewUserAccount()">✓ Sync &amp; Open Store</button>
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="saveNewUserAccount()">✓ Sync &amp; Open Store</button>
     </div>
 
     <!-- STEP 3: LOGIN WITH MPIN -->
     <div id="authStepLogin" style="display:none;">
-      <h3 style="font-size:12.5px;color:var(--gold-glow);margin-bottom:4px;">Cloud Account Login</h3>
-      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:8px;">Enter 10-Digit Mobile &amp; 4-Digit MPIN</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:4px;">Cloud Account Login</h3>
+      <p style="font-size:9px;color:var(--text-muted);margin-bottom:6px;">Enter 10-Digit Mobile &amp; 4-Digit MPIN</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
         <div>
-          <label style="font-size:9px;color:var(--gold);">Registered Mobile Number</label>
+          <label style="font-size:8.5px;color:var(--gold);">Registered Mobile Number</label>
           <input type="tel" id="loginMobile" maxlength="10" class="input-control" placeholder="10-Digit Mobile">
         </div>
         <div>
-          <label style="font-size:9px;color:var(--gold);">4-Digit MPIN</label>
+          <label style="font-size:8.5px;color:var(--gold);">4-Digit MPIN</label>
           <input type="password" id="loginMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:10px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data &amp; Open App</button>
-      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data &amp; Open App</button>
+      <div style="margin-top:8px;font-size:9.5px;color:var(--text-muted);">
         New user? <a href="javascript:void(0)" onclick="switchAuthScreen('register')" style="color:var(--gold-glow);font-weight:bold;">Register New Account</a>
       </div>
     </div>
@@ -499,13 +503,13 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
       <div class="ij-stamp-dashed-border"></div>
     </div>
     <div class="ij-inner-emblem">
-      <svg width="42" height="42" viewBox="0 0 100 100">
+      <svg width="40" height="40" viewBox="0 0 100 100">
         <path d="M 36 20 L 32 9 L 42 14 L 50 5 L 58 14 L 68 9 L 64 20 Z" fill="#ffd57e"/>
         <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
       </svg>
     </div>
   </div>
-  <div style="font-family:'Cinzel',serif;font-size:11px;font-weight:900;letter-spacing:3px;color:#ffd57e;margin-top:12px;">ISHA JEWELLERS</div>
+  <div style="font-family:'Cinzel',serif;font-size:10.5px;font-weight:900;letter-spacing:3px;color:#ffd57e;margin-top:10px;">ISHA JEWELLERS</div>
 </div>
 
 <div class="app">
@@ -535,7 +539,7 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
   <div class="rate-ticker">
     <div>🟡 22K Gold: <span class="rate-gold-badge" id="barRate22k">₹9,050/g</span></div>
     <div>⚪ Silver (55%): <span class="rate-silver-badge" id="barRateSilver">₹53.90/g</span></div>
-    <div id="storeStatusBadge" style="font-size:9px;font-weight:700;color:#2ecc71;">🟢 Store Open</div>
+    <div id="storeStatusBadge" style="font-size:8.5px;font-weight:700;color:#2ecc71;">🟢 Store Open</div>
   </div>
 
   <main>
@@ -555,11 +559,11 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
       </div>
       <div class="section-title-bar"><h2>🔥 Trending Collection</h2></div>
       <div class="product-grid" id="gridTrending"></div>
-      <div class="section-title-bar" style="margin-top:16px;"><h2>✨ Curated Collection</h2></div>
+      <div class="section-title-bar" style="margin-top:14px;"><h2>✨ Curated Collection</h2></div>
       <div class="product-grid" id="gridCurated"></div>
-      <div class="section-title-bar" style="margin-top:16px;"><h2>🌟 New Designs</h2></div>
+      <div class="section-title-bar" style="margin-top:14px;"><h2>🌟 New Designs</h2></div>
       <div class="product-grid" id="gridNewDesigns"></div>
-      <div class="section-title-bar" style="margin-top:16px;"><h2>👑 Most Viewed &amp; Buy</h2></div>
+      <div class="section-title-bar" style="margin-top:14px;"><h2>👑 Most Viewed &amp; Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
       <div class="about-store-footer">
         <h3>ISHA JEWELLERS — BALURGRAM (ESTD 2004)</h3>
@@ -573,7 +577,7 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
     <!-- PAGE 2: CATEGORIES -->
     <section id="categories" class="page">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <h2 style="font-family:'Cinzel',serif;font-size:16px;">Jewellery Categories</h2>
+        <h2 style="font-family:'Cinzel',serif;font-size:15px;">Jewellery Categories</h2>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;">
         <button class="filter-chip-btn active" id="btnCatPageGold" onclick="switchMetalSegment('Gold')">👑 Gold Jewellery</button>
@@ -586,13 +590,13 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
 
     <!-- PAGE 3: YOUR CART -->
     <section id="yourCart" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:16px;margin-bottom:8px;">Your Shopping Cart 🛍️</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:15px;margin-bottom:8px;">Your Shopping Cart 🛍️</h2>
       <div id="cartItemsList"></div>
       <div id="cartSummaryBox" style="display:none;margin-top:10px;">
         <div class="price-breakup-box">
           <div class="breakup-row total"><span>Total Cart Items Metal Value:</span><span id="cartSubtotalVal">₹0</span></div>
         </div>
-        <button class="btn-gold" style="width:100%;justify-content:center;padding:12px;font-size:13px;" onclick="openOrderCheckoutModal(cart, 'cart')">
+        <button class="btn-gold" style="width:100%;justify-content:center;padding:11px;font-size:12.5px;" onclick="openOrderCheckoutModal(cart, 'cart')">
           🛍️ PROCEED TO ORDER
         </button>
       </div>
@@ -601,21 +605,21 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
     <!-- PAGE 4: PRODUCT DETAIL -->
     <section id="productDetail" class="page">
       <button class="btn-outline" style="margin-bottom:8px;" onclick="showPage('home')">‹ Back</button>
-      <div style="height:260px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:#16121c;position:relative;display:flex;align-items:center;justify-content:center;">
+      <div style="height:240px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:#16121c;position:relative;display:flex;align-items:center;justify-content:center;">
         <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:contain;background:#0c0a10;">
-        <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:9px;font-weight:800;padding:3px 6px;border-radius:6px;z-index:2;">In Stock</div>
+        <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:8.5px;font-weight:800;padding:3px 6px;border-radius:6px;z-index:2;">In Stock</div>
       </div>
       <div style="margin-top:8px;">
-        <span style="font-size:8.5px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:2px 6px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
-        <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:17px;margin-top:2px;">Item Name</h1>
+        <span style="font-size:8px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:2px 6px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
+        <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:16px;margin-top:2px;">Item Name</h1>
       </div>
-      <p id="detailDescription" style="font-size:10.5px;color:var(--text-muted);margin:5px 0;line-height:1.4;"></p>
+      <p id="detailDescription" style="font-size:10px;color:var(--text-muted);margin:4px 0;line-height:1.4;"></p>
       <div id="multiWeightBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:8px;">
-        <b style="font-size:10.5px;color:var(--gold-glow);display:block;margin-bottom:3px;">⚖️ Available Weights in this Design:</b>
+        <b style="font-size:10px;color:var(--gold-glow);display:block;margin-bottom:3px;">⚖️ Available Weights in this Design:</b>
         <div class="opt-pill-grid" id="detailWeightPillsGrid"></div>
       </div>
       <div id="silverTanchBookingBox" style="display:none;background:var(--card-bg);border:1.5px solid var(--gold);border-radius:10px;padding:8px;margin:6px 0;">
-        <label style="font-size:10.5px;font-weight:700;color:var(--gold-glow);display:block;margin-bottom:3px;">🪙 Silver Touch / Purity Selection:</label>
+        <label style="font-size:10px;font-weight:700;color:var(--gold-glow);display:block;margin-bottom:3px;">🪙 Silver Touch / Purity Selection:</label>
         <select id="detailSilverTanchSelect" class="input-control" onchange="changeSilverTanchPurity(this.value)">
           <option value="55">55% Local Touch (Default Stock - Lowest Price)</option>
           <option value="70">70% Touch (Custom Advance Booking)</option>
@@ -625,9 +629,9 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
         </select>
       </div>
       <div style="margin-top:4px;">
-        <div style="font-size:19px;font-weight:800;color:var(--gold-glow);" id="detailTotalPrice">₹0</div>
+        <div style="font-size:18px;font-weight:800;color:var(--gold-glow);" id="detailTotalPrice">₹0</div>
       </div>
-      <div id="customSizingControlBox" style="margin-top:10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:8px;"></div>
+      <div id="customSizingControlBox" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:8px;"></div>
       <div class="price-breakup-box">
         <div class="breakup-row"><span id="breakupMetalName">Product Metal Cost:</span><span id="breakupMetalAmount">₹0</span></div>
         <div class="breakup-row"><span>Making Charges:</span><span id="breakupMakingAmount">₹0</span></div>
@@ -635,24 +639,24 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
         <div class="breakup-row"><span>Delivery Cost:</span><span id="breakupDeliveryAmount" style="color:#2ecc71;">FREE</span></div>
         <div class="breakup-row total"><span>Total Cost (Net):</span><span id="breakupFinalTotal">₹0</span></div>
       </div>
-      <div id="actionButtonsNormal" style="display:flex;gap:6px;margin-top:10px;">
+      <div id="actionButtonsNormal" style="display:flex;gap:6px;margin-top:8px;">
         <button class="btn-outline" style="flex:1;justify-content:center;" onclick="addCurrentToCart()">+ Add to Cart</button>
-        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:13px;padding:10px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
+        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:12.5px;padding:9px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
       </div>
-      <div id="actionButtonsBooking" style="display:none;margin-top:10px;">
-        <button class="btn-gold" style="width:100%;justify-content:center;font-size:13px;padding:12px;background:linear-gradient(135deg, #e67e22, #d35400);color:#fff;" onclick="openOrderCheckoutModal([currentProduct], 'booking')">
+      <div id="actionButtonsBooking" style="display:none;margin-top:8px;">
+        <button class="btn-gold" style="width:100%;justify-content:center;font-size:12.5px;padding:11px;background:linear-gradient(135deg, #e67e22, #d35400);color:#fff;" onclick="openOrderCheckoutModal([currentProduct], 'booking')">
           📅 Book Advance (Ready in 7 Days)
         </button>
       </div>
 
-      <!-- ESTIMATE SLIP PDF DOWNLOAD BUTTON -->
+      <!-- ESTIMATE SLIP PDF DOWNLOAD BUTTON (RELIABLE DATA-URI/BLOB DOWNLOAD FIX) -->
       <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
         📄 Download Official Estimate Slip (PDF)
       </button>
 
-      <div style="margin-top:20px;border-top:1px solid var(--card-border);padding-top:12px;">
+      <div style="margin-top:16px;border-top:1px solid var(--card-border);padding-top:10px;">
         <div class="section-title-bar" style="margin-top:0;">
-          <h2 style="font-size:13px;color:var(--gold-glow);">✨ More Preferred &amp; Similar Designs</h2>
+          <h2 style="font-size:12.5px;color:var(--gold-glow);">✨ More Preferred &amp; Similar Designs</h2>
         </div>
         <div class="product-grid" id="detailPreferredGrid"></div>
       </div>
@@ -661,22 +665,22 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
     <!-- PAGE 5: FLIP CALENDAR -->
     <section id="calendarPage" class="page">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <h2 style="font-family:'Cinzel',serif;font-size:16px;">Isha Jewellers Calendar 🗓️</h2>
-        <div style="display:flex;gap:6px;">
-          <button class="btn-outline" style="padding:3px 8px;" onclick="flipMonth(-1)">◀ Prev</button>
-          <button class="btn-outline" style="padding:3px 8px;" onclick="flipMonth(1)">Next ▶</button>
+        <h2 style="font-family:'Cinzel',serif;font-size:15px;">Isha Jewellers Calendar 🗓️</h2>
+        <div style="display:flex;gap:5px;">
+          <button class="btn-outline" style="padding:3px 7px;" onclick="flipMonth(-1)">◀ Prev</button>
+          <button class="btn-outline" style="padding:3px 7px;" onclick="flipMonth(1)">Next ▶</button>
         </div>
       </div>
       <div class="cal-flip-card" id="deskCalendarCard">
         <div class="cal-month-header">
-          <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:15px;letter-spacing:1px;">AUGUST 2026</h3>
-          <small style="font-size:8.5px;color:#ffd57e;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
+          <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:14.5px;letter-spacing:1px;">AUGUST 2026</h3>
+          <small style="font-size:8px;color:#ffd57e;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
         </div>
-        <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid rgba(197,155,72,0.2);padding-bottom:4px;">
+        <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid rgba(197,155,72,0.2);padding-bottom:3px;">
           <div style="color:#ff5252;">SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
         </div>
         <div class="cal-days-grid" id="calDaysGrid"></div>
-        <div style="padding:8px 10px;background:rgba(0,0,0,0.4);border-top:1px solid var(--card-border);font-size:9.5px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="padding:7px 10px;background:rgba(0,0,0,0.4);border-top:1px solid var(--card-border);font-size:9px;display:flex;justify-content:space-between;align-items:center;">
           <div>📍 Balurgram, Udhwa (816108)</div>
           <div>📞 9113774515</div>
         </div>
@@ -685,28 +689,28 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
 
     <!-- PAGE 6: WISHLIST -->
     <section id="wishlistPage" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:16px;margin-bottom:8px;">My Wishlist &amp; Favorites ❤️</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:15px;margin-bottom:8px;">My Wishlist &amp; Favorites ❤️</h2>
       <div class="product-grid" id="wishlistGrid"></div>
     </section>
 
     <!-- PAGE 7: TRACKING -->
     <section id="tracking" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:16px;margin-bottom:8px;">Live Order Tracking &amp; Khata</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:15px;margin-bottom:8px;">Live Order Tracking &amp; Khata</h2>
       <div id="trackingContainer"></div>
     </section>
 
     <!-- PAGE 8: MENU DRAWER & PROFILE -->
     <section id="navMenuPage" class="page">
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:12px 10px;margin-bottom:12px;text-align:center;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-          <button style="background:transparent;border:none;color:var(--text-main);font-size:16px;cursor:pointer;" onclick="showDashboardHome()">✕</button>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px 8px;margin-bottom:10px;text-align:center;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+          <button style="background:transparent;border:none;color:var(--text-main);font-size:15px;cursor:pointer;" onclick="showDashboardHome()">✕</button>
           <div>
-            <h2 style="font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:var(--gold-glow);letter-spacing:1px;margin:0;">ISHA JEWELLERS</h2>
-            <small style="font-size:8px;color:var(--gold);letter-spacing:2px;">ESTD 2004 • BALURGRAM</small>
+            <h2 style="font-family:'Cinzel',serif;font-size:13px;font-weight:900;color:var(--gold-glow);letter-spacing:1px;margin:0;">ISHA JEWELLERS</h2>
+            <small style="font-size:7.5px;color:var(--gold);letter-spacing:2px;">ESTD 2004 • BALURGRAM</small>
           </div>
-          <button style="background:transparent;border:none;color:var(--gold);font-size:15px;cursor:pointer;" onclick="showDashboardHome();">🔍</button>
+          <button style="background:transparent;border:none;color:var(--gold);font-size:14px;cursor:pointer;" onclick="showDashboardHome();">🔍</button>
         </div>
-        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:8px;padding:7px 4px;font-size:10.5px;font-weight:700;border:1px solid var(--card-border);">
+        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:7px;padding:6px 4px;font-size:10px;font-weight:700;border:1px solid var(--card-border);">
           <div>🇮🇳 INR (₹)</div>
           <div onclick="window.open('https://maps.google.com/?q=Balurgram+Bazzar+Udhwa+Sahibganj','_blank')" style="cursor:pointer;">🏬 Locate Us</div>
           <a href="tel:9113774515" style="text-decoration:none;color:inherit;">📞 Call Us</a>
@@ -714,51 +718,51 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
       </div>
 
       <!-- CUSTOMER PROFILE BOX -->
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:14px;padding:12px;margin-bottom:12px;">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:10px;">
         <div id="profileViewBox">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#1a1524;display:flex;align-items:center;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div style="width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:#1a1524;display:flex;align-items:center;justify-content:center;">
               <img id="dispAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
-              <h3 id="dispName" style="color:var(--gold-glow);font-size:14px;">Customer Name</h3>
-              <small id="dispPhone" style="color:var(--text-muted);font-size:10px;">+91 ----------</small><br>
-              <small id="dispEmail" style="color:var(--text-muted);font-size:10px;">email@example.com</small>
+              <h3 id="dispName" style="color:var(--gold-glow);font-size:13px;">Customer Name</h3>
+              <small id="dispPhone" style="color:var(--text-muted);font-size:9.5px;">+91 ----------</small><br>
+              <small id="dispEmail" style="color:var(--text-muted);font-size:9.5px;">email@example.com</small>
             </div>
           </div>
-          <button class="btn-outline" style="width:100%;margin-top:8px;padding:6px;font-size:10px;" onclick="showProfileEditor()">✏️ Edit Profile Details</button>
+          <button class="btn-outline" style="width:100%;margin-top:7px;padding:5px;font-size:9.5px;" onclick="showProfileEditor()">✏️ Edit Profile Details</button>
         </div>
         <form id="profileEditBox" style="display:none;" onsubmit="saveProfileDetails(event)">
-          <div style="font-size:11px;color:var(--gold-glow);font-weight:700;margin-bottom:6px;">Edit Personal Details</div>
-          <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">Upload Profile Photo:</label>
-          <input type="file" id="edAvatarFile" class="input-control" accept="image/*" style="padding:3px;margin-bottom:6px;" onchange="previewProfilePic(event)">
+          <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;margin-bottom:5px;">Edit Personal Details</div>
+          <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Upload Profile Photo:</label>
+          <input type="file" id="edAvatarFile" class="input-control" accept="image/*" style="padding:2px;margin-bottom:5px;" onchange="previewProfilePic(event)">
           <input type="text" id="edName" class="input-control" placeholder="Full Name *" required>
-          <input type="tel" id="edPhone" class="input-control" placeholder="Phone Number" style="margin-top:5px;" readonly>
-          <input type="email" id="edEmail" class="input-control" placeholder="Email Address" style="margin-top:5px;">
-          <button type="submit" class="btn-gold" style="width:100%;margin-top:8px;justify-content:center;padding:9px;">✓ Save Profile &amp; Cloud Sync</button>
-          <button type="button" class="btn-outline" style="width:100%;margin-top:5px;padding:5px;" onclick="hideProfileEditor()">Cancel</button>
+          <input type="tel" id="edPhone" class="input-control" placeholder="Phone Number" style="margin-top:4px;" readonly>
+          <input type="email" id="edEmail" class="input-control" placeholder="Email Address" style="margin-top:4px;">
+          <button type="submit" class="btn-gold" style="width:100%;margin-top:7px;justify-content:center;padding:8px;">✓ Save Profile &amp; Cloud Sync</button>
+          <button type="button" class="btn-outline" style="width:100%;margin-top:4px;padding:4px;" onclick="hideProfileEditor()">Cancel</button>
         </form>
       </div>
 
       <!-- OLD METAL RATE ESTIMATOR -->
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:7px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">⚖️ Live Sona / Chandi Rate Estimator</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">⚖️ Live Sona / Chandi Rate Estimator</span>
           <span>▾</span>
         </div>
-        <div id="folderExchangeCalcBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
-          <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+        <div id="folderExchangeCalcBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
+          <p style="font-size:9px;color:var(--text-muted);margin-bottom:5px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
             <div>
-              <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
+              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
               <input type="number" id="calcOldSilver" step="0.01" class="input-control" placeholder="e.g. 116.64" oninput="runStandaloneExchangeCalc()">
             </div>
             <div>
-              <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
+              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
               <input type="number" id="calcOldGold" step="0.01" class="input-control" placeholder="e.g. 10.0" oninput="runStandaloneExchangeCalc()">
             </div>
           </div>
-          <div class="price-breakup-box" style="margin:6px 0;background:#0d0914;">
+          <div class="price-breakup-box" style="margin:5px 0;background:#0d0914;">
             <div class="breakup-row"><span>Silver Katoti (2.916g / 11.664g):</span><span id="calcDispSilverDeduct">0 g</span></div>
             <div class="breakup-row"><span>Silver Net Wt &amp; Value:</span><span id="calcDispSilverNetVal" style="color:#ffffff;">₹0</span></div>
             <div class="breakup-row"><span>Gold Net Valuation (92% Assayed):</span><span id="calcDispGoldNetVal" style="color:var(--gold-glow);">₹0</span></div>
@@ -768,35 +772,35 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
       </div>
 
       <!-- MY ORDERS -->
-      <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
+      <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:7px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">📦 My Orders History &amp; Invoices</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">📦 My Orders History &amp; Invoices</span>
           <span>▾</span>
         </div>
-        <div id="folderOrdersBox" style="display:block;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
+        <div id="folderOrdersBox" style="display:block;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
           <div id="drawerOrdersHistoryList"></div>
         </div>
       </div>
 
       <!-- REWARD CARDS -->
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:7px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">🎁 My Reward Scratch Cards</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">🎁 My Reward Scratch Cards</span>
           <span>▾</span>
         </div>
-        <div id="folderRewardBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
-          <div id="dynamicCouponCardContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+        <div id="folderRewardBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
+          <div id="dynamicCouponCardContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;"></div>
         </div>
       </div>
 
       <!-- TERMS -->
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderTermsBox')">
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:7px;cursor:pointer;" onclick="toggleFolderSection('folderTermsBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--text-main);font-size:11.5px;">📜 Terms &amp; Store Policy Folder</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--text-main);font-size:11px;">📜 Terms &amp; Store Policy Folder</span>
           <span>▾</span>
         </div>
-        <div id="folderTermsBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:6px;" onclick="event.stopPropagation()">
-          <p style="font-size:9.5px;color:var(--text-muted);line-height:1.4;">
+        <div id="folderTermsBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:5px;" onclick="event.stopPropagation()">
+          <p style="font-size:9px;color:var(--text-muted);line-height:1.4;">
             1. <b>100% BIS 916 Hallmark:</b> Bureau of Indian Standards HUID verified jewellery.<br>
             2. <b>Old Metal Exchange:</b> Silver 11.664g to 2.916g bad rule applied at current market rates.<br>
             3. <b>7 Days Exchange:</b> Delivery complete hone ke baad verified product exchange window khulega.<br>
@@ -805,9 +809,9 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
         </div>
       </div>
 
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;">
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:7px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-size:11.5px;font-weight:600;">🌓 App Mode</span>
+          <span style="font-size:11px;font-weight:600;">🌓 App Mode</span>
           <button class="btn-outline" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
         </div>
         <button class="btn-danger" style="margin-top:2px;" onclick="logoutUser()">🚪 Logout Account (लॉग आउट)</button>
@@ -816,117 +820,117 @@ body.light-mode .opt-pill-btn{background:#eae1cf;border-color:#cca875;color:#443
   </main>
 
   <div class="bottom-nav">
-    <div class="nav-item active" onclick="showDashboardHome(this)"><span style="font-size:16px;">⌂</span><span>Home</span></div>
-    <div class="nav-item" onclick="showPage('categories', this)"><span style="font-size:16px;">◈</span><span>Category</span></div>
+    <div class="nav-item active" onclick="showDashboardHome(this)"><span style="font-size:15px;">⌂</span><span>Home</span></div>
+    <div class="nav-item" onclick="showPage('categories', this)"><span style="font-size:15px;">◈</span><span>Category</span></div>
     <div class="nav-item" onclick="showPage('yourCart', this)">
-      <span style="font-size:16px;">🛍️</span><span>Your Cart</span>
+      <span style="font-size:15px;">🛍️</span><span>Your Cart</span>
       <span class="cart-badge-dot" id="navCartBadge">0</span>
     </div>
-    <div class="nav-item" onclick="showPage('tracking', this)"><span style="font-size:16px;">📦</span><span>Tracking</span></div>
+    <div class="nav-item" onclick="showPage('tracking', this)"><span style="font-size:15px;">📦</span><span>Tracking</span></div>
   </div>
 </div>
 
 <!-- 3-STEP UNIVERSAL CHECKOUT MODAL -->
-<div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:14px 10px 90px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="background:#14101a;border:1.5px solid var(--gold);border-radius:18px;padding:18px 14px 22px;width:100%;max-width:380px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <h3 style="font-family:'Cinzel',serif;font-size:14px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
-      <button type="button" class="btn-outline" style="padding:2px 8px;font-size:12px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
+<div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:12px 8px 85px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+  <div style="background:#14101a;border:1.5px solid var(--gold);border-radius:16px;padding:16px 12px 20px;width:100%;max-width:360px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <h3 style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
+      <button type="button" class="btn-outline" style="padding:2px 7px;font-size:11px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
     </div>
 
     <!-- STEP 1: ADDRESS -->
     <div id="coStep1Container">
-      <div style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;" id="coAddressInfoHint">Kripya apna delivery address sahi se fill karein:</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:5px;" id="coAddressInfoHint">Kripya apna delivery address sahi se fill karein:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
         <div>
-          <label style="font-size:9px;color:var(--gold);">First Name *</label>
+          <label style="font-size:8.5px;color:var(--gold);">First Name *</label>
           <input type="text" id="coFirstName" class="input-control" placeholder="First Name">
         </div>
         <div>
-          <label style="font-size:9px;color:var(--gold);">Last Name</label>
+          <label style="font-size:8.5px;color:var(--gold);">Last Name</label>
           <input type="text" id="coLastName" class="input-control" placeholder="Last Name">
         </div>
       </div>
-      <div style="margin-bottom:6px;">
-        <label style="font-size:9px;color:var(--gold);">10-Digit Mobile Number *</label>
+      <div style="margin-bottom:5px;">
+        <label style="font-size:8.5px;color:var(--gold);">10-Digit Mobile Number *</label>
         <input type="tel" id="coMobile" maxlength="10" class="input-control" placeholder="Primary Mobile">
       </div>
-      <div style="margin-bottom:6px;">
-        <label style="font-size:9px;color:var(--gold);">Alternate Mobile Number</label>
+      <div style="margin-bottom:5px;">
+        <label style="font-size:8.5px;color:var(--gold);">Alternate Mobile Number</label>
         <input type="tel" id="coAltMobile" maxlength="10" class="input-control" placeholder="Alternate Mobile (Optional)">
       </div>
-      <div style="margin-bottom:6px;">
-        <label style="font-size:9px;color:var(--gold);">Village / House / Street Address *</label>
+      <div style="margin-bottom:5px;">
+        <label style="font-size:8.5px;color:var(--gold);">Village / House / Street Address *</label>
         <input type="text" id="coArea" class="input-control" placeholder="Village / Street / House">
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;">
         <div>
-          <label style="font-size:9px;color:var(--gold);">Post Office (Post)</label>
+          <label style="font-size:8.5px;color:var(--gold);">Post Office (Post)</label>
           <input type="text" id="coPostOffice" class="input-control" placeholder="Post Office">
         </div>
         <div>
-          <label style="font-size:9px;color:var(--gold);">PIN Number *</label>
+          <label style="font-size:8.5px;color:var(--gold);">PIN Number *</label>
           <input type="number" id="coPincode" class="input-control" value="816108" placeholder="PIN">
         </div>
       </div>
-      <button type="button" class="btn-gold" style="width:100%;justify-content:center;padding:11px;" onclick="goToCheckoutStep2()">Next: Order Summary ➔</button>
+      <button type="button" class="btn-gold" style="width:100%;justify-content:center;padding:10px;" onclick="goToCheckoutStep2()">Next: Order Summary ➔</button>
     </div>
 
     <!-- STEP 2: ORDER SUMMARY -->
     <div id="coStep2Container" style="display:none;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
-        <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;">📍 Delivery Address:</div>
-        <button type="button" class="btn-outline" style="font-size:9px;padding:2px 6px;" onclick="goToCheckoutStep1()">✏️ Change</button>
+        <div style="font-size:10px;color:var(--gold-glow);font-weight:700;">📍 Delivery Address:</div>
+        <button type="button" class="btn-outline" style="font-size:8.5px;padding:2px 5px;" onclick="goToCheckoutStep1()">✏️ Change</button>
       </div>
-      <div id="coSummaryAddressDisplay" style="background:#1a1524;border:1px solid #332a42;padding:7px;border-radius:8px;font-size:10px;color:var(--text-muted);margin-bottom:8px;"></div>
+      <div id="coSummaryAddressDisplay" style="background:#1a1524;border:1px solid #332a42;padding:6px;border-radius:7px;font-size:9.5px;color:var(--text-muted);margin-bottom:7px;"></div>
 
-      <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;margin-bottom:4px;">📦 Product Details:</div>
-      <div id="coSummaryItemsBox" style="max-height:120px;overflow-y:auto;background:#1a1524;border:1px solid #332a42;border-radius:8px;padding:7px;margin-bottom:8px;"></div>
+      <div style="font-size:10px;color:var(--gold-glow);font-weight:700;margin-bottom:4px;">📦 Product Details:</div>
+      <div id="coSummaryItemsBox" style="max-height:110px;overflow-y:auto;background:#1a1524;border:1px solid #332a42;border-radius:7px;padding:6px;margin-bottom:7px;"></div>
 
-      <div class="price-breakup-box" style="margin-bottom:8px;background:#181422;border:1px solid #332a42;">
+      <div class="price-breakup-box" style="margin-bottom:7px;background:#181422;border:1px solid #332a42;">
         <div class="breakup-row"><span>Metal &amp; Making:</span><span id="coGrossVal">₹0</span></div>
         <div class="breakup-row"><span>GST (3%):</span><span id="coGstVal">+₹0</span></div>
         <div class="breakup-row"><span>Delivery Charge:</span><span style="color:#2ecc71;">FREE</span></div>
-        <div class="breakup-row total" style="border-top:1px solid #332a42;padding-top:5px;margin-top:3px;">
-          <span>Net Total Payable:</span><span id="coNetPayableVal" style="font-size:14px;color:var(--gold-glow);font-weight:900;">₹0</span>
+        <div class="breakup-row total" style="border-top:1px solid #332a42;padding-top:4px;margin-top:3px;">
+          <span>Net Total Payable:</span><span id="coNetPayableVal" style="font-size:13px;color:var(--gold-glow);font-weight:900;">₹0</span>
         </div>
       </div>
-      <div style="display:flex;gap:6px;">
-        <button type="button" class="btn-outline" style="flex:1;padding:9px;" onclick="goToCheckoutStep1()">‹ Back</button>
-        <button type="button" class="btn-gold" style="flex:1.5;justify-content:center;padding:10px;" onclick="goToCheckoutStep3()">Next: Payment ➔</button>
+      <div style="display:flex;gap:5px;">
+        <button type="button" class="btn-outline" style="flex:1;padding:8px;" onclick="goToCheckoutStep1()">‹ Back</button>
+        <button type="button" class="btn-gold" style="flex:1.5;justify-content:center;padding:9px;" onclick="goToCheckoutStep3()">Next: Payment ➔</button>
       </div>
     </div>
 
     <!-- STEP 3: PAYMENT & CONFIRMATION -->
     <div id="coStep3Container" style="display:none;">
-      <div style="background:#181422;border:1px solid #332a42;border-radius:10px;padding:9px;margin-bottom:10px;">
-        <label style="font-size:10.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:5px;">💰 Choose Payment Option:</label>
+      <div style="background:#181422;border:1px solid #332a42;border-radius:9px;padding:8px;margin-bottom:8px;">
+        <label style="font-size:10px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:4px;">💰 Choose Payment Option:</label>
         
-        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:6px;">
-          <label style="display:flex;align-items:center;gap:7px;background:#221b2d;padding:7px;border-radius:8px;cursor:pointer;font-size:10.5px;">
+        <div style="display:flex;flex-direction:column;gap:4px;margin-bottom:5px;">
+          <label style="display:flex;align-items:center;gap:6px;background:#221b2d;padding:6px;border-radius:7px;cursor:pointer;font-size:10px;">
             <input type="radio" name="payModeRadio" checked onclick="selectPaymentModeOption('upi')">
             <span>⚡ UPI Advance Payment (Scan QR &amp; Pay)</span>
           </label>
-          <label style="display:flex;align-items:center;gap:7px;background:#221b2d;padding:7px;border-radius:8px;cursor:pointer;font-size:10.5px;">
+          <label style="display:flex;align-items:center;gap:6px;background:#221b2d;padding:6px;border-radius:7px;cursor:pointer;font-size:10px;">
             <input type="radio" name="payModeRadio" onclick="selectPaymentModeOption('shop')">
             <span>🏬 Advance in Shop (Isha Jewellers Store)</span>
           </label>
         </div>
 
-        <div id="upiQrCodeContainer" style="text-align:center;background:#fff;padding:6px;border-radius:8px;margin-bottom:6px;">
-          <img id="dynamicUpiQrImg" src="" style="width:100px;height:100px;" alt="Store UPI QR">
-          <div style="font-size:9px;color:#000;font-weight:bold;margin-top:2px;">UPI ID: 9113774515@ybl</div>
+        <div id="upiQrCodeContainer" style="text-align:center;background:#fff;padding:5px;border-radius:7px;margin-bottom:5px;">
+          <img id="dynamicUpiQrImg" src="" style="width:90px;height:90px;" alt="Store UPI QR">
+          <div style="font-size:8.5px;color:#000;font-weight:bold;margin-top:2px;">UPI ID: 9113774515@ybl</div>
         </div>
 
         <div id="advanceInputBox" style="margin-bottom:4px;">
-          <label style="font-size:9px;color:var(--gold);">Enter Advance Amount (₹)</label>
+          <label style="font-size:8.5px;color:var(--gold);">Enter Advance Amount (₹)</label>
           <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100">
         </div>
       </div>
 
-      <div style="display:flex;gap:6px;">
-        <button type="button" class="btn-danger" style="flex:1;padding:11px;font-size:11.5px;font-weight:700;background:#3b1319;border-color:#73222d;color:#ff808d;" onclick="goToCheckoutStep2()">❌ Cancel</button>
-        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:11px;font-size:11.5px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;" onclick="executeOrderPlacement()">
+      <div style="display:flex;gap:5px;">
+        <button type="button" class="btn-danger" style="flex:1;padding:10px;font-size:11px;font-weight:700;background:#3b1319;border-color:#73222d;color:#ff808d;" onclick="goToCheckoutStep2()">❌ Cancel</button>
+        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:10px;font-size:11px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;" onclick="executeOrderPlacement()">
           ✓ CONFIRM ORDER
         </button>
       </div>
@@ -1429,19 +1433,19 @@ function renderCustomSizingUI(p) {
   if (cat === 'Chain') {
     currentCustomSize = "20 Inch";
     box.innerHTML = `
-      <b style="font-size:11px;color:var(--gold-glow);">⛓️ Select Chain Length:</b>
+      <b style="font-size:10.5px;color:var(--gold-glow);">⛓️ Select Chain Length:</b>
       <div class="stepper-wrap">
         <button class="stepper-btn" onclick="stepChainLength(-2)">−</button>
         <span class="stepper-val" id="dispChainLen">20 Inch</span>
         <button class="stepper-btn" onclick="stepChainLength(2)">+</button>
       </div>
-      <small style="color:var(--text-muted);font-size:9px;">Min: 16 Inch | Max: 28 Inch</small>
+      <small style="color:var(--text-muted);font-size:8.5px;">Min: 16 Inch | Max: 28 Inch</small>
     `;
   } else if (cat === 'Rings') {
     currentCustomSize = "Size 14";
     const ringSizes = [10, 12, 14, 16, 18, 20, 22, 24];
     box.innerHTML = `
-      <b style="font-size:11px;color:var(--gold-glow);">💍 Select Indian Ring Size:</b>
+      <b style="font-size:10.5px;color:var(--gold-glow);">💍 Select Indian Ring Size:</b>
       <div class="opt-pill-grid">
         ${ringSizes.map(s => `<button class="opt-pill-btn ${s===14?'active':''}" onclick="setRingSize(${s}, this)">Size ${s}</button>`).join('')}
       </div>
@@ -1449,7 +1453,7 @@ function renderCustomSizingUI(p) {
   } else if (cat === 'Bali') {
     currentCustomSize = "Medium";
     box.innerHTML = `
-      <b style="font-size:11px;color:var(--gold-glow);">✨ Select Bali Fitting:</b>
+      <b style="font-size:10.5px;color:var(--gold-glow);">✨ Select Bali Fitting:</b>
       <div class="opt-pill-grid">
         <button class="opt-pill-btn" onclick="setBaliSize('Small', this)">Small</button>
         <button class="opt-pill-btn active" onclick="setBaliSize('Medium', this)">Medium</button>
@@ -1458,7 +1462,7 @@ function renderCustomSizingUI(p) {
     `;
   } else {
     currentCustomSize = "Standard Size";
-    box.innerHTML = `<b style="font-size:11px;color:var(--gold-glow);">💎 Standard 100% BIS Certified Design</b>`;
+    box.innerHTML = `<b style="font-size:10.5px;color:var(--gold-glow);">💎 Standard 100% BIS Certified Design</b>`;
   }
 }
 
@@ -1481,7 +1485,7 @@ function setBaliSize(sz, el) {
   currentCustomSize = sz;
 }
 
-function showLoader(d = 350) {
+function showLoader(d = 300) {
   const l = document.getElementById('appLoader');
   if (!l) return;
   l.style.display = 'flex'; l.style.opacity = '1';
@@ -1489,7 +1493,7 @@ function showLoader(d = 350) {
 }
 
 function showDashboardHome(navEl) {
-  showLoader(300);
+  showLoader(250);
   showPage('home', navEl);
 }
 
@@ -1506,9 +1510,9 @@ function renderCustomerAdsCarousel() {
   carousel.innerHTML = activeAds.map(ad => `
     <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetail(${ad.productId || 101})" ontouchend="openProductDetail(${ad.productId || 101})">
       <div class="ad-card-content">
-        <span style="font-size:7.5px;font-weight:900;background:#ff334b;padding:2px 5px;border-radius:4px;color:#fff;">${ad.tag}</span>
-        <div style="font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
-        <small style="color:#f3dfaa;font-size:10px;">${ad.subtitle} (Tap to View)</small>
+        <span style="font-size:7px;font-weight:900;background:#ff334b;padding:2px 5px;border-radius:4px;color:#fff;">${ad.tag}</span>
+        <div style="font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
+        <small style="color:#f3dfaa;font-size:9.5px;">${ad.subtitle} (Tap to View)</small>
       </div>
     </div>
   `).join('');
@@ -1528,7 +1532,7 @@ function renderCircularCategories(containerId) {
 function selectCircularCat(catId, el, containerId) {
   document.querySelectorAll(`#${containerId} .cat-circle-item`).forEach(b => b.classList.remove('active'));
   el.classList.add('active');
-  showLoader(250);
+  showLoader(200);
   if (containerId === 'circularCatScrollHome') {
     if (catId === 'All') renderDashboardSections();
     else renderDashboardSections(allProducts.filter(p => p.category.toLowerCase().includes(catId.toLowerCase())));
@@ -1633,7 +1637,7 @@ function updateCartUI() {
   const listEl = document.getElementById('cartItemsList');
   const sumBox = document.getElementById('cartSummaryBox');
   if (!cart.length) {
-    listEl.innerHTML = `<div style="text-align:center;padding:35px 10px;color:var(--text-muted);font-size:12px;">Cart is empty.</div>`;
+    listEl.innerHTML = `<div style="text-align:center;padding:30px 10px;color:var(--text-muted);font-size:11.5px;">Cart is empty.</div>`;
     if (sumBox) sumBox.style.display = 'none';
     return;
   }
@@ -1645,12 +1649,12 @@ function updateCartUI() {
     return `
       <div class="cart-item-card" onclick="openProductDetail(${p.id})" ontouchend="openProductDetail(${p.id})">
         <button class="cart-remove-btn" onclick="event.stopPropagation(); removeCartItem(${idx})">✕</button>
-        <img src="${getProductPhoto(p)}" style="width:55px;height:55px;border-radius:8px;object-fit:cover;">
+        <img src="${getProductPhoto(p)}" style="width:50px;height:50px;border-radius:7px;object-fit:cover;">
         <div style="flex:1;">
-          <span style="font-size:8.5px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
-          <div style="font-size:11px;font-weight:700;color:var(--text-main);">${p.name}</div>
-          <div style="font-size:10px;color:var(--text-muted);">${p.metal} • ${p.weight}g • ${p.customSize || 'Standard'}</div>
-          <div style="font-size:11.5px;font-weight:800;color:var(--gold-glow);margin-top:2px;">₹${itemTotal.toLocaleString('en-IN')}</div>
+          <span style="font-size:8px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
+          <div style="font-size:10.5px;font-weight:700;color:var(--text-main);">${p.name}</div>
+          <div style="font-size:9.5px;color:var(--text-muted);">${p.metal} • ${p.weight}g • ${p.customSize || 'Standard'}</div>
+          <div style="font-size:11px;font-weight:800;color:var(--gold-glow);margin-top:2px;">₹${itemTotal.toLocaleString('en-IN')}</div>
         </div>
       </div>
     `;
@@ -1750,7 +1754,7 @@ function goToCheckoutStep2() {
   `;
 
   document.getElementById('coSummaryItemsBox').innerHTML = currentCheckoutItems.map(it => `
-    <div style="font-size:10.5px;display:flex;justify-content:space-between;margin-bottom:3px;border-bottom:1px solid #2a2236;padding-bottom:3px;">
+    <div style="font-size:10px;display:flex;justify-content:space-between;margin-bottom:3px;border-bottom:1px solid #2a2236;padding-bottom:2px;">
       <span><b>${it.name}</b> (${it.weight||4}g)</span>
       <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(it, it.weight||4, it.chosenTanch||55).toLocaleString('en-IN')}</span>
     </div>
@@ -1872,13 +1876,13 @@ function executeOrderPlacement() {
     <div style="text-align:center;">
       <div class="scratch-card-box" id="successScratchBox">
         <div class="scratch-underlay">
-          <span style="font-size:7.5px;color:var(--gold);">REWARD CODE:</span>
-          <b style="font-family:'Cinzel',serif;font-size:12px;color:#ffd57e;">${couponCode}</b>
-          <small style="color:#2ecc71;font-size:7.5px;">Flat ₹500 OFF</small>
+          <span style="font-size:7px;color:var(--gold);">REWARD CODE:</span>
+          <b style="font-family:'Cinzel',serif;font-size:11px;color:#ffd57e;">${couponCode}</b>
+          <small style="color:#2ecc71;font-size:7px;">Flat ₹500 OFF</small>
         </div>
         <canvas class="scratch-canvas" id="modalScratchCanvas"></canvas>
       </div>
-      <button class="btn-outline" style="font-size:9px;padding:3px 6px;" onclick="copyRewardCode('${couponCode}')">📋 Copy Code</button>
+      <button class="btn-outline" style="font-size:8.5px;padding:3px 5px;" onclick="copyRewardCode('${couponCode}')">📋 Copy Code</button>
     </div>
   `;
 
@@ -1976,10 +1980,10 @@ function renderTrackingUI() {
 
   if (!activeOrders.length) {
     c.innerHTML = `
-      <div style="text-align:center;padding:30px 10px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;margin-top:8px;">
-        <div style="font-size:26px;margin-bottom:5px;">📦</div>
-        <b style="font-size:12px;color:var(--text-main);">Abhi koi active delivery order nahi hai.</b>
-        <p style="font-size:10px;color:var(--text-muted);margin-top:2px;">Delivered orders dekhne ke liye <b>Menu (☰) ➔ My Orders History</b> open karein.</p>
+      <div style="text-align:center;padding:25px 10px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;margin-top:8px;">
+        <div style="font-size:24px;margin-bottom:4px;">📦</div>
+        <b style="font-size:11.5px;color:var(--text-main);">Abhi koi active delivery order nahi hai.</b>
+        <p style="font-size:9.5px;color:var(--text-muted);margin-top:2px;">Delivered orders dekhne ke liye <b>Menu (☰) ➔ My Orders History</b> open karein.</p>
       </div>
     `;
     return;
@@ -1992,37 +1996,37 @@ function renderTrackingUI() {
     const displayEstDate = o.expectedDeliveryDate || o.deliveryDate || "7 Days";
 
     return `
-      <div class="cart-item-card" style="flex-direction:column;gap:6px;border-color:var(--gold);padding:10px;margin-bottom:10px;">
+      <div class="cart-item-card" style="flex-direction:column;gap:5px;border-color:var(--gold);padding:9px;margin-bottom:8px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <strong style="color:var(--gold-glow);font-size:13px;">Order #${o.id}</strong>
-          <span style="font-size:10px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
+          <strong style="color:var(--gold-glow);font-size:12px;">Order #${o.id}</strong>
+          <span style="font-size:9.5px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
         </div>
-        <div style="font-size:11px;color:var(--text-main);font-weight:600;">${o.specs}</div>
-        <div style="font-size:10px;color:var(--text-muted);">
+        <div style="font-size:10.5px;color:var(--text-main);font-weight:600;">${o.specs}</div>
+        <div style="font-size:9.5px;color:var(--text-muted);">
           Net: ₹${Number(o.netPayable).toLocaleString('en-IN')} | Adv: ₹${o.advancePaid} | Due: ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
         
-        <div style="background:#1b1624;border:1.5px dashed var(--gold);padding:8px;border-radius:8px;margin-top:2px;">
+        <div style="background:#1b1624;border:1.5px dashed var(--gold);padding:7px;border-radius:7px;margin-top:2px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
-              <span style="font-size:8.5px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
-              ${isOutForDelivery ? `<b style="font-size:14px;color:#7ef1a4;letter-spacing:3px;">${o.secretPin}</b>` : `<b style="font-size:10px;color:#e74c3c;">🔒 Hidden until Out for Delivery</b>`}
+              <span style="font-size:8px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
+              ${isOutForDelivery ? `<b style="font-size:13px;color:#7ef1a4;letter-spacing:3px;">${o.secretPin}</b>` : `<b style="font-size:9.5px;color:#e74c3c;">🔒 Hidden until Out for Delivery</b>`}
             </div>
-            <button type="button" class="btn-outline" style="font-size:9px;padding:3px 7px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
+            <button type="button" class="btn-outline" style="font-size:8.5px;padding:3px 6px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
           </div>
           ${isOutForDelivery ? `
-            <div style="margin-top:6px;padding-top:6px;border-top:1px dashed rgba(197,155,72,0.3);display:flex;justify-content:space-between;align-items:center;background:rgba(46,204,113,0.08);padding:5px 7px;border-radius:6px;">
+            <div style="margin-top:5px;padding-top:5px;border-top:1px dashed rgba(197,155,72,0.3);display:flex;justify-content:space-between;align-items:center;background:rgba(46,204,113,0.08);padding:4px 6px;border-radius:6px;">
               <div>
-                <span style="font-size:8px;color:#2ecc71;font-weight:bold;display:block;">🚚 DELIVERY AGENT:</span>
-                <b style="font-size:10.5px;color:#fff;">${agentName}</b><br>
-                <small style="color:var(--text-muted);font-size:9px;">📱 +91 ${agentPhone}</small>
+                <span style="font-size:7.5px;color:#2ecc71;font-weight:bold;display:block;">🚚 DELIVERY AGENT:</span>
+                <b style="font-size:10px;color:#fff;">${agentName}</b><br>
+                <small style="color:var(--text-muted);font-size:8.5px;">📱 +91 ${agentPhone}</small>
               </div>
-              <a href="tel:${agentPhone}" class="btn-gold" style="padding:4px 8px;font-size:10px;text-decoration:none;border-radius:6px;gap:3px;">📞 Call</a>
+              <a href="tel:${agentPhone}" class="btn-gold" style="padding:3px 7px;font-size:9.5px;text-decoration:none;border-radius:5px;gap:3px;">📞 Call</a>
             </div>
           ` : ''}
         </div>
 
-        <div id="trackDetails_${idx}" style="display:none;margin-top:5px;border-top:1px dashed var(--card-border);padding-top:8px;">
+        <div id="trackDetails_${idx}" style="display:none;margin-top:4px;border-top:1px dashed var(--card-border);padding-top:7px;">
           <div class="track-step-list">
             <div class="track-step ${o.statusStage>=1?'done':''}"><div class="track-dot">1</div><div class="track-step-title">Order Booked (${o.advancePaid>0?'Advance ₹'+o.advancePaid:'Bina Advance'})</div></div>
             <div class="track-step ${o.statusStage>=2?'done':''}"><div class="track-dot">2</div><div class="track-step-title">Karigar Workshop Crafting</div></div>
@@ -2032,8 +2036,8 @@ function renderTrackingUI() {
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;margin-top:5px;">
-          <button type="button" class="btn-danger" style="padding:8px;font-size:11px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
+        <div style="display:flex;gap:5px;margin-top:4px;">
+          <button type="button" class="btn-danger" style="padding:7px;font-size:10.5px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
         </div>
       </div>
     `;
@@ -2067,22 +2071,22 @@ function renderDrawerOrderHistory() {
   const c = document.getElementById('drawerOrdersHistoryList');
   if (!c) return;
   if (!myOrders.length) {
-    c.innerHTML = `<div style="font-size:10.5px;color:var(--text-muted);text-align:center;padding:8px;">Abhi koi purana order record nahi mila.</div>`;
+    c.innerHTML = `<div style="font-size:10px;color:var(--text-muted);text-align:center;padding:7px;">Abhi koi purana order record nahi mila.</div>`;
     return;
   }
   c.innerHTML = myOrders.map(o => {
     const isCompleted = (o.statusStage === 5 || o.isDelivered);
     return `
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:6px;">
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:9px;padding:8px;margin-bottom:5px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <strong style="color:var(--gold-glow);font-size:11px;">Order ID: #${o.id}</strong>
-          <span style="font-size:9px;color:${isCompleted?'#2ecc71':'#ffd57e'};font-weight:700;">${isCompleted?'✓ Delivered':o.orderDate}</span>
+          <strong style="color:var(--gold-glow);font-size:10.5px;">Order ID: #${o.id}</strong>
+          <span style="font-size:8.5px;color:${isCompleted?'#2ecc71':'#ffd57e'};font-weight:700;">${isCompleted?'✓ Delivered':o.orderDate}</span>
         </div>
-        <div style="font-size:10.5px;color:var(--text-main);margin:3px 0;">📦 <b>Products:</b> ${o.specs}</div>
-        <div style="font-size:9.5px;color:var(--text-muted);margin-bottom:5px;">
+        <div style="font-size:10px;color:var(--text-main);margin:2px 0;">📦 <b>Products:</b> ${o.specs}</div>
+        <div style="font-size:9px;color:var(--text-muted);margin-bottom:4px;">
           💰 <b>Net Bill:</b> ₹${Number(o.netPayable).toLocaleString('en-IN')} | <b>Advance:</b> ₹${o.advancePaid} | <b>Due:</b> ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
-        <button class="btn-gold" style="width:100%;padding:6px;font-size:10px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">
+        <button class="btn-gold" style="width:100%;padding:5px;font-size:9.5px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">
           📥 Download A4 Tax Invoice (Direct File)
         </button>
       </div>
@@ -2090,6 +2094,7 @@ function renderDrawerOrderHistory() {
   }).join('');
 }
 
+// RELIABLE PDF/HTML DOWNLOAD FIX USING DATA-URI (AVOIDS PERMISSION CRASH & "OPEN/SAVE FILE" DIALOG ISSUES)
 function downloadOfficialBillBlob(orderId) {
   const o = myOrders.find(x => x.id === orderId);
   if (!o) return;
@@ -2165,16 +2170,14 @@ function downloadOfficialBillBlob(orderId) {
     </html>
   `;
 
-  const blob = new Blob([htmlContent], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
+  const encodedUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
   const a = document.createElement('a');
-  a.href = url;
+  a.href = encodedUri;
   a.download = `Isha_Jewellers_Invoice_${o.id}.html`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast("📥 Tax Invoice File Downloaded Successfully!");
+  toast("📥 Tax Invoice Downloaded!");
 }
 
 function downloadProductEstimatePdfDirect() {
@@ -2271,16 +2274,14 @@ function downloadProductEstimatePdfDirect() {
     </html>
   `;
 
-  const blob = new Blob([htmlContent], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
+  const encodedUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
   const a = document.createElement('a');
-  a.href = url;
+  a.href = encodedUri;
   a.download = `Isha_Jewellers_Estimate_${slipId}.html`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast("📄 Estimate Slip Downloaded Successfully!");
+  toast("📄 Estimate Slip Downloaded!");
 }
 
 function renderDynamicRewardCards() {
