@@ -993,9 +993,8 @@ try {
 const STORE_UPI_ID = "9113774515@ybl";
 const STORE_PAYEE_NAME = "ISHA JEWELLERS";
 
-/* ADMIN CONTROL CONFIGURATION (READY FOR ADMIN PANEL INTEGRATION) */
 let adminConfig = JSON.parse(localStorage.getItem('isha_admin_config')) || {
-  adminRewardActive: true, // Admin can toggle whether rewards/scratch cards are given per order
+  adminRewardActive: true,
   promoBannerImg: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600",
   storeOpen: true
 };
@@ -1342,10 +1341,6 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-function changeAppLanguage(lang) {
-  toast(lang === 'hi' ? "🇮🇳 Hindi Mode Selected" : "🇬🇧 English Mode Selected");
-}
-
 function openTermsModal() {
   document.getElementById('termsModal').style.display = 'flex';
 }
@@ -1411,7 +1406,6 @@ function openProductDetail(id) {
   document.getElementById('detailTitle').textContent = p.name;
   document.getElementById('detailDescription').textContent = getProductDesc(p);
 
-  // Populate Specification Section
   document.getElementById('specCaratVal').textContent = p.metal === 'Diamond' ? '18 Carat (18K)' : (p.metal === '24K' ? '24 Carat (24K)' : '22 Carat (22K)');
   document.getElementById('specGoldQuality').textContent = p.metal.includes('Silver') ? '55% Assayed Silver' : (p.metal === 'Diamond' ? '18K Certified Gold Mount' : '100% BIS 916 Hallmarked');
   document.getElementById('specCertVal').textContent = p.metal === 'Diamond' ? 'IGI / SGL Certified' : 'BIS 916 HUID Assured';
@@ -1726,7 +1720,6 @@ window.addEventListener('click', (e) => {
   }
 });
 
-/* CHECKOUT FUNCTIONS */
 function openOrderCheckoutModal(itemsArray, mode) {
   if (!itemsArray || !itemsArray.length) {
     if (currentProduct) itemsArray = [currentProduct];
@@ -1875,8 +1868,7 @@ function executeOrderPlacement() {
   const gst = Math.round(currentCheckoutTotal * 0.03);
   const netFinalBill = currentCheckoutTotal + gst;
 
-  // Check Admin Control Flag for Rewards
-  const couponEarned = adminConfig.adminRewardActive ? ("ISHA-GOLD" + Math.floor(100 + Math.random()*900)) : "";
+  const couponCode = adminConfig.adminRewardActive ? ("ISHA-GOLD" + Math.floor(100 + Math.random()*900)) : "";
 
   const newOrd = {
     id: orderId,
@@ -1898,7 +1890,7 @@ function executeOrderPlacement() {
     statusStage: 1,
     deliveryAgentName: "Rakesh Swarnkar (Isha Logistics)",
     deliveryAgentPhone: "9113774515",
-    couponEarned: couponEarned
+    couponEarned: couponCode
   };
 
   myOrders.unshift(newOrd);
@@ -1913,7 +1905,7 @@ function executeOrderPlacement() {
   if (animTag) animTag.textContent = `Order ID: #${orderId}`;
 
   const scratchContainer = document.getElementById('successModalScratchContainer');
-  if (adminConfig.adminRewardActive && couponEarned) {
+  if (adminConfig.adminRewardActive && couponCode) {
     scratchContainer.style.display = 'block';
     scratchContainer.innerHTML = `
       <div style="text-align:center;">
@@ -2128,7 +2120,6 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
-/* ROBUST BLOB-BASED DOWNLOAD HANDLER WITH DIRECT TEXT DATA IN QR CODE */
 function downloadPdfBlob(htmlContent, filename) {
   const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
   const url = URL.createObjectURL(blob);
