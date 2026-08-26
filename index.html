@@ -103,7 +103,7 @@ body{
   display:flex;
   flex-direction:column;
   box-shadow: 0 0 50px rgba(0,0,0,0.8);
-  padding-bottom:70px;
+  padding-bottom:80px;
 }
 
 @media(min-width:768px){
@@ -181,7 +181,7 @@ body{
 .scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;touch-action:none;cursor:grab;}
 
 header{
-  padding: 12px 16px 10px;
+  padding: 10px 14px 8px;
   background:var(--card-bg);
   backdrop-filter:blur(12px);
   position:sticky;
@@ -194,27 +194,27 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
-.brand-wrap{display:flex;align-items:center;gap:12px;}
+.brand-wrap{display:flex;align-items:center;gap:10px;}
 .hamburger-btn{
-  background:var(--card-bg);border:1px solid var(--card-border);color:var(--gold);width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
+  background:var(--card-bg);border:1.5px solid var(--text-main);color:var(--text-main);width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.15);
 }
-.hamburger-btn span{width:16px;height:2px;background:var(--gold);border-radius:2px;}
+.hamburger-btn span{width:16px;height:2.5px;background:var(--text-main);border-radius:2px;}
 .brand-name{
   font-family:'Cinzel', serif;font-size:15px;letter-spacing:1px;font-weight:800;
   background:var(--accent-theme);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-.brand-sub{display:block;font-size:8.5px;letter-spacing:2px;color:var(--theme-color);margin-top:1px;}
+.brand-sub{display:block;font-size:8.5px;letter-spacing:2px;color:var(--text-main);margin-top:1px;font-weight:700;}
 
 .header-actions{display:flex;gap:6px;align-items:center;}
 .icon-btn{
   background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-main);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;text-decoration:none;position:relative;
 }
 
-.search-wrap{position:relative;margin-top:4px;}
+.search-wrap{position:relative;margin-top:2px;}
 .search-bar{
-  background:var(--bg-main);border:1.5px solid var(--card-border);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:8px;
+  background:var(--bg-main);border:1.5px solid var(--card-border);border-radius:12px;padding:7px 10px;display:flex;align-items:center;gap:8px;
 }
 .search-dropdown-box{
   position:absolute;top:100%;left:0;right:0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;margin-top:4px;padding:8px;z-index:30;display:none;box-shadow:0 8px 20px rgba(0,0,0,0.5);max-height:220px;overflow-y:auto;
@@ -222,49 +222,49 @@ header{
 
 .rate-ticker{
   background:var(--card-bg);border-top:1px solid var(--card-border);border-bottom:1px solid var(--card-border);
-  padding:8px 14px;display:flex;justify-content:space-between;align-items:center;font-size:11px;
+  padding:7px 12px;display:flex;justify-content:space-between;align-items:center;font-size:11px;
 }
 .rate-gold-badge{color:var(--gold-glow);font-weight:800;}
 .rate-silver-badge{color:var(--text-main);font-weight:800;}
 
 .ads-carousel{
-  margin:10px 0;overflow-x:auto;display:flex;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;
+  margin:8px 0;overflow-x:auto;display:flex;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;
 }
 .ads-carousel::-webkit-scrollbar{display:none;}
 .ad-poster-card{
-  min-width:100%;height:155px;border-radius:12px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;cursor:pointer;
+  min-width:100%;height:145px;border-radius:12px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;cursor:pointer;
 }
 .ad-poster-card::before{
   content:'';position:absolute;inset:0;background:linear-gradient(to top, rgba(14,8,4,0.92) 0%, rgba(20,10,4,0.3) 60%, transparent 100%);
 }
 .ad-card-content{position:relative;z-index:2;}
 
-.cat-scroll-box{display:flex;gap:8px;overflow-x:auto;padding:6px 0 10px;scrollbar-width:none;}
+.cat-scroll-box{display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;scrollbar-width:none;}
 .cat-scroll-box::-webkit-scrollbar{display:none;}
 .cat-circle-item{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;min-width:58px;}
 .cat-circle-icon{
-  width:46px;height:46px;border-radius:50%;background:var(--card-bg);border:1.5px solid var(--card-border);display:flex;align-items:center;justify-content:center;transition:0.2s;
+  width:44px;height:44px;border-radius:50%;background:var(--card-bg);border:1.5px solid var(--card-border);display:flex;align-items:center;justify-content:center;transition:0.2s;
 }
 .cat-circle-item.active .cat-circle-icon{border-color:var(--gold);background:var(--theme-subtle);box-shadow:0 0 10px var(--theme-subtle);}
-.cat-circle-icon svg{width:20px;height:20px;stroke:var(--gold);fill:rgba(212,175,55,0.12);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.cat-circle-icon svg{width:18px;height:18px;stroke:var(--gold);fill:rgba(212,175,55,0.12);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .cat-circle-label{font-size:9.5px;color:var(--text-muted);font-weight:600;white-space:nowrap;}
 .cat-circle-item.active .cat-circle-label{color:var(--gold-glow);font-weight:700;}
 
-.filter-chips-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;}
+.filter-chips-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;}
 .filter-chips-row::-webkit-scrollbar{display:none;}
 .filter-chip-btn{
-  background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-muted);font-size:11px;font-weight:600;padding:6px 12px;border-radius:20px;white-space:nowrap;cursor:pointer;
+  background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-muted);font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;white-space:nowrap;cursor:pointer;
 }
 .filter-chip-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
-main{padding:10px 12px 90px;flex:1;}
+main{padding:8px 10px 85px;flex:1;}
 .page{display:none;}
 .page.active{display:block;}
 
-.section-title-bar{display:flex;justify-content:space-between;align-items:center;margin:12px 0 8px;}
+.section-title-bar{display:flex;justify-content:space-between;align-items:center;margin:10px 0 6px;}
 .section-title-bar h2{font-family:'Cinzel',serif;font-size:14px;font-weight:800;color:var(--text-main);}
 
-.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.product-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
 .product-card{
   background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;position:relative;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.06);
 }
@@ -273,13 +273,13 @@ main{padding:10px 12px 90px;flex:1;}
 }
 .wish-heart-btn.active{color:#ff334b;}
 
-.product-img-wrap{width:100%;height:130px;background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;}
+.product-img-wrap{width:100%;height:125px;background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;}
 body.theme-diamond .product-img-wrap{background:#e0f2fe;}
 .product-img-wrap img{width:100%;height:100%;object-fit:cover;}
-.product-info{padding:9px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-.product-title{font-size:11.5px;font-weight:600;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
-.product-price{font-size:13px;font-weight:800;color:var(--gold-glow);}
-.btn-card-quick{margin-top:5px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:10px;font-weight:700;padding:5px;border-radius:6px;cursor:pointer;text-align:center;z-index:3;position:relative;}
+.product-info{padding:8px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.product-title{font-size:11px;font-weight:600;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.product-price{font-size:12.5px;font-weight:800;color:var(--gold-glow);}
+.btn-card-quick{margin-top:4px;background:transparent;border:1px solid var(--card-border);color:var(--text-main);font-size:10px;font-weight:700;padding:4px;border-radius:6px;cursor:pointer;text-align:center;z-index:3;position:relative;}
 
 .btn-gold{
   background:var(--accent-theme);color:#120c02;font-weight:700;font-size:12px;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;
@@ -301,60 +301,60 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 }
 
 .about-store-footer{
-  background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:14px;margin-top:18px;color:var(--text-main);
+  background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:12px;margin-top:14px;color:var(--text-main);
 }
-.about-store-footer h3{font-family:'Cinzel',serif;color:var(--gold-glow);font-size:13.5px;margin-bottom:6px;}
-.about-store-footer p{font-size:10.5px;line-height:1.4;color:var(--text-muted);margin-bottom:8px;}
-.about-contact-row{font-size:10.5px;margin-bottom:3px;display:flex;gap:6px;}
+.about-store-footer h3{font-family:'Cinzel',serif;color:var(--gold-glow);font-size:13px;margin-bottom:5px;}
+.about-store-footer p{font-size:10px;line-height:1.4;color:var(--text-muted);margin-bottom:6px;}
+.about-contact-row{font-size:10px;margin-bottom:2px;display:flex;gap:6px;}
 
 .bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:8px 4px 10px;z-index:50;box-shadow:0 -4px 15px rgba(0,0,0,0.05);
+  position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:7px 4px 10px;z-index:50;box-shadow:0 -4px 15px rgba(0,0,0,0.05);
 }
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9.5px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9.5px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
 .nav-item.active{color:var(--theme-color);}
 .cart-badge-dot{
   position:absolute;top:-2px;right:14px;background:#ff334b;color:#fff;font-size:8px;font-weight:800;padding:1px 4px;border-radius:10px;
 }
 
 .input-control{
-  width:100%;padding:9px 12px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;color:var(--text-main);font-family:inherit;font-size:12px;outline:none;
+  width:100%;padding:8px 10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;color:var(--text-main);font-family:inherit;font-size:12px;outline:none;
 }
 .input-control:focus{border-color:var(--theme-color);}
 
 .price-breakup-box{
-  background:var(--card-bg);border:1px dashed var(--card-border);border-radius:10px;padding:10px;margin:10px 0;
+  background:var(--card-bg);border:1px dashed var(--card-border);border-radius:10px;padding:10px;margin:8px 0;
 }
-.breakup-row{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:5px;color:var(--text-muted);}
-.breakup-row.total{border-top:1px solid var(--card-border);padding-top:8px;margin-top:6px;font-weight:700;font-size:13.5px;color:var(--gold-glow);}
+.breakup-row{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px;color:var(--text-muted);}
+.breakup-row.total{border-top:1px solid var(--card-border);padding-top:7px;margin-top:5px;font-weight:700;font-size:13px;color:var(--gold-glow);}
 
-.track-step-list{position:relative;margin:10px 0 4px 4px;padding-left:18px;border-left:2px solid var(--card-border);}
-.track-step{position:relative;margin-bottom:10px;}
+.track-step-list{position:relative;margin:8px 0 3px 3px;padding-left:16px;border-left:2px solid var(--card-border);}
+.track-step{position:relative;margin-bottom:8px;}
 .track-step:last-child{margin-bottom:0;}
 .track-dot{
-  position:absolute;left:-25px;top:2px;width:14px;height:14px;border-radius:50%;background:var(--card-bg);border:2px solid var(--card-border);display:grid;place-items:center;font-size:8px;font-weight:800;color:var(--text-main);
+  position:absolute;left:-23px;top:2px;width:13px;height:13px;border-radius:50%;background:var(--card-bg);border:2px solid var(--card-border);display:grid;place-items:center;font-size:7px;font-weight:800;color:var(--text-main);
 }
 .track-step.done .track-dot{background:#2ecc71;border-color:#2ecc71;color:#000;}
-.track-step-title{font-size:11.5px;font-weight:700;}
+.track-step-title{font-size:11px;font-weight:700;}
 
-.opt-pill-grid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;}
+.opt-pill-grid{display:flex;flex-wrap:wrap;gap:5px;margin:5px 0;}
 .opt-pill-btn{
-  background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-muted);font-size:11px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;
+  background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-muted);font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:8px;cursor:pointer;
 }
 .opt-pill-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
 .cal-flip-card{
   background:var(--card-bg);border:2px solid var(--gold);border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.8);position:relative;margin-bottom:10px;
 }
-.cal-month-header{background:var(--accent-theme);padding:10px;text-align:center;color:#120b02;border-bottom:2px solid var(--gold);font-weight:800;}
-.cal-days-grid{display:grid;grid-template-columns:repeat(7, 1fr);gap:2px;padding:8px;text-align:center;font-size:10.5px;}
-.cal-day-cell{padding:6px 2px;border-radius:5px;background:var(--card-bg);min-height:42px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;}
+.cal-month-header{background:var(--accent-theme);padding:9px;text-align:center;color:#120b02;border-bottom:2px solid var(--gold);font-weight:800;}
+.cal-days-grid{display:grid;grid-template-columns:repeat(7, 1fr);gap:2px;padding:7px;text-align:center;font-size:10px;}
+.cal-day-cell{padding:5px 2px;border-radius:5px;background:var(--card-bg);min-height:38px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;position:relative;}
 .cal-day-cell.sunday{color:#ff5252;background:rgba(255,82,82,0.08);font-weight:bold;}
 .cal-day-cell.today-cell{border:2px solid var(--gold) !important;background:var(--theme-subtle) !important;}
-.cal-day-cell.today-cell .cal-day-num{color:var(--gold-glow);font-size:12px;font-weight:900;}
-.cal-today-badge{font-size:6px;font-weight:900;background:var(--gold);color:#000;padding:1px 4px;border-radius:3px;margin-top:2px;}
-.cal-day-num{font-weight:800;font-size:11px;}
+.cal-day-cell.today-cell .cal-day-num{color:var(--gold-glow);font-size:11px;font-weight:900;}
+.cal-today-badge{font-size:5.5px;font-weight:900;background:var(--gold);color:#000;padding:1px 3px;border-radius:3px;margin-top:2px;}
+.cal-day-num{font-weight:800;font-size:10.5px;}
 
-.toast-msg{position:fixed;bottom:75px;left:50%;transform:translateX(-50%);background:var(--card-bg);color:var(--gold-glow);border:1px solid var(--card-border);padding:8px 16px;border-radius:30px;font-size:11.5px;font-weight:600;z-index:9999999;display:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.toast-msg{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--card-bg);color:var(--gold-glow);border:1px solid var(--card-border);padding:7px 14px;border-radius:30px;font-size:11px;font-weight:600;z-index:9999999;display:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
 </style>
 </head>
 <body>
@@ -379,14 +379,14 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </div>
-    <h2 style="font-family:'Cinzel',serif;font-size:16px;color:#2ecc71;margin-bottom:4px;">ORDER PLACED!</h2>
-    <p style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
-    <div id="animOrderIdTag" style="font-size:11.5px;color:var(--gold-glow);font-weight:bold;margin-bottom:8px;">Order ID: #IJ-0000</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:#2ecc71;margin-bottom:3px;">ORDER PLACED!</h2>
+    <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
+    <div id="animOrderIdTag" style="font-size:11px;color:var(--gold-glow);font-weight:bold;margin-bottom:6px;">Order ID: #IJ-0000</div>
     
-    <div style="font-size:10px;color:var(--gold);margin-bottom:4px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
+    <div style="font-size:9.5px;color:var(--gold);margin-bottom:3px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
     <div id="successModalScratchContainer"></div>
 
-    <button class="btn-gold" style="width:100%;justify-content:center;margin-top:8px;padding:10px;" onclick="closeSuccessAnimModal()">Thanks for Shopping with Us! ➔ Track Order</button>
+    <button class="btn-gold" style="width:100%;justify-content:center;margin-top:6px;padding:9px;" onclick="closeSuccessAnimModal()">Thanks for Shopping with Us! ➔ Track Order</button>
   </div>
 </div>
 
@@ -396,75 +396,75 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
       <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
     </svg>
-    <h2 style="font-family:'Cinzel',serif;font-size:16px;color:#fff;margin-bottom:3px;">ISHA JEWELLERS</h2>
-    <p style="font-size:10px;color:#a89f91;margin-bottom:10px;">Secure Account Cloud Gateway</p>
+    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:#fff;margin-bottom:3px;">ISHA JEWELLERS</h2>
+    <p style="font-size:9.5px;color:#a89f91;margin-bottom:8px;">Secure Account Cloud Gateway</p>
 
     <div id="authStepRegister">
-      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
         <div>
-          <label style="font-size:10px;color:var(--gold);font-weight:700;">Full Name *</label>
+          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Full Name *</label>
           <input type="text" id="regName" class="input-control" placeholder="Enter Full Name">
         </div>
         <div>
-          <label style="font-size:10px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
+          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
           <input type="tel" id="regMobile" maxlength="10" class="input-control" placeholder="Mobile Number daalein">
         </div>
         <div>
-          <label style="font-size:10px;color:var(--gold);font-weight:700;">Email Address *</label>
+          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Email Address *</label>
           <input type="email" id="regEmail" class="input-control" placeholder="name@gmail.com">
         </div>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:10px;" onclick="triggerOtpSimulation()">
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="triggerOtpSimulation()">
         📱 Get Instant OTP ➔
       </button>
-      <div style="margin-top:10px;font-size:10.5px;color:var(--text-muted);">
+      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
         Already registered? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login with MPIN</a>
       </div>
     </div>
 
     <div id="authStepOtp" style="display:none;">
-      <h3 style="font-size:12.5px;color:var(--gold-glow);margin-bottom:6px;">Verify Instant OTP</h3>
-      <p style="font-size:10px;color:var(--text-muted);margin-bottom:8px;">Aapke mobile par auto-generated OTP screen par dikh raha hai.</p>
-      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:10px;border-radius:8px;font-size:18px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:8px;" id="dispAutoOtpBox">4829</div>
-      <div style="text-align:left;margin-bottom:8px;">
-        <label style="font-size:10px;color:var(--gold);">Enter 4-Digit OTP Code</label>
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Verify Instant OTP</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Aapke mobile par auto-generated OTP screen par dikh raha hai.</p>
+      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:8px;border-radius:8px;font-size:16px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:6px;" id="dispAutoOtpBox">4829</div>
+      <div style="text-align:left;margin-bottom:6px;">
+        <label style="font-size:9.5px;color:var(--gold);">Enter 4-Digit OTP Code</label>
         <input type="tel" id="enteredOtpBox" maxlength="4" class="mpin-box-input" placeholder="• • • •">
       </div>
-      <button class="btn-gold" style="width:100%;justify-content:center;padding:10px;" onclick="verifyOtpAndProceed()">✓ Verify & Set MPIN</button>
-      <button class="btn-outline" style="width:100%;margin-top:6px;padding:6px;" onclick="switchAuthScreen('register')">‹ Back</button>
+      <button class="btn-gold" style="width:100%;justify-content:center;padding:9px;" onclick="verifyOtpAndProceed()">✓ Verify & Set MPIN</button>
+      <button class="btn-outline" style="width:100%;margin-top:5px;padding:5px;" onclick="switchAuthScreen('register')">‹ Back</button>
     </div>
 
     <div id="authStepCreateMpin" style="display:none;">
-      <h3 style="font-size:12.5px;color:var(--gold-glow);margin-bottom:6px;">Set 4-Digit Security MPIN</h3>
-      <p style="font-size:10px;color:var(--text-muted);margin-bottom:8px;">Kisi bhi mobile, tablet ya laptop par account kholne ke liye yeh MPIN yaad rakhein.</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Set 4-Digit Security MPIN</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Kisi bhi mobile, tablet ya laptop par account kholne ke liye yeh MPIN yaad rakhein.</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
         <div>
-          <label style="font-size:9.5px;color:var(--gold);">Create New MPIN</label>
+          <label style="font-size:9px;color:var(--gold);">Create New MPIN</label>
           <input type="password" id="newMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
         <div>
-          <label style="font-size:9.5px;color:var(--gold);">Confirm MPIN</label>
+          <label style="font-size:9px;color:var(--gold);">Confirm MPIN</label>
           <input type="password" id="confirmMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:10px;" onclick="saveNewUserAccount()">✓ Sync & Open Store</button>
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="saveNewUserAccount()">✓ Sync & Open Store</button>
     </div>
 
     <div id="authStepLogin" style="display:none;">
-      <h3 style="font-size:13px;color:var(--gold-glow);margin-bottom:6px;">Cloud Account Login</h3>
-      <p style="font-size:10px;color:var(--text-muted);margin-bottom:8px;">Enter 10-Digit Mobile & 4-Digit MPIN</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:8px;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Cloud Account Login</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Enter 10-Digit Mobile & 4-Digit MPIN</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
         <div>
-          <label style="font-size:9.5px;color:var(--gold);">Registered Mobile Number</label>
+          <label style="font-size:9px;color:var(--gold);">Registered Mobile Number</label>
           <input type="tel" id="loginMobile" maxlength="10" class="input-control" placeholder="10-Digit Mobile">
         </div>
         <div>
-          <label style="font-size:9.5px;color:var(--gold);">4-Digit MPIN</label>
+          <label style="font-size:9px;color:var(--gold);">4-Digit MPIN</label>
           <input type="password" id="loginMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
         </div>
       </div>
-      <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:10px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data & Open App</button>
-      <div style="margin-top:10px;font-size:10.5px;color:var(--text-muted);">
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data & Open App</button>
+      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
         New user? <a href="javascript:void(0)" onclick="switchAuthScreen('register')" style="color:var(--gold-glow);font-weight:bold;">Register New Account</a>
       </div>
     </div>
@@ -491,7 +491,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   <header>
     <div class="header-top">
       <div class="brand-wrap">
-        <div class="hamburger-btn" onclick="openNavDrawer()">
+        <div class="hamburger-btn" onclick="openNavDrawer()" title="Menu">
           <span></span><span></span><span></span>
         </div>
         <div class="brand" onclick="showDashboardHome()" style="cursor:pointer;">
@@ -510,10 +510,10 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <input type="text" id="searchInput" placeholder="Search gold rings, bali, chain, coins..." style="background:transparent;border:none;outline:none;color:var(--text-main);font-size:11.5px;width:100%;" onfocus="openSearchDropdown()" oninput="handleSearch(this.value)">
       </div>
       <div class="search-dropdown-box" id="searchDropdownBox">
-        <div style="font-size:10px;color:var(--gold);font-weight:700;margin-bottom:4px;">⏳ Recent Searches:</div>
-        <div id="recentSearchesList" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;"></div>
-        <div style="font-size:10px;color:var(--gold);font-weight:700;margin-bottom:4px;">🔥 Trending Products:</div>
-        <div id="trendingSearchList" style="display:flex;flex-direction:column;gap:5px;"></div>
+        <div style="font-size:9.5px;color:var(--gold);font-weight:700;margin-bottom:3px;">⏳ Recent Searches:</div>
+        <div id="recentSearchesList" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;"></div>
+        <div style="font-size:9.5px;color:var(--gold);font-weight:700;margin-bottom:3px;">🔥 Trending Products:</div>
+        <div id="trendingSearchList" style="display:flex;flex-direction:column;gap:4px;"></div>
       </div>
     </div>
   </header>
@@ -542,15 +542,15 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       </div>
       <div class="section-title-bar"><h2>🔥 Trending Collection</h2></div>
       <div class="product-grid" id="gridTrending"></div>
-      <div class="section-title-bar" style="margin-top:16px;"><h2>✨ Curated Collection</h2></div>
+      <div class="section-title-bar" style="margin-top:14px;"><h2>✨ Curated Collection</h2></div>
       <div class="product-grid" id="gridCurated"></div>
-      <div class="section-title-bar" style="margin-top:16px;"><h2>🌟 New Designs</h2></div>
+      <div class="section-title-bar" style="margin-top:14px;"><h2>🌟 New Designs</h2></div>
       <div class="product-grid" id="gridNewDesigns"></div>
-      <div class="section-title-bar" style="margin-top:16px;"><h2>👑 Most Viewed & Buy</h2></div>
+      <div class="section-title-bar" style="margin-top:14px;"><h2>👑 Most Viewed & Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
 
-      <div style="background:var(--card-bg); border:1.5px solid var(--gold); border-radius:14px; padding:6px; margin:16px 0 10px 0; text-align:center; box-shadow:0 4px 15px rgba(212,175,55,0.15); overflow:hidden;">
-        <div style="width:100%; height:160px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); position:relative;">
+      <div style="background:var(--card-bg); border:1.5px solid var(--gold); border-radius:14px; padding:5px; margin:14px 0 8px 0; text-align:center; box-shadow:0 4px 15px rgba(212,175,55,0.15); overflow:hidden;">
+        <div style="width:100%; height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); position:relative;">
           <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" style="width:100%; height:100%; object-fit:cover;" alt="Jewellery Poster">
         </div>
       </div>
@@ -562,11 +562,11 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div class="about-contact-row"><span>📞</span><span>+91 9113774515, 9931187826</span></div>
         <div class="about-contact-row"><span>✉️</span><span>ishajewllery07@gmail.com</span></div>
         
-        <div style="margin-top:12px;border-top:1px dashed var(--card-border);padding-top:10px;text-align:center;">
-          <div style="font-size:24px;font-weight:900;letter-spacing:2px;color:var(--gold);">🏛️ BIS 916 HUID</div>
-          <small style="font-size:9px;color:var(--text-muted);">Bureau of Indian Standards Licensed Assaying Center</small>
-          <div style="margin-top:8px;">
-            <button class="btn-outline" style="font-size:10px;padding:6px 12px;" onclick="alert('Isha Jewellers Govt. Reg. License No: BIS/JWL/2004/816108\nStatus: Active & Verified')">📜 View Store Certificate</button>
+        <div style="margin-top:10px;border-top:1px dashed var(--card-border);padding-top:8px;text-align:center;">
+          <div style="font-size:22px;font-weight:900;letter-spacing:2px;color:var(--gold);">🏛️ BIS 916 HUID</div>
+          <small style="font-size:8.5px;color:var(--text-muted);">Bureau of Indian Standards Licensed Assaying Center</small>
+          <div style="margin-top:6px;">
+            <button class="btn-outline" style="font-size:9.5px;padding:5px 10px;" onclick="alert('Isha Jewellers Govt. Reg. License No: BIS/JWL/2004/816108\nStatus: Active & Verified')">📜 View Store Certificate</button>
           </div>
         </div>
       </div>
@@ -574,7 +574,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 
     <section id="categories" class="page">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-        <h2 style="font-family:'Cinzel',serif;font-size:15px;">Jewellery Categories</h2>
+        <h2 style="font-family:'Cinzel',serif;font-size:14.5px;">Jewellery Categories</h2>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
         <button class="filter-chip-btn active" id="btnCatPageGold" onclick="switchMetalSegment('Gold')">👑 Gold</button>
@@ -595,35 +595,35 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     </section>
 
     <section id="yourCart" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:16px;margin-bottom:10px;">Your Shopping Cart 🛍️</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:15px;margin-bottom:8px;">Your Shopping Cart 🛍️</h2>
       <div id="cartItemsList"></div>
-      <div id="cartSummaryBox" style="display:none;margin-top:12px;">
+      <div id="cartSummaryBox" style="display:none;margin-top:10px;">
         <div class="price-breakup-box">
           <div class="breakup-row total"><span>Total Cart Items Value:</span><span id="cartSubtotalVal">₹0</span></div>
         </div>
-        <button class="btn-gold" style="width:100%;justify-content:center;padding:12px;font-size:13px;" onclick="openOrderCheckoutModal(cart, 'cart')">
+        <button class="btn-gold" style="width:100%;justify-content:center;padding:11px;font-size:12.5px;" onclick="openOrderCheckoutModal(cart, 'cart')">
           🛍️ PROCEED TO ORDER
         </button>
       </div>
     </section>
 
     <section id="productDetail" class="page">
-      <button class="btn-outline" style="margin-bottom:10px;" onclick="showPage('home')">‹ Back</button>
+      <button class="btn-outline" style="margin-bottom:8px;" onclick="showPage('home')">‹ Back</button>
       
-      <div style="height:250px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;">
+      <div style="height:230px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;">
         <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
-        <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
+        <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:9px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
       </div>
-      <div id="detailThumbnailsRow" style="display:flex;gap:6px;margin-top:8px;overflow-x:auto;"></div>
+      <div id="detailThumbnailsRow" style="display:flex;gap:6px;margin-top:7px;overflow-x:auto;"></div>
 
-      <div style="margin-top:10px;">
-        <span style="font-size:9px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:3px 8px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
-        <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:17px;margin-top:3px;">Item Name</h1>
+      <div style="margin-top:8px;">
+        <span style="font-size:8.5px;font-weight:700;background:var(--theme-subtle);color:var(--gold-glow);padding:3px 8px;border-radius:4px;" id="detailMetalTag">22K GOLD</span>
+        <h1 id="detailTitle" style="font-family:'Cinzel',serif;font-size:16px;margin-top:3px;">Item Name</h1>
       </div>
-      <p id="detailDescription" style="font-size:11px;color:var(--text-muted);margin:6px 0;line-height:1.4;"></p>
+      <p id="detailDescription" style="font-size:10.5px;color:var(--text-muted);margin:5px 0;line-height:1.4;"></p>
       
-      <div style="margin:12px 0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px;">
-        <h3 style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold-glow); margin-bottom:8px;">💎 Product Quality & Specifications</h3>
+      <div style="margin:10px 0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;">
+        <h3 style="font-family:'Cinzel',serif; font-size:11.5px; color:var(--gold-glow); margin-bottom:6px;">💎 Product Quality & Specifications</h3>
         <div class="breakup-row"><span>Product Carat / Purity:</span> <b id="specCaratVal">22 Carat (22K)</b></div>
         <div class="breakup-row"><span>Gold Quality:</span> <b id="specGoldQuality">100% BIS 916 Hallmarked</b></div>
         <div class="breakup-row"><span>Quality Certificate:</span> <b id="specCertVal">HUID Assured & Certified</b></div>
@@ -631,40 +631,40 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div class="breakup-row" style="border:none; margin-bottom:0;"><span>GST Applicable:</span> <b>3% (Govt. Regd)</b></div>
       </div>
 
-      <div style="margin:12px 0;display:flex;flex-direction:column;gap:6px;">
+      <div style="margin:10px 0;display:flex;flex-direction:column;gap:5px;">
         <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;overflow:hidden;">
-          <div style="padding:9px 12px;font-size:11px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accCert')">
+          <div style="padding:8px 10px;font-size:10.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accCert')">
             <span>🛡️ 100% Certified Jewellery</span><span>▾</span>
           </div>
-          <div id="accCert" style="display:none;padding:9px 12px;font-size:10px;color:var(--text-muted);border-top:1px solid var(--card-border);">
+          <div id="accCert" style="display:none;padding:8px 10px;font-size:9.5px;color:var(--text-muted);border-top:1px solid var(--card-border);">
             Every piece you get is fully checked for quality and authenticity by reputed agencies: GOLD certified with BIS Hallmark. DIAMOND certificate of authenticity from IGI, SGL.
           </div>
         </div>
         <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;overflow:hidden;">
-          <div style="padding:9px 12px;font-size:11px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accRefund')">
+          <div style="padding:8px 10px;font-size:10.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accRefund')">
             <span>💰 100% Refund (No Questions Asked)</span><span>▾</span>
           </div>
-          <div id="accRefund" style="display:none;padding:9px 12px;font-size:10px;color:var(--text-muted);border-top:1px solid var(--card-border);">
+          <div id="accRefund" style="display:none;padding:8px 10px;font-size:9.5px;color:var(--text-muted);border-top:1px solid var(--card-border);">
             In the rare occasion that you are not fully satisfied with our product within 30 days of delivery, we will refund 100% of your money back or exchange it. No Questions Asked!
           </div>
         </div>
         <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;overflow:hidden;">
-          <div style="padding:9px 12px;font-size:11px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accExchange')">
+          <div style="padding:8px 10px;font-size:10.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accExchange')">
             <span>🔄 Lifetime Exchange & Buyback</span><span>▾</span>
           </div>
-          <div id="accExchange" style="display:none;padding:9px 12px;font-size:10px;color:var(--text-muted);border-top:1px solid var(--card-border);">
+          <div id="accExchange" style="display:none;padding:8px 10px;font-size:9.5px;color:var(--text-muted);border-top:1px solid var(--card-border);">
             If ever you feel like exchanging your old Jewellery for newer designs, we are game! Exchange the product for its current value or get Cash with just minor deductions.
           </div>
         </div>
       </div>
 
-      <div id="multiWeightBoxDetail" style="margin-top:8px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:10px;">
-        <b style="font-size:11px;color:var(--gold-glow);display:block;margin-bottom:4px;">⚖️ Available Weights / Carats:</b>
+      <div id="multiWeightBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;">
+        <b style="font-size:10.5px;color:var(--gold-glow);display:block;margin-bottom:4px;">⚖️ Available Weights / Carats:</b>
         <div class="opt-pill-grid" id="detailWeightPillsGrid"></div>
       </div>
       
-      <div style="margin-top:6px;">
-        <div style="font-size:19px;font-weight:800;color:var(--gold-glow);" id="detailTotalPrice">₹0</div>
+      <div style="margin-top:5px;">
+        <div style="font-size:18px;font-weight:800;color:var(--gold-glow);" id="detailTotalPrice">₹0</div>
       </div>
       
       <div class="price-breakup-box">
@@ -675,37 +675,37 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div class="breakup-row total"><span>Total Cost (Net):</span><span id="breakupFinalTotal">₹0</span></div>
       </div>
       
-      <div id="actionButtonsNormal" style="display:flex;gap:8px;margin-top:10px;">
-        <button class="btn-outline" style="flex:1;justify-content:center;padding:10px;" onclick="addCurrentToCart()">+ Add to Cart</button>
-        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:13px;padding:10px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
+      <div id="actionButtonsNormal" style="display:flex;gap:8px;margin-top:8px;">
+        <button class="btn-outline" style="flex:1;justify-content:center;padding:9px;" onclick="addCurrentToCart()">+ Add to Cart</button>
+        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:12.5px;padding:9px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
       </div>
 
-      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:10px;padding:10px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
+      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
         📄 Download Official Estimate Slip (PDF)
       </button>
 
-      <div style="margin-top:18px;border-top:1px solid var(--card-border);padding-top:12px;">
+      <div style="margin-top:14px;border-top:1px solid var(--card-border);padding-top:10px;">
         <div class="section-title-bar" style="margin-top:0;">
-          <h2 style="font-size:13px;color:var(--gold-glow);">✨ Suggested Products</h2>
+          <h2 style="font-size:12.5px;color:var(--gold-glow);">✨ Suggested Products</h2>
         </div>
         <div class="product-grid" id="detailPreferredGrid"></div>
       </div>
     </section>
 
     <section id="calendarPage" class="page">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-        <h2 style="font-family:'Cinzel',serif;font-size:15px;">Isha Jewellers Calendar 🗓️</h2>
-        <div style="display:flex;gap:6px;">
-          <button class="btn-outline" style="padding:4px 8px;" onclick="flipMonth(-1)">◀ Prev</button>
-          <button class="btn-outline" style="padding:4px 8px;" onclick="flipMonth(1)">Next ▶</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+        <h2 style="font-family:'Cinzel',serif;font-size:14.5px;">Isha Jewellers Calendar 🗓️</h2>
+        <div style="display:flex;gap:5px;">
+          <button class="btn-outline" style="padding:4px 7px;" onclick="flipMonth(-1)">◀ Prev</button>
+          <button class="btn-outline" style="padding:4px 7px;" onclick="flipMonth(1)">Next ▶</button>
         </div>
       </div>
       <div class="cal-flip-card" id="deskCalendarCard">
         <div class="cal-month-header">
-          <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:15px;letter-spacing:1px;">AUGUST 2026</h3>
-          <small style="font-size:9px;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
+          <h3 id="calMonthTitle" style="font-family:'Cinzel',serif;font-size:14px;letter-spacing:1px;">AUGUST 2026</h3>
+          <small style="font-size:8.5px;letter-spacing:1.5px;">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</small>
         </div>
-        <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid var(--card-border);padding-bottom:4px;">
+        <div class="cal-days-grid" style="font-weight:800;color:var(--gold-glow);border-bottom:1px solid var(--card-border);padding-bottom:3px;">
           <div style="color:#ff5252;">SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
         </div>
         <div class="cal-days-grid" id="calDaysGrid"></div>
@@ -713,101 +713,101 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     </section>
 
     <section id="wishlistPage" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:16px;margin-bottom:10px;">My Wishlist & Favorites ❤️</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:15px;margin-bottom:8px;">My Wishlist & Favorites ❤️</h2>
       <div class="product-grid" id="wishlistGrid"></div>
     </section>
 
     <section id="tracking" class="page">
-      <h2 style="font-family:'Cinzel',serif;font-size:16px;margin-bottom:10px;">Live Order Tracking & Khata</h2>
+      <h2 style="font-family:'Cinzel',serif;font-size:15px;margin-bottom:8px;">Live Order Tracking & Khata</h2>
       <div id="trackingContainer"></div>
     </section>
 
     <section id="navMenuPage" class="page">
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px 10px;margin-bottom:12px;text-align:center;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <button style="background:transparent;border:none;color:var(--text-main);font-size:16px;cursor:pointer;" onclick="showDashboardHome()">✕</button>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:10px;text-align:center;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <button style="background:transparent;border:none;color:var(--text-main);font-size:15px;cursor:pointer;" onclick="showDashboardHome()">✕</button>
           <div>
-            <h2 style="font-family:'Cinzel',serif;font-size:14px;font-weight:900;color:var(--gold-glow);letter-spacing:1px;margin:0;">ISHA JEWELLERS</h2>
-            <small style="font-size:8px;color:var(--gold);letter-spacing:2px;">ESTD 2004 • BALURGRAM</small>
+            <h2 style="font-family:'Cinzel',serif;font-size:13.5px;font-weight:900;color:var(--gold-glow);letter-spacing:1px;margin:0;">ISHA JEWELLERS</h2>
+            <small style="font-size:7.5px;color:var(--gold);letter-spacing:2px;">ESTD 2004 • BALURGRAM</small>
           </div>
-          <button style="background:transparent;border:none;color:var(--gold);font-size:15px;cursor:pointer;" onclick="showDashboardHome()">🔍</button>
+          <button style="background:transparent;border:none;color:var(--gold);font-size:14px;cursor:pointer;" onclick="showDashboardHome()">🔍</button>
         </div>
-        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:8px;padding:8px 6px;font-size:10.5px;font-weight:700;border:1px solid var(--card-border);">
+        <div style="display:flex;justify-content:space-around;background:var(--theme-subtle);border-radius:8px;padding:7px 5px;font-size:10px;font-weight:700;border:1px solid var(--card-border);">
           <div onclick="showPage('calendarPage')" style="cursor:pointer;color:var(--gold-glow);">📅 Store Calendar</div>
           <div onclick="window.open('https://maps.google.com/?q=Balurgram+Bazzar+Udhwa+Sahibganj','_blank')" style="cursor:pointer;">🏬 Store Location</div>
           <a href="https://wa.me/919113774515" style="text-decoration:none;color:inherit;">💬 WhatsApp</a>
         </div>
       </div>
 
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;">
         <div id="profileViewBox">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div style="width:46px;height:46px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:var(--card-bg);display:flex;align-items:center;justify-content:center;">
+          <div style="display:flex;align-items:center;gap:9px;">
+            <div style="width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:var(--card-bg);display:flex;align-items:center;justify-content:center;">
               <img id="dispAvatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" style="width:100%;height:100%;object-fit:cover;">
             </div>
             <div>
-              <h3 id="dispName" style="color:var(--gold-glow);font-size:14px;">Customer Name</h3>
-              <small id="dispPhone" style="color:var(--text-muted);font-size:10px;">+91 ----------</small><br>
-              <small id="dispEmail" style="color:var(--text-muted);font-size:10px;">email@example.com</small>
+              <h3 id="dispName" style="color:var(--gold-glow);font-size:13.5px;">Customer Name</h3>
+              <small id="dispPhone" style="color:var(--text-muted);font-size:9.5px;">+91 ----------</small><br>
+              <small id="dispEmail" style="color:var(--text-muted);font-size:9.5px;">email@example.com</small>
             </div>
           </div>
-          <button class="btn-outline" style="width:100%;margin-top:8px;padding:6px;font-size:10px;" onclick="showProfileEditor()">✏️ Edit Profile Details</button>
+          <button class="btn-outline" style="width:100%;margin-top:7px;padding:5px;font-size:9.5px;" onclick="showProfileEditor()">✏️ Edit Profile Details</button>
         </div>
         <form id="profileEditBox" style="display:none;" onsubmit="saveProfileDetails(event)">
-          <div style="font-size:11px;color:var(--gold-glow);font-weight:700;margin-bottom:6px;">Edit Profile Details</div>
-          <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">Upload Profile Photo:</label>
-          <input type="file" id="edAvatarFile" class="input-control" accept="image/*" style="padding:2px;margin-bottom:6px;" onchange="previewProfilePic(event)">
+          <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;margin-bottom:5px;">Edit Profile Details</div>
+          <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Upload Profile Photo:</label>
+          <input type="file" id="edAvatarFile" class="input-control" accept="image/*" style="padding:2px;margin-bottom:5px;" onchange="previewProfilePic(event)">
           <input type="text" id="edName" class="input-control" placeholder="Full Name *" required>
-          <input type="tel" id="edPhone" class="input-control" placeholder="Phone Number" style="margin-top:6px;" readonly>
-          <input type="email" id="edEmail" class="input-control" placeholder="Email Address" style="margin-top:6px;">
-          <button type="submit" class="btn-gold" style="width:100%;margin-top:8px;justify-content:center;padding:9px;">✓ Save Profile & Sync</button>
-          <button type="button" class="btn-outline" style="width:100%;margin-top:5px;padding:5px;" onclick="hideProfileEditor()">Cancel</button>
+          <input type="tel" id="edPhone" class="input-control" placeholder="Phone Number" style="margin-top:5px;" readonly>
+          <input type="email" id="edEmail" class="input-control" placeholder="Email Address" style="margin-top:5px;">
+          <button type="submit" class="btn-gold" style="width:100%;margin-top:7px;justify-content:center;padding:8px;">✓ Save Profile & Sync</button>
+          <button type="button" class="btn-outline" style="width:100%;margin-top:4px;padding:4px;" onclick="hideProfileEditor()">Cancel</button>
         </form>
       </div>
 
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderSettingsBox')">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderSettingsBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">⚙️ App Settings & Preferences</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">⚙️ App Settings & Preferences</span>
           <span>▾</span>
         </div>
-        <div id="folderSettingsBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;display:flex;flex-direction:column;gap:8px;" onclick="event.stopPropagation()">
-          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:6px;">
-            <span style="font-size:11px;font-weight:600;">🌓 Mode (Dark / Light)</span>
-            <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
+        <div id="folderSettingsBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;display:flex;flex-direction:column;gap:7px;" onclick="event.stopPropagation()">
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
+            <span style="font-size:10.5px;font-weight:600;">🌓 Mode (Dark / Light)</span>
+            <button class="btn-outline" style="padding:4px 8px;font-size:9px;" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:6px;">
-            <span style="font-size:11px;font-weight:600;">📜 Terms and Conditions</span>
-            <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="openTermsModal()">View</button>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
+            <span style="font-size:10.5px;font-weight:600;">📜 Terms and Conditions</span>
+            <button class="btn-outline" style="padding:4px 8px;font-size:9px;" onclick="openTermsModal()">View</button>
           </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:6px;">
-            <span style="font-size:11px;font-weight:600;">🏛️ BIS Certificate</span>
-            <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="alert('Isha Jewellers Govt. Reg. License No: BIS/JWL/2004/816108\nStatus: Active & Verified')">View</button>
+          <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
+            <span style="font-size:10.5px;font-weight:600;">🏛️ BIS Certificate</span>
+            <button class="btn-outline" style="padding:4px 8px;font-size:9px;" onclick="alert('Isha Jewellers Govt. Reg. License No: BIS/JWL/2004/816108\nStatus: Active & Verified')">View</button>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;">
-            <span style="font-size:11px;font-weight:600;">🏅 Gold Quality Info</span>
-            <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="alert('100% BIS 916 Hallmarked Pure Gold with HUID Assaying Verification.')">View</button>
+            <span style="font-size:10.5px;font-weight:600;">🏅 Gold Quality Info</span>
+            <button class="btn-outline" style="padding:4px 8px;font-size:9px;" onclick="alert('100% BIS 916 Hallmarked Pure Gold with HUID Assaying Verification.')">View</button>
           </div>
         </div>
       </div>
 
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">⚖️ Live Sona / Chandi Rate Estimator</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">⚖️ Live Sona / Chandi Rate Estimator</span>
           <span>▾</span>
         </div>
-        <div id="folderExchangeCalcBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
-          <p style="font-size:10px;color:var(--text-muted);margin-bottom:6px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+        <div id="folderExchangeCalcBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
+          <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:5px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
             <div>
-              <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
+              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
               <input type="number" id="calcOldSilver" step="0.01" class="input-control" placeholder="e.g. 116.64" oninput="runStandaloneExchangeCalc()">
             </div>
             <div>
-              <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
+              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
               <input type="number" id="calcOldGold" step="0.01" class="input-control" placeholder="e.g. 10.0" oninput="runStandaloneExchangeCalc()">
             </div>
           </div>
-          <div class="price-breakup-box" style="margin:6px 0;">
+          <div class="price-breakup-box" style="margin:5px 0;">
             <div class="breakup-row"><span>Silver Katoti (2.916g / 11.664g):</span><span id="calcDispSilverDeduct">0 g</span></div>
             <div class="breakup-row"><span>Silver Net Wt & Value:</span><span id="calcDispSilverNetVal">₹0</span></div>
             <div class="breakup-row"><span>Gold Net Valuation (92% Assayed):</span><span id="calcDispGoldNetVal">₹0</span></div>
@@ -816,135 +816,144 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
+      <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">📦 My Orders History & Invoices</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">📦 My Orders History & Invoices</span>
           <span>▾</span>
         </div>
-        <div id="folderOrdersBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
+        <div id="folderOrdersBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
           <div id="drawerOrdersHistoryList"></div>
         </div>
       </div>
 
-      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
+      <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">🎁 My Reward Scratch Cards</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">🎁 My Reward Scratch Cards</span>
           <span>▾</span>
         </div>
-        <div id="folderRewardBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;" onclick="event.stopPropagation()">
-          <div id="dynamicCouponCardContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
+        <div id="folderRewardBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
+          <div id="dynamicCouponCardContainer" style="display:grid;grid-template-columns:1fr 1fr;gap:7px;"></div>
         </div>
       </div>
 
-      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px;">
-        <button class="btn-danger" style="padding:10px;font-size:12px;" onclick="logoutUser()">🚪 Logout Account (लॉग आउट)</button>
+      <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;">
+        <button class="btn-danger" style="padding:9px;font-size:11.5px;" onclick="logoutUser()">🚪 Logout Account (लॉग आउट)</button>
       </div>
     </section>
   </main>
 
   <div class="bottom-nav">
-    <div class="nav-item active" onclick="showDashboardHome(this)"><span style="font-size:16px;">⌂</span><span>Home</span></div>
-    <div class="nav-item" onclick="showPage('categories', this)"><span style="font-size:16px;">◈</span><span>Category</span></div>
+    <div class="nav-item active" onclick="showDashboardHome(this)"><span style="font-size:15px;">⌂</span><span>Home</span></div>
+    <div class="nav-item" onclick="showPage('categories', this)"><span style="font-size:15px;">◈</span><span>Category</span></div>
     <div class="nav-item" onclick="showPage('yourCart', this)">
-      <span style="font-size:16px;">🛍️</span><span>Your Cart</span>
+      <span style="font-size:15px;">🛍️</span><span>Your Cart</span>
       <span class="cart-badge-dot" id="navCartBadge">0</span>
     </div>
-    <div class="nav-item" onclick="showPage('tracking', this)"><span style="font-size:16px;">📦</span><span>Tracking</span></div>
+    <div class="nav-item" onclick="showPage('tracking', this)"><span style="font-size:15px;">📦</span><span>Tracking</span></div>
   </div>
 </div>
 
-<div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:12px 8px 85px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:18px 14px 22px;width:100%;max-width:370px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-      <h3 style="font-family:'Cinzel',serif;font-size:13.5px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
-      <button type="button" class="btn-outline" style="padding:3px 8px;font-size:11px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
+<div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:10px 8px 80px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
+  <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px 12px 20px;width:100%;max-width:370px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <h3 style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
+      <button type="button" class="btn-outline" style="padding:3px 7px;font-size:10.5px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
     </div>
 
     <div id="coStep1Container">
-      <div style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;" id="coAddressInfoHint">Kripya apna delivery address sahi se fill karein:</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;">
+      <div style="font-size:10px;color:var(--text-muted);margin-bottom:5px;" id="coAddressInfoHint">Kripya apna delivery address sahi se fill karein:</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
         <div>
-          <label style="font-size:9px;color:var(--gold);">First Name *</label>
+          <label style="font-size:8.5px;color:var(--gold);">First Name *</label>
           <input type="text" id="coFirstName" class="input-control" placeholder="First Name">
         </div>
         <div>
-          <label style="font-size:9px;color:var(--gold);">Last Name</label>
+          <label style="font-size:8.5px;color:var(--gold);">Last Name</label>
           <input type="text" id="coLastName" class="input-control" placeholder="Last Name">
         </div>
       </div>
-      <div style="margin-bottom:6px;">
-        <label style="font-size:9px;color:var(--gold);">10-Digit Mobile Number *</label>
+      <div style="margin-bottom:5px;">
+        <label style="font-size:8.5px;color:var(--gold);">10-Digit Mobile Number *</label>
         <input type="tel" id="coMobile" maxlength="10" class="input-control" placeholder="Primary Mobile">
       </div>
-      <div style="margin-bottom:6px;">
-        <label style="font-size:9px;color:var(--gold);">Alternate Mobile Number</label>
+      <div style="margin-bottom:5px;">
+        <label style="font-size:8.5px;color:var(--gold);">Alternate Mobile Number</label>
         <input type="tel" id="coAltMobile" maxlength="10" class="input-control" placeholder="Alternate Mobile (Optional)">
       </div>
-      <div style="margin-bottom:6px;">
-        <label style="font-size:9px;color:var(--gold);">Village / House / Street Address *</label>
+      <div style="margin-bottom:5px;">
+        <label style="font-size:8.5px;color:var(--gold);">Village / House / Street Address *</label>
         <input type="text" id="coArea" class="input-control" placeholder="Village / Street / House">
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px;">
         <div>
-          <label style="font-size:9px;color:var(--gold);">Post Office (Post)</label>
+          <label style="font-size:8.5px;color:var(--gold);">Post Office (Post)</label>
           <input type="text" id="coPostOffice" class="input-control" placeholder="Post Office">
         </div>
         <div>
-          <label style="font-size:9px;color:var(--gold);">PIN Number *</label>
+          <label style="font-size:8.5px;color:var(--gold);">PIN Number *</label>
           <input type="number" id="coPincode" class="input-control" value="816108" placeholder="PIN">
         </div>
       </div>
-      <button type="button" class="btn-gold" style="width:100%;justify-content:center;padding:11px;" onclick="goToCheckoutStep2()">Next: Order Summary ➔</button>
+      <button type="button" class="btn-gold" style="width:100%;justify-content:center;padding:10px;" onclick="goToCheckoutStep2()">Next: Order Summary ➔</button>
     </div>
 
     <div id="coStep2Container" style="display:none;">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-        <div style="font-size:11px;color:var(--gold-glow);font-weight:700;">📍 Delivery Address (Saved):</div>
-        <button type="button" class="btn-outline" style="font-size:9px;padding:3px 6px;" onclick="goToCheckoutStep1()">✏️ Edit Address</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
+        <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;">📍 Delivery Address (Saved):</div>
+        <button type="button" class="btn-outline" style="font-size:8.5px;padding:3px 6px;" onclick="goToCheckoutStep1()">✏️ Edit Address</button>
       </div>
-      <div id="coSummaryAddressDisplay" style="background:var(--bg-main);border:1px solid var(--card-border);padding:8px;border-radius:8px;font-size:10px;color:var(--text-muted);margin-bottom:8px;"></div>
+      <div id="coSummaryAddressDisplay" style="background:var(--bg-main);border:1px solid var(--card-border);padding:7px;border-radius:8px;font-size:9.5px;color:var(--text-muted);margin-bottom:7px;"></div>
 
-      <div style="font-size:11px;color:var(--gold-glow);font-weight:700;margin-bottom:6px;">📦 Product Details:</div>
-      <div id="coSummaryItemsBox" style="max-height:120px;overflow-y:auto;background:var(--bg-main);border:1px solid var(--card-border);border-radius:8px;padding:8px;margin-bottom:8px;"></div>
+      <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;margin-bottom:5px;">📦 Product Details:</div>
+      <div id="coSummaryItemsBox" style="max-height:110px;overflow-y:auto;background:var(--bg-main);border:1px solid var(--card-border);border-radius:8px;padding:7px;margin-bottom:7px;"></div>
 
-      <div class="price-breakup-box" style="margin-bottom:8px;">
+      <div class="price-breakup-box" style="margin-bottom:7px;">
         <div class="breakup-row"><span>Metal & Making:</span><span id="coGrossVal">₹0</span></div>
         <div class="breakup-row"><span>GST (3%):</span><span id="coGstVal">+₹0</span></div>
         <div class="breakup-row"><span>Delivery Charge:</span><span style="color:#2ecc71;">FREE</span></div>
-        <div class="breakup-row total" style="border-top:1px solid var(--card-border);padding-top:6px;margin-top:4px;">
-          <span>Net Total Payable:</span><span id="coNetPayableVal" style="font-size:13.5px;color:var(--gold-glow);font-weight:900;">₹0</span>
+        <div class="breakup-row total" style="border-top:1px solid var(--card-border);padding-top:5px;margin-top:3px;">
+          <span>Net Total Payable:</span><span id="coNetPayableVal" style="font-size:13px;color:var(--gold-glow);font-weight:900;">₹0</span>
         </div>
       </div>
-      <div style="display:flex;gap:6px;">
-        <button type="button" class="btn-outline" style="flex:1;padding:9px;" onclick="goToCheckoutStep1()">‹ Back</button>
-        <button type="button" class="btn-gold" style="flex:1.5;justify-content:center;padding:10px;" onclick="goToCheckoutStep3()">Next: Payment ➔</button>
+      <div style="display:flex;gap:5px;">
+        <button type="button" class="btn-outline" style="flex:1;padding:8px;" onclick="goToCheckoutStep1()">‹ Back</button>
+        <button type="button" class="btn-gold" style="flex:1.5;justify-content:center;padding:9px;" onclick="goToCheckoutStep3()">Next: Payment ➔</button>
       </div>
     </div>
 
     <div id="coStep3Container" style="display:none;">
-      <div style="background:var(--bg-main);border:1px solid var(--card-border);border-radius:10px;padding:10px;margin-bottom:10px;">
-        <label style="font-size:11px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:6px;">💰 Choose Payment Option:</label>
+      <div style="background:var(--bg-main);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:9px;">
+        <label style="font-size:10.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:5px;">💰 Choose Payment & Apply Promo:</label>
         
-        <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
-          <label style="display:flex;align-items:center;gap:8px;background:var(--card-bg);padding:8px;border-radius:8px;cursor:pointer;font-size:10.5px;">
+        <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:7px;">
+          <label style="display:flex;align-items:center;gap:7px;background:var(--card-bg);padding:7px;border-radius:8px;cursor:pointer;font-size:10px;">
             <input type="radio" name="payModeRadio" id="payModeUpi" checked onclick="selectPaymentModeOption('upi')">
             <span>⚡ UPI Advance Payment (Direct UPI App Open)</span>
           </label>
-          <label style="display:flex;align-items:center;gap:8px;background:var(--card-bg);padding:8px;border-radius:8px;cursor:pointer;font-size:10.5px;">
+          <label style="display:flex;align-items:center;gap:7px;background:var(--card-bg);padding:7px;border-radius:8px;cursor:pointer;font-size:10px;">
             <input type="radio" name="payModeRadio" onclick="selectPaymentModeOption('shop')">
             <span>🏬 Advance in Shop (Isha Jewellers Store)</span>
           </label>
         </div>
 
-        <div id="advanceInputBox" style="margin-bottom:6px;">
-          <label style="font-size:9.5px;color:var(--gold);">Enter Advance Amount (₹)</label>
+        <div style="margin-bottom:6px;">
+          <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:2px;">🎟️ Have a Promo / Reward Coupon?</label>
+          <div style="display:flex;gap:5px;">
+            <input type="text" id="coPromoCodeInput" class="input-control" placeholder="Enter Code (e.g. ISHA2004)" style="text-transform:uppercase;font-size:11px;">
+            <button type="button" class="btn-outline" style="padding:6px 10px;font-size:10px;background:var(--theme-subtle);" onclick="applyPromoCodeToCheckout()">Apply</button>
+          </div>
+          <div id="promoDiscountMsg" style="font-size:9px;color:#2ecc71;margin-top:2px;font-weight:bold;"></div>
+        </div>
+
+        <div id="advanceInputBox" style="margin-bottom:5px;">
+          <label style="font-size:9px;color:var(--gold);">Enter Advance Amount (₹)</label>
           <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100">
         </div>
       </div>
 
-      <div style="display:flex;gap:6px;">
-        <button type="button" class="btn-danger" style="flex:1;padding:11px;font-size:11.5px;font-weight:700;" onclick="goToCheckoutStep2()">❌ Cancel</button>
-        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:11px;font-size:11.5px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;position:relative;z-index:99999;cursor:pointer;pointer-events:auto;" onclick="executeOrderPlacement()">
+      <div style="display:flex;gap:5px;">
+        <button type="button" class="btn-danger" style="flex:1;padding:10px;font-size:11px;font-weight:700;" onclick="goToCheckoutStep2()">❌ Cancel</button>
+        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:10px;font-size:11px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;position:relative;z-index:99999;cursor:pointer;pointer-events:auto;" onclick="executeOrderPlacement()">
           ✓ CONFIRM ORDER
         </button>
       </div>
@@ -953,14 +962,14 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 </div>
 
 <div id="termsModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:99999999;display:none;align-items:center;justify-content:center;padding:15px;">
-  <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:18px;width:100%;max-width:360px;max-height:80vh;overflow-y:auto;">
-    <h3 style="font-family:'Cinzel',serif;font-size:14px;color:var(--gold-glow);margin-bottom:8px;">📜 Terms & Conditions</h3>
-    <div style="font-size:10.5px;color:var(--text-muted);line-height:1.5;display:flex;flex-direction:column;gap:6px;">
+  <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px;width:100%;max-width:360px;max-height:80vh;overflow-y:auto;">
+    <h3 style="font-family:'Cinzel',serif;font-size:13.5px;color:var(--gold-glow);margin-bottom:7px;">📜 Terms & Conditions</h3>
+    <div style="font-size:10px;color:var(--text-muted);line-height:1.5;display:flex;flex-direction:column;gap:5px;">
       <p>1. <b>BIS 916 Hallmark:</b> All gold items sold by Isha Jewellers are certified with official BIS Hallmark and HUID purity.</p>
       <p>2. <b>Exchange & Buyback:</b> Lifetime exchange and buyback are applicable based on daily market bullion rates with standard melting deductions.</p>
       <p>3. <b>Advance & Delivery:</b> UPI advance payments are securely recorded. Final balance is payable upon delivery with the secret delivery PIN.</p>
     </div>
-    <button class="btn-gold" style="width:100%;margin-top:12px;justify-content:center;padding:8px;" onclick="closeTermsModal()">Close</button>
+    <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:8px;" onclick="closeTermsModal()">Close</button>
   </div>
 </div>
 
@@ -992,6 +1001,7 @@ let userAuth = JSON.parse(localStorage.getItem('isha_user_auth')) || { loggedIn:
 let allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
 let tempRegData = {};
 let generatedOtpCode = "4829";
+let appliedDiscountAmount = 0;
 
 function getUserKey(suffix) {
   const p = userAuth.phone ? userAuth.phone.trim() : 'guest';
@@ -1370,7 +1380,7 @@ function openProductDetail(id) {
   if (imgs.length > 1) {
     thumbRow.style.display = 'flex';
     thumbRow.innerHTML = imgs.map((im, idx) => `
-      <img src="${im}" style="width:48px;height:48px;border-radius:6px;object-fit:cover;border:${idx===0?'2px solid var(--gold)':'1px solid var(--card-border)'};cursor:pointer;" onclick="document.getElementById('detailMainImg').src='${im}'">
+      <img src="${im}" style="width:46px;height:46px;border-radius:6px;object-fit:cover;border:${idx===0?'2px solid var(--gold)':'1px solid var(--card-border)'};cursor:pointer;" onclick="document.getElementById('detailMainImg').src='${im}'">
     `).join('');
   } else {
     thumbRow.style.display = 'none';
@@ -1481,8 +1491,8 @@ function renderCustomerAdsCarousel() {
     <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetail(${ad.productId})">
       <div class="ad-card-content">
         <span style="font-size:8px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag}</span>
-        <div style="font-family:'Cinzel',serif;font-size:15px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
-        <small style="color:#f3dfaa;font-size:10px;">${ad.subtitle} (Tap to View)</small>
+        <div style="font-family:'Cinzel',serif;font-size:14.5px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
+        <small style="color:#f3dfaa;font-size:9.5px;">${ad.subtitle} (Tap to View)</small>
       </div>
     </div>
   `).join('');
@@ -1622,7 +1632,7 @@ function updateCartUI() {
   const listEl = document.getElementById('cartItemsList');
   const sumBox = document.getElementById('cartSummaryBox');
   if (!cart.length) {
-    listEl.innerHTML = `<div style="text-align:center;padding:35px 10px;color:var(--text-muted);font-size:12px;">Cart is empty.</div>`;
+    listEl.innerHTML = `<div style="text-align:center;padding:30px 10px;color:var(--text-muted);font-size:11.5px;">Cart is empty.</div>`;
     if (sumBox) sumBox.style.display = 'none';
     return;
   }
@@ -1634,12 +1644,12 @@ function updateCartUI() {
     return `
       <div class="cart-item-card" onclick="openProductDetail(${p.id})">
         <button class="cart-remove-btn" onclick="event.stopPropagation(); removeCartItem(${idx})">✕</button>
-        <img src="${getProductPhoto(p)}" style="width:55px;height:55px;border-radius:8px;object-fit:cover;">
+        <img src="${getProductPhoto(p)}" style="width:52px;height:52px;border-radius:8px;object-fit:cover;">
         <div style="flex:1;">
-          <span style="font-size:9px;color:var(--gold;font-weight:700;">CODE: ${p.code}</span>
-          <div style="font-size:11.5px;font-weight:700;color:var(--text-main);">${p.name}</div>
-          <div style="font-size:10px;color:var(--text-muted);">${p.metal} • ${p.weight}${p.metal==='Diamond'?'C':'g'}</div>
-          <div style="font-size:12px;font-weight:800;color:var(--gold-glow);margin-top:3px;">₹${itemTotal.toLocaleString('en-IN')}</div>
+          <span style="font-size:8.5px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
+          <div style="font-size:11px;font-weight:700;color:var(--text-main);">${p.name}</div>
+          <div style="font-size:9.5px;color:var(--text-muted);">${p.metal} • ${p.weight}${p.metal==='Diamond'?'C':'g'}</div>
+          <div style="font-size:11.5px;font-weight:800;color:var(--gold-glow);margin-top:2px;">₹${itemTotal.toLocaleString('en-IN')}</div>
         </div>
       </div>
     `;
@@ -1663,11 +1673,11 @@ function renderSearchHistoryDropdown() {
   const trendingBox = document.getElementById('trendingSearchList');
   
   const history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || ["Rings", "Chain", "Diamond", "Payal"];
-  recentBox.innerHTML = history.slice(0, 4).map(h => `<span style="font-size:9.5px;background:var(--theme-subtle);color:var(--gold-glow);padding:4px 9px;border-radius:6px;cursor:pointer;" onclick="document.getElementById('searchInput').value='${h}';handleSearch('${h}')">${h}</span>`).join('');
+  recentBox.innerHTML = history.slice(0, 4).map(h => `<span style="font-size:9px;background:var(--theme-subtle);color:var(--gold-glow);padding:3px 8px;border-radius:6px;cursor:pointer;" onclick="document.getElementById('searchInput').value='${h}';handleSearch('${h}')">${h}</span>`).join('');
 
   const trendingItems = allProducts.slice(0, 3);
   trendingBox.innerHTML = trendingItems.map(t => `
-    <div style="font-size:11px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
+    <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
       <span>🔥 ${t.name}</span>
       <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(t).toLocaleString('en-IN')}</span>
     </div>
@@ -1708,6 +1718,7 @@ function openOrderCheckoutModal(itemsArray, mode) {
   let total = 0;
   currentCheckoutItems.forEach(p => { total += getProductLivePrice(p, p.weight || currentCustomWeight); });
   currentCheckoutTotal = total;
+  appliedDiscountAmount = 0;
 
   const savedAddr = JSON.parse(localStorage.getItem(getUserKey('last_address')));
   if (savedAddr) {
@@ -1730,6 +1741,11 @@ function openOrderCheckoutModal(itemsArray, mode) {
     document.getElementById('coPincode').value = '816108';
     document.getElementById('coAddressInfoHint').textContent = `Kripya apna delivery address sahi se fill karein:`;
   }
+
+  const promoInput = document.getElementById('coPromoCodeInput');
+  if (promoInput) promoInput.value = '';
+  const promoMsg = document.getElementById('promoDiscountMsg');
+  if (promoMsg) promoMsg.textContent = '';
 
   goToCheckoutStep1();
   document.getElementById('universalCheckoutModal').style.display = 'flex';
@@ -1778,19 +1794,34 @@ function goToCheckoutStep2() {
   `;
 
   document.getElementById('coSummaryItemsBox').innerHTML = currentCheckoutItems.map(it => `
-    <div style="font-size:10.5px;display:flex;justify-content:space-between;margin-bottom:4px;border-bottom:1px solid var(--card-border);padding-bottom:3px;">
+    <div style="font-size:10px;display:flex;justify-content:space-between;margin-bottom:3px;border-bottom:1px solid var(--card-border);padding-bottom:3px;">
       <span><b>${it.name}</b> (${it.weight||4}${it.metal==='Diamond'?'C':'g'})</span>
       <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(it, it.weight||4).toLocaleString('en-IN')}</span>
     </div>
   `).join('');
 
-  const gross = currentCheckoutTotal;
+  const gross = currentCheckoutTotal - appliedDiscountAmount;
   const gst = Math.round(gross * 0.03);
   const netPayable = gross + gst;
 
-  document.getElementById('coGrossVal').textContent = "₹" + gross.toLocaleString('en-IN');
+  document.getElementById('coGrossVal').textContent = "₹" + gross.toLocaleString('en-IN') + (appliedDiscountAmount > 0 ? ` (Disc -₹${appliedDiscountAmount})` : '');
   document.getElementById('coGstVal').textContent = "+₹" + gst.toLocaleString('en-IN');
   document.getElementById('coNetPayableVal').textContent = "₹" + netPayable.toLocaleString('en-IN');
+}
+
+function applyPromoCodeToCheckout() {
+  const code = document.getElementById('coPromoCodeInput').value.trim().toUpperCase();
+  const msgEl = document.getElementById('promoDiscountMsg');
+  if (!code) { msgEl.textContent = "Kripya valid promo code enter karein."; return; }
+
+  if (code.startsWith("ISHA")) {
+    appliedDiscountAmount = 300;
+    msgEl.textContent = "🎉 Success! Flat ₹300 Discount Applied.";
+  } else {
+    appliedDiscountAmount = 150;
+    msgEl.textContent = "🎉 Success! Flat ₹150 Discount Applied.";
+  }
+  goToCheckoutStep2();
 }
 
 function goToCheckoutStep3() {
@@ -1807,10 +1838,10 @@ function selectPaymentModeOption(mode) {
 
   if (mode === 'upi') {
     advBox.style.display = 'block';
-    const gross = currentCheckoutTotal;
+    const gross = currentCheckoutTotal - appliedDiscountAmount;
     const net = gross * 1.03;
     const advVal = Math.min(net, 500);
-    advInput.value = advVal;
+    advInput.value = Math.round(advVal);
   } else {
     advBox.style.display = 'block';
     advInput.value = 500;
@@ -1836,8 +1867,9 @@ function executeOrderPlacement() {
   const estDate = new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
   const estDayName = new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString('en-IN', {weekday:'long'});
 
-  const gst = Math.round(currentCheckoutTotal * 0.03);
-  const netFinalBill = currentCheckoutTotal + gst;
+  const grossAfterDisc = currentCheckoutTotal - appliedDiscountAmount;
+  const gst = Math.round(grossAfterDisc * 0.03);
+  const netFinalBill = grossAfterDisc + gst;
 
   const couponCode = adminConfig.adminRewardActive ? ("ISHA-GOLD" + Math.floor(100 + Math.random()*900)) : "";
 
@@ -1849,7 +1881,7 @@ function executeOrderPlacement() {
     address: fullAddressStr,
     items: currentCheckoutItems,
     specs: `${currentCheckoutItems.length} Items`,
-    grossTotal: currentCheckoutTotal,
+    grossTotal: grossAfterDisc,
     gst: gst,
     netPayable: netFinalBill,
     advancePaid: adv,
@@ -1883,12 +1915,12 @@ function executeOrderPlacement() {
         <div class="scratch-card-box" id="successScratchBox">
           <div class="scratch-underlay">
             <span style="font-size:8px;color:var(--gold);">REWARD CODE:</span>
-            <b style="font-family:'Cinzel',serif;font-size:12px;color:#ffd57e;" id="codeTextTarget">${couponCode}</b>
+            <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;" id="codeTextTarget">${couponCode}</b>
             <small style="color:#2ecc71;font-size:8px;">Flat ₹500 OFF</small>
           </div>
           <canvas class="scratch-canvas" id="modalScratchCanvas"></canvas>
         </div>
-        <button class="btn-outline" style="font-size:9.5px;padding:4px 8px;" onclick="copyRewardCode('${couponCode}')">📋 Copy Code</button>
+        <button class="btn-outline" style="font-size:9px;padding:3px 7px;" onclick="copyRewardCode('${couponCode}')">📋 Copy Code</button>
       </div>
     `;
     setTimeout(() => { initSuccessModalScratchCanvas(orderId, couponCode); }, 100);
@@ -1926,7 +1958,7 @@ function initSuccessModalScratchCanvas(orderId, code) {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = '#120b02';
-  ctx.font = 'bold 11px sans-serif';
+  ctx.font = 'bold 10.5px sans-serif';
   ctx.textAlign = 'center';
   ctx.fillText('✨ SCRATCH ✨', canvas.width / 2, canvas.height / 2 + 4);
 
@@ -1987,10 +2019,10 @@ function renderTrackingUI() {
 
   if (!activeOrders.length) {
     c.innerHTML = `
-      <div style="text-align:center;padding:30px 10px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;margin-top:10px;">
-        <div style="font-size:26px;margin-bottom:6px;">📦</div>
-        <b style="font-size:12px;color:var(--text-main);">Abhi koi active delivery order nahi hai.</b>
-        <p style="font-size:10px;color:var(--text-muted);margin-top:3px;">Delivered orders dekhne ke liye <b>Menu (☰) ➔ My Orders History</b> open karein.</p>
+      <div style="text-align:center;padding:28px 10px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;margin-top:8px;">
+        <div style="font-size:24px;margin-bottom:5px;">📦</div>
+        <b style="font-size:11.5px;color:var(--text-main);">Abhi koi active delivery order nahi hai.</b>
+        <p style="font-size:9.5px;color:var(--text-muted);margin-top:3px;">Delivered orders dekhne ke liye <b>Menu (☰) ➔ My Orders History</b> open karein.</p>
       </div>
     `;
     return;
@@ -2003,37 +2035,37 @@ function renderTrackingUI() {
     const displayEstDate = o.expectedDeliveryDate || o.deliveryDate || "7 Days";
 
     return `
-      <div class="cart-item-card" style="flex-direction:column;gap:6px;border-color:var(--gold);padding:12px;margin-bottom:10px;">
+      <div class="cart-item-card" style="flex-direction:column;gap:5px;border-color:var(--gold);padding:11px;margin-bottom:9px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <strong style="color:var(--gold-glow);font-size:13px;">Order #${o.id}</strong>
-          <span style="font-size:10px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
+          <strong style="color:var(--gold-glow);font-size:12px;">Order #${o.id}</strong>
+          <span style="font-size:9.5px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
         </div>
-        <div style="font-size:11.5px;color:var(--text-main);font-weight:600;">${o.specs}</div>
-        <div style="font-size:10.5px;color:var(--text-muted);">
+        <div style="font-size:11px;color:var(--text-main);font-weight:600;">${o.specs}</div>
+        <div style="font-size:10px;color:var(--text-muted);">
           Net: ₹${Number(o.netPayable).toLocaleString('en-IN')} | Adv: ₹${o.advancePaid} | Due: ₹${Number(o.balanceDue).toLocaleString('en-IN')}
         </div>
         
-        <div style="background:var(--bg-main);border:1.5px dashed var(--gold);padding:8px;border-radius:8px;margin-top:3px;">
+        <div style="background:var(--bg-main);border:1.5px dashed var(--gold);padding:7px;border-radius:8px;margin-top:2px;">
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
-              <span style="font-size:9px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
-              ${isOutForDelivery ? `<b style="font-size:14px;color:#7ef1a4;letter-spacing:3px;">${o.secretPin}</b>` : `<b style="font-size:10px;color:#e74c3c;">🔒 Hidden until Out for Delivery</b>`}
+              <span style="font-size:8.5px;color:var(--gold);display:block;">Delivery Secret PIN:</span>
+              ${isOutForDelivery ? `<b style="font-size:13px;color:#7ef1a4;letter-spacing:3px;">${o.secretPin}</b>` : `<b style="font-size:9.5px;color:#e74c3c;">🔒 Hidden until Out for Delivery</b>`}
             </div>
-            <button type="button" class="btn-outline" style="font-size:9.5px;padding:4px 8px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
+            <button type="button" class="btn-outline" style="font-size:9px;padding:3px 7px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
           </div>
           ${isOutForDelivery ? `
-            <div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--card-border);display:flex;justify-content:space-between;align-items:center;background:var(--card-bg);padding:6px 8px;border-radius:6px;">
+            <div style="margin-top:5px;padding-top:5px;border-top:1px dashed var(--card-border);display:flex;justify-content:space-between;align-items:center;background:var(--card-bg);padding:5px 7px;border-radius:6px;">
               <div>
-                <span style="font-size:8px;color:#2ecc71;font-weight:bold;display:block;">🚚 DELIVERY AGENT:</span>
-                <b style="font-size:11px;color:var(--text-main);">${agentName}</b><br>
-                <small style="color:var(--text-muted);font-size:9.5px;">📱 +91 ${agentPhone}</small>
+                <span style="font-size:7.5px;color:#2ecc71;font-weight:bold;display:block;">🚚 DELIVERY AGENT:</span>
+                <b style="font-size:10.5px;color:var(--text-main);">${agentName}</b><br>
+                <small style="color:var(--text-muted);font-size:9px;">📱 +91 ${agentPhone}</small>
               </div>
-              <a href="tel:${agentPhone}" class="btn-gold" style="padding:4px 9px;font-size:10px;text-decoration:none;border-radius:6px;gap:4px;">📞 Call</a>
+              <a href="tel:${agentPhone}" class="btn-gold" style="padding:4px 8px;font-size:9.5px;text-decoration:none;border-radius:6px;gap:3px;">📞 Call</a>
             </div>
           ` : ''}
         </div>
 
-        <div id="trackDetails_${idx}" style="display:none;margin-top:6px;border-top:1px dashed var(--card-border);padding-top:8px;">
+        <div id="trackDetails_${idx}" style="display:none;margin-top:5px;border-top:1px dashed var(--card-border);padding-top:7px;">
           <div class="track-step-list">
             <div class="track-step ${o.statusStage>=1?'done':''}"><div class="track-dot">1</div><div class="track-step-title">Order Booked (${o.advancePaid>0?'Advance ₹'+o.advancePaid:'Bina Advance'})</div></div>
             <div class="track-step ${o.statusStage>=2?'done':''}"><div class="track-dot">2</div><div class="track-step-title">Karigar Workshop Crafting</div></div>
@@ -2043,8 +2075,8 @@ function renderTrackingUI() {
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;margin-top:6px;">
-          <button type="button" class="btn-danger" style="padding:8px;font-size:11.5px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
+        <div style="display:flex;gap:5px;margin-top:5px;">
+          <button type="button" class="btn-danger" style="padding:7px;font-size:11px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
         </div>
       </div>
     `;
@@ -2078,41 +2110,41 @@ function renderDrawerOrderHistory() {
   const c = document.getElementById('drawerOrdersHistoryList');
   if (!c) return;
   if (!myOrders.length) {
-    c.innerHTML = `<div style="font-size:10.5px;color:var(--text-muted);text-align:center;padding:8px;">Abhi koi purana order record nahi mila.</div>`;
+    c.innerHTML = `<div style="font-size:10px;color:var(--text-muted);text-align:center;padding:7px;">Abhi koi purana order record nahi mila.</div>`;
     return;
   }
   c.innerHTML = myOrders.map(o => `
-    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:10px;margin-bottom:6px;">
+    <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:5px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
-        <strong style="color:var(--gold-glow);font-size:11.5px;">Order ID: #${o.id}</strong>
-        <span style="font-size:9px;color:#2ecc71;font-weight:700;">✓ Saved</span>
+        <strong style="color:var(--gold-glow);font-size:11px;">Order ID: #${o.id}</strong>
+        <span style="font-size:8.5px;color:#2ecc71;font-weight:700;">✓ Saved</span>
       </div>
-      <div style="font-size:10.5px;color:var(--text-main);margin:3px 0;">📦 <b>Products:</b> ${o.specs}</div>
-      <div style="display:flex;gap:6px;margin-top:8px;">
-        <button class="btn-outline" style="flex:1;padding:6px;font-size:9.5px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Tax Invoice</button>
-        <button class="btn-gold" style="flex:1;padding:6px;font-size:9.5px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">🖨️ Print / Download</button>
+      <div style="font-size:10px;color:var(--text-main);margin:2px 0;">📦 <b>Products:</b> ${o.specs}</div>
+      <div style="display:flex;gap:5px;margin-top:6px;">
+        <button class="btn-outline" style="flex:1;padding:5px;font-size:9px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Tax Invoice</button>
+        <button class="btn-gold" style="flex:1;padding:5px;font-size:9px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">🖨️ Print / Download</button>
       </div>
     </div>
   `).join('');
 }
 
 // ----------------------------------------------------
-// FIXED SAFE PDF / DOCUMENT DOWNLOAD METHOD FOR APPSGEYSER
+// FIXED BLOB DOWNLOAD METHOD FOR APPSGEYSER APK (NO WHITE SCREEN)
 // ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
-    const encodedHtml = "data:text/html;charset=utf-8," + encodeURIComponent(htmlContent);
-    const win = window.open(encodedHtml, '_blank');
-    if (!win) {
-      const a = document.createElement('a');
-      a.href = encodedHtml;
-      a.target = '_blank';
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    }
-    toast("📄 Document Opened for Print / Save!");
+    const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+    const blobUrl = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+    toast("📄 Document Downloaded Successfully!");
   } catch (err) {
     const win = window.open('', '_blank');
     if (win) {
@@ -2121,7 +2153,7 @@ function downloadPdfBlob(htmlContent, filename) {
       win.document.close();
       setTimeout(() => { win.print(); }, 500);
     } else {
-      toast("⚠️ Please allow popups or use 'View Tax Invoice' mode.");
+      toast("⚠️ Please use 'View Tax Invoice' mode.");
     }
   }
 }
@@ -2327,12 +2359,12 @@ function renderDynamicRewardCards() {
   if (!c) return;
   if (!myOrders.length) {
     c.innerHTML = `
-      <div style="text-align:center; padding:10px;">
-        <span style="font-size:9px; color:var(--gold); display:block; margin-bottom:4px;">WELCOME REWARD:</span>
+      <div style="text-align:center; padding:8px;">
+        <span style="font-size:8.5px; color:var(--gold); display:block; margin-bottom:3px;">WELCOME REWARD:</span>
         <div class="scratch-card-box">
           <div class="scratch-underlay">
             <span style="font-size:8px;color:var(--gold);">COUPON CODE:</span>
-            <b style="font-family:'Cinzel',serif;font-size:12px;color:#ffd57e;">ISHA2004</b>
+            <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;">ISHA2004</b>
             <small style="color:#2ecc71;font-size:8px;">Flat ₹200 OFF</small>
           </div>
           <canvas class="scratch-canvas" id="scratchCanvas_default"></canvas>
@@ -2381,11 +2413,11 @@ function renderDynamicRewardCards() {
       <div class="scratch-card-box">
         <div class="scratch-underlay">
           <span style="font-size:8px;color:var(--gold);">REWARD CODE:</span>
-          <b style="font-family:'Cinzel',serif;font-size:12px;color:#ffd57e;" id="codeText_${idx}">${o.couponEarned || 'ISHA-GOLD100'}</b>
+          <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;" id="codeText_${idx}">${o.couponEarned || 'ISHA-GOLD100'}</b>
         </div>
         <canvas class="scratch-canvas" id="scratchCanvas_${idx}"></canvas>
       </div>
-      <button class="btn-outline" style="font-size:9px;padding:3px 6px;margin-top:4px;" onclick="copyRewardCode('${o.couponEarned || 'ISHA-GOLD100'}')">📋 Copy</button>
+      <button class="btn-outline" style="font-size:8.5px;padding:3px 6px;margin-top:3px;" onclick="copyRewardCode('${o.couponEarned || 'ISHA-GOLD100'}')">📋 Copy</button>
     </div>
   `).join('');
   setTimeout(() => {
@@ -2467,13 +2499,10 @@ function renderWishlistUI() {
   const grid = document.getElementById('wishlistGrid');
   if (!grid) return;
   if (!wishlist.length) {
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:35px;color:var(--text-muted);font-size:12px;">No favorites yet.</div>`;
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--text-muted);font-size:11.5px;">No favorites yet.</div>`;
     return;
   }
   grid.innerHTML = wishlist.map(p => `
-    @media(min-width:0px){
-      /* wishlist cards */
-    }
     <div class="product-card" onclick="openProductDetail(${p.id})">
       <button class="wish-heart-btn active" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">❤️</button>
       <div class="product-img-wrap"><img src="${getProductPhoto(p)}"></div>
