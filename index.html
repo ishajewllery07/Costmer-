@@ -2183,7 +2183,7 @@ function renderDrawerOrderHistory() {
 // ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
-    const win = window.open('', '_blank', 'width=700,height=600');
+    const win = window.open('', '_blank');
     if (win) {
       win.document.open();
       win.document.write(htmlContent);
