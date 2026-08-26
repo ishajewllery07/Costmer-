@@ -1996,6 +1996,7 @@ function closeSuccessAnimModal() {
 
 function cancelCustomerOrder(orderId) {
   if (!confirm(`Kya aap sach me Order #${orderId} cancel karna chahte hain?`)) return;
+  // Strict type conversion fix for order deletion
   myOrders = myOrders.filter(x => String(x.id).trim() !== String(orderId).trim());
   localStorage.setItem('isha_orders', JSON.stringify(myOrders));
   renderTrackingUI();
