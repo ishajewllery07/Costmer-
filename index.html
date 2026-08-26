@@ -2183,7 +2183,7 @@ function renderDrawerOrderHistory() {
 // ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
-    const win = window.open('', '_blank');
+    const win = window.open('', '_blank', 'width=700,height=600');
     if (win) {
       win.document.open();
       win.document.write(htmlContent);
@@ -2191,8 +2191,10 @@ function downloadPdfBlob(htmlContent, filename) {
       setTimeout(() => {
         try {
           win.print();
-        } catch (e) {}
-      }, 600);
+        } catch (e) {
+          console.log("Print warning:", e);
+        }
+      }, 500);
       toast("📄 Document Ready! Print / Save as PDF select karein.");
     } else {
       const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
