@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Isha Jewellers — Balurgram Bazzar (ESTD 2004)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,12 +81,16 @@ body.theme-diamond {
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html, body{
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
 body{
   font-family:'Plus Jakarta Sans', sans-serif;
   background:var(--bg-main);
   color:var(--text-main);
   min-height:100vh;
-  overflow-x:hidden;
   display:flex;
   justify-content:center;
   align-items:flex-start;
@@ -2192,7 +2196,7 @@ function renderDrawerOrderHistory() {
 }
 
 // ----------------------------------------------------
-// APPSGEYSER SAFE MODAL PRINT / VIEW FUNCTION
+// APPSGEYSER SAFE MODAL PRINT / SAVE AS PDF FUNCTION
 // ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   const modal = document.getElementById('pdfViewerModal');
