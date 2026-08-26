@@ -181,28 +181,40 @@ body{
 .scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;touch-action:none;cursor:grab;}
 
 header{
-  padding:10px 14px 8px;background:var(--card-bg);backdrop-filter:blur(12px);position:sticky;top:0;z-index:20;border-bottom:1px solid var(--card-border);
+  padding: 12px 16px 10px;
+  background:var(--card-bg);
+  backdrop-filter:blur(12px);
+  position:sticky;
+  top:0;
+  z-index:20;
+  border-bottom:1px solid var(--card-border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.header-top{display:flex;align-items:center;justify-content:space-between;}
-.brand-wrap{display:flex;align-items:center;gap:10px;}
+.header-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom: 8px;
+}
+.brand-wrap{display:flex;align-items:center;gap:12px;}
 .hamburger-btn{
-  background:var(--card-bg);border:1px solid var(--card-border);color:var(--gold);width:34px;height:34px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
+  background:var(--card-bg);border:1px solid var(--card-border);color:var(--gold);width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
 }
-.hamburger-btn span{width:15px;height:2px;background:var(--gold);border-radius:2px;}
+.hamburger-btn span{width:16px;height:2px;background:var(--gold);border-radius:2px;}
 .brand-name{
-  font-family:'Cinzel', serif;font-size:14px;letter-spacing:1px;font-weight:800;
+  font-family:'Cinzel', serif;font-size:15px;letter-spacing:1px;font-weight:800;
   background:var(--accent-theme);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-.brand-sub{display:block;font-size:8px;letter-spacing:1.5px;color:var(--theme-color);}
+.brand-sub{display:block;font-size:8.5px;letter-spacing:2px;color:var(--theme-color);margin-top:1px;}
 
-.header-actions{display:flex;gap:5px;align-items:center;}
+.header-actions{display:flex;gap:6px;align-items:center;}
 .icon-btn{
-  background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-main);width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;text-decoration:none;position:relative;
+  background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-main);width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;text-decoration:none;position:relative;
 }
 
-.search-wrap{position:relative;margin-top:6px;}
+.search-wrap{position:relative;margin-top:4px;}
 .search-bar{
-  background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:8px;
+  background:var(--bg-main);border:1.5px solid var(--card-border);border-radius:12px;padding:8px 12px;display:flex;align-items:center;gap:8px;
 }
 .search-dropdown-box{
   position:absolute;top:100%;left:0;right:0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;margin-top:4px;padding:8px;z-index:30;display:none;box-shadow:0 8px 20px rgba(0,0,0,0.5);max-height:220px;overflow-y:auto;
@@ -540,7 +552,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div class="section-title-bar" style="margin-top:16px;"><h2>👑 Most Viewed & Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
 
-      <!-- CLEAN PROMOTIONAL BANNER PLACED DIRECTLY ABOVE BIS FOOTER -->
       <div style="background:var(--card-bg); border:1.5px solid var(--gold); border-radius:14px; padding:6px; margin:16px 0 10px 0; text-align:center; box-shadow:0 4px 15px rgba(212,175,55,0.15); overflow:hidden;">
         <div style="width:100%; height:160px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); position:relative;">
           <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" style="width:100%; height:100%; object-fit:cover;" alt="Jewellery Poster">
@@ -602,7 +613,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     <section id="productDetail" class="page">
       <button class="btn-outline" style="margin-bottom:10px;" onclick="showPage('home')">‹ Back</button>
       
-      <!-- MULTI-IMAGE GALLERY VIEWER -->
       <div style="height:250px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;">
         <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
         <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
@@ -615,7 +625,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       </div>
       <p id="detailDescription" style="font-size:11px;color:var(--text-muted);margin:6px 0;line-height:1.4;"></p>
       
-      <!-- DETAILED SPECIFICATIONS SECTION (CARAT, QUALITY, CERTIFICATE, MAKING, GST) -->
       <div style="margin:12px 0;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px;">
         <h3 style="font-family:'Cinzel',serif; font-size:12px; color:var(--gold-glow); margin-bottom:8px;">💎 Product Quality & Specifications</h3>
         <div class="breakup-row"><span>Product Carat / Purity:</span> <b id="specCaratVal">22 Carat (22K)</b></div>
@@ -716,7 +725,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div id="trackingContainer"></div>
     </section>
 
-    <!-- ENHANCED SIDE DRAWER / SETTINGS MENU WITH COLLAPSIBLE FOLDERS -->
     <section id="navMenuPage" class="page">
       <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:12px 10px;margin-bottom:12px;text-align:center;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
@@ -734,7 +742,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- PROFILE CARD -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;">
         <div id="profileViewBox">
           <div style="display:flex;align-items:center;gap:10px;">
@@ -761,42 +768,31 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </form>
       </div>
 
-      <!-- APP SETTINGS FOLDER (HIDDEN BY DEFAULT, OPENS ON CLICK) -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderSettingsBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">⚙️ App Settings & Preferences</span>
           <span>▾</span>
         </div>
         <div id="folderSettingsBox" style="display:none;margin-top:8px;border-top:1px dashed var(--card-border);padding-top:8px;display:flex;flex-direction:column;gap:8px;" onclick="event.stopPropagation()">
-          
-          <!-- Mode (Dark / Light) -->
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:6px;">
             <span style="font-size:11px;font-weight:600;">🌓 Mode (Dark / Light)</span>
             <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
           </div>
-
-          <!-- Terms and Conditions -->
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:6px;">
             <span style="font-size:11px;font-weight:600;">📜 Terms and Conditions</span>
             <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="openTermsModal()">View</button>
           </div>
-
-          <!-- BIS Certificate -->
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:6px;">
             <span style="font-size:11px;font-weight:600;">🏛️ BIS Certificate</span>
             <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="alert('Isha Jewellers Govt. Reg. License No: BIS/JWL/2004/816108\nStatus: Active & Verified')">View</button>
           </div>
-
-          <!-- Gold Quality -->
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:11px;font-weight:600;">🏅 Gold Quality Info</span>
             <button class="btn-outline" style="padding:4px 8px;font-size:9.5px;" onclick="alert('100% BIS 916 Hallmarked Pure Gold with HUID Assaying Verification.')">View</button>
           </div>
-
         </div>
       </div>
 
-      <!-- GOLD & SILVER RATE ESTIMATOR (ACCORDION FOLDER) -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">⚖️ Live Sona / Chandi Rate Estimator</span>
@@ -823,7 +819,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- MY ORDERS HISTORY (ACCORDION FOLDER) -->
       <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">📦 My Orders History & Invoices</span>
@@ -834,7 +829,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- MY REWARD SCRATCH CARDS (ACCORDION FOLDER) -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:12px;margin-bottom:10px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11.5px;">🎁 My Reward Scratch Cards</span>
@@ -862,7 +856,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- UNIVERSAL CHECKOUT MODAL -->
 <div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:12px 8px 85px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
   <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:18px 14px 22px;width:100%;max-width:370px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
@@ -967,7 +960,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- TERMS & CONDITIONS MODAL -->
 <div id="termsModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:99999999;display:none;align-items:center;justify-content:center;padding:15px;">
   <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:18px;width:100%;max-width:360px;max-height:80vh;overflow-y:auto;">
     <h3 style="font-family:'Cinzel',serif;font-size:14px;color:var(--gold-glow);margin-bottom:8px;">📜 Terms & Conditions</h3>
@@ -1996,7 +1988,6 @@ function closeSuccessAnimModal() {
 
 function cancelCustomerOrder(orderId) {
   if (!confirm(`Kya aap sach me Order #${orderId} cancel karna chahte hain?`)) return;
-  // Strict type conversion fix for order deletion
   myOrders = myOrders.filter(x => String(x.id).trim() !== String(orderId).trim());
   localStorage.setItem('isha_orders', JSON.stringify(myOrders));
   renderTrackingUI();
@@ -2023,7 +2014,7 @@ function renderTrackingUI() {
 
   c.innerHTML = activeOrders.map((o, idx) => {
     const isOutForDelivery = (o.statusStage >= 4);
-    const agentName = o.deliveryAgentName || "Rakesh Swarnkar (Store Delivery)";
+    const agentName = o.deliveryAgentName || "Rakesh Swarnkar (Isha Logistics)";
     const agentPhone = o.deliveryAgentPhone || "9113774515";
     const displayEstDate = o.expectedDeliveryDate || o.deliveryDate || "7 Days";
 
