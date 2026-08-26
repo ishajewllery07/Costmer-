@@ -1008,6 +1008,43 @@ function getUserKey(suffix) {
   return `isha_u_${p}_${suffix}`;
 }
 
+// FIREBASE CLOUD SYNC FUNCTIONS
+function syncUserDataToCloud() {
+  if (!db || !userAuth.loggedIn || !userAuth.phone) return;
+  const phoneKey = userAuth.phone.replace(/[^0-9]/g, '');
+  const cloudData = {
+    profile: getUserProfile(),
+    cart: cart,
+    wishlist: wishlist,
+    orders: myOrders,
+    scratched: scratchedStateMap
+  };
+  db.ref('users/' + phoneKey).set(cloudData).catch(err => console.log("Cloud sync error:", err));
+}
+
+function fetchUserDataFromCloud(phone, callback) {
+  if (!db) { if(callback) callback(); return; }
+  const phoneKey = phone.replace(/[^0-9]/g, '');
+  db.ref('users/' + phoneKey).once('value').then(snapshot => {
+    const val = snapshot.val();
+    if (val) {
+      if (val.profile) localStorage.setItem(getUserKeyFromPhone(phone, 'profile'), JSON.stringify(val.profile));
+      if (val.cart) localStorage.setItem(getUserKeyFromPhone(phone, 'cart'), JSON.stringify(val.cart));
+      if (val.wishlist) localStorage.setItem(getUserKeyFromPhone(phone, 'wishlist'), JSON.stringify(val.wishlist));
+      if (val.orders) localStorage.setItem(getUserKeyFromPhone(phone, 'orders'), JSON.stringify(val.orders));
+      if (val.scratched) localStorage.setItem(getUserKeyFromPhone(phone, 'scratched'), JSON.stringify(val.scratched));
+    }
+    if (callback) callback();
+  }).catch(err => {
+    console.log("Cloud fetch error:", err);
+    if (callback) callback();
+  });
+}
+
+function getUserKeyFromPhone(phone, suffix) {
+  return `isha_u_${phone.trim()}_${suffix}`;
+}
+
 function getUserProfile() {
   if (userAuth.phone && allUsersDb[userAuth.phone]) {
     const u = allUsersDb[userAuth.phone];
@@ -1094,7 +1131,11 @@ window.addEventListener('DOMContentLoaded', () => {
 function checkFirstTimeLoginGateway() {
   const gtw = document.getElementById('firstTimeLoginGateway');
   if (userAuth.loggedIn && userAuth.phone) {
-    gtw.style.display = 'none';
+    fetchUserDataFromCloud(userAuth.phone, () => {
+      reloadUserData();
+      gtw.style.display = 'none';
+      initAppUIFully();
+    });
   } else {
     gtw.style.display = 'flex';
     if (Object.keys(allUsersDb).length > 0) {
@@ -1159,17 +1200,14 @@ function saveNewUserAccount() {
   userAuth = { loggedIn: true, phone: tempRegData.phone };
   localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
 
-  reloadUserData();
-  document.getElementById('firstTimeLoginGateway').style.display = 'none';
-
-  loadAndRenderUserProfile();
-  updateCartUI();
-  renderWishlistUI();
-  renderTrackingUI();
-  renderDrawerOrderHistory();
-  renderDynamicRewardCards();
-  showLoader(400);
-  toast("🎉 Account Synced & Opened Successfully!");
+  fetchUserDataFromCloud(tempRegData.phone, () => {
+    reloadUserData();
+    syncUserDataToCloud();
+    document.getElementById('firstTimeLoginGateway').style.display = 'none';
+    initAppUIFully();
+    showLoader(400);
+    toast("🎉 Account Synced & Opened Successfully!");
+  });
 }
 
 function verifyUserMpinLogin() {
@@ -1181,37 +1219,21 @@ function verifyUserMpinLogin() {
     return;
   }
 
-  if (allUsersDb[phone] && allUsersDb[phone].mpin === mpin) {
-    userAuth = { loggedIn: true, phone: phone };
-    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-    reloadUserData();
-    document.getElementById('firstTimeLoginGateway').style.display = 'none';
-    loadAndRenderUserProfile();
-    updateCartUI();
-    renderWishlistUI();
-    renderTrackingUI();
-    renderDrawerOrderHistory();
-    renderDynamicRewardCards();
-    showLoader(400);
-    toast("🔓 Logged In Successfully!");
-  } else {
-    allUsersDb[phone] = allUsersDb[phone] || { name: "Customer", phone: phone, mpin: mpin };
-    allUsersDb[phone].mpin = mpin;
-    localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+  allUsersDb[phone] = allUsersDb[phone] || { name: "Customer", phone: phone, mpin: mpin };
+  allUsersDb[phone].mpin = mpin;
+  localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
 
-    userAuth = { loggedIn: true, phone: phone };
-    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
+  userAuth = { loggedIn: true, phone: phone };
+  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
+
+  fetchUserDataFromCloud(phone, () => {
     reloadUserData();
+    syncUserDataToCloud();
     document.getElementById('firstTimeLoginGateway').style.display = 'none';
-    loadAndRenderUserProfile();
-    updateCartUI();
-    renderWishlistUI();
-    renderTrackingUI();
-    renderDrawerOrderHistory();
-    renderDynamicRewardCards();
+    initAppUIFully();
     showLoader(400);
-    toast("🔓 Logged In Successfully!");
-  }
+    toast("🔓 Logged In Successfully & Data Synced!");
+  });
 }
 
 function initApp() {
@@ -1225,6 +1247,9 @@ function initApp() {
   }
   allProducts = JSON.parse(localStorage.getItem('isha_products')) || allProducts;
   checkFirstTimeLoginGateway();
+}
+
+function initAppUIFully() {
   loadAndRenderUserProfile();
   renderCustomerAdsCarousel();
   renderCircularCategories('circularCatScrollHome');
@@ -1279,9 +1304,10 @@ function saveProfileDetails(e) {
     localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
   }
   localStorage.setItem(getUserKey('profile'), JSON.stringify(prof));
+  syncUserDataToCloud();
   loadAndRenderUserProfile();
   hideProfileEditor();
-  toast("✅ Profile Details Saved!");
+  toast("✅ Profile Details Saved & Cloud Synced!");
 }
 
 function previewProfilePic(e) {
@@ -1614,8 +1640,9 @@ function addCurrentToCart() {
   const itemToCart = { ...currentProduct, weight: currentCustomWeight, customSize: currentCustomSize };
   cart.push(itemToCart);
   localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
+  syncUserDataToCloud();
   updateCartUI();
-  toast(`🛒 ${itemToCart.name} added to Cart!`);
+  toast(`🛒 ${itemToCart.name} added to Cart & Synced!`);
 }
 
 function addToCartDirect(id) {
@@ -1623,8 +1650,9 @@ function addToCartDirect(id) {
   if (!p) return;
   cart.push({ ...p, customSize: 'Standard Size', weight: p.weight || 4 });
   localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
+  syncUserDataToCloud();
   updateCartUI();
-  toast(`🛒 ${p.name} added to Cart!`);
+  toast(`🛒 ${p.name} added to Cart & Synced!`);
 }
 
 function updateCartUI() {
@@ -1660,6 +1688,7 @@ function updateCartUI() {
 function removeCartItem(idx) {
   cart.splice(idx, 1);
   localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
+  syncUserDataToCloud();
   updateCartUI();
 }
 
@@ -1901,6 +1930,7 @@ function executeOrderPlacement() {
 
   cart = [];
   localStorage.setItem(getUserKey('cart'), JSON.stringify([]));
+  syncUserDataToCloud();
   updateCartUI();
   closeCheckoutModal();
 
@@ -1982,6 +2012,7 @@ function initSuccessModalScratchCanvas(orderId, code) {
     if (count > 12) {
       scratchedStateMap[orderId] = true;
       localStorage.setItem(getUserKey('scratched'), JSON.stringify(scratchedStateMap));
+      syncUserDataToCloud();
     }
   }
 
@@ -2006,6 +2037,7 @@ function cancelCustomerOrder(orderId) {
   if (!confirm(`Kya aap sach me Order #${orderId} cancel karna chahte hain?`)) return;
   myOrders = myOrders.filter(x => String(x.id).trim() !== String(orderId).trim());
   localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
+  syncUserDataToCloud();
   renderTrackingUI();
   renderDrawerOrderHistory();
   renderDynamicRewardCards();
@@ -2128,9 +2160,6 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
-// ----------------------------------------------------
-// FIXED BLOB DOWNLOAD METHOD FOR APPSGEYSER APK (NO WHITE SCREEN)
-// ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
     const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
@@ -2490,6 +2519,7 @@ function toggleWishlistProduct(id) {
   if (idx > -1) wishlist.splice(idx, 1);
   else wishlist.push(p);
   localStorage.setItem(getUserKey('wishlist'), JSON.stringify(wishlist));
+  syncUserDataToCloud();
   renderDashboardSections();
   renderCatPageProducts();
   renderWishlistUI();
