@@ -1008,7 +1008,7 @@ function getUserKey(suffix) {
   return `isha_u_${p}_${suffix}`;
 }
 
-// FIREBASE CLOUD SYNC FUNCTIONS
+// FIREBASE CLOUD SYNC & SECURE AUTH FUNCTIONS
 function syncUserDataToCloud() {
   if (!db || !userAuth.loggedIn || !userAuth.phone) return;
   const phoneKey = userAuth.phone.replace(/[^0-9]/g, '');
@@ -1130,13 +1130,17 @@ window.addEventListener('DOMContentLoaded', () => {
 
 function checkFirstTimeLoginGateway() {
   const gtw = document.getElementById('firstTimeLoginGateway');
-  if (userAuth.loggedIn && userAuth.phone) {
+  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
+  
+  if (userAuth.loggedIn && userAuth.phone && allUsersDb[userAuth.phone]) {
     fetchUserDataFromCloud(userAuth.phone, () => {
       reloadUserData();
       gtw.style.display = 'none';
       initAppUIFully();
     });
   } else {
+    userAuth = { loggedIn: false, phone: "" };
+    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
     gtw.style.display = 'flex';
     if (Object.keys(allUsersDb).length > 0) {
       switchAuthScreen('login');
@@ -1161,6 +1165,12 @@ function triggerOtpSimulation() {
   if (!name) { alert("Kripya Full Name enter karein!"); return; }
   if (phone.length !== 10 || isNaN(phone)) { alert("Kripya 10-Digit valid Mobile Number enter karein!"); return; }
   if (!email || !email.includes('@')) { alert("Kripya valid Email Address enter karein!"); return; }
+
+  if (allUsersDb[phone]) {
+    alert("Yeh mobile number pehle se registered hai! Kripya 'Cloud Login with MPIN' ka use karein.");
+    switchAuthScreen('login');
+    return;
+  }
 
   generatedOtpCode = String(Math.floor(1000 + Math.random() * 9000));
   tempRegData = { name, phone, email, avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" };
@@ -1206,7 +1216,7 @@ function saveNewUserAccount() {
     document.getElementById('firstTimeLoginGateway').style.display = 'none';
     initAppUIFully();
     showLoader(400);
-    toast("🎉 Account Synced & Opened Successfully!");
+    toast("🎉 Account Registered & Opened Successfully!");
   });
 }
 
@@ -1219,9 +1229,17 @@ function verifyUserMpinLogin() {
     return;
   }
 
-  allUsersDb[phone] = allUsersDb[phone] || { name: "Customer", phone: phone, mpin: mpin };
-  allUsersDb[phone].mpin = mpin;
-  localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+  // STRICT SECURITY VALIDATION CHECK
+  if (!allUsersDb[phone]) {
+    alert("❌ Yeh Mobile Number registered nahi hai! Kripya pehle Account Register karein.");
+    switchAuthScreen('register');
+    return;
+  }
+
+  if (allUsersDb[phone].mpin !== mpin) {
+    alert("❌ Galat MPIN! Kripya sahi 4-Digit MPIN enter karein.");
+    return;
+  }
 
   userAuth = { loggedIn: true, phone: phone };
   localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
@@ -1232,7 +1250,7 @@ function verifyUserMpinLogin() {
     document.getElementById('firstTimeLoginGateway').style.display = 'none';
     initAppUIFully();
     showLoader(400);
-    toast("🔓 Logged In Successfully & Data Synced!");
+    toast("🔓 Secure Login Successful!");
   });
 }
 
@@ -2160,30 +2178,33 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
+// ----------------------------------------------------
+// APPSGEYSER SAFE PRINT / SAVE AS PDF FUNCTION
+// ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
-    const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-    const blobUrl = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.href = blobUrl;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    
-    setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
-    toast("📄 Document Downloaded Successfully!");
-  } catch (err) {
     const win = window.open('', '_blank');
     if (win) {
       win.document.open();
       win.document.write(htmlContent);
       win.document.close();
-      setTimeout(() => { win.print(); }, 500);
+      setTimeout(() => {
+        try {
+          win.print();
+        } catch (e) {}
+      }, 600);
+      toast("📄 Document Ready! Print / Save as PDF select karein.");
     } else {
-      toast("⚠️ Please use 'View Tax Invoice' mode.");
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.click();
+      toast("📄 Document opened in new window.");
     }
+  } catch (err) {
+    alert("Download error: Kripya browser permissions check karein.");
   }
 }
 
