@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Isha Jewellers — Balurgram Bazzar (ESTD 2004)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,12 +81,17 @@ body.theme-diamond {
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html, body{
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 body{
   font-family:'Plus Jakarta Sans', sans-serif;
   background:var(--bg-main);
   color:var(--text-main);
-  min-height:100vh;
-  overflow-x:hidden;
   display:flex;
   justify-content:center;
   align-items:flex-start;
@@ -94,20 +99,16 @@ body{
 }
 
 .app{
-  width:100%;
-  max-width:420px;
+  width:100% !important;
+  max-width:100% !important;
   min-height:100vh;
   background:var(--bg-main);
   position:relative;
-  margin:0 auto;
+  margin:0;
   display:flex;
   flex-direction:column;
-  box-shadow: 0 0 50px rgba(0,0,0,0.8);
+  box-shadow: none;
   padding-bottom:80px;
-}
-
-@media(min-width:768px){
-  .app { max-width: 420px !important; margin: 0 auto; }
 }
 
 #splashScreen{
@@ -945,7 +946,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
           <div id="promoDiscountMsg" style="font-size:9px;color:#2ecc71;margin-top:2px;font-weight:bold;"></div>
         </div>
 
-        <div id="advanceInputBox" style="margin-bottom:5px;">
+        <div style="margin-bottom:5px;" id="advanceInputBox">
           <label style="font-size:9px;color:var(--gold);">Enter Advance Amount (₹)</label>
           <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100">
         </div>
@@ -973,7 +974,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- SAFE PDF VIEWER MODAL FOR APPSGEYSER -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Invoice / Estimate View</b>
@@ -1242,7 +1242,6 @@ function verifyUserMpinLogin() {
     return;
   }
 
-  // STRICT SECURITY VALIDATION CHECK
   if (!allUsersDb[phone]) {
     alert("❌ Yeh Mobile Number registered nahi hai! Kripya pehle Account Register karein.");
     switchAuthScreen('register');
@@ -2191,17 +2190,36 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
-// ----------------------------------------------------
-// PDF / INVOICE VIEW FUNCTION
-// ----------------------------------------------------
+// -------------------------------------------------------------------------
+// OPTIMIZED BROWSER / CHROME DOWNLOAD FUNCTION FOR ANDROID & APPSGEYSER
+// -------------------------------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
-  const modal = document.getElementById('pdfViewerModal');
-  const contentBox = document.getElementById('pdfModalContentBox');
-  if (modal && contentBox) {
-    contentBox.innerHTML = htmlContent;
-    modal.style.display = 'flex';
-  } else {
-    toast("⚠️ Viewer modal unavailable.");
+  try {
+    const fullHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + filename + '</title></head><body>' + htmlContent + '</body></html>';
+    const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename + '.html';
+    a.style.display = 'none';
+    
+    document.body.appendChild(a);
+    a.click();
+    
+    setTimeout(() => {
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 600);
+    
+    toast("📥 Download Triggered! Check Chrome / Downloads.");
+  } catch (err) {
+    const modal = document.getElementById('pdfViewerModal');
+    const contentBox = document.getElementById('pdfModalContentBox');
+    if (modal && contentBox) {
+      contentBox.innerHTML = htmlContent;
+      modal.style.display = 'flex';
+    }
   }
 }
 
