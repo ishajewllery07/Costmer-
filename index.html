@@ -336,9 +336,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 .track-step.done .track-dot{background:#2ecc71;border-color:#2ecc71;color:#000;}
 .track-step-title{font-size:11.5px;font-weight:700;}
 
-.stepper-wrap{
-  display:flex;align-items:center;gap:8px;background:var(--card-bg);border:1px solid var(--card-border);padding:6px 12px;border-radius:10px;width:max-content;margin:6px 0;
-}
 .opt-pill-grid{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;}
 .opt-pill-btn{
   background:var(--card-bg);border:1px solid var(--card-border);color:var(--text-muted);font-size:11px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;
@@ -930,18 +927,13 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         
         <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:8px;">
           <label style="display:flex;align-items:center;gap:8px;background:var(--card-bg);padding:8px;border-radius:8px;cursor:pointer;font-size:10.5px;">
-            <input type="radio" name="payModeRadio" checked onclick="selectPaymentModeOption('upi')">
-            <span>⚡ UPI Advance Payment (Scan QR & Pay)</span>
+            <input type="radio" name="payModeRadio" id="payModeUpi" checked onclick="selectPaymentModeOption('upi')">
+            <span>⚡ UPI Advance Payment (Direct UPI App Open)</span>
           </label>
           <label style="display:flex;align-items:center;gap:8px;background:var(--card-bg);padding:8px;border-radius:8px;cursor:pointer;font-size:10.5px;">
             <input type="radio" name="payModeRadio" onclick="selectPaymentModeOption('shop')">
             <span>🏬 Advance in Shop (Isha Jewellers Store)</span>
           </label>
-        </div>
-
-        <div id="upiQrCodeContainer" style="text-align:center;background:#fff;padding:6px;border-radius:8px;margin-bottom:6px;">
-          <img id="dynamicUpiQrImg" src="" style="width:100px;height:100px;" alt="Store UPI QR">
-          <div style="font-size:9px;color:#000;font-weight:bold;margin-top:3px;">UPI ID: 9113774515@ybl</div>
         </div>
 
         <div id="advanceInputBox" style="margin-bottom:6px;">
@@ -1017,26 +1009,28 @@ function getUserProfile() {
     };
   }
   return JSON.parse(localStorage.getItem(getUserKey('profile'))) || {
-    name: "Tushar Kumar",
-    phone: userAuth.phone || "9113774515",
-    email: "tushar@gmail.com",
+    name: "Customer Name",
+    phone: userAuth.phone || "",
+    email: "",
     avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
   };
 }
 
 let cart = [];
 let wishlist = [];
-let myOrders = JSON.parse(localStorage.getItem('isha_orders')) || [];
+let myOrders = [];
 let scratchedStateMap = {};
 
 function reloadUserData() {
   if (userAuth.loggedIn && userAuth.phone) {
     cart = JSON.parse(localStorage.getItem(getUserKey('cart'))) || [];
     wishlist = JSON.parse(localStorage.getItem(getUserKey('wishlist'))) || [];
+    myOrders = JSON.parse(localStorage.getItem(getUserKey('orders'))) || [];
     scratchedStateMap = JSON.parse(localStorage.getItem(getUserKey('scratched'))) || {};
   } else {
     cart = [];
     wishlist = [];
+    myOrders = [];
     scratchedStateMap = {};
   }
 }
@@ -1082,28 +1076,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if (sp) { sp.style.opacity = '0'; setTimeout(() => sp.style.display = 'none', 600); }
   }, 1000);
 
-  try {
-    if (db) {
-      db.ref('orders').on('value', snap => {
-        if (snap.val()) {
-          const allOrders = Object.values(snap.val()).reverse();
-          if (userAuth.loggedIn && userAuth.phone) {
-            const userOrders = allOrders.filter(o => String(o.phone).trim() === String(userAuth.phone).trim());
-            const seen = new Set();
-            myOrders = userOrders.filter(el => {
-              const duplicate = seen.has(el.id);
-              seen.add(el.id);
-              return !duplicate;
-            });
-          }
-          renderTrackingUI();
-          renderDrawerOrderHistory();
-          renderDynamicRewardCards();
-        }
-      });
-    }
-  } catch(e) { console.log(e); }
-
+  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
   reloadUserData();
   initApp();
 });
@@ -1182,6 +1155,9 @@ function saveNewUserAccount() {
   loadAndRenderUserProfile();
   updateCartUI();
   renderWishlistUI();
+  renderTrackingUI();
+  renderDrawerOrderHistory();
+  renderDynamicRewardCards();
   showLoader(400);
   toast("🎉 Account Synced & Opened Successfully!");
 }
@@ -1203,6 +1179,9 @@ function verifyUserMpinLogin() {
     loadAndRenderUserProfile();
     updateCartUI();
     renderWishlistUI();
+    renderTrackingUI();
+    renderDrawerOrderHistory();
+    renderDynamicRewardCards();
     showLoader(400);
     toast("🔓 Logged In Successfully!");
   } else {
@@ -1217,6 +1196,9 @@ function verifyUserMpinLogin() {
     loadAndRenderUserProfile();
     updateCartUI();
     renderWishlistUI();
+    renderTrackingUI();
+    renderDrawerOrderHistory();
+    renderDynamicRewardCards();
     showLoader(400);
     toast("🔓 Logged In Successfully!");
   }
@@ -1654,7 +1636,7 @@ function updateCartUI() {
         <button class="cart-remove-btn" onclick="event.stopPropagation(); removeCartItem(${idx})">✕</button>
         <img src="${getProductPhoto(p)}" style="width:55px;height:55px;border-radius:8px;object-fit:cover;">
         <div style="flex:1;">
-          <span style="font-size:9px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
+          <span style="font-size:9px;color:var(--gold;font-weight:700;">CODE: ${p.code}</span>
           <div style="font-size:11.5px;font-weight:700;color:var(--text-main);">${p.name}</div>
           <div style="font-size:10px;color:var(--text-muted);">${p.metal} • ${p.weight}${p.metal==='Diamond'?'C':'g'}</div>
           <div style="font-size:12px;font-weight:800;color:var(--gold-glow);margin-top:3px;">₹${itemTotal.toLocaleString('en-IN')}</div>
@@ -1680,7 +1662,7 @@ function renderSearchHistoryDropdown() {
   const recentBox = document.getElementById('recentSearchesList');
   const trendingBox = document.getElementById('trendingSearchList');
   
-  const history = JSON.parse(localStorage.getItem('isha_recent_searches')) || ["Rings", "Chain", "Diamond", "Payal"];
+  const history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || ["Rings", "Chain", "Diamond", "Payal"];
   recentBox.innerHTML = history.slice(0, 4).map(h => `<span style="font-size:9.5px;background:var(--theme-subtle);color:var(--gold-glow);padding:4px 9px;border-radius:6px;cursor:pointer;" onclick="document.getElementById('searchInput').value='${h}';handleSearch('${h}')">${h}</span>`).join('');
 
   const trendingItems = allProducts.slice(0, 3);
@@ -1695,10 +1677,10 @@ function renderSearchHistoryDropdown() {
 function handleSearch(val) {
   const q = val.toLowerCase().trim();
   if (q.length > 1) {
-    let history = JSON.parse(localStorage.getItem('isha_recent_searches')) || [];
+    let history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || [];
     if (!history.includes(q)) {
       history.unshift(q);
-      localStorage.setItem('isha_recent_searches', JSON.stringify(history));
+      localStorage.setItem(getUserKey('search_history'), JSON.stringify(history));
     }
   }
   if (!q) { renderDashboardSections(); return; }
@@ -1821,20 +1803,16 @@ function goToCheckoutStep3() {
 
 function selectPaymentModeOption(mode) {
   const advBox = document.getElementById('advanceInputBox');
-  const qrBox = document.getElementById('upiQrCodeContainer');
   const advInput = document.getElementById('coAdvanceInput');
 
   if (mode === 'upi') {
     advBox.style.display = 'block';
-    qrBox.style.display = 'block';
     const gross = currentCheckoutTotal;
     const net = gross * 1.03;
     const advVal = Math.min(net, 500);
     advInput.value = advVal;
-    document.getElementById('dynamicUpiQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(`upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${advVal}&cu=INR`)}`;
   } else {
     advBox.style.display = 'block';
-    qrBox.style.display = 'none';
     advInput.value = 500;
   }
 }
@@ -1847,6 +1825,7 @@ function executeOrderPlacement() {
   const post = document.getElementById('coPostOffice').value.trim();
   const pin = document.getElementById('coPincode').value.trim();
   const adv = Number(document.getElementById('coAdvanceInput').value) || 500;
+  const isUpiSelected = document.getElementById('payModeUpi').checked;
 
   const fullCustName = (fName + " " + lName).trim();
   const fullAddressStr = `${area}${post ? ', Post: '+post : ''}, Jharkhand - ${pin}`;
@@ -1886,7 +1865,7 @@ function executeOrderPlacement() {
   };
 
   myOrders.unshift(newOrd);
-  localStorage.setItem('isha_orders', JSON.stringify(myOrders));
+  localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
 
   cart = [];
   localStorage.setItem(getUserKey('cart'), JSON.stringify([]));
@@ -1915,6 +1894,11 @@ function executeOrderPlacement() {
     setTimeout(() => { initSuccessModalScratchCanvas(orderId, couponCode); }, 100);
   } else {
     scratchContainer.style.display = 'none';
+  }
+
+  if (isUpiSelected) {
+    const upiLink = `upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${adv}&cu=INR&tn=${encodeURIComponent('Advance Order #' + orderId)}`;
+    window.location.href = upiLink;
   }
 
   document.getElementById('orderSuccessAnimModal').style.display = 'flex';
@@ -1989,7 +1973,7 @@ function closeSuccessAnimModal() {
 function cancelCustomerOrder(orderId) {
   if (!confirm(`Kya aap sach me Order #${orderId} cancel karna chahte hain?`)) return;
   myOrders = myOrders.filter(x => String(x.id).trim() !== String(orderId).trim());
-  localStorage.setItem('isha_orders', JSON.stringify(myOrders));
+  localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
   renderTrackingUI();
   renderDrawerOrderHistory();
   renderDynamicRewardCards();
@@ -2112,17 +2096,34 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
+// ----------------------------------------------------
+// FIXED SAFE PDF / DOCUMENT DOWNLOAD METHOD FOR APPSGEYSER
+// ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
-  const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast("📥 PDF/Invoice Download Triggered Successfully!");
+  try {
+    const encodedHtml = "data:text/html;charset=utf-8," + encodeURIComponent(htmlContent);
+    const win = window.open(encodedHtml, '_blank');
+    if (!win) {
+      const a = document.createElement('a');
+      a.href = encodedHtml;
+      a.target = '_blank';
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+    toast("📄 Document Opened for Print / Save!");
+  } catch (err) {
+    const win = window.open('', '_blank');
+    if (win) {
+      win.document.open();
+      win.document.write(htmlContent);
+      win.document.close();
+      setTimeout(() => { win.print(); }, 500);
+    } else {
+      toast("⚠️ Please allow popups or use 'View Tax Invoice' mode.");
+    }
+  }
 }
 
 function viewOfficialTaxInvoice(orderId) {
@@ -2470,6 +2471,9 @@ function renderWishlistUI() {
     return;
   }
   grid.innerHTML = wishlist.map(p => `
+    @media(min-width:0px){
+      /* wishlist cards */
+    }
     <div class="product-card" onclick="openProductDetail(${p.id})">
       <button class="wish-heart-btn active" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">❤️</button>
       <div class="product-img-wrap"><img src="${getProductPhoto(p)}"></div>
