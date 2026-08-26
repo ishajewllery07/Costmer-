@@ -2191,28 +2191,25 @@ function renderDrawerOrderHistory() {
 }
 
 // -------------------------------------------------------------------------
-// OPTIMIZED BROWSER / CHROME DOWNLOAD FUNCTION FOR ANDROID & APPSGEYSER
+// DIRECT CHROME HANDOVER FUNCTION (BYPASSING APP INTERNAL SAVE POPUP)
 // -------------------------------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
     const fullHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + filename + '</title></head><body>' + htmlContent + '</body></html>';
-    const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
+    const encodedData = 'data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml);
     
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename + '.html';
-    a.style.display = 'none';
-    
-    document.body.appendChild(a);
-    a.click();
-    
-    setTimeout(() => {
+    // Direct Chrome / Default Browser handover
+    const win = window.open(encodedData, '_blank');
+    if (!win) {
+      const a = document.createElement('a');
+      a.href = encodedData;
+      a.download = filename + '.html';
+      document.body.appendChild(a);
+      a.click();
       document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 600);
+    }
     
-    toast("📥 Download Triggered! Check Chrome / Downloads.");
+    toast("🌐 Opening in Chrome Browser...");
   } catch (err) {
     const modal = document.getElementById('pdfViewerModal');
     const contentBox = document.getElementById('pdfModalContentBox');
