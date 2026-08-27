@@ -946,7 +946,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
           <div id="promoDiscountMsg" style="font-size:9px;color:#2ecc71;margin-top:2px;font-weight:bold;"></div>
         </div>
 
-        <div style="margin-bottom:5px;" id="advanceInputBox">
+        <div style="margin-bottom:5px;">
           <label style="font-size:9px;color:var(--gold);">Enter Advance Amount (₹)</label>
           <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100">
         </div>
@@ -1242,6 +1242,7 @@ function verifyUserMpinLogin() {
     return;
   }
 
+  // STRICT SECURITY VALIDATION CHECK
   if (!allUsersDb[phone]) {
     alert("❌ Yeh Mobile Number registered nahi hai! Kripya pehle Account Register karein.");
     switchAuthScreen('register');
@@ -2190,27 +2191,29 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
-// -------------------------------------------------------------------------
-// STABLE 100% WORKING DATA-URI EMBED TRIGGER FOR ANDROID APPS
-// -------------------------------------------------------------------------
+// ----------------------------------------------------
+// UPDATED APP-FRIENDLY DOWNLOAD FUNCTION (BYPASSES WEBVIEW BLOCK)
+// ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   try {
     const fullHtml = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + filename + '</title></head><body>' + htmlContent + '</body></html>';
-    const uriContent = 'data:text/html;charset=utf-8,' + encodeURIComponent(fullHtml);
+    const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
     
-    // Hidden iframe create karke app ke andar direct stream trigger karna (No white screen)
-    let iframe = document.getElementById('hiddenDownloadFrame');
-    if (!iframe) {
-      iframe = document.createElement('iframe');
-      iframe.id = 'hiddenDownloadFrame';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
+    // window.open with _system bypasses internal app restrictions and opens in default Chrome browser
+    const win = window.open(url, '_system');
+    if (!win) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename + '.html';
+      a.target = '_system';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); }, 1000);
     }
-    iframe.src = uriContent;
     
-    toast("📥 Downloading Invoice...");
+    toast("📥 Opened in Chrome / Download Started!");
   } catch (err) {
-    console.log("Fallback view:", err);
     const modal = document.getElementById('pdfViewerModal');
     const contentBox = document.getElementById('pdfModalContentBox');
     if (modal && contentBox) {
@@ -2226,7 +2229,20 @@ function closePdfModal() {
 }
 
 function triggerModalPrint() {
-  window.print();
+  const contentBox = document.getElementById('pdfModalContentBox');
+  if (!contentBox) return;
+  const printWin = window.open('', '_blank');
+  if (printWin) {
+    printWin.document.open();
+    printWin.document.write('<html><head><title>Print Invoice</title></head><body>' + contentBox.innerHTML + '</body></html>');
+    printWin.document.close();
+    setTimeout(() => {
+      printWin.focus();
+      printWin.print();
+    }, 400);
+  } else {
+    window.print();
+  }
 }
 
 function viewOfficialTaxInvoice(orderId) {
