@@ -2214,6 +2214,9 @@ function closePdfModal() {
   if (modal) modal.style.display = 'none';
 }
 
+// ----------------------------------------------------
+// BROWSER BYPASS DOWNLOAD (RAMBAN FIX FOR APPGEYSER)
+// ----------------------------------------------------
 function forceDirectFileDownload() {
   if (!lastGeneratedHtmlContent) return;
   try {
@@ -2221,20 +2224,16 @@ function forceDirectFileDownload() {
     const blob = new Blob([fullDoc], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = lastGeneratedFileName + '.html';
-    document.body.appendChild(a);
-    a.click();
+    // Seedhe system/chrome browser mein open karne ke liye _system command
+    const openedWindow = window.open(url, '_system');
+    if (!openedWindow) {
+      window.location.href = url;
+    }
     
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
-    
-    toast("📥 Download Triggered!");
+    toast("📥 Opening in browser for download...");
   } catch(e) {
-    triggerModalPrint();
+    // Fallback print
+    window.print();
   }
 }
 
