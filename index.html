@@ -681,8 +681,8 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:12.5px;padding:9px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
       </div>
 
-      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
-        📄 Download Official Estimate Slip (PDF)
+      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="forceDirectFileDownload()">
+        📥 Direct Download Slip (HTML/PDF)
       </button>
 
       <div style="margin-top:14px;border-top:1px solid var(--card-border);padding-top:10px;">
@@ -923,7 +923,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     </div>
 
     <div id="coStep3Container" style="display:none;">
-      <div style="background:var(--bg-main);border:1.5px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:9px;">
+      <div style="background:var(--bg-main);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:9px;">
         <label style="font-size:10.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:5px;">💰 Choose Payment & Apply Promo:</label>
         
         <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:7px;">
@@ -974,7 +974,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- STABLE PRINT / SAVE PDF MODAL VIEWER -->
+<!-- INVOICE VIEWER MODAL -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice</b>
@@ -982,7 +982,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
   <div id="pdfModalContentBox" style="background:#fff;color:#000;padding:12px;border-radius:10px;flex:1;overflow-y:auto;margin-bottom:8px;max-height:72vh;"></div>
   <div style="display:flex;gap:8px;">
-    <button class="btn-gold" style="flex:1;justify-content:center;padding:11px;font-size:12px;" onclick="triggerModalPrint()">🖨️ Print / Save PDF</button>
+    <button class="btn-gold" style="flex:1;justify-content:center;padding:11px;font-size:12px;" onclick="triggerModalPrint()">📥 Save / Download File</button>
     <button class="btn-outline" style="flex:1;justify-content:center;padding:11px;background:#fff;color:#000;border:none;font-weight:bold;font-size:12px;border-radius:8px;" onclick="closePdfModal()">Done</button>
   </div>
 </div>
@@ -2191,15 +2191,21 @@ function renderDrawerOrderHistory() {
 }
 
 // ----------------------------------------------------
-// UPDATED APP-FRIENDLY MODAL VIEWER WITH DIRECT PRINT TRIGGER
+// DIRECT FILE DOWNLOAD BYPASS (FORCES APP TO DOWNLOAD LOCALLY)
 // ----------------------------------------------------
+let lastGeneratedHtmlContent = "";
+let lastGeneratedFileName = "IshaJewellers_Slip";
+
 function downloadPdfBlob(htmlContent, filename) {
+  lastGeneratedHtmlContent = htmlContent;
+  lastGeneratedFileName = filename;
+
+  // Modal mein bhi dikhayenge taaki user ko screen par turant dikhe
   const modal = document.getElementById('pdfViewerModal');
   const contentBox = document.getElementById('pdfModalContentBox');
   if (modal && contentBox) {
     contentBox.innerHTML = htmlContent;
     modal.style.display = 'flex';
-    toast("📄 Slip Generated Successfully!");
   }
 }
 
@@ -2208,27 +2214,32 @@ function closePdfModal() {
   if (modal) modal.style.display = 'none';
 }
 
-function triggerModalPrint() {
-  const contentBox = document.getElementById('pdfModalContentBox');
-  if (!contentBox) return;
-
-  // Yeh code direct browser/app ke print or save as PDF menu ko active karega
-  const printWindow = window.open('', '_blank', 'height=650,width=800');
-  if (printWindow) {
-    printWindow.document.write('<html><head><title>Isha_Jewellers_Slip</title>');
-    printWindow.document.write('<style>body{font-family:Arial,sans-serif;padding:20px;color:#000;background:#fff;} table{width:100%;border-collapse:collapse;} th,td{border:1px solid #d4af37;padding:8px;text-align:center;font-size:12px;}</style>');
-    printWindow.document.write('</head><body>');
-    printWindow.document.write(contentBox.innerHTML);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
+function forceDirectFileDownload() {
+  if (!lastGeneratedHtmlContent) return;
+  try {
+    const fullDoc = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + lastGeneratedFileName + '</title></head><body>' + lastGeneratedHtmlContent + '</body></html>';
+    const blob = new Blob([fullDoc], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = lastGeneratedFileName + '.html';
+    document.body.appendChild(a);
+    a.click();
     
     setTimeout(() => {
-      printWindow.focus();
-      printWindow.print();
-    }, 600);
-  } else {
-    window.print();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, 1000);
+    
+    toast("📥 Download Triggered!");
+  } catch(e) {
+    triggerModalPrint();
   }
+}
+
+function triggerModalPrint() {
+  forceDirectFileDownload();
 }
 
 function viewOfficialTaxInvoice(orderId) {
@@ -2573,7 +2584,7 @@ function logoutUser() {
 
 function toast(m) {
   const t = document.getElementById('toast');
-  t.textContent = m; t.style.display = 'block';
+  t.textContent = m; t.style.style = 'block';
   setTimeout(() => t.style.display = 'none', 2500);
 }
 </script>
