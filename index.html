@@ -8,6 +8,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
+<!-- html2canvas library for PNG Image Download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
@@ -682,7 +685,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       </div>
 
       <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
-        📄 Download Official Estimate Slip (PDF)
+        📄 Download Official Estimate Slip (PNG)
       </button>
 
       <div style="margin-top:14px;border-top:1px solid var(--card-border);padding-top:10px;">
@@ -974,14 +977,15 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
+<!-- PNG IMAGE DOWNLOAD MODAL -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
-    <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice</b>
+    <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📸 Official Slip Image (PNG)</b>
     <button onclick="closePdfModal()" style="background:#ff334b;color:#fff;border:none;padding:5px 10px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px;">✕ Close</button>
   </div>
-  <div id="pdfModalContentBox" style="background:#fff;color:#000;padding:12px;border-radius:10px;flex:1;overflow-y:auto;margin-bottom:8px;max-height:72vh;"></div>
+  <div id="pdfModalContentBox" style="background:#fff;color:#000;padding:12px;border-radius:10px;flex:1;overflow-y:auto;margin-bottom:8px;max-height:72vh;text-align:center;"></div>
   <div style="display:flex;gap:8px;">
-    <button class="btn-gold" style="flex:1;justify-content:center;padding:11px;font-size:12px;" onclick="triggerModalPrint()">📥 Save / Download File</button>
+    <button class="btn-gold" style="flex:1;justify-content:center;padding:11px;font-size:12px;" onclick="triggerPngDownload()">📥 Download PNG Image</button>
     <button class="btn-outline" style="flex:1;justify-content:center;padding:11px;background:#fff;color:#000;border:none;font-weight:bold;font-size:12px;border-radius:8px;" onclick="closePdfModal()">Done</button>
   </div>
 </div>
@@ -2188,23 +2192,26 @@ function renderDrawerOrderHistory() {
       <div style="font-size:10px;color:var(--text-main);margin:2px 0;">📦 <b>Products:</b> ${o.specs}</div>
       <div style="display:flex;gap:5px;margin-top:6px;">
         <button class="btn-outline" style="flex:1;padding:5px;font-size:9px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Tax Invoice</button>
-        <button class="btn-gold" style="flex:1;padding:5px;font-size:9px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">🖨️ Print / Download</button>
+        <button class="btn-gold" style="flex:1;padding:5px;font-size:9px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">📸 Download PNG</button>
       </div>
     </div>
   `).join('');
 }
 
-let lastGeneratedHtmlContent = "";
-let lastGeneratedFileName = "IshaJewellers_Slip";
+// ----------------------------------------------------
+// PNG IMAGE DOWNLOAD USING html2canvas (100% WORKING IN APP)
+// ----------------------------------------------------
+let activeModalRenderHtml = "";
+let activeModalFilename = "IshaJewellers_Slip";
 
 function downloadPdfBlob(htmlContent, filename) {
-  lastGeneratedHtmlContent = htmlContent;
-  lastGeneratedFileName = filename;
+  activeModalRenderHtml = htmlContent;
+  activeModalFilename = filename;
 
   const modal = document.getElementById('pdfViewerModal');
   const contentBox = document.getElementById('pdfModalContentBox');
   if (modal && contentBox) {
-    contentBox.innerHTML = htmlContent;
+    contentBox.innerHTML = '<div id="captureTarget" style="background:#fff; padding:10px; border-radius:8px;">' + htmlContent + '</div>';
     modal.style.display = 'flex';
   }
 }
@@ -2214,31 +2221,30 @@ function closePdfModal() {
   if (modal) modal.style.display = 'none';
 }
 
-// ----------------------------------------------------
-// BROWSER BYPASS DOWNLOAD (RAMBAN FIX FOR APPGEYSER)
-// ----------------------------------------------------
-function forceDirectFileDownload() {
-  if (!lastGeneratedHtmlContent) return;
-  try {
-    const fullDoc = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + lastGeneratedFileName + '</title></head><body>' + lastGeneratedHtmlContent + '</body></html>';
-    const blob = new Blob([fullDoc], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    
-    // Seedhe system/chrome browser mein open karne ke liye _system command
-    const openedWindow = window.open(url, '_system');
-    if (!openedWindow) {
-      window.location.href = url;
-    }
-    
-    toast("📥 Opening in browser for download...");
-  } catch(e) {
-    // Fallback print
-    window.print();
-  }
+function triggerPngDownload() {
+  const target = document.getElementById('captureTarget');
+  if (!target) return;
+
+  toast("📸 Generating PNG Image...");
+
+  html2canvas(target, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then(canvas => {
+    const imageUri = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = imageUri;
+    a.download = activeModalFilename + '.png';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      toast("📥 PNG Image Downloaded Successfully!");
+    }, 1000);
+  }).catch(err => {
+    toast("❌ Image generation failed. Try screenshot.");
+  });
 }
 
 function triggerModalPrint() {
-  forceDirectFileDownload();
+  triggerPngDownload();
 }
 
 function viewOfficialTaxInvoice(orderId) {
@@ -2248,7 +2254,7 @@ function viewOfficialTaxInvoice(orderId) {
   const qrCertText = `ISHA JEWELLERS AUTHENTICITY CERTIFICATE\nInvoice: INV-IJ-${o.id}\nCustomer: ${o.customerName}\nItems: ${itemDesc}\nNet Total: Rs.${Number(o.netPayable).toLocaleString('en-IN')}\nHallmark: 100% BIS 916 HUID Assured`;
 
   const invoiceHtml = `
-    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 15px; color: #333; max-width: 650px; margin: auto; border: 2px solid #d4af37; border-radius: 12px; background: #fff;">
+    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 15px; color: #333; max-width: 650px; margin: auto; border: 2px solid #d4af37; border-radius: 12px; background: #fff; text-align:left;">
       <div style="text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 12px;">
         <h1 style="font-family:'Cinzel', serif; color: #78350f; margin: 0; font-size: 20px; letter-spacing: 2px;">ISHA JEWELLERS</h1>
         <p style="font-size: 10.5px; color: #555; margin: 2px 0;">BALURGRAM BAZZAR, UDHWA, SAHIBGANJ, JHARKHAND - 816108</p>
@@ -2329,7 +2335,7 @@ function downloadProductEstimatePdfDirect() {
   const slipId = "EST-" + Math.floor(100000 + Math.random() * 900000);
   
   const estimateHtml = `
-    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 15px; color: #333; max-width: 600px; margin: auto; border: 2px solid #d4af37; border-radius: 12px; background: #fff;">
+    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 15px; color: #333; max-width: 600px; margin: auto; border: 2px solid #d4af37; border-radius: 12px; background: #fff; text-align:left;">
       <div style="text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 12px;">
         <h1 style="font-family:'Cinzel', serif; color: #78350f; margin: 0; font-size: 20px; letter-spacing: 2px;">ISHA JEWELLERS</h1>
         <p style="font-size: 10.5px; color: #555; margin: 2px 0;">BALURGRAM BAZZAR, UDHWA, SAHIBGANJ, JHARKHAND - 816108</p>
