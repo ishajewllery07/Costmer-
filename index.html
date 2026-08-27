@@ -681,8 +681,8 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:12.5px;padding:9px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
       </div>
 
-      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="forceDirectFileDownload()">
-        📥 Direct Download Slip (HTML/PDF)
+      <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
+        📄 Download Official Estimate Slip (PDF)
       </button>
 
       <div style="margin-top:14px;border-top:1px solid var(--card-border);padding-top:10px;">
@@ -974,7 +974,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- INVOICE VIEWER MODAL -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice</b>
@@ -1827,16 +1826,21 @@ function goToCheckoutStep2() {
   const area = document.getElementById('coArea').value.trim();
   const pin = document.getElementById('coPincode').value.trim();
 
-  if (!fName || !mob || mob.length !== 10 || !area || !pin) {
-    alert("Kripya First Name, 10-Digit Mobile, Village/Street aur PIN number sahi se fill karein!");
-    return;
-  }
+  const finalFName = fName ? fName : "Customer";
+  const finalMob = (mob && mob.length === 10) ? mob : "9113774515";
+  const finalArea = area ? area : "Udhwa";
+  const finalPin = pin ? pin : "816108";
 
   const addressObj = {
-    fName, lName: document.getElementById('coLastName').value.trim(),
-    mob, altMob: document.getElementById('coAltMobile').value.trim(),
-    area, post: document.getElementById('coPostOffice').value.trim(), pin
+    fName: finalFName, 
+    lName: document.getElementById('coLastName').value.trim(),
+    mob: finalMob, 
+    altMob: document.getElementById('coAltMobile').value.trim(),
+    area: finalArea, 
+    post: document.getElementById('coPostOffice').value.trim(), 
+    pin: finalPin
   };
+  
   localStorage.setItem(getUserKey('last_address'), JSON.stringify(addressObj));
 
   document.getElementById('coModalTitle').textContent = "🛍️ CHECKOUT: STEP 2 (SUMMARY)";
@@ -1848,7 +1852,7 @@ function goToCheckoutStep2() {
 
   document.getElementById('coSummaryAddressDisplay').innerHTML = `
     <b>${addressObj.fName} ${addressObj.lName}</b><br>
-    📱 Mobile: +91 ${addressObj.mob} ${addressObj.altMob ? ' / Alt: '+addressObj.altMob : ''}<br>
+    📱 Mobile: +91 ${addressObj.mob}<br>
     📍 Address: ${fullAddr}
   `;
 
@@ -1863,7 +1867,7 @@ function goToCheckoutStep2() {
   const gst = Math.round(gross * 0.03);
   const netPayable = gross + gst;
 
-  document.getElementById('coGrossVal').textContent = "₹" + gross.toLocaleString('en-IN') + (appliedDiscountAmount > 0 ? ` (Disc -₹${appliedDiscountAmount})` : '');
+  document.getElementById('coGrossVal').textContent = "₹" + gross.toLocaleString('en-IN');
   document.getElementById('coGstVal').textContent = "+₹" + gst.toLocaleString('en-IN');
   document.getElementById('coNetPayableVal').textContent = "₹" + netPayable.toLocaleString('en-IN');
 }
@@ -1908,12 +1912,12 @@ function selectPaymentModeOption(mode) {
 }
 
 function executeOrderPlacement() {
-  const fName = document.getElementById('coFirstName').value.trim();
+  const fName = document.getElementById('coFirstName').value.trim() || "Customer";
   const lName = document.getElementById('coLastName').value.trim();
-  const phone = document.getElementById('coMobile').value.trim();
-  const area = document.getElementById('coArea').value.trim();
+  const phone = document.getElementById('coMobile').value.trim() || "9113774515";
+  const area = document.getElementById('coArea').value.trim() || "Udhwa";
   const post = document.getElementById('coPostOffice').value.trim();
-  const pin = document.getElementById('coPincode').value.trim();
+  const pin = document.getElementById('coPincode').value.trim() || "816108";
   const adv = Number(document.getElementById('coAdvanceInput').value) || 500;
   const isUpiSelected = document.getElementById('payModeUpi').checked;
 
@@ -2190,9 +2194,6 @@ function renderDrawerOrderHistory() {
   `).join('');
 }
 
-// ----------------------------------------------------
-// DIRECT FILE DOWNLOAD BYPASS (FORCES APP TO DOWNLOAD LOCALLY)
-// ----------------------------------------------------
 let lastGeneratedHtmlContent = "";
 let lastGeneratedFileName = "IshaJewellers_Slip";
 
@@ -2200,7 +2201,6 @@ function downloadPdfBlob(htmlContent, filename) {
   lastGeneratedHtmlContent = htmlContent;
   lastGeneratedFileName = filename;
 
-  // Modal mein bhi dikhayenge taaki user ko screen par turant dikhe
   const modal = document.getElementById('pdfViewerModal');
   const contentBox = document.getElementById('pdfModalContentBox');
   if (modal && contentBox) {
@@ -2584,7 +2584,7 @@ function logoutUser() {
 
 function toast(m) {
   const t = document.getElementById('toast');
-  t.textContent = m; t.style.style = 'block';
+  t.textContent = m; t.style.display = 'block';
   setTimeout(() => t.style.display = 'none', 2500);
 }
 </script>
