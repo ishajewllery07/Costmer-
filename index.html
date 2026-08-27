@@ -12,9 +12,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 
-<!-- html2pdf Library for Direct PDF Download -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
 <style>
 :root{
   --gold:#d4af37;
@@ -503,6 +500,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 
   <main>
     <section id="home" class="page active">
+      <!-- Top Carousel Banner (Admin Controlled with Product Link) -->
       <div class="ads-carousel" id="customerAdsCarousel"></div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
@@ -526,9 +524,10 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div class="section-title-bar" style="margin-top:14px;"><h2>👑 Most Viewed & Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
 
+      <!-- Bottom Promotion Banner (Admin Controlled Static Poster) -->
       <div style="background:var(--card-bg); border:1.5px solid var(--gold); border-radius:14px; padding:5px; margin:14px 0 8px 0; text-align:center; box-shadow:0 4px 15px rgba(212,175,55,0.15); overflow:hidden;">
         <div style="width:100%; height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); position:relative;">
-          <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" style="width:100%; height:100%; object-fit:cover;" alt="Jewellery Poster">
+          <img id="bottomPromoImageTag" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" style="width:100%; height:100%; object-fit:cover;" alt="Jewellery Poster">
         </div>
       </div>
 
@@ -591,6 +590,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
         <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:9px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
       </div>
+      <!-- Thumbnails row for Multiple Images -->
       <div id="detailThumbnailsRow" style="display:flex;gap:6px;margin-top:7px;overflow-x:auto;"></div>
 
       <div style="margin-top:8px;">
@@ -606,33 +606,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div class="breakup-row"><span>Quality Certificate:</span> <b id="specCertVal">HUID Assured & Certified</b></div>
         <div class="breakup-row"><span>Making Charges:</span> <b id="specMakingVal">As per standard slab</b></div>
         <div class="breakup-row" style="border:none; margin-bottom:0;"><span>GST Applicable:</span> <b>3% (Govt. Regd)</b></div>
-      </div>
-
-      <div style="margin:10px 0;display:flex;flex-direction:column;gap:5px;">
-        <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;overflow:hidden;">
-          <div style="padding:8px 10px;font-size:10.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accCert')">
-            <span>🛡️ 100% Certified Jewellery</span><span>▾</span>
-          </div>
-          <div id="accCert" style="display:none;padding:8px 10px;font-size:9.5px;color:var(--text-muted);border-top:1px solid var(--card-border);">
-            Every piece you get is fully checked for quality and authenticity by reputed agencies: GOLD certified with BIS Hallmark. DIAMOND certificate of authenticity from IGI, SGL.
-          </div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;overflow:hidden;">
-          <div style="padding:8px 10px;font-size:10.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accRefund')">
-            <span>💰 100% Refund (No Questions Asked)</span><span>▾</span>
-          </div>
-          <div id="accRefund" style="display:none;padding:8px 10px;font-size:9.5px;color:var(--text-muted);border-top:1px solid var(--card-border);">
-            In the rare occasion that you are not fully satisfied with our product within 30 days of delivery, we will refund 100% of your money back or exchange it. No Questions Asked!
-          </div>
-        </div>
-        <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:8px;overflow:hidden;">
-          <div style="padding:8px 10px;font-size:10.5px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;" onclick="toggleVideoAccordion('accExchange')">
-            <span>🔄 Lifetime Exchange & Buyback</span><span>▾</span>
-          </div>
-          <div id="accExchange" style="display:none;padding:8px 10px;font-size:9.5px;color:var(--text-muted);border-top:1px solid var(--card-border);">
-            If ever you feel like exchanging your old Jewellery for newer designs, we are game! Exchange the product for its current value or get Cash with just minor deductions.
-          </div>
-        </div>
       </div>
 
       <div id="multiWeightBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;">
@@ -658,7 +631,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       </div>
 
       <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
-        📄 Download Official Estimate Slip (PDF)
+        📄 View Official Estimate Slip Preview
       </button>
 
       <div style="margin-top:14px;border-top:1px solid var(--card-border);padding-top:10px;">
@@ -950,17 +923,13 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- PDF Preview & Download Modal -->
+<!-- Preview Only Modal -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
-    <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice</b>
+    <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice Preview</b>
     <button onclick="closePdfModal()" style="background:#ff334b;color:#fff;border:none;padding:5px 10px;border-radius:6px;font-weight:bold;cursor:pointer;font-size:11px;">✕ Close</button>
   </div>
-  <div id="pdfModalContentBox" style="background:#fff;color:#000;padding:12px;border-radius:10px;flex:1;overflow-y:auto;margin-bottom:8px;max-height:72vh;"></div>
-  <div style="display:flex;gap:8px;">
-    <button class="btn-gold" style="flex:1;justify-content:center;padding:11px;font-size:12px;" onclick="triggerModalPrint()">📥 Download PDF File</button>
-    <button class="btn-outline" style="flex:1;justify-content:center;padding:11px;background:#fff;color:#000;border:none;font-weight:bold;font-size:12px;border-radius:8px;" onclick="closePdfModal()">Done</button>
-  </div>
+  <div id="pdfModalContentBox" style="background:#fff;color:#000;padding:12px;border-radius:10px;flex:1;overflow-y:auto;max-height:82vh;"></div>
 </div>
 
 <div class="toast-msg" id="toast"></div>
@@ -1115,7 +1084,45 @@ window.addEventListener('DOMContentLoaded', () => {
   allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
   reloadUserData();
   initApp();
+  initAdminCloudListeners();
 });
+
+// Admin Live Sync Listeners for App
+function initAdminCloudListeners() {
+  if (!db) return;
+  
+  // 1. Live Rates Sync
+  db.ref('rates').on('value', (snapshot) => {
+    const cloudRates = snapshot.val();
+    if (cloudRates) {
+      rates = cloudRates;
+      localStorage.setItem('isha_rates', JSON.stringify(rates));
+      updateRatesBarUI();
+      if (currentProduct) recalcProductCalculations();
+    }
+  });
+
+  // 2. Live Products Sync
+  db.ref('products').on('value', (snapshot) => {
+    const cloudProducts = snapshot.val();
+    if (cloudProducts) {
+      allProducts = Object.values(cloudProducts);
+      localStorage.setItem('isha_products', JSON.stringify(allProducts));
+      renderDashboardSections();
+      renderCatPageProducts();
+    }
+  });
+
+  // 3. Admin Controlled Banners Sync
+  db.ref('storeBanners').on('value', (snapshot) => {
+    const banners = snapshot.val();
+    if (banners) {
+      if (banners.topCarousel) localStorage.setItem('isha_top_banner', JSON.stringify(banners.topCarousel));
+      if (banners.bottomPromo) localStorage.setItem('isha_bottom_banner', JSON.stringify(banners.bottomPromo));
+      renderCustomerAdsCarousel();
+    }
+  });
+}
 
 function checkFirstTimeLoginGateway() {
   const gtw = document.getElementById('firstTimeLoginGateway');
@@ -1405,7 +1412,7 @@ function openProductDetail(id) {
   const weights = (p.availableWeights && p.availableWeights.length) ? p.availableWeights : [p.weight || 4];
   currentCustomWeight = weights[0];
 
-  const imgs = Array.isArray(p.image) ? p.image : [getProductPhoto(p), fallbackHdImages["Rings"][1], fallbackHdImages["Rings"][2]];
+  const imgs = Array.isArray(p.image) ? p.image : [getProductPhoto(p)];
   document.getElementById('detailMainImg').src = imgs[0];
 
   const thumbRow = document.getElementById('detailThumbnailsRow');
@@ -1491,15 +1498,6 @@ function recalcProductCalculations() {
   document.getElementById('detailMetalTag').textContent = `${p.metal} • ${w} ${p.metal==='Diamond'?'Carat':'g'}`;
 }
 
-function toggleVideoAccordion(id) {
-  const el = document.getElementById(id);
-  const allAcc = ['accCert', 'accRefund', 'accExchange'];
-  allAcc.forEach(item => {
-    const box = document.getElementById(item);
-    if (box) box.style.display = (item === id && box.style.display !== 'block') ? 'block' : 'none';
-  });
-}
-
 function showLoader(d = 300) {
   const l = document.getElementById('appLoader');
   if (!l) return;
@@ -1512,22 +1510,34 @@ function showDashboardHome(navEl) {
   showPage('home', navEl);
 }
 
+// Render Admin-Controlled Top Carousel & Bottom Promo Banner
 function renderCustomerAdsCarousel() {
-  const ads = [
-    { id: 1, tag: "FESTIVE OFFER", title: "AADI SHRAVANAM FEST", subtitle: "Flat ₹200 Less per gram on 22K Gold", image: fallbackHdImages["default"][0], productId: 101 },
-    { id: 2, tag: "DIAMOND COLLECTION", title: "ISHA BRILLIANT SPARKLE", subtitle: "Certified Diamond Solitaires & Sets", image: fallbackHdImages["DiamondRing"][0], productId: 105 }
-  ];
   const carousel = document.getElementById('customerAdsCarousel');
-  if (!carousel) return;
-  carousel.innerHTML = ads.map(ad => `
-    <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetail(${ad.productId})">
-      <div class="ad-card-content">
-        <span style="font-size:8px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag}</span>
-        <div style="font-family:'Cinzel',serif;font-size:14.5px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
-        <small style="color:#f3dfaa;font-size:9.5px;">${ad.subtitle} (Tap to View)</small>
+  const bottomImgTag = document.getElementById('bottomPromoImageTag');
+
+  const topAds = JSON.parse(localStorage.getItem('isha_top_banner')) || [
+    { tag: "FESTIVE OFFER", title: "AADI SHRAVANAM FEST", subtitle: "Flat ₹200 Less per gram on 22K Gold", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600", productId: 101 }
+  ];
+  
+  const bottomPromo = JSON.parse(localStorage.getItem('isha_bottom_banner')) || {
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600"
+  };
+
+  if (carousel) {
+    carousel.innerHTML = topAds.map(ad => `
+      <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetail(${ad.productId || 101})">
+        <div class="ad-card-content">
+          <span style="font-size:8px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag || 'OFFER'}</span>
+          <div style="font-family:'Cinzel',serif;font-size:14.5px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
+          <small style="color:#f3dfaa;font-size:9.5px;">${ad.subtitle} (Tap to View Product)</small>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `).join('');
+  }
+
+  if (bottomImgTag) {
+    bottomImgTag.src = bottomPromo.image;
+  }
 }
 
 function renderCircularCategories(containerId) {
@@ -1938,6 +1948,7 @@ function executeOrderPlacement() {
 
   myOrders.unshift(newOrd);
   localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
+  if (db) db.ref('orders/' + orderId).set(newOrd);
 
   cart = [];
   localStorage.setItem(getUserKey('cart'), JSON.stringify([]));
@@ -2048,6 +2059,7 @@ function cancelCustomerOrder(orderId) {
   if (!confirm(`Kya aap sach me Order #${orderId} cancel karna chahte hain?`)) return;
   myOrders = myOrders.filter(x => String(x.id).trim() !== String(orderId).trim());
   localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
+  if (db) db.ref('orders/' + orderId).remove();
   syncUserDataToCloud();
   renderTrackingUI();
   renderDrawerOrderHistory();
@@ -2159,25 +2171,18 @@ function renderDrawerOrderHistory() {
   c.innerHTML = myOrders.map(o => `
     <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:5px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
-        <strong style="color:var(--gold-glow);font-size:11px;">Order ID: #${o.id}</strong>
+        <strong style="color:var(--gold-glow);font-size:11px;">Order #${o.id}</strong>
         <span style="font-size:8.5px;color:#2ecc71;font-weight:700;">✓ Saved</span>
       </div>
       <div style="font-size:10px;color:var(--text-main);margin:2px 0;">📦 <b>Products:</b> ${o.specs}</div>
-      <div style="display:flex;gap:5px;margin-top:6px;">
-        <button class="btn-outline" style="flex:1;padding:5px;font-size:9px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Tax Invoice</button>
-        <button class="btn-gold" style="flex:1;padding:5px;font-size:9px;justify-content:center;" onclick="downloadOfficialBillBlob('${o.id}')">🖨️ Print / Download</button>
+      <div style="margin-top:6px;">
+        <button class="btn-outline" style="width:100%;padding:6px;font-size:10px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Slip Preview</button>
       </div>
     </div>
   `).join('');
 }
 
-// ----------------------------------------------------
-// FULLY FUNCTIONAL PDF DOWNLOAD VIA html2pdf.js
-// ----------------------------------------------------
-let lastGeneratedFileName = "IshaJewellers_Slip";
-
-function downloadPdfBlob(htmlContent, filename) {
-  lastGeneratedFileName = filename;
+function downloadPdfBlob(htmlContent) {
   const modal = document.getElementById('pdfViewerModal');
   const contentBox = document.getElementById('pdfModalContentBox');
   if (modal && contentBox) {
@@ -2191,28 +2196,6 @@ function closePdfModal() {
   if (modal) modal.style.display = 'none';
 }
 
-function triggerModalPrint() {
-  const contentBox = document.getElementById('pdfModalContentBox');
-  if (!contentBox) return;
-
-  toast("⏳ Generating PDF file, please wait...");
-  
-  const opt = {
-    margin:       5,
-    filename:     lastGeneratedFileName + '.pdf',
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
-    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-
-  html2pdf().from(contentBox).set(opt).save().then(() => {
-    toast("✅ PDF Downloaded Successfully!");
-  }).catch(err => {
-    console.log("PDF generation error:", err);
-    window.print();
-  });
-}
-
 function viewOfficialTaxInvoice(orderId) {
   const o = myOrders.find(x => x.id === orderId);
   if (!o) return;
@@ -2220,14 +2203,14 @@ function viewOfficialTaxInvoice(orderId) {
   const qrCertText = `ISHA JEWELLERS AUTHENTICITY CERTIFICATE\nInvoice: INV-IJ-${o.id}\nCustomer: ${o.customerName}\nItems: ${itemDesc}\nNet Total: Rs.${Number(o.netPayable).toLocaleString('en-IN')}\nHallmark: 100% BIS 916 HUID Assured`;
 
   const invoiceHtml = `
-    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 15px; color: #333; max-width: 650px; margin: auto; border: 2px solid #d4af37; border-radius: 12px; background: #fff;">
-      <div style="text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 12px;">
-        <h1 style="font-family:'Cinzel', serif; color: #78350f; margin: 0; font-size: 20px; letter-spacing: 2px;">ISHA JEWELLERS</h1>
-        <p style="font-size: 10.5px; color: #555; margin: 2px 0;">BALURGRAM BAZZAR, UDHWA, SAHIBGANJ, JHARKHAND - 816108</p>
-        <p style="font-size: 10.5px; color: #555; margin: 2px 0;"><b>ESTD 2004 &bull; GOVT. REG. BIS 916 HALLMARK LICENSED STORE</b> | Contact: +91 9113774515</p>
+    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 12px; color: #333; max-width: 100%; margin: auto; border: 2px solid #d4af37; border-radius: 10px; background: #fff; box-sizing: border-box;">
+      <div style="text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-bottom: 10px;">
+        <h1 style="font-family:'Cinzel', serif; color: #78350f; margin: 0; font-size: 18px; letter-spacing: 2px;">ISHA JEWELLERS</h1>
+        <p style="font-size: 9.5px; color: #555; margin: 2px 0;">BALURGRAM BAZZAR, UDHWA, SAHIBGANJ, JHARKHAND - 816108</p>
+        <p style="font-size: 9.5px; color: #555; margin: 2px 0;"><b>ESTD 2004 &bull; GOVT. REG. BIS 916 HALLMARK LICENSED STORE</b> | Contact: +91 9113774515</p>
       </div>
 
-      <div style="display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 12px; background: #fffdf5; padding: 10px; border-radius: 8px; border: 1px solid #fef3c7;">
+      <div style="display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 10px; background: #fffdf5; padding: 8px; border-radius: 6px; border: 1px solid #fef3c7;">
         <div>
           <b>Invoice ID:</b> INV-IJ-${o.id}<br>
           <b>Customer:</b> ${o.customerName}<br>
@@ -2241,56 +2224,52 @@ function viewOfficialTaxInvoice(orderId) {
         </div>
       </div>
 
-      <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 11px;">
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 10px;">
         <tr>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">#</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Item Description</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Purity</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Weight</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Making</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">#</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Item Description</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Purity</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Weight</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Making</th>
         </tr>
         ${o.items.map((it, idx) => `
           <tr>
-            <td style="border: 1px solid #d4af37; padding: 8px;">${idx+1}</td>
-            <td style="border: 1px solid #d4af37; padding: 8px;"><b>${it.name}</b> (${it.code || 'Ch0564'})</td>
-            <td style="border: 1px solid #d4af37; padding: 8px;">${it.metal || '22K'}</td>
-            <td style="border: 1px solid #d4af37; padding: 8px;">${it.weight || 4}g</td>
-            <td style="border: 1px solid #d4af37; padding: 8px;">₹${it.making || 0}</td>
+            <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${idx+1}</td>
+            <td style="border: 1px solid #d4af37; padding: 6px;"><b>${it.name}</b> (${it.code || 'Ch0564'})</td>
+            <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${it.metal || '22K'}</td>
+            <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${it.weight || 4}g</td>
+            <td style="border: 1px solid #d4af37; padding: 6px; text-align:right;">₹${it.making || 0}</td>
           </tr>
         `).join('')}
       </table>
 
-      <div style="float: right; width: 260px; font-size: 11px; margin-bottom: 15px;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 1px dashed #e5e7eb;"><span>Metal & Making Total:</span> <b>₹${Number(o.grossTotal).toLocaleString('en-IN')}</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 1px dashed #e5e7eb;"><span>GST (3%):</span> <b>+₹${Number(o.gst).toLocaleString('en-IN')}</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 2px solid #d4af37; font-weight: bold; font-size: 13px; color: #78350f;"><span>Net Total Amount:</span> <span>₹${Number(o.netPayable).toLocaleString('en-IN')}</span></div>
-        <div style="color: #16a34a; font-weight: 700; margin-top: 3px;"><span>Advance Received:</span> <span>₹${o.advancePaid} | Paid</span></div>
+      <div style="float: right; width: 240px; font-size: 10px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>Metal & Making Total:</span> <b>₹${Number(o.grossTotal).toLocaleString('en-IN')}</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>GST (3%):</span> <b>+₹${Number(o.gst).toLocaleString('en-IN')}</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 2px solid #d4af37; font-weight: bold; font-size: 12px; color: #78350f;"><span>Net Total Amount:</span> <span>₹${Number(o.netPayable).toLocaleString('en-IN')}</span></div>
+        <div style="color: #16a34a; font-weight: 700; margin-top: 2px;"><span>Advance Received:</span> <span>₹${o.advancePaid} | Paid</span></div>
       </div>
 
-      <div style="clear: both; margin-top: 30px; border: 1.5px solid #d4af37; padding: 12px; border-radius: 8px; background: #fffdf5;">
-        <div style="text-align:center; font-family:'Cinzel',serif; font-weight:bold; color:#78350f; margin-bottom:6px; font-size:11.5px;">CERTIFICATE OF BIS 916 HALLMARK AUTHENTICITY</div>
-        <p style="font-size:9px; text-align:center; color:#555; margin-bottom:10px;">This document certifies that the jewellery is 100% genuine HUID assayed, guaranteed with lifetime buyback assurance by Isha Jewellers.</p>
+      <div style="clear: both; margin-top: 15px; border: 1.5px solid #d4af37; padding: 10px; border-radius: 8px; background: #fffdf5;">
+        <div style="text-align:center; font-family:'Cinzel',serif; font-weight:bold; color:#78350f; margin-bottom:4px; font-size:10.5px;">CERTIFICATE OF BIS 916 HALLMARK AUTHENTICITY</div>
+        <p style="font-size:8.5px; text-align:center; color:#555; margin-bottom:8px;">This document certifies that the jewellery is 100% genuine HUID assayed, guaranteed with lifetime buyback assurance by Isha Jewellers.</p>
         
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <div style="border: 1.5px solid #d4af37; padding: 3px; border-radius: 6px; background: #fff;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=65x65&data=${encodeURIComponent(qrCertText)}" width="65" height="65">
+          <div style="border: 1.5px solid #d4af37; padding: 2px; border-radius: 6px; background: #fff;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=55x55&data=${encodeURIComponent(qrCertText)}" width="55" height="55">
           </div>
-          <div style="border: 1px dashed #d4af37; width: 110px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 8.5px; color: #92400e; text-align: center; border-radius: 6px;">
+          <div style="border: 1px dashed #d4af37; width: 95px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 7.5px; color: #92400e; text-align: center; border-radius: 6px;">
             Store Official Stamp
           </div>
           <div style="text-align:center;">
-            <div style="font-family:'Dancing Script', cursive; font-size:20px; color:#78350f;">Tushar Swarnkar</div>
-            <div style="border-top:1.5px solid #000; width:130px; padding-top:2px; font-size:9.5px; font-weight:bold;">Authorized Signature<br><span style="font-size:8px; font-weight:normal; color:#555;">Isha Jewellers</span></div>
+            <div style="font-family:'Dancing Script', cursive; font-size:18px; color:#78350f;">Tushar Swarnkar</div>
+            <div style="border-top:1.5px solid #000; width:110px; padding-top:2px; font-size:8.5px; font-weight:bold;">Authorized Signature<br><span style="font-size:7.5px; font-weight:normal; color:#555;">Isha Jewellers</span></div>
           </div>
         </div>
       </div>
     </div>
   `;
-  downloadPdfBlob(invoiceHtml, `IshaJewellers_Invoice_${o.id}`);
-}
-
-function downloadOfficialBillBlob(orderId) {
-  viewOfficialTaxInvoice(orderId);
+  downloadPdfBlob(invoiceHtml);
 }
 
 function downloadProductEstimatePdfDirect() {
@@ -2301,14 +2280,14 @@ function downloadProductEstimatePdfDirect() {
   const slipId = "EST-" + Math.floor(100000 + Math.random() * 900000);
   
   const estimateHtml = `
-    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 15px; color: #333; max-width: 600px; margin: auto; border: 2px solid #d4af37; border-radius: 12px; background: #fff;">
-      <div style="text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 12px;">
-        <h1 style="font-family:'Cinzel', serif; color: #78350f; margin: 0; font-size: 20px; letter-spacing: 2px;">ISHA JEWELLERS</h1>
-        <p style="font-size: 10.5px; color: #555; margin: 2px 0;">BALURGRAM BAZZAR, UDHWA, SAHIBGANJ, JHARKHAND - 816108</p>
-        <p style="font-size: 10.5px; color: #555; margin: 2px 0;"><b>ESTD 2004 &bull; GOVT. REGISTERED BIS 916 HALLMARKED STORE</b> | Contact: +91 9113774515</p>
+    <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 12px; color: #333; max-width: 100%; margin: auto; border: 2px solid #d4af37; border-radius: 10px; background: #fff; box-sizing: border-box;">
+      <div style="text-align: center; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-bottom: 10px;">
+        <h1 style="font-family:'Cinzel', serif; color: #78350f; margin: 0; font-size: 18px; letter-spacing: 2px;">ISHA JEWELLERS</h1>
+        <p style="font-size: 9.5px; color: #555; margin: 2px 0;">BALURGRAM BAZZAR, UDHWA, SAHIBGANJ, JHARKHAND - 816108</p>
+        <p style="font-size: 9.5px; color: #555; margin: 2px 0;"><b>ESTD 2004 &bull; GOVT. REGISTERED BIS 916 HALLMARKED STORE</b> | Contact: +91 9113774515</p>
       </div>
 
-      <div style="background: #fffdf5; border: 1px solid #fef3c7; padding: 10px; border-radius: 8px; display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 12px;">
+      <div style="background: #fffdf5; border: 1px solid #fef3c7; padding: 8px; border-radius: 6px; display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 10px;">
         <div>
           <b>Estimate Slip ID:</b> #${slipId}<br>
           <b>Date Issued:</b> ${new Date().toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'})}<br>
@@ -2320,43 +2299,43 @@ function downloadProductEstimatePdfDirect() {
         </div>
       </div>
 
-      <table style="width: 100%; border-collapse: collapse; margin-bottom: 12px; font-size: 11px;">
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 10px;">
         <tr>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Item Name & Code</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Category</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Weight</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Live Rate</th>
-          <th style="border: 1px solid #d4af37; padding: 8px; background: #d4af37; color: #120b02;">Amount</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Item Name & Code</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Category</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Weight</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Live Rate</th>
+          <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Amount</th>
         </tr>
         <tr>
-          <td style="border: 1px solid #d4af37; padding: 8px;"><b>${p.name}</b><br><small>Code: ${p.code || 'Ch0564'}</small></td>
-          <td style="border: 1px solid #d4af37; padding: 8px;">${p.category}</td>
-          <td style="border: 1px solid #d4af37; padding: 8px;">${w}g</td>
-          <td style="border: 1px solid #d4af37; padding: 8px;">₹${(rates.gold22k || 9050).toLocaleString('en-IN')}/g</td>
-          <td style="border: 1px solid #d4af37; padding: 8px;"><b>₹${totalVal.toLocaleString('en-IN')}</b></td>
+          <td style="border: 1px solid #d4af37; padding: 6px;"><b>${p.name}</b><br><small>Code: ${p.code || 'Ch0564'}</small></td>
+          <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${p.category}</td>
+          <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${w}g</td>
+          <td style="border: 1px solid #d4af37; padding: 6px; text-align:right;">₹${(rates.gold22k || 9050).toLocaleString('en-IN')}/g</td>
+          <td style="border: 1px solid #d4af37; padding: 6px; text-align:right;"><b>₹${totalVal.toLocaleString('en-IN')}</b></td>
         </tr>
       </table>
 
-      <div style="float: right; width: 260px; font-size: 11px; margin-bottom: 15px;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 1px dashed #e5e7eb;"><span>Metal Breakdown Value:</span> <b>₹${totalVal.toLocaleString('en-IN')}</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 1px dashed #e5e7eb;"><span>Estimated Making Charges:</span> <b>₹0</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 1px dashed #e5e7eb;"><span>GST (0%):</span> <b>+₹0</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 3px; padding: 3px 0; border-bottom: 2px solid #d4af37; font-weight: bold; font-size: 13px; color: #78350f;"><span>Estimated Net Total:</span> <span>₹${totalVal.toLocaleString('en-IN')}</span></div>
+      <div style="float: right; width: 240px; font-size: 10px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>Metal Breakdown Value:</span> <b>₹${totalVal.toLocaleString('en-IN')}</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>Estimated Making Charges:</span> <b>₹0</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>GST (0%):</span> <b>+₹0</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 2px solid #d4af37; font-weight: bold; font-size: 12px; color: #78350f;"><span>Estimated Net Total:</span> <span>₹${totalVal.toLocaleString('en-IN')}</span></div>
       </div>
 
-      <div style="clear: both; border-top: 1px dashed #d4af37; padding-top: 10px; margin-top: 25px; font-size: 9.5px; text-align: center; color: #666;">
+      <div style="clear: both; border-top: 1px dashed #d4af37; padding-top: 8px; margin-top: 15px; font-size: 9px; text-align: center; color: #666;">
         * Yeh ek official price estimate slip hai. Final billing store par weighing aur current rate ke anusaar hogi.<br><br>
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:15px;">
-          <div style="font-size:10px; text-align:left;"><b>Customer Sign:</b><br><br>......................................</div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:10px;">
+          <div style="font-size:9.5px; text-align:left;"><b>Customer Sign:</b><br><br>......................................</div>
           <div style="text-align:center;">
-            <div style="font-family:'Dancing Script', cursive; font-size:20px; color:#78350f;">Tushar Swarnkar</div>
-            <div style="border-top:1.5px solid #000; width:130px; padding-top:2px; font-size:9.5px; font-weight:bold;">Authorized Signature<br><span style="font-size:8px; font-weight:normal; color:#555;">Isha Jewellers</span></div>
+            <div style="font-family:'Dancing Script', cursive; font-size:18px; color:#78350f;">Tushar Swarnkar</div>
+            <div style="border-top:1.5px solid #000; width:110px; padding-top:2px; font-size:8.5px; font-weight:bold;">Authorized Signature<br><span style="font-size:7.5px; font-weight:normal; color:#555;">Isha Jewellers</span></div>
           </div>
         </div>
       </div>
     </div>
   `;
-  downloadPdfBlob(estimateHtml, `IshaJewellers_Estimate_${slipId}`);
+  downloadPdfBlob(estimateHtml);
 }
 
 function renderDynamicRewardCards() {
