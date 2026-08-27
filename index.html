@@ -8,8 +8,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 
+<!-- Firebase Scripts -->
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+
+<!-- html2pdf Library for Direct PDF Download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
 <style>
 :root{
@@ -81,13 +85,7 @@ body.theme-diamond {
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html, body{
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-}
+html, body{width:100%;min-height:100vh;margin:0;padding:0;overflow-x:hidden;}
 body{
   font-family:'Plus Jakarta Sans', sans-serif;
   background:var(--bg-main);
@@ -99,16 +97,9 @@ body{
 }
 
 .app{
-  width:100% !important;
-  max-width:100% !important;
-  min-height:100vh;
-  background:var(--bg-main);
-  position:relative;
-  margin:0;
-  display:flex;
-  flex-direction:column;
-  box-shadow: none;
-  padding-bottom:80px;
+  width:100% !important;max-width:100% !important;min-height:100vh;
+  background:var(--bg-main);position:relative;margin:0;display:flex;
+  flex-direction:column;box-shadow:none;padding-bottom:80px;
 }
 
 #splashScreen{
@@ -182,21 +173,10 @@ body{
 .scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;touch-action:none;cursor:grab;}
 
 header{
-  padding: 10px 14px 8px;
-  background:var(--card-bg);
-  backdrop-filter:blur(12px);
-  position:sticky;
-  top:0;
-  z-index:20;
-  border-bottom:1px solid var(--card-border);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding:10px 14px 8px;background:var(--card-bg);backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:20;border-bottom:1px solid var(--card-border);box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
-.header-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom: 6px;
-}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
 .brand-wrap{display:flex;align-items:center;gap:10px;}
 .hamburger-btn{
   background:var(--card-bg);border:1.5px solid var(--text-main);color:var(--text-main);width:38px;height:38px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:0 2px 5px rgba(0,0,0,0.15);
@@ -228,9 +208,7 @@ header{
 .rate-gold-badge{color:var(--gold-glow);font-weight:800;}
 .rate-silver-badge{color:var(--text-main);font-weight:800;}
 
-.ads-carousel{
-  margin:8px 0;overflow-x:auto;display:flex;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;
-}
+.ads-carousel{margin:8px 0;overflow-x:auto;display:flex;gap:10px;scroll-snap-type:x mandatory;scrollbar-width:none;}
 .ads-carousel::-webkit-scrollbar{display:none;}
 .ad-poster-card{
   min-width:100%;height:145px;border-radius:12px;border:1.5px solid var(--gold);position:relative;overflow:hidden;scroll-snap-align:start;background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:12px;cursor:pointer;
@@ -297,9 +275,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 .cart-item-card{
   background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:9px;display:flex;gap:10px;position:relative;cursor:pointer;
 }
-.cart-remove-btn{
-  position:absolute;top:6px;right:8px;background:none;border:none;color:#ff6b7a;font-size:13px;cursor:pointer;z-index:5;
-}
+.cart-remove-btn{position:absolute;top:6px;right:8px;background:none;border:none;color:#ff6b7a;font-size:13px;cursor:pointer;z-index:5;}
 
 .about-store-footer{
   background:var(--card-bg);border:1.5px solid var(--card-border);border-radius:14px;padding:12px;margin-top:14px;color:var(--text-main);
@@ -946,7 +922,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
           <div id="promoDiscountMsg" style="font-size:9px;color:#2ecc71;margin-top:2px;font-weight:bold;"></div>
         </div>
 
-        <div style="margin-bottom:5px;">
+        <div style="margin-bottom:5px;" id="advanceInputBox">
           <label style="font-size:9px;color:var(--gold);">Enter Advance Amount (₹)</label>
           <input type="number" id="coAdvanceInput" class="input-control" value="500" min="100">
         </div>
@@ -974,6 +950,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
+<!-- PDF Preview & Download Modal -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice</b>
@@ -2195,15 +2172,12 @@ function renderDrawerOrderHistory() {
 }
 
 // ----------------------------------------------------
-// DIRECT BROWSER PDF DOWNLOAD LOGIC
+// FULLY FUNCTIONAL PDF DOWNLOAD VIA html2pdf.js
 // ----------------------------------------------------
-let lastGeneratedHtmlContent = "";
 let lastGeneratedFileName = "IshaJewellers_Slip";
 
 function downloadPdfBlob(htmlContent, filename) {
-  lastGeneratedHtmlContent = htmlContent;
   lastGeneratedFileName = filename;
-
   const modal = document.getElementById('pdfViewerModal');
   const contentBox = document.getElementById('pdfModalContentBox');
   if (modal && contentBox) {
@@ -2217,32 +2191,26 @@ function closePdfModal() {
   if (modal) modal.style.display = 'none';
 }
 
-function forceDirectFileDownload() {
-  if (!lastGeneratedHtmlContent) return;
-  try {
-    const fullDoc = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + lastGeneratedFileName + '</title></head><body>' + lastGeneratedHtmlContent + '</body></html>';
-    const blob = new Blob([fullDoc], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = lastGeneratedFileName + '.html';
-    document.body.appendChild(a);
-    a.click();
-    
-    setTimeout(() => {
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, 1000);
-    
-    toast("📥 Download Triggered!");
-  } catch(e) {
-    window.print();
-  }
-}
-
 function triggerModalPrint() {
-  forceDirectFileDownload();
+  const contentBox = document.getElementById('pdfModalContentBox');
+  if (!contentBox) return;
+
+  toast("⏳ Generating PDF file, please wait...");
+  
+  const opt = {
+    margin:       5,
+    filename:     lastGeneratedFileName + '.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().from(contentBox).set(opt).save().then(() => {
+    toast("✅ PDF Downloaded Successfully!");
+  }).catch(err => {
+    console.log("PDF generation error:", err);
+    window.print();
+  });
 }
 
 function viewOfficialTaxInvoice(orderId) {
