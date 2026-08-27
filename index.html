@@ -53,11 +53,6 @@ body.dark-mode {
   --accent-theme: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #9a7b20 100%) !important;
 }
 
-body.theme-silver.dark-mode, body.theme-diamond.dark-mode, body.dark-mode {
-  background: var(--bg-main) !important;
-  color: var(--text-main) !important;
-}
-
 body.theme-silver {
   --gold:#A4B0BE;
   --gold-light:#F1F2F6;
@@ -98,7 +93,6 @@ body{
   transition:background 0.3s ease, color 0.3s ease;
 }
 
-/* RESPONSIVE DEVICE AUTO-FIT (Point 1) */
 .app{
   width:100% !important;max-width:600px !important;min-height:100vh;
   background:var(--bg-main);position:relative;margin:0 auto;display:flex;
@@ -259,7 +253,6 @@ main{padding:8px 10px 85px;flex:1;}
 }
 .wish-heart-btn.active{color:#ff334b;}
 
-/* FIXED IMAGE CROPPING / ASPECT RATIO (Point 5) */
 .product-img-wrap{width:100%;height:150px;background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 body.theme-diamond .product-img-wrap{background:#e0f2fe;}
 .product-img-wrap img{width:100%;height:100%;object-fit:contain;background:#111;}
@@ -327,6 +320,12 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 }
 .opt-pill-btn.active{border-color:var(--gold);color:var(--gold-glow);background:var(--theme-subtle);}
 
+.stepper-btn{
+  width:32px;height:32px;display:grid;place-items:center;font-size:16px;font-weight:900;
+  border:none;background:var(--theme-subtle);color:var(--gold-glow);border-radius:6px;cursor:pointer;user-select:none;
+}
+.stepper-btn:active{transform:scale(0.92);background:var(--gold);color:#000;}
+
 .cal-flip-card{
   background:var(--card-bg);border:2px solid var(--gold);border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.8);position:relative;margin-bottom:10px;
 }
@@ -339,7 +338,12 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 .cal-today-badge{font-size:5.5px;font-weight:900;background:var(--gold);color:#000;padding:1px 3px;border-radius:3px;margin-top:2px;}
 .cal-day-num{font-weight:800;font-size:10.5px;}
 
-.toast-msg{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);background:var(--card-bg);color:var(--gold-glow);border:1px solid var(--card-border);padding:7px 14px;border-radius:30px;font-size:11px;font-weight:600;z-index:9999999;display:none;box-shadow:0 5px 15px rgba(0,0,0,0.2);}
+.toast-msg{
+  position:fixed;bottom:75px;left:50%;transform:translateX(-50%);
+  background:rgba(20,17,28,0.96);color:#ffd57e;border:1.5px solid #d4af37;
+  padding:8px 18px;border-radius:30px;font-size:11.5px;font-weight:700;
+  z-index:9999999999;display:none;box-shadow:0 6px 20px rgba(0,0,0,0.4);text-align:center;
+}
 </style>
 </head>
 <body>
@@ -372,87 +376,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     <div id="successModalScratchContainer"></div>
 
     <button class="btn-gold" style="width:100%;justify-content:center;margin-top:6px;padding:9px;" onclick="closeSuccessAnimModal()">Thanks for Shopping with Us! ➔ Track Order</button>
-  </div>
-</div>
-
-<div id="firstTimeLoginGateway">
-  <div class="gateway-card">
-    <svg width="38" height="38" viewBox="0 0 100 100" style="margin-bottom:5px;">
-      <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
-      <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
-    </svg>
-    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:#fff;margin-bottom:3px;">ISHA JEWELLERS</h2>
-    <p style="font-size:9.5px;color:#a89f91;margin-bottom:8px;">Secure Account Cloud Gateway</p>
-
-    <div id="authStepRegister">
-      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
-        <div>
-          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Full Name *</label>
-          <input type="text" id="regName" class="input-control" placeholder="Enter Full Name">
-        </div>
-        <div>
-          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
-          <input type="tel" id="regMobile" maxlength="10" class="input-control" placeholder="Mobile Number daalein">
-        </div>
-        <div>
-          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Email Address *</label>
-          <input type="email" id="regEmail" class="input-control" placeholder="name@gmail.com">
-        </div>
-      </div>
-      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="triggerOtpSimulation()">
-        📱 Get Instant OTP ➔
-      </button>
-      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
-        Already registered? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login with MPIN</a>
-      </div>
-    </div>
-
-    <div id="authStepOtp" style="display:none;">
-      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Verify Instant OTP</h3>
-      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Aapke mobile par auto-generated OTP screen par dikh raha hai.</p>
-      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:8px;border-radius:8px;font-size:16px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:6px;" id="dispAutoOtpBox">4829</div>
-      <div style="text-align:left;margin-bottom:6px;">
-        <label style="font-size:9.5px;color:var(--gold);">Enter 4-Digit OTP Code</label>
-        <input type="tel" id="enteredOtpBox" maxlength="4" class="mpin-box-input" placeholder="• • • •">
-      </div>
-      <button class="btn-gold" style="width:100%;justify-content:center;padding:9px;" onclick="verifyOtpAndProceed()">✓ Verify & Set MPIN</button>
-      <button class="btn-outline" style="width:100%;margin-top:5px;padding:5px;" onclick="switchAuthScreen('register')">‹ Back</button>
-    </div>
-
-    <div id="authStepCreateMpin" style="display:none;">
-      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Set 4-Digit Security MPIN</h3>
-      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Kisi bhi mobile, tablet ya laptop par account kholne ke liye yeh MPIN yaad rakhein.</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
-        <div>
-          <label style="font-size:9px;color:var(--gold);">Create New MPIN</label>
-          <input type="password" id="newMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
-        </div>
-        <div>
-          <label style="font-size:9px;color:var(--gold);">Confirm MPIN</label>
-          <input type="password" id="confirmMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
-        </div>
-      </div>
-      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="saveNewUserAccount()">✓ Sync & Open Store</button>
-    </div>
-
-    <div id="authStepLogin" style="display:none;">
-      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Cloud Account Login</h3>
-      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Enter 10-Digit Mobile & 4-Digit MPIN</p>
-      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
-        <div>
-          <label style="font-size:9px;color:var(--gold);">Registered Mobile Number</label>
-          <input type="tel" id="loginMobile" maxlength="10" class="input-control" placeholder="10-Digit Mobile">
-        </div>
-        <div>
-          <label style="font-size:9px;color:var(--gold);">4-Digit MPIN</label>
-          <input type="password" id="loginMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
-        </div>
-      </div>
-      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data & Open App</button>
-      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
-        New user? <a href="javascript:void(0)" onclick="switchAuthScreen('register')" style="color:var(--gold-glow);font-weight:bold;">Register New Account</a>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -511,7 +434,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 
   <main>
     <section id="home" class="page active">
-      <!-- Top Carousel Banner (Admin Controlled with Product Link - Point 4 Fixed) -->
       <div class="ads-carousel" id="customerAdsCarousel"></div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
@@ -535,7 +457,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div class="section-title-bar" style="margin-top:14px;"><h2>👑 Most Viewed & Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
 
-      <!-- Bottom Promotion Banner -->
       <div style="background:var(--card-bg); border:1.5px solid var(--gold); border-radius:14px; padding:5px; margin:14px 0 8px 0; text-align:center; box-shadow:0 4px 15px rgba(212,175,55,0.15); overflow:hidden;">
         <div style="width:100%; height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); position:relative;">
           <img id="bottomPromoImageTag" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" style="width:100%; height:100%; object-fit:cover;" alt="Jewellery Poster">
@@ -618,6 +539,19 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div class="breakup-row" style="border:none; margin-bottom:0;"><span>GST Applicable:</span> <b>3% (Govt. Regd)</b></div>
       </div>
 
+      <!-- STEPPER SIZE / LENGTH SELECTOR -->
+      <div id="multiSizeBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1.5px solid var(--gold);border-radius:10px;padding:9px;display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <b style="font-size:11px;color:var(--gold-glow);" id="lblSizeOptionHeading">📏 Select Size / Length:</b>
+          <div style="display:inline-flex;align-items:center;background:var(--bg-main);border:1.5px solid var(--gold);border-radius:8px;padding:2px;gap:6px;">
+            <button type="button" class="stepper-btn" onclick="changeSizeStep(-1)">−</button>
+            <span id="dispCurrentSizeLabel" style="min-width:80px;text-align:center;font-size:11px;font-weight:800;color:var(--text-main);">Size 1</span>
+            <button type="button" class="stepper-btn" onclick="changeSizeStep(1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEIGHT SELECTOR -->
       <div id="multiWeightBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;">
         <b style="font-size:10.5px;color:var(--gold-glow);display:block;margin-bottom:4px;">⚖️ Available Weights / Carats:</b>
         <div class="opt-pill-grid" id="detailWeightPillsGrid"></div>
@@ -636,8 +570,8 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       </div>
       
       <div id="actionButtonsNormal" style="display:flex;gap:8px;margin-top:8px;">
-        <button class="btn-outline" style="flex:1;justify-content:center;padding:9px;" onclick="addCurrentToCart()">+ Add to Cart</button>
-        <button class="btn-gold" style="flex:1.4;justify-content:center;font-size:12.5px;padding:9px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
+        <button type="button" class="btn-outline" style="flex:1;justify-content:center;padding:9px;" onclick="addCurrentToCart()">+ Add to Cart</button>
+        <button type="button" class="btn-gold" style="flex:1.4;justify-content:center;font-size:12.5px;padding:9px;" onclick="openOrderCheckoutModal([currentProduct], 'direct')">⚡ Buy Now</button>
       </div>
 
       <button type="button" class="btn-outline" style="width:100%;justify-content:center;margin-top:8px;padding:9px;border-color:var(--gold);color:var(--gold-glow);font-weight:700;" onclick="downloadProductEstimatePdfDirect()">
@@ -750,7 +684,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- SILVER TANCH RATE ESTIMATOR WITH DEDUCTION SLABS (Point 8) -->
+      <!-- SILVER TANCH ESTIMATOR -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">🪙 Live Silver Tanch Estimator</span>
@@ -783,7 +717,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- ORDER HISTORY (DISPLAYED ONLY AFTER SUCCESSFUL ORDERS - Point 6) -->
+      <!-- DELIVERED ORDER HISTORY -->
       <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">📦 My Orders History & Invoices</span>
@@ -794,7 +728,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- REWARD SCRATCH CARDS (PERSISTENT STATE - Point 9) -->
+      <!-- REWARD SCRATCH CARDS -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">🎁 My Reward Scratch Cards</span>
@@ -822,8 +756,9 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:10px 8px 80px;overflow-y:auto;-webkit-overflow-scrolling:touch;">
-  <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px 12px 20px;width:100%;max-width:370px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;">
+<!-- CHECKOUT MODAL -->
+<div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:10px 8px 80px;overflow-y:auto;">
+  <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px 12px 20px;width:100%;max-width:370px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;position:relative;z-index:10000000;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
       <h3 style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
       <button type="button" class="btn-outline" style="padding:3px 7px;font-size:10.5px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
@@ -900,7 +835,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
             <span>⚡ UPI Advance Payment (Direct UPI App Open)</span>
           </label>
           <label style="display:flex;align-items:center;gap:7px;background:var(--card-bg);padding:7px;border-radius:8px;cursor:pointer;font-size:10px;">
-            <input type="radio" name="payModeRadio" onclick="selectPaymentModeOption('shop')">
+            <input type="radio" name="payModeRadio" id="payModeShop" onclick="selectPaymentModeOption('shop')">
             <span>🏬 Advance in Shop (Isha Jewellers Store)</span>
           </label>
         </div>
@@ -921,9 +856,8 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       </div>
 
       <div style="display:flex;gap:5px;">
-        <button type="button" class="btn-danger" style="flex:1;padding:10px;font-size:11px;font-weight:700;" onclick="goToCheckoutStep2()">❌ Cancel</button>
-        <!-- FIXED UNLIMITED RE-ORDER FREEZE (Point 2) -->
-        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:10px;font-size:11px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;position:relative;z-index:99999;cursor:pointer;pointer-events:auto;" onclick="executeOrderPlacement()">
+        <button type="button" class="btn-danger" style="flex:1;padding:10px;font-size:11px;font-weight:700;" onclick="goToCheckoutStep2()">‹ Back</button>
+        <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:10px;font-size:11px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;cursor:pointer;" onclick="executeOrderPlacement()">
           ✓ CONFIRM ORDER
         </button>
       </div>
@@ -954,72 +888,118 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 <div class="toast-msg" id="toast"></div>
 
 <script>
+function safeNum(val, fallback = 0) {
+  if (val === undefined || val === null || val === '') return fallback;
+  if (typeof val === 'number') return isNaN(val) ? fallback : val;
+  const cleaned = String(val).replace(/[^0-9.-]+/g, '');
+  const n = parseFloat(cleaned);
+  return isNaN(n) ? fallback : n;
+}
+
 let db = null;
 try {
   const firebaseConfig = { databaseURL: "https://isha-jewellers-default-rtdb.firebaseio.com" };
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   db = firebase.database();
-} catch (e) { console.log("Firebase init fallback mode active"); }
+} catch (e) { }
 
 const STORE_UPI_ID = "9113774515@ybl";
 const STORE_PAYEE_NAME = "ISHA JEWELLERS";
 
-let adminConfig = JSON.parse(localStorage.getItem('isha_admin_config')) || {
+let adminConfig = {
   adminRewardActive: true,
   promoBannerImg: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600",
   storeOpen: true
 };
 
-let rates = JSON.parse(localStorage.getItem('isha_rates')) || {
+try {
+  const parsedAdmin = JSON.parse(localStorage.getItem('isha_admin_config'));
+  if (parsedAdmin && typeof parsedAdmin === 'object') {
+    adminConfig = Object.assign(adminConfig, parsedAdmin);
+  }
+} catch(e){}
+
+let rates = {
   gold24k: 9850, gold22k: 9050, gold18k: 7400, silverPureKg: 98000, diamondPerCarat: 65000, defaultSilverTanch: 55, silverRate55PerG: 53.90,
   tanchRates: { t70: 68.6, t80: 78.4, t90: 88.2, tPure: 98.0 }, gst: 3, deliveryCharge: 0
 };
 
-let userAuth = JSON.parse(localStorage.getItem('isha_user_auth')) || { loggedIn: false, phone: "" };
-let allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
-let tempRegData = {};
-let generatedOtpCode = "4829";
+try {
+  const parsedRates = JSON.parse(localStorage.getItem('isha_rates'));
+  if (parsedRates && typeof parsedRates === 'object') {
+    rates = Object.assign(rates, parsedRates);
+  }
+} catch(e){}
+
+let userAuth = { loggedIn: false, phone: "" };
+try {
+  const parsedAuth = JSON.parse(localStorage.getItem('isha_user_auth'));
+  if (parsedAuth && typeof parsedAuth === 'object') userAuth = parsedAuth;
+} catch(e){}
+
+let allUsersDb = {};
+try {
+  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
+} catch(e){}
+
 let appliedDiscountAmount = 0;
 
-function getUserKey(suffix) {
-  const p = userAuth.phone ? userAuth.phone.trim() : 'guest';
-  return `isha_u_${p}_${suffix}`;
+let cart = [];
+let wishlist = [];
+let myOrders = [];
+let scratchedStateMap = {};
+
+try { cart = JSON.parse(localStorage.getItem('isha_cart')) || []; } catch(e){}
+try { wishlist = JSON.parse(localStorage.getItem('isha_wishlist')) || []; } catch(e){}
+try { myOrders = JSON.parse(localStorage.getItem('isha_orders')) || []; } catch(e){}
+try { scratchedStateMap = JSON.parse(localStorage.getItem('isha_scratched')) || {}; } catch(e){}
+
+function saveUserDataDirect() {
+  try {
+    localStorage.setItem('isha_cart', JSON.stringify(cart));
+    localStorage.setItem('isha_wishlist', JSON.stringify(wishlist));
+    localStorage.setItem('isha_orders', JSON.stringify(myOrders));
+    localStorage.setItem('isha_scratched', JSON.stringify(scratchedStateMap));
+  } catch(e){}
+}
+
+function cleanDataForCloud(obj) {
+  return JSON.parse(JSON.stringify(obj, (k, v) => (v === undefined || Number.isNaN(v) ? null : v)));
 }
 
 function syncUserDataToCloud() {
+  saveUserDataDirect();
   if (!db || !userAuth.loggedIn || !userAuth.phone) return;
-  const phoneKey = userAuth.phone.replace(/[^0-9]/g, '');
-  const cloudData = {
-    profile: getUserProfile(),
-    cart: cart,
-    wishlist: wishlist,
-    orders: myOrders,
-    scratched: scratchedStateMap
-  };
-  db.ref('users/' + phoneKey).set(cloudData).catch(err => console.log("Cloud sync error:", err));
+  try {
+    const phoneKey = String(userAuth.phone).replace(/[^0-9]/g, '');
+    if (!phoneKey) return;
+    const cloudData = cleanDataForCloud({
+      profile: getUserProfile(),
+      cart: cart,
+      wishlist: wishlist,
+      orders: myOrders,
+      scratched: scratchedStateMap
+    });
+    db.ref('users/' + phoneKey).set(cloudData).catch(() => {});
+  } catch(e){}
 }
 
 function fetchUserDataFromCloud(phone, callback) {
-  if (!db) { if(callback) callback(); return; }
-  const phoneKey = phone.replace(/[^0-9]/g, '');
-  db.ref('users/' + phoneKey).once('value').then(snapshot => {
-    const val = snapshot.val();
-    if (val) {
-      if (val.profile) localStorage.setItem(getUserKeyFromPhone(phone, 'profile'), JSON.stringify(val.profile));
-      if (val.cart) localStorage.setItem(getUserKeyFromPhone(phone, 'cart'), JSON.stringify(val.cart));
-      if (val.wishlist) localStorage.setItem(getUserKeyFromPhone(phone, 'wishlist'), JSON.stringify(val.wishlist));
-      if (val.orders) localStorage.setItem(getUserKeyFromPhone(phone, 'orders'), JSON.stringify(val.orders));
-      if (val.scratched) localStorage.setItem(getUserKeyFromPhone(phone, 'scratched'), JSON.stringify(val.scratched));
-    }
-    if (callback) callback();
-  }).catch(err => {
-    console.log("Cloud fetch error:", err);
-    if (callback) callback();
-  });
-}
-
-function getUserKeyFromPhone(phone, suffix) {
-  return `isha_u_${phone.trim()}_${suffix}`;
+  if (!db || !phone) { if(callback) callback(); return; }
+  try {
+    const phoneKey = String(phone).replace(/[^0-9]/g, '');
+    db.ref('users/' + phoneKey).once('value').then(snapshot => {
+      const val = snapshot.val();
+      if (val) {
+        if (Array.isArray(val.cart)) cart = val.cart;
+        if (Array.isArray(val.wishlist)) wishlist = val.wishlist;
+        if (Array.isArray(val.orders)) myOrders = val.orders;
+        if (val.scratched) scratchedStateMap = val.scratched;
+        saveUserDataDirect();
+      }
+      if (callback) callback();
+    }).catch(() => { if (callback) callback(); });
+  } catch(e){ if (callback) callback(); }
 }
 
 function getUserProfile() {
@@ -1032,7 +1012,7 @@ function getUserProfile() {
       avatar: u.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
     };
   }
-  return JSON.parse(localStorage.getItem(getUserKey('profile'))) || {
+  return {
     name: "Customer Name",
     phone: userAuth.phone || "",
     email: "",
@@ -1040,28 +1020,11 @@ function getUserProfile() {
   };
 }
 
-let cart = [];
-let wishlist = [];
-let myOrders = [];
-let scratchedStateMap = {};
-
-function reloadUserData() {
-  if (userAuth.loggedIn && userAuth.phone) {
-    cart = JSON.parse(localStorage.getItem(getUserKey('cart'))) || [];
-    wishlist = JSON.parse(localStorage.getItem(getUserKey('wishlist'))) || [];
-    myOrders = JSON.parse(localStorage.getItem(getUserKey('orders'))) || [];
-    scratchedStateMap = JSON.parse(localStorage.getItem(getUserKey('scratched'))) || {};
-  } else {
-    cart = [];
-    wishlist = [];
-    myOrders = [];
-    scratchedStateMap = {};
-  }
-}
-
 let currentSegment = "Gold";
 let currentProduct = null;
-let currentCustomSize = "";
+let currentCustomSize = "Standard Size";
+let currentProductSizeOptions = [];
+let currentSizeIndex = 0;
 let currentCustomWeight = 4;
 let currentCheckoutItems = [];
 let currentCheckoutTotal = 0;
@@ -1086,191 +1049,55 @@ let circularIconsDef = [
   { id: 'Diamond', name: 'Diamond 💎', svg: `<svg viewBox="0 0 24 24"><polygon points="6 3 18 3 22 8 12 22 2 8 6 3"/></svg>` }
 ];
 
-let allProducts = JSON.parse(localStorage.getItem('isha_products')) || [
-  { id: 101, code: "IJ-RING-01", name: "Royal Wedding 22K Ring", metal: "22K", category: "Rings", weight: 4, availableWeights: [3, 4, 5, 6.5], making: 1500, inStock: true, type: "trending", image: fallbackHdImages["Rings"] }
+let allProducts = [
+  { id: 101, code: "IJ-RING-01", name: "Royal Wedding 22K Ring", metal: "22K", category: "Rings", weight: 4, availableWeights: [3, 4, 5, 6.5], making: 1500, inStock: true, type: "trending", image: fallbackHdImages["Rings"] },
+  { id: 102, code: "IJ-CHN-02", name: "Classic Gold Chain", metal: "22K", category: "Chain", weight: 8, availableWeights: [6, 8, 10, 15], making: 2200, inStock: true, type: "trending", image: fallbackHdImages["Chain"] },
+  { id: 103, code: "IJ-BLI-03", name: "Bridal Bali Hoops", metal: "22K", category: "Bali", weight: 5, availableWeights: [4, 5, 6], making: 1800, inStock: true, type: "new", image: fallbackHdImages["Bali"] }
 ];
+
+try {
+  const localProds = JSON.parse(localStorage.getItem('isha_products'));
+  if (Array.isArray(localProds) && localProds.length > 0) allProducts = localProds;
+} catch(e){}
 
 window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     const sp = document.getElementById('splashScreen');
     if (sp) { sp.style.opacity = '0'; setTimeout(() => sp.style.display = 'none', 600); }
-  }, 1000);
+  }, 600);
 
-  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
-  reloadUserData();
   initApp();
   initAdminCloudListeners();
 });
 
-// INSTANT PRODUCT & RATE SYNC (Point 3)
 function initAdminCloudListeners() {
   if (!db) return;
-  db.ref('rates').on('value', (snapshot) => {
-    const cloudRates = snapshot.val();
-    if (cloudRates) {
-      rates = cloudRates;
-      localStorage.setItem('isha_rates', JSON.stringify(rates));
-      updateRatesBarUI();
-      if (currentProduct) recalcProductCalculations();
-    }
-  });
-
-  db.ref('products').on('value', (snapshot) => {
-    const cloudProducts = snapshot.val();
-    if (cloudProducts) {
-      allProducts = Object.values(cloudProducts).reverse(); // New products appear instantly on top
-      localStorage.setItem('isha_products', JSON.stringify(allProducts));
-      renderDashboardSections();
-      renderCatPageProducts();
-    }
-  });
-
-  db.ref('storeBanners').on('value', (snapshot) => {
-    const banners = snapshot.val();
-    if (banners) {
-      if (banners.topCarousel) localStorage.setItem('isha_top_banner', JSON.stringify(banners.topCarousel));
-      if (banners.bottomPromo) localStorage.setItem('isha_bottom_banner', JSON.stringify(banners.bottomPromo));
-      renderCustomerAdsCarousel();
-    }
-  });
-}
-
-function checkFirstTimeLoginGateway() {
-  const gtw = document.getElementById('firstTimeLoginGateway');
-  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
-  
-  if (userAuth.loggedIn && userAuth.phone && allUsersDb[userAuth.phone]) {
-    fetchUserDataFromCloud(userAuth.phone, () => {
-      reloadUserData();
-      gtw.style.display = 'none';
-      initAppUIFully();
+  try {
+    db.ref('rates').on('value', (snapshot) => {
+      const cloudRates = snapshot.val();
+      if (cloudRates && typeof cloudRates === 'object') {
+        rates = Object.assign(rates, cloudRates);
+        localStorage.setItem('isha_rates', JSON.stringify(rates));
+        updateRatesBarUI();
+        if (currentProduct) recalcProductCalculations();
+      }
     });
-  } else {
-    userAuth = { loggedIn: false, phone: "" };
-    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-    gtw.style.display = 'flex';
-    if (Object.keys(allUsersDb).length > 0) {
-      switchAuthScreen('login');
-    } else {
-      switchAuthScreen('register');
-    }
-  }
-}
 
-function switchAuthScreen(view) {
-  document.getElementById('authStepRegister').style.display = (view === 'register') ? 'block' : 'none';
-  document.getElementById('authStepOtp').style.display = (view === 'otp') ? 'block' : 'none';
-  document.getElementById('authStepCreateMpin').style.display = (view === 'createMpin') ? 'block' : 'none';
-  document.getElementById('authStepLogin').style.display = (view === 'login') ? 'block' : 'none';
-}
-
-function triggerOtpSimulation() {
-  const name = document.getElementById('regName').value.trim();
-  const phone = document.getElementById('regMobile').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
-
-  if (!name) { alert("Kripya Full Name enter karein!"); return; }
-  if (phone.length !== 10 || isNaN(phone)) { alert("Kripya 10-Digit valid Mobile Number enter karein!"); return; }
-  if (!email || !email.includes('@')) { alert("Kripya valid Email Address enter karein!"); return; }
-
-  if (allUsersDb[phone]) {
-    alert("Yeh mobile number pehle se registered hai! Kripya 'Cloud Login with MPIN' ka use karein.");
-    switchAuthScreen('login');
-    return;
-  }
-
-  generatedOtpCode = String(Math.floor(1000 + Math.random() * 9000));
-  tempRegData = { name, phone, email, avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200" };
-  
-  document.getElementById('dispAutoOtpBox').textContent = generatedOtpCode;
-  switchAuthScreen('otp');
-  toast(`📱 OTP Generated: ${generatedOtpCode}`);
-}
-
-function verifyOtpAndProceed() {
-  const entered = document.getElementById('enteredOtpBox').value.trim();
-  if (entered !== generatedOtpCode) {
-    alert("Galat OTP code! Kripya screen par diya gaya code enter karein.");
-    return;
-  }
-  switchAuthScreen('createMpin');
-}
-
-function saveNewUserAccount() {
-  const m1 = document.getElementById('newMpin').value.trim();
-  const m2 = document.getElementById('confirmMpin').value.trim();
-
-  if (m1.length !== 4 || isNaN(m1)) { alert("Kripya 4-Digit MPIN set karein!"); return; }
-  if (m1 !== m2) { alert("Confirm MPIN match nahi hua! Dobara verify karein."); return; }
-
-  const newUserObj = {
-    name: tempRegData.name,
-    phone: tempRegData.phone,
-    email: tempRegData.email,
-    mpin: m1,
-    avatar: tempRegData.avatar
-  };
-
-  allUsersDb[tempRegData.phone] = newUserObj;
-  localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
-
-  userAuth = { loggedIn: true, phone: tempRegData.phone };
-  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-
-  fetchUserDataFromCloud(tempRegData.phone, () => {
-    reloadUserData();
-    syncUserDataToCloud();
-    document.getElementById('firstTimeLoginGateway').style.display = 'none';
-    initAppUIFully();
-    showLoader(400);
-    toast("🎉 Account Registered & Opened Successfully!");
-  });
-}
-
-function verifyUserMpinLogin() {
-  const phone = document.getElementById('loginMobile').value.trim();
-  const mpin = document.getElementById('loginMpin').value.trim();
-
-  if (phone.length !== 10 || mpin.length !== 4) {
-    alert("Kripya 10-Digit Mobile aur 4-Digit MPIN enter karein!");
-    return;
-  }
-
-  if (!allUsersDb[phone]) {
-    alert("❌ Yeh Mobile Number registered nahi hai! Kripya pehle Account Register karein.");
-    switchAuthScreen('register');
-    return;
-  }
-
-  if (allUsersDb[phone].mpin !== mpin) {
-    alert("❌ Galat MPIN! Kripya sahi 4-Digit MPIN enter karein.");
-    return;
-  }
-
-  userAuth = { loggedIn: true, phone: phone };
-  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-
-  fetchUserDataFromCloud(phone, () => {
-    reloadUserData();
-    syncUserDataToCloud();
-    document.getElementById('firstTimeLoginGateway').style.display = 'none';
-    initAppUIFully();
-    showLoader(400);
-    toast("🔓 Secure Login Successful!");
-  });
+    db.ref('products').on('value', (snapshot) => {
+      const cloudProducts = snapshot.val();
+      if (cloudProducts && typeof cloudProducts === 'object') {
+        allProducts = Object.values(cloudProducts).reverse();
+        localStorage.setItem('isha_products', JSON.stringify(allProducts));
+        renderDashboardSections();
+        renderCatPageProducts();
+      }
+    });
+  } catch(e){}
 }
 
 function initApp() {
   updateRatesBarUI();
-  allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
-  const storeIsOpen = adminConfig.storeOpen;
-  const badge = document.getElementById('storeStatusBadge');
-  if (badge) {
-    badge.textContent = storeIsOpen ? "🟢 Store Open" : "🔴 Store Closed";
-    badge.style.color = storeIsOpen ? "#2ecc71" : "#ff4d4d";
-  }
-  allProducts = JSON.parse(localStorage.getItem('isha_products')) || allProducts;
-  checkFirstTimeLoginGateway();
+  initAppUIFully();
 }
 
 function initAppUIFully() {
@@ -1289,9 +1116,10 @@ function initAppUIFully() {
 }
 
 function updateRatesBarUI() {
-  document.getElementById('barRate22k').textContent = "₹" + Number(rates.gold22k || 9050).toLocaleString('en-IN') + "/g";
-  const s55 = rates.silverRate55PerG || ((rates.silverPureKg || 98000)/1000 * 0.55).toFixed(2);
-  document.getElementById('barRateSilver').textContent = "₹" + s55 + "/g";
+  const g22 = safeNum(rates.gold22k, 9050);
+  document.getElementById('barRate22k').textContent = "₹" + g22.toLocaleString('en-IN') + "/g";
+  const s55 = safeNum(rates.silverRate55PerG, (safeNum(rates.silverPureKg, 98000)/1000 * 0.55));
+  document.getElementById('barRateSilver').textContent = "₹" + s55.toFixed(2) + "/g";
 }
 
 function loadAndRenderUserProfile() {
@@ -1323,15 +1151,14 @@ function saveProfileDetails(e) {
   const avatar = document.getElementById('dispAvatar').src;
 
   const prof = { name: name, phone: userAuth.phone, email: email, avatar: avatar };
-  if (allUsersDb[userAuth.phone]) {
+  if (userAuth.phone && allUsersDb[userAuth.phone]) {
     allUsersDb[userAuth.phone] = Object.assign(allUsersDb[userAuth.phone], prof);
     localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
   }
-  localStorage.setItem(getUserKey('profile'), JSON.stringify(prof));
   syncUserDataToCloud();
   loadAndRenderUserProfile();
   hideProfileEditor();
-  toast("✅ Profile Details Saved & Cloud Synced!");
+  toast("✅ Profile Details Saved!");
 }
 
 function previewProfilePic(e) {
@@ -1359,7 +1186,6 @@ function switchMetalSegment(seg) {
   renderCatPageProducts();
 }
 
-// FULL GLOBAL DARK MODE SUPPORT (Point 7)
 function toggleTheme() {
   const isCurrentlyDark = document.body.classList.contains('dark-mode');
   const newDarkState = !isCurrentlyDark;
@@ -1375,14 +1201,6 @@ function toggleTheme() {
   toast(newDarkState ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (localStorage.getItem('isha_dark_mode') === 'true') {
-    document.body.classList.add('dark-mode');
-    const btn = document.getElementById('btnThemeMode');
-    if(btn) btn.textContent = "Light Mode";
-  }
-});
-
 function openTermsModal() {
   document.getElementById('termsModal').style.display = 'flex';
 }
@@ -1391,45 +1209,86 @@ function closeTermsModal() {
 }
 
 function getProductPhoto(p) {
-  if (Array.isArray(p.image) && p.image.length) return p.image[0];
+  if (!p) return fallbackHdImages["default"][0];
+  if (Array.isArray(p.image) && p.image.length && typeof p.image[0] === 'string') return p.image[0];
   if (p.image && typeof p.image === 'string' && p.image.length > 20) return p.image;
   return (fallbackHdImages[p.category] || fallbackHdImages["default"])[0];
 }
 
 function getProductDesc(p) {
+  if (!p) return "";
   if (p.description && p.description.length > 6) return p.description;
   if (p.metal === 'Diamond') {
     return `Certified SI-IJ diamond set in 18K Hallmarked gold mountings with brilliant sparkle and shine.`;
   }
-  if (p.metal && p.metal.includes('Silver')) {
+  if (p.metal && String(p.metal).includes('Silver')) {
     return `Authentic handcrafted silver article assayed for local purity with high-buff gloss lustre.`;
   }
   return `Govt. Registered 100% BIS 916 Hallmarked Pure Gold with HUID purity certification.`;
 }
 
 function getProductLivePrice(p, customWeight) {
-  const w = (customWeight !== undefined) ? customWeight : (p.weight || 4);
-  let rate = rates.gold22k || 9050;
-  if (p.metal === 'Diamond') {
-    rate = rates.diamondPerCarat || 65000;
-  } else if (p.metal === 'Silver' || p.metal === 'Silver55') {
-    rate = rates.silverRate55PerG || 53.90;
-  } else if (p.metal === '24K') rate = rates.gold24k || 9850;
-  else if (p.metal === '18K') rate = rates.gold18k || 7400;
+  if (!p) return 0;
+  const w = safeNum(customWeight !== undefined ? customWeight : p.weight, 4);
+  let rate = safeNum(rates.gold22k, 9050);
 
-  const making = (p.makingType === 'flatPiece') ? (p.making || 0) : Math.round((p.making || 0) * (w / (p.weight || w || 1)));
+  const m = String(p.metal || '22K');
+  if (m === 'Diamond') {
+    rate = safeNum(rates.diamondPerCarat, 65000);
+  } else if (m.includes('Silver')) {
+    rate = safeNum(rates.silverRate55PerG, 53.90);
+  } else if (m === '24K') rate = safeNum(rates.gold24k, 9850);
+  else if (m === '18K') rate = safeNum(rates.gold18k, 7400);
+
+  const baseWeight = safeNum(p.weight, w || 1);
+  const rawMaking = safeNum(p.making, 1000);
+  const making = (p.makingType === 'flatPiece') ? rawMaking : Math.round(rawMaking * (w / (baseWeight || 1)));
   const subtotal = Math.round(rate * w + making);
   const gstCost = Math.round(subtotal * 0.03);
-  return subtotal + gstCost;
+  return safeNum(subtotal + gstCost, 0);
+}
+
+function getSizesForProduct(cat, metal) {
+  const c = String(cat || "").toLowerCase();
+  const m = String(metal || "").toLowerCase();
+  const isSilver = m.includes('silver');
+
+  if (c.includes('chain')) {
+    if (isSilver) return Array.from({length: 14}, (_, i) => `${i + 12} Inch`);
+    return Array.from({length: 15}, (_, i) => `${i + 12} Inch`);
+  }
+  if (c.includes('ring')) {
+    return Array.from({length: 40}, (_, i) => `Size ${i + 1}`);
+  }
+  if (c.includes('bali') || c.includes('jhumka') || c.includes('mangalsutra') || c.includes('locket') || c.includes('earring') || c.includes('tops')) {
+    return ["Small", "Medium", "Large"];
+  }
+  if (c.includes('bangle') || c.includes('churi')) {
+    return ["Size 2.2", "Size 2.4", "Size 2.6", "Size 2.8", "Size 2.10", "Size 2.12"];
+  }
+  if (c.includes('payal')) {
+    return Array.from({length: 7}, (_, i) => `${i + 6} Inch`);
+  }
+  if (c.includes('baby') || c.includes('kid')) {
+    return Array.from({length: 6}, (_, i) => `${i + 5} Inch`);
+  }
+  if (c.includes('kadha') || c.includes('kada')) {
+    return Array.from({length: 11}, (_, i) => `${i + 5} Inch`);
+  }
+  if (c.includes('bracelet') || c.includes('braslet')) {
+    if (isSilver) return Array.from({length: 13}, (_, i) => `${i + 2} Inch`);
+    return Array.from({length: 11}, (_, i) => `${i + 5} Inch`);
+  }
+  return [];
 }
 
 function openProductDetail(id) {
-  const p = allProducts.find(x => Number(x.id) === Number(id));
+  const p = allProducts.find(x => String(x.id) === String(id));
   if (!p) return;
   currentProduct = p;
 
-  const weights = (p.availableWeights && p.availableWeights.length) ? p.availableWeights : [p.weight || 4];
-  currentCustomWeight = weights[0];
+  const weights = (Array.isArray(p.availableWeights) && p.availableWeights.length) ? p.availableWeights : [p.weight || 4];
+  currentCustomWeight = safeNum(weights[0], 4);
 
   const imgs = Array.isArray(p.image) ? p.image : [getProductPhoto(p)];
   document.getElementById('detailMainImg').src = imgs[0];
@@ -1444,14 +1303,14 @@ function openProductDetail(id) {
     thumbRow.style.display = 'none';
   }
 
-  document.getElementById('detailMetalTag').textContent = `${p.metal} • ${p.category}`;
-  document.getElementById('detailTitle').textContent = p.name;
+  document.getElementById('detailMetalTag').textContent = `${p.metal || '22K'} • ${p.category || 'Jewellery'}`;
+  document.getElementById('detailTitle').textContent = p.name || 'Jewellery Product';
   document.getElementById('detailDescription').textContent = getProductDesc(p);
 
   document.getElementById('specCaratVal').textContent = p.metal === 'Diamond' ? '18 Carat (18K)' : (p.metal === '24K' ? '24 Carat (24K)' : '22 Carat (22K)');
-  document.getElementById('specGoldQuality').textContent = p.metal.includes('Silver') ? 'Assayed Silver' : (p.metal === 'Diamond' ? '18K Certified Gold Mount' : '100% BIS 916 Hallmarked');
+  document.getElementById('specGoldQuality').textContent = String(p.metal || '').includes('Silver') ? 'Assayed Silver' : (p.metal === 'Diamond' ? '18K Certified Gold Mount' : '100% BIS 916 Hallmarked');
   document.getElementById('specCertVal').textContent = p.metal === 'Diamond' ? 'IGI / SGL Certified' : 'BIS 916 HUID Assured';
-  document.getElementById('specMakingVal').textContent = '₹' + (p.making || 1500) + ' (Standard Slab)';
+  document.getElementById('specMakingVal').textContent = '₹' + safeNum(p.making, 1500) + ' (Standard Slab)';
 
   const isAvailable = (p.inStock !== false);
   const stockBadge = document.getElementById('detailStockBadge');
@@ -1459,26 +1318,41 @@ function openProductDetail(id) {
   stockBadge.style.background = isAvailable ? "#2ecc71" : "#e67e22";
   stockBadge.style.color = isAvailable ? "#000" : "#fff";
 
+  currentProductSizeOptions = getSizesForProduct(p.category, p.metal);
+  const sizeBox = document.getElementById('multiSizeBoxDetail');
+  
+  if (currentProductSizeOptions.length > 0) {
+    sizeBox.style.display = 'block';
+    currentSizeIndex = 0;
+    currentCustomSize = currentProductSizeOptions[0];
+    document.getElementById('dispCurrentSizeLabel').textContent = currentCustomSize;
+  } else {
+    sizeBox.style.display = 'none';
+    currentCustomSize = 'Standard Size';
+    currentProductSizeOptions = [];
+    currentSizeIndex = 0;
+  }
+
   const weightPillsBox = document.getElementById('detailWeightPillsGrid');
   weightPillsBox.innerHTML = weights.map((w, idx) => `
-    <button class="opt-pill-btn ${idx===0?'active':''}" onclick="selectDetailWeightChip(${w}, this)">⚖️ ${w} ${p.metal==='Diamond'?'Carats':'Grams'}</button>
+    <button type="button" class="opt-pill-btn ${idx===0?'active':''}" onclick="selectDetailWeightChip(${w}, this)">⚖️ ${w} ${p.metal==='Diamond'?'Carats':'Grams'}</button>
   `).join('');
 
   recalcProductCalculations();
 
-  const preferred = allProducts.filter(x => x.id !== p.id && (x.category === p.category || x.metal === p.metal));
+  const preferred = allProducts.filter(x => String(x.id) !== String(p.id) && (x.category === p.category || x.metal === p.metal));
   const prefGrid = document.getElementById('detailPreferredGrid');
   if (prefGrid) {
-    prefGrid.innerHTML = (preferred.length ? preferred : allProducts.filter(x=>x.id!==p.id)).slice(0, 4).map(sim => {
+    prefGrid.innerHTML = (preferred.length ? preferred : allProducts.filter(x=>String(x.id)!==String(p.id))).slice(0, 4).map(sim => {
       const t = getProductLivePrice(sim);
       return `
-        <div class="product-card" onclick="openProductDetail(${sim.id})">
-          <button class="wish-heart-btn ${wishlist.some(x=>Number(x.id)===Number(sim.id))?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${sim.id})">${wishlist.some(x=>Number(x.id)===Number(sim.id))?'❤️':'🤍'}</button>
+        <div class="product-card" onclick="openProductDetail('${sim.id}')">
+          <button type="button" class="wish-heart-btn ${wishlist.some(x=>String(x.id)===String(sim.id))?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct('${sim.id}')">${wishlist.some(x=>String(x.id)===String(sim.id))?'❤️':'🤍'}</button>
           <div class="product-img-wrap"><img src="${getProductPhoto(sim)}"></div>
           <div class="product-info">
             <div class="product-title">${sim.name}</div>
             <div class="product-price">₹${t.toLocaleString('en-IN')}</div>
-            <button class="btn-card-quick" onclick="event.stopPropagation(); addToCartDirect(${sim.id})">+ Add</button>
+            <button type="button" class="btn-card-quick" onclick="event.stopPropagation(); addToCartDirect('${sim.id}')">+ Add</button>
           </div>
         </div>
       `;
@@ -1487,34 +1361,48 @@ function openProductDetail(id) {
   showPage('productDetail');
 }
 
+function changeSizeStep(delta) {
+  if (!currentProductSizeOptions || !currentProductSizeOptions.length) return;
+  
+  currentSizeIndex += delta;
+  if (currentSizeIndex < 0) currentSizeIndex = 0;
+  if (currentSizeIndex >= currentProductSizeOptions.length) currentSizeIndex = currentProductSizeOptions.length - 1;
+  
+  currentCustomSize = currentProductSizeOptions[currentSizeIndex];
+  document.getElementById('dispCurrentSizeLabel').textContent = currentCustomSize;
+}
+
 function selectDetailWeightChip(w, el) {
   document.querySelectorAll('#detailWeightPillsGrid .opt-pill-btn').forEach(b => b.classList.remove('active'));
   el.classList.add('active');
-  currentCustomWeight = w;
+  currentCustomWeight = safeNum(w, 4);
   recalcProductCalculations();
 }
 
 function recalcProductCalculations() {
   if (!currentProduct) return;
   const p = currentProduct;
-  const w = currentCustomWeight;
+  const w = safeNum(currentCustomWeight || p.weight, 4);
 
-  let rate = rates.gold22k || 9050;
-  if (p.metal === 'Diamond') rate = rates.diamondPerCarat || 65000;
-  else if (p.metal === 'Silver' || p.metal === 'Silver55') rate = rates.silverRate55PerG || 53.90;
+  let rate = safeNum(rates.gold22k, 9050);
+  const m = String(p.metal || '22K');
+  if (m === 'Diamond') rate = safeNum(rates.diamondPerCarat, 65000);
+  else if (m.includes('Silver')) rate = safeNum(rates.silverRate55PerG, 53.90);
 
-  const makingCost = Math.round((p.making || 1000) * (w / (p.weight || w || 1)));
+  const baseWeight = safeNum(p.weight, w || 1);
+  const rawMaking = safeNum(p.making, 1000);
+  const makingCost = (p.makingType === 'flatPiece') ? rawMaking : Math.round(rawMaking * (w / (baseWeight || 1)));
   const subtotal = Math.round(rate * w) + makingCost;
   const gstCost = Math.round(subtotal * 0.03);
   const total = subtotal + gstCost;
 
   document.getElementById('detailTotalPrice').textContent = "₹" + total.toLocaleString('en-IN');
-  document.getElementById('breakupMetalName').textContent = `${p.metal} Cost (${w} ${p.metal==='Diamond'?'Carat':'g'}):`;
+  document.getElementById('breakupMetalName').textContent = `${p.metal || '22K'} Cost (${w} ${p.metal==='Diamond'?'Carat':'g'}):`;
   document.getElementById('breakupMetalAmount').textContent = "₹" + Math.round(rate * w).toLocaleString('en-IN');
   document.getElementById('breakupMakingAmount').textContent = "₹" + makingCost.toLocaleString('en-IN');
   document.getElementById('breakupGstAmount').textContent = "+₹" + gstCost.toLocaleString('en-IN');
   document.getElementById('breakupFinalTotal').textContent = "₹" + total.toLocaleString('en-IN');
-  document.getElementById('detailMetalTag').textContent = `${p.metal} • ${w} ${p.metal==='Diamond'?'Carat':'g'}`;
+  document.getElementById('detailMetalTag').textContent = `${p.metal || '22K'} • ${w} ${p.metal==='Diamond'?'Carat':'g'}`;
 }
 
 function showLoader(d = 300) {
@@ -1529,22 +1417,22 @@ function showDashboardHome(navEl) {
   showPage('home', navEl);
 }
 
-// BANNER PRODUCT CLICK FIX (Point 4)
 function renderCustomerAdsCarousel() {
   const carousel = document.getElementById('customerAdsCarousel');
   const bottomImgTag = document.getElementById('bottomPromoImageTag');
 
-  const topAds = JSON.parse(localStorage.getItem('isha_top_banner')) || [
+  let topAds = [
     { tag: "FESTIVE OFFER", title: "AADI SHRAVANAM FEST", subtitle: "Flat ₹200 Less per gram on 22K Gold", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600", productId: 101 }
   ];
   
-  const bottomPromo = JSON.parse(localStorage.getItem('isha_bottom_banner')) || {
-    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600"
-  };
+  try {
+    const stored = JSON.parse(localStorage.getItem('isha_top_banner'));
+    if (Array.isArray(stored) && stored.length > 0) topAds = stored;
+  } catch(e){}
 
   if (carousel) {
     carousel.innerHTML = topAds.map(ad => `
-      <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetailFromBanner(${ad.productId || 101})">
+      <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetailFromBanner('${ad.productId || 101}')">
         <div class="ad-card-content">
           <span style="font-size:8px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag || 'OFFER'}</span>
           <div style="font-family:'Cinzel',serif;font-size:14.5px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
@@ -1555,18 +1443,16 @@ function renderCustomerAdsCarousel() {
   }
 
   if (bottomImgTag) {
-    bottomImgTag.src = bottomPromo.image;
+    bottomImgTag.src = "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600";
   }
 }
 
 function openProductDetailFromBanner(productId) {
-  const found = allProducts.find(x => Number(x.id) === Number(productId) || String(x.code) === String(productId));
+  const found = allProducts.find(x => String(x.id) === String(productId) || String(x.code) === String(productId));
   if (found) {
     openProductDetail(found.id);
   } else if (allProducts.length > 0) {
     openProductDetail(allProducts[0].id);
-  } else {
-    toast("📦 Product details loading...");
   }
 }
 
@@ -1588,14 +1474,14 @@ function selectCircularCat(catId, el, containerId) {
   if (containerId === 'circularCatScrollHome') {
     if (catId === 'All') renderDashboardSections();
     else if (catId === 'Diamond') renderDashboardSections(allProducts.filter(p => p.metal === 'Diamond'));
-    else renderDashboardSections(allProducts.filter(p => p.category.toLowerCase().includes(catId.toLowerCase())));
+    else renderDashboardSections(allProducts.filter(p => String(p.category).toLowerCase().includes(catId.toLowerCase())));
   } else {
     renderCatPageProducts(catId);
   }
 }
 
 function applySortFilter(type, btn) {
-  document.querySelectorAll('.filter-chip-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-chips-row .filter-chip-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   let list = [...allProducts];
   if (type === 'under20k') list = list.filter(p => getProductLivePrice(p) <= 20000);
@@ -1615,22 +1501,22 @@ function applyCatSubFilter(subType, btn) {
 function renderDashboardSections(customList) {
   let list = customList || allProducts;
   list = list.filter(p => {
-    if (currentSegment === 'Silver') return p.metal && p.metal.includes('Silver');
+    if (currentSegment === 'Silver') return p.metal && String(p.metal).includes('Silver');
     if (currentSegment === 'Diamond') return p.metal === 'Diamond';
-    return p.metal !== 'Diamond' && (!p.metal || !p.metal.includes('Silver'));
+    return p.metal !== 'Diamond' && (!p.metal || !String(p.metal).includes('Silver'));
   });
 
   const renderCard = (p) => {
     const total = getProductLivePrice(p);
-    const isWished = wishlist.some(x => Number(x.id) === Number(p.id));
+    const isWished = wishlist.some(x => String(x.id) === String(p.id));
     return `
-      <div class="product-card" onclick="openProductDetail(${p.id})">
-        <button class="wish-heart-btn ${isWished?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">${isWished?'❤️':'🤍'}</button>
+      <div class="product-card" onclick="openProductDetail('${p.id}')">
+        <button type="button" class="wish-heart-btn ${isWished?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct('${p.id}')">${isWished?'❤️':'🤍'}</button>
         <div class="product-img-wrap"><img src="${getProductPhoto(p)}"></div>
         <div class="product-info">
           <div class="product-title">${p.name}</div>
           <div class="product-price">₹${total.toLocaleString('en-IN')}</div>
-          <button class="btn-card-quick" onclick="event.stopPropagation(); addToCartDirect(${p.id})">+ Add to Cart</button>
+          <button type="button" class="btn-card-quick" onclick="event.stopPropagation(); addToCartDirect('${p.id}')">+ Add to Cart</button>
         </div>
       </div>
     `;
@@ -1648,14 +1534,14 @@ function renderCatPageProducts(catId = 'All') {
   if (!grid) return;
 
   let list = allProducts.filter(p => {
-    if (currentSegment === 'Silver') return p.metal && p.metal.includes('Silver');
+    if (currentSegment === 'Silver') return p.metal && String(p.metal).includes('Silver');
     if (currentSegment === 'Diamond') return p.metal === 'Diamond';
-    return p.metal !== 'Diamond' && (!p.metal || !p.metal.includes('Silver'));
+    return p.metal !== 'Diamond' && (!p.metal || !String(p.metal).includes('Silver'));
   });
 
   if (catId !== 'All') {
     if (catId === 'Diamond') list = list.filter(p => p.metal === 'Diamond');
-    else list = list.filter(p => p.category.toLowerCase().includes(catId.toLowerCase()));
+    else list = list.filter(p => String(p.category).toLowerCase().includes(catId.toLowerCase()));
   }
 
   if (activeCatSubFilter === 'new') list = list.filter(p => p.type === 'new' || p.id % 2 === 0);
@@ -1666,40 +1552,70 @@ function renderCatPageProducts(catId = 'All') {
 
   grid.innerHTML = list.map(p => {
     const total = getProductLivePrice(p);
-    const isWished = wishlist.some(x => Number(x.id) === Number(p.id));
+    const isWished = wishlist.some(x => String(x.id) === String(p.id));
     return `
-      <div class="product-card" onclick="openProductDetail(${p.id})">
-        <button class="wish-heart-btn ${isWished?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">${isWished?'❤️':'🤍'}</button>
+      <div class="product-card" onclick="openProductDetail('${p.id}')">
+        <button type="button" class="wish-heart-btn ${isWished?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct('${p.id}')">${isWished?'❤️':'🤍'}</button>
         <div class="product-img-wrap"><img src="${getProductPhoto(p)}"></div>
         <div class="product-info">
           <div class="product-title">${p.name}</div>
           <div class="product-price">₹${total.toLocaleString('en-IN')}</div>
-          <button class="btn-card-quick" onclick="event.stopPropagation(); openProductDetail(${p.id})">View Details</button>
+          <button type="button" class="btn-card-quick" onclick="event.stopPropagation(); openProductDetail('${p.id}')">View Details</button>
         </div>
       </div>
     `;
   }).join('');
 }
 
-// FIXED ADD TO CART (Point 4)
 function addCurrentToCart() {
-  if (!currentProduct) return;
-  const itemToCart = { ...currentProduct, weight: currentCustomWeight, customSize: currentCustomSize };
+  const p = currentProduct || (allProducts && allProducts.length > 0 ? allProducts[0] : null);
+  if (!p) return;
+  
+  const w = safeNum(currentCustomWeight || p.weight, 4);
+  const sz = currentCustomSize || 'Standard Size';
+
+  const itemToCart = { 
+    id: p.id,
+    code: p.code || ("IJ-" + p.id),
+    name: p.name || "Jewellery Item",
+    metal: p.metal || "22K",
+    category: p.category || "General",
+    image: getProductPhoto(p),
+    making: safeNum(p.making, 1500),
+    weight: w,
+    customSize: sz,
+    cartItemId: 'c_' + Date.now() + '_' + Math.floor(Math.random()*1000)
+  };
+  
   cart.push(itemToCart);
-  localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
-  syncUserDataToCloud();
+  saveUserDataDirect();
   updateCartUI();
-  toast(`🛒 ${itemToCart.name} added to Cart & Synced!`);
+  toast(`🛒 ${itemToCart.name} added to Cart!`);
+  setTimeout(syncUserDataToCloud, 50);
 }
 
 function addToCartDirect(id) {
-  const p = allProducts.find(x => Number(x.id) === Number(id));
+  const p = allProducts.find(x => String(x.id) === String(id));
   if (!p) return;
-  cart.push({ ...p, customSize: 'Standard Size', weight: p.weight || 4 });
-  localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
-  syncUserDataToCloud();
+  
+  const itemToCart = { 
+    id: p.id,
+    code: p.code || ("IJ-" + p.id),
+    name: p.name || "Jewellery Item",
+    metal: p.metal || "22K",
+    category: p.category || "General",
+    image: getProductPhoto(p),
+    making: safeNum(p.making, 1500),
+    weight: safeNum(p.weight, 4),
+    customSize: 'Standard Size',
+    cartItemId: 'c_' + Date.now() + '_' + Math.floor(Math.random()*1000)
+  };
+  
+  cart.push(itemToCart);
+  saveUserDataDirect();
   updateCartUI();
-  toast(`🛒 ${p.name} added to Cart & Synced!`);
+  toast(`🛒 ${p.name} added to Cart!`);
+  setTimeout(syncUserDataToCloud, 50);
 }
 
 function updateCartUI() {
@@ -1721,13 +1637,13 @@ function updateCartUI() {
     const itemTotal = getProductLivePrice(p, p.weight);
     subtotal += itemTotal;
     return `
-      <div class="cart-item-card" onclick="openProductDetail(${p.id})">
-        <button class="cart-remove-btn" onclick="event.stopPropagation(); removeCartItem(${idx})">✕</button>
+      <div class="cart-item-card" onclick="openProductDetail('${p.id}')">
+        <button type="button" class="cart-remove-btn" onclick="event.stopPropagation(); removeCartItem(${idx})">✕</button>
         <img src="${getProductPhoto(p)}" style="width:52px;height:52px;border-radius:8px;object-fit:cover;">
         <div style="flex:1;">
           <span style="font-size:8.5px;color:var(--gold);font-weight:700;">CODE: ${p.code}</span>
           <div style="font-size:11px;font-weight:700;color:var(--text-main);">${p.name}</div>
-          <div style="font-size:9.5px;color:var(--text-muted);">${p.metal} • ${p.weight}${p.metal==='Diamond'?'C':'g'}</div>
+          <div style="font-size:9.5px;color:var(--text-muted);">${p.metal} • ${p.weight}${p.metal==='Diamond'?'C':'g'} | ${p.customSize||'Standard'}</div>
           <div style="font-size:11.5px;font-weight:800;color:var(--gold-glow);margin-top:2px;">₹${itemTotal.toLocaleString('en-IN')}</div>
         </div>
       </div>
@@ -1738,9 +1654,9 @@ function updateCartUI() {
 
 function removeCartItem(idx) {
   cart.splice(idx, 1);
-  localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
-  syncUserDataToCloud();
+  saveUserDataDirect();
   updateCartUI();
+  setTimeout(syncUserDataToCloud, 50);
 }
 
 function openSearchDropdown() {
@@ -1752,13 +1668,12 @@ function renderSearchHistoryDropdown() {
   const recentBox = document.getElementById('recentSearchesList');
   const trendingBox = document.getElementById('trendingSearchList');
   
-  const history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || ["Rings", "Chain", "Diamond", "Payal"];
+  const history = ["Rings", "Chain", "Diamond", "Bali"];
   recentBox.innerHTML = history.slice(0, 4).map(h => `<span style="font-size:9px;background:var(--theme-subtle);color:var(--gold-glow);padding:3px 8px;border-radius:6px;cursor:pointer;" onclick="document.getElementById('searchInput').value='${h}';handleSearch('${h}')">${h}</span>`).join('');
 
-  // SHOW ALL TRENDING PRODUCTS IN SEARCH DROPDOWN (Point 10)
   const trendingItems = allProducts.slice(0, 6);
   trendingBox.innerHTML = trendingItems.map(t => `
-    <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
+    <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail('${t.id}')">
       <span>🔥 ${t.name} (${t.metal})</span>
       <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(t).toLocaleString('en-IN')}</span>
     </div>
@@ -1766,24 +1681,17 @@ function renderSearchHistoryDropdown() {
 }
 
 function handleSearch(val) {
-  const q = val.toLowerCase().trim();
+  const q = String(val || '').toLowerCase().trim();
   const trendingBox = document.getElementById('trendingSearchList');
-  if (q.length > 1) {
-    let history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || [];
-    if (!history.includes(q)) {
-      history.unshift(q);
-      localStorage.setItem(getUserKey('search_history'), JSON.stringify(history));
-    }
-  }
   if (!q) { 
     renderSearchHistoryDropdown();
     renderDashboardSections(); 
     return; 
   }
-  const matched = allProducts.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.code.toLowerCase().includes(q));
+  const matched = allProducts.filter(p => String(p.name).toLowerCase().includes(q) || String(p.category).toLowerCase().includes(q) || String(p.code).toLowerCase().includes(q));
   if(trendingBox) {
     trendingBox.innerHTML = matched.length ? matched.map(t => `
-      <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
+      <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail('${t.id}')">
         <span>🔍 ${t.name}</span>
         <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(t).toLocaleString('en-IN')}</span>
       </div>
@@ -1801,13 +1709,24 @@ window.addEventListener('click', (e) => {
 
 function openOrderCheckoutModal(itemsArray, mode) {
   if (!itemsArray || !itemsArray.length) {
-    if (currentProduct) itemsArray = [currentProduct];
-    else return;
+    if (currentProduct) {
+      itemsArray = [currentProduct];
+    } else if (allProducts.length > 0) {
+      itemsArray = [allProducts[0]];
+    } else {
+      toast("No product available to order!");
+      return;
+    }
   }
-  if ((mode === 'direct' || mode === 'booking') && currentProduct) {
-    currentCheckoutItems = [{ ...currentProduct, weight: currentCustomWeight, customSize: currentCustomSize }];
+
+  if (mode === 'direct' && currentProduct) {
+    currentCheckoutItems = [{ 
+      ...currentProduct, 
+      weight: safeNum(currentCustomWeight || currentProduct.weight, 4), 
+      customSize: currentCustomSize || 'Standard Size' 
+    }];
   } else {
-    currentCheckoutItems = itemsArray;
+    currentCheckoutItems = Array.from(itemsArray);
   }
 
   let total = 0;
@@ -1815,7 +1734,9 @@ function openOrderCheckoutModal(itemsArray, mode) {
   currentCheckoutTotal = total;
   appliedDiscountAmount = 0;
 
-  const savedAddr = JSON.parse(localStorage.getItem(getUserKey('last_address')));
+  let savedAddr = null;
+  try { savedAddr = JSON.parse(localStorage.getItem('isha_last_address')); } catch(e){}
+
   if (savedAddr) {
     document.getElementById('coFirstName').value = savedAddr.fName || '';
     document.getElementById('coLastName').value = savedAddr.lName || '';
@@ -1824,7 +1745,7 @@ function openOrderCheckoutModal(itemsArray, mode) {
     document.getElementById('coArea').value = savedAddr.area || '';
     document.getElementById('coPostOffice').value = savedAddr.post || '';
     document.getElementById('coPincode').value = savedAddr.pin || '816108';
-    document.getElementById('coAddressInfoHint').innerHTML = `<b>✓ Saved Address Loaded.</b> Click 'Edit Address' if needed:`;
+    document.getElementById('coAddressInfoHint').innerHTML = `<b>✓ Saved Address Loaded.</b>`;
   } else {
     const prof = getUserProfile();
     document.getElementById('coFirstName').value = prof.name ? prof.name.split(' ')[0] : '';
@@ -1864,7 +1785,7 @@ function goToCheckoutStep2() {
   const pin = document.getElementById('coPincode').value.trim();
 
   const finalFName = fName ? fName : "Customer";
-  const finalMob = (mob && mob.length === 10) ? mob : "9113774515";
+  const finalMob = (mob && mob.length === 10) ? mob : (userAuth.phone || "9113774515");
   const finalArea = area ? area : "Udhwa";
   const finalPin = pin ? pin : "816108";
 
@@ -1878,7 +1799,7 @@ function goToCheckoutStep2() {
     pin: finalPin
   };
   
-  localStorage.setItem(getUserKey('last_address'), JSON.stringify(addressObj));
+  localStorage.setItem('isha_last_address', JSON.stringify(addressObj));
 
   document.getElementById('coModalTitle').textContent = "🛍️ CHECKOUT: STEP 2 (SUMMARY)";
   document.getElementById('coStep1Container').style.display = 'none';
@@ -1895,12 +1816,12 @@ function goToCheckoutStep2() {
 
   document.getElementById('coSummaryItemsBox').innerHTML = currentCheckoutItems.map(it => `
     <div style="font-size:10px;display:flex;justify-content:space-between;margin-bottom:3px;border-bottom:1px solid var(--card-border);padding-bottom:3px;">
-      <span><b>${it.name}</b> (${it.weight||4}${it.metal==='Diamond'?'C':'g'})</span>
+      <span><b>${it.name}</b> (${it.weight||4}${it.metal==='Diamond'?'C':'g'} | ${it.customSize||'Standard'})</span>
       <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(it, it.weight||4).toLocaleString('en-IN')}</span>
     </div>
   `).join('');
 
-  const gross = currentCheckoutTotal - appliedDiscountAmount;
+  const gross = Math.max(0, currentCheckoutTotal - appliedDiscountAmount);
   const gst = Math.round(gross * 0.03);
   const netPayable = gross + gst;
 
@@ -1938,7 +1859,7 @@ function selectPaymentModeOption(mode) {
 
   if (mode === 'upi') {
     advBox.style.display = 'block';
-    const gross = currentCheckoutTotal - appliedDiscountAmount;
+    const gross = Math.max(0, currentCheckoutTotal - appliedDiscountAmount);
     const net = gross * 1.03;
     const advVal = Math.min(net, 500);
     advInput.value = Math.round(advVal);
@@ -1948,16 +1869,25 @@ function selectPaymentModeOption(mode) {
   }
 }
 
-// FIXED ORDER BUTTON FREEZE FOR UNLIMITED RE-ORDERS (Point 2)
 function executeOrderPlacement() {
-  const fName = document.getElementById('coFirstName').value.trim() || "Customer";
-  const lName = document.getElementById('coLastName').value.trim();
-  const phone = document.getElementById('coMobile').value.trim() || "9113774515";
-  const area = document.getElementById('coArea').value.trim() || "Udhwa";
-  const post = document.getElementById('coPostOffice').value.trim();
-  const pin = document.getElementById('coPincode').value.trim() || "816108";
-  const adv = Number(document.getElementById('coAdvanceInput').value) || 500;
-  const isUpiSelected = document.getElementById('payModeUpi').checked;
+  if (!currentCheckoutItems || !currentCheckoutItems.length) {
+    if (currentProduct) currentCheckoutItems = [currentProduct];
+    else if (allProducts.length > 0) currentCheckoutItems = [allProducts[0]];
+    else {
+      alert("Cart empty hai!");
+      closeCheckoutModal();
+      return;
+    }
+  }
+
+  const fName = (document.getElementById('coFirstName').value || '').trim() || "Customer";
+  const lName = (document.getElementById('coLastName').value || '').trim();
+  const phone = (document.getElementById('coMobile').value || '').trim() || userAuth.phone || "9113774515";
+  const area = (document.getElementById('coArea').value || '').trim() || "Udhwa";
+  const post = (document.getElementById('coPostOffice').value || '').trim();
+  const pin = (document.getElementById('coPincode').value || '').trim() || "816108";
+  const adv = safeNum(document.getElementById('coAdvanceInput').value, 500);
+  const isUpiSelected = document.getElementById('payModeUpi') ? document.getElementById('payModeUpi').checked : false;
 
   const fullCustName = (fName + " " + lName).trim();
   const fullAddressStr = `${area}${post ? ', Post: '+post : ''}, Jharkhand - ${pin}`;
@@ -1968,11 +1898,21 @@ function executeOrderPlacement() {
   const estDate = new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'});
   const estDayName = new Date(Date.now() + 7*24*60*60*1000).toLocaleDateString('en-IN', {weekday:'long'});
 
-  const grossAfterDisc = currentCheckoutTotal - appliedDiscountAmount;
+  const grossAfterDisc = safeNum(currentCheckoutTotal - appliedDiscountAmount, 0);
   const gst = Math.round(grossAfterDisc * 0.03);
   const netFinalBill = grossAfterDisc + gst;
+  const couponCode = "ISHA-GOLD" + Math.floor(100 + Math.random()*900);
 
-  const couponCode = adminConfig.adminRewardActive ? ("ISHA-GOLD" + Math.floor(100 + Math.random()*900)) : "";
+  const cleanItems = currentCheckoutItems.map(it => ({
+    id: String(it.id || '101'),
+    code: String(it.code || 'IJ-01'),
+    name: String(it.name || 'Jewellery Item'),
+    metal: String(it.metal || '22K'),
+    category: String(it.category || 'General'),
+    weight: safeNum(it.weight, 4),
+    customSize: String(it.customSize || 'Standard Size'),
+    making: safeNum(it.making, 1500)
+  }));
 
   const newOrd = {
     id: orderId,
@@ -1980,12 +1920,12 @@ function executeOrderPlacement() {
     customerName: fullCustName,
     phone: phone,
     address: fullAddressStr,
-    items: currentCheckoutItems,
-    specs: `${currentCheckoutItems.length} Items`,
-    grossTotal: grossAfterDisc,
-    gst: gst,
-    netPayable: netFinalBill,
-    advancePaid: adv,
+    items: cleanItems,
+    specs: `${cleanItems.length} Items`,
+    grossTotal: safeNum(grossAfterDisc, 0),
+    gst: safeNum(gst, 0),
+    netPayable: safeNum(netFinalBill, 0),
+    advancePaid: safeNum(adv, 0),
     balanceDue: Math.max(0, netFinalBill - adv),
     deliveryDate: `${estDayName}, ${estDate}`,
     expectedDeliveryDate: `${estDayName}, ${estDate}`,
@@ -1998,12 +1938,15 @@ function executeOrderPlacement() {
   };
 
   myOrders.unshift(newOrd);
-  localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
-  if (db) db.ref('orders/' + orderId).set(newOrd);
-
   cart = [];
-  localStorage.setItem(getUserKey('cart'), JSON.stringify([]));
-  syncUserDataToCloud();
+  saveUserDataDirect();
+
+  if (db) {
+    try {
+      db.ref('orders/' + orderId).set(cleanDataForCloud(newOrd)).catch(()=>{});
+    } catch(e){}
+  }
+
   updateCartUI();
   closeCheckoutModal();
 
@@ -2011,7 +1954,7 @@ function executeOrderPlacement() {
   if (animTag) animTag.textContent = `Order ID: #${orderId}`;
 
   const scratchContainer = document.getElementById('successModalScratchContainer');
-  if (adminConfig.adminRewardActive && couponCode) {
+  if (scratchContainer) {
     scratchContainer.style.display = 'block';
     scratchContainer.innerHTML = `
       <div style="text-align:center;">
@@ -2023,20 +1966,18 @@ function executeOrderPlacement() {
           </div>
           <canvas class="scratch-canvas" id="modalScratchCanvas"></canvas>
         </div>
-        <button class="btn-outline" style="font-size:9px;padding:3px 7px;" onclick="copyRewardCode('${couponCode}')">📋 Copy Code</button>
+        <button type="button" class="btn-outline" style="font-size:9px;padding:3px 7px;" onclick="copyRewardCode('${couponCode}')">📋 Copy Code</button>
       </div>
     `;
     setTimeout(() => { initSuccessModalScratchCanvas(orderId, couponCode); }, 100);
-  } else {
-    scratchContainer.style.display = 'none';
-  }
-
-  if (isUpiSelected) {
-    const upiLink = `upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${adv}&cu=INR&tn=${encodeURIComponent('Advance Order #' + orderId)}`;
-    window.location.href = upiLink;
   }
 
   document.getElementById('orderSuccessAnimModal').style.display = 'flex';
+
+  if (isUpiSelected) {
+    const upiLink = `upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${adv}&cu=INR&tn=${encodeURIComponent('Advance Order #' + orderId)}`;
+    setTimeout(() => { window.location.href = upiLink; }, 600);
+  }
 }
 
 function copyRewardCode(code) {
@@ -2084,8 +2025,7 @@ function initSuccessModalScratchCanvas(orderId, code) {
     count++;
     if (count > 8) {
       scratchedStateMap[orderId] = true;
-      localStorage.setItem(getUserKey('scratched'), JSON.stringify(scratchedStateMap));
-      syncUserDataToCloud();
+      saveUserDataDirect();
     }
   }
 
@@ -2109,21 +2049,26 @@ function closeSuccessAnimModal() {
 function cancelCustomerOrder(orderId) {
   if (!confirm(`Kya aap sach me Order #${orderId} cancel karna chahte hain?`)) return;
   myOrders = myOrders.filter(x => String(x.id).trim() !== String(orderId).trim());
-  localStorage.setItem(getUserKey('orders'), JSON.stringify(myOrders));
-  if (db) db.ref('orders/' + orderId).remove();
-  syncUserDataToCloud();
+  saveUserDataDirect();
+  if (db) {
+    try { db.ref('orders/' + orderId).remove(); } catch(e){}
+  }
   renderTrackingUI();
   renderDrawerOrderHistory();
   renderDynamicRewardCards();
   toast(`❌ Order #${orderId} Cancel ho gaya!`);
 }
 
+function request5DayReturn(orderId) {
+  alert(`🔄 Order #${orderId} ke Return Request register ho gayi hai.\nIsha Jewellers Executive 24 ghante ke andar aapse contact karenge.`);
+  toast("✓ Return Request Submitted!");
+}
+
 function renderTrackingUI() {
   const c = document.getElementById('trackingContainer');
   if (!c) return;
-  const activeOrders = myOrders.filter(o => o.statusStage < 5 && !o.isDelivered);
 
-  if (!activeOrders.length) {
+  if (!myOrders.length) {
     c.innerHTML = `
       <div style="text-align:center;padding:28px 10px;background:var(--card-bg);border:1px dashed var(--card-border);border-radius:12px;margin-top:8px;">
         <div style="font-size:24px;margin-bottom:5px;">📦</div>
@@ -2134,7 +2079,8 @@ function renderTrackingUI() {
     return;
   }
 
-  c.innerHTML = activeOrders.map((o, idx) => {
+  c.innerHTML = myOrders.map((o, idx) => {
+    const isDelivered = (o.statusStage === 5 || o.isDelivered);
     const isOutForDelivery = (o.statusStage >= 4);
     const agentName = o.deliveryAgentName || "Rakesh Swarnkar (Isha Logistics)";
     const agentPhone = o.deliveryAgentPhone || "9113774515";
@@ -2144,11 +2090,11 @@ function renderTrackingUI() {
       <div class="cart-item-card" style="flex-direction:column;gap:5px;border-color:var(--gold);padding:11px;margin-bottom:9px;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <strong style="color:var(--gold-glow);font-size:12px;">Order #${o.id}</strong>
-          <span style="font-size:9.5px;color:#2ecc71;font-weight:800;">Est: ${displayEstDate}</span>
+          <span style="font-size:9.5px;color:${isDelivered?'#2ecc71':'#f39c12'};font-weight:800;">${isDelivered?'🟢 Delivered':('Est: '+displayEstDate)}</span>
         </div>
         <div style="font-size:11px;color:var(--text-main);font-weight:600;">${o.specs}</div>
         <div style="font-size:10px;color:var(--text-muted);">
-          Net: ₹${Number(o.netPayable).toLocaleString('en-IN')} | Adv: ₹${o.advancePaid} | Due: ₹${Number(o.balanceDue).toLocaleString('en-IN')}
+          Net: ₹${safeNum(o.netPayable).toLocaleString('en-IN')} | Adv: ₹${o.advancePaid} | Due: ₹${safeNum(o.balanceDue).toLocaleString('en-IN')}
         </div>
         
         <div style="background:var(--bg-main);border:1.5px dashed var(--gold);padding:7px;border-radius:8px;margin-top:2px;">
@@ -2159,7 +2105,7 @@ function renderTrackingUI() {
             </div>
             <button type="button" class="btn-outline" style="font-size:9px;padding:3px 7px;" onclick="toggleOrderStatusTimeline('trackDetails_${idx}')">📊 View 5 Stages ▾</button>
           </div>
-          ${isOutForDelivery ? `
+          ${(isOutForDelivery && !isDelivered) ? `
             <div style="margin-top:5px;padding-top:5px;border-top:1px dashed var(--card-border);display:flex;justify-content:space-between;align-items:center;background:var(--card-bg);padding:5px 7px;border-radius:6px;">
               <div>
                 <span style="font-size:7.5px;color:#2ecc71;font-weight:bold;display:block;">🚚 DELIVERY AGENT:</span>
@@ -2181,9 +2127,19 @@ function renderTrackingUI() {
           </div>
         </div>
 
-        <div style="display:flex;gap:5px;margin-top:5px;">
-          <button type="button" class="btn-danger" style="padding:7px;font-size:11px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
-        </div>
+        ${isDelivered ? `
+          <div style="background:#112217;border:1px solid #2ecc71;padding:8px;border-radius:8px;margin-top:5px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <b style="font-size:10px;color:#2ecc71;">🛡️ 5-Days Return Policy Available</b><br>
+              <small style="font-size:8.5px;color:#aaa;">Product pasand na aane par 5 din ke andar return/exchange karein.</small>
+            </div>
+            <button type="button" class="btn-outline" style="border-color:#2ecc71;color:#2ecc71;padding:5px 8px;font-size:9.5px;" onclick="request5DayReturn('${o.id}')">🔄 Return</button>
+          </div>
+        ` : `
+          <div style="display:flex;gap:5px;margin-top:5px;">
+            <button type="button" class="btn-danger" style="padding:7px;font-size:11px;font-weight:700;" onclick="cancelCustomerOrder('${o.id}')">❌ Cancel Order</button>
+          </div>
+        `}
       </div>
     `;
   }).join('');
@@ -2195,10 +2151,9 @@ function toggleOrderStatusTimeline(id) {
   el.style.display = el.style.display === 'block' ? 'none' : 'block';
 }
 
-// SILVER TANCH ESTIMATOR WITH DEDUCTION SLABS (Point 8)
 function runStandaloneExchangeCalc() {
-  const oldSilverGross = Number(document.getElementById('calcOldSilver').value) || 0;
-  const tanchVal = Number(document.getElementById('calcSilverTanchSelect').value) || 55;
+  const oldSilverGross = safeNum(document.getElementById('calcOldSilver').value, 0);
+  const tanchVal = safeNum(document.getElementById('calcSilverTanchSelect').value, 55);
 
   let katotiGrams = 2.912;
   if (tanchVal === 70 || tanchVal === 80 || tanchVal === 90) {
@@ -2208,7 +2163,7 @@ function runStandaloneExchangeCalc() {
   }
 
   const netSilverGrams = Math.max(0, oldSilverGross - katotiGrams);
-  const purePerG = (rates.silverPureKg || 98000) / 1000;
+  const purePerG = safeNum(rates.silverPureKg, 98000) / 1000;
   const effectiveRate = purePerG * (tanchVal / 100);
   const totalVal = Math.round(netSilverGrams * effectiveRate);
 
@@ -2217,7 +2172,6 @@ function runStandaloneExchangeCalc() {
   document.getElementById('calcDispGrandTotal').textContent = "₹" + totalVal.toLocaleString('en-IN');
 }
 
-// ORDER HISTORY DISPLAYED ONLY AFTER SUCCESSFUL ORDERS (Point 6)
 function renderDrawerOrderHistory() {
   const c = document.getElementById('drawerOrdersHistoryList');
   if (!c) return;
@@ -2236,7 +2190,7 @@ function renderDrawerOrderHistory() {
       </div>
       <div style="font-size:10px;color:var(--text-main);margin:2px 0;">📦 <b>Products:</b> ${o.specs}</div>
       <div style="margin-top:6px;">
-        <button class="btn-outline" style="width:100%;padding:6px;font-size:10px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Slip Preview</button>
+        <button type="button" class="btn-outline" style="width:100%;padding:6px;font-size:10px;" onclick="viewOfficialTaxInvoice('${o.id}')">👁️ View Slip Preview</button>
       </div>
     </div>
   `).join('');
@@ -2257,10 +2211,10 @@ function closePdfModal() {
 }
 
 function viewOfficialTaxInvoice(orderId) {
-  const o = myOrders.find(x => x.id === orderId);
+  const o = myOrders.find(x => String(x.id) === String(orderId));
   if (!o) return;
-  const itemDesc = o.items.map(it => `${it.name} (${it.weight || 4}g)`).join(', ');
-  const qrCertText = `ISHA JEWELLERS AUTHENTICITY CERTIFICATE\nInvoice: INV-IJ-${o.id}\nCustomer: ${o.customerName}\nItems: ${itemDesc}\nNet Total: Rs.${Number(o.netPayable).toLocaleString('en-IN')}\nHallmark: 100% BIS 916 HUID Assured`;
+  const itemDesc = (o.items || []).map(it => `${it.name} (${it.weight || 4}g)`).join(', ');
+  const qrCertText = `ISHA JEWELLERS AUTHENTICITY CERTIFICATE\nInvoice: INV-IJ-${o.id}\nCustomer: ${o.customerName}\nItems: ${itemDesc}\nNet Total: Rs.${safeNum(o.netPayable).toLocaleString('en-IN')}\nHallmark: 100% BIS 916 HUID Assured`;
 
   const invoiceHtml = `
     <div style="font-family:'Plus Jakarta Sans', Arial, sans-serif; padding: 12px; color: #333; max-width: 100%; margin: auto; border: 2px solid #d4af37; border-radius: 10px; background: #fff; box-sizing: border-box;">
@@ -2292,7 +2246,7 @@ function viewOfficialTaxInvoice(orderId) {
           <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Weight</th>
           <th style="border: 1px solid #d4af37; padding: 6px; background: #d4af37; color: #120b02;">Making</th>
         </tr>
-        ${o.items.map((it, idx) => `
+        ${(o.items || []).map((it, idx) => `
           <tr>
             <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${idx+1}</td>
             <td style="border: 1px solid #d4af37; padding: 6px;"><b>${it.name}</b> (${it.code || 'Ch0564'})</td>
@@ -2304,9 +2258,9 @@ function viewOfficialTaxInvoice(orderId) {
       </table>
 
       <div style="float: right; width: 240px; font-size: 10px; margin-bottom: 12px;">
-        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>Metal & Making Total:</span> <b>₹${Number(o.grossTotal).toLocaleString('en-IN')}</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>GST (3%):</span> <b>+₹${Number(o.gst).toLocaleString('en-IN')}</b></div>
-        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 2px solid #d4af37; font-weight: bold; font-size: 12px; color: #78350f;"><span>Net Total Amount:</span> <span>₹${Number(o.netPayable).toLocaleString('en-IN')}</span></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>Metal & Making Total:</span> <b>₹${safeNum(o.grossTotal).toLocaleString('en-IN')}</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 1px dashed #e5e7eb;"><span>GST (3%):</span> <b>+₹${safeNum(o.gst).toLocaleString('en-IN')}</b></div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 2px; padding: 2px 0; border-bottom: 2px solid #d4af37; font-weight: bold; font-size: 12px; color: #78350f;"><span>Net Total Amount:</span> <span>₹${safeNum(o.netPayable).toLocaleString('en-IN')}</span></div>
         <div style="color: #16a34a; font-weight: 700; margin-top: 2px;"><span>Advance Received:</span> <span>₹${o.advancePaid} | Paid</span></div>
       </div>
 
@@ -2335,7 +2289,7 @@ function viewOfficialTaxInvoice(orderId) {
 function downloadProductEstimatePdfDirect() {
   if (!currentProduct) return;
   const p = currentProduct;
-  const w = currentCustomWeight;
+  const w = safeNum(currentCustomWeight || p.weight, 4);
   const totalVal = getProductLivePrice(p, w);
   const slipId = "EST-" + Math.floor(100000 + Math.random() * 900000);
   
@@ -2355,7 +2309,7 @@ function downloadProductEstimatePdfDirect() {
         </div>
         <div style="text-align:right;">
           <b>Store Branch:</b> Main Bazzar<br>
-          <b>Purity:</b> ${p.metal} (${w}g)
+          <b>Purity:</b> ${p.metal || '22K'} (${w}g)
         </div>
       </div>
 
@@ -2371,7 +2325,7 @@ function downloadProductEstimatePdfDirect() {
           <td style="border: 1px solid #d4af37; padding: 6px;"><b>${p.name}</b><br><small>Code: ${p.code || 'Ch0564'}</small></td>
           <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${p.category}</td>
           <td style="border: 1px solid #d4af37; padding: 6px; text-align:center;">${w}g</td>
-          <td style="border: 1px solid #d4af37; padding: 6px; text-align:right;">₹${(rates.gold22k || 9050).toLocaleString('en-IN')}/g</td>
+          <td style="border: 1px solid #d4af37; padding: 6px; text-align:right;">₹${safeNum(rates.gold22k, 9050).toLocaleString('en-IN')}/g</td>
           <td style="border: 1px solid #d4af37; padding: 6px; text-align:right;"><b>₹${totalVal.toLocaleString('en-IN')}</b></td>
         </tr>
       </table>
@@ -2398,7 +2352,6 @@ function downloadProductEstimatePdfDirect() {
   downloadPdfBlob(estimateHtml);
 }
 
-// PERSISTENT SCRATCH CARDS (Point 9)
 function renderDynamicRewardCards() {
   const c = document.getElementById('dynamicCouponCardContainer');
   if (!c) return;
@@ -2452,7 +2405,7 @@ function setupScratchCanvas(canvasId, storageKey) {
   canvas.width = rect.width || 130;
   canvas.height = rect.height || 130;
 
-  const isAlreadyScratched = localStorage.getItem(getUserKey(storageKey)) === 'true';
+  const isAlreadyScratched = Boolean(scratchedStateMap[storageKey]);
 
   if (isAlreadyScratched) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -2485,8 +2438,9 @@ function setupScratchCanvas(canvasId, storageKey) {
     ctx.fill();
 
     scratchedPixels++;
-    if (scratchedPixels > 10) {
-      localStorage.setItem(getUserKey(storageKey), 'true');
+    if (scratchedPixels > 8) {
+      scratchedStateMap[storageKey] = true;
+      saveUserDataDirect();
     }
   }
 
@@ -2494,7 +2448,7 @@ function setupScratchCanvas(canvasId, storageKey) {
   window.addEventListener('mouseup', () => isDr = false);
   canvas.addEventListener('mousemove', doScratch);
   canvas.addEventListener('touchstart', (e) => { isDr = true; doScratch(e); }, { passive: true });
-  window.addEventListener('touchend', () => isDr = false);
+  window.addEventListener('touchend', () => isDrawing = false);
   canvas.addEventListener('touchmove', doScratch, { passive: true });
 }
 
@@ -2523,22 +2477,22 @@ function renderCalendarUI(month, year) {
   grid.innerHTML = html;
 }
 
-// FIXED FAVORITE / WISHLIST TOGGLE (Point 4)
 function toggleWishlistProduct(id) {
-  const p = allProducts.find(x => Number(x.id) === Number(id));
+  const p = allProducts.find(x => String(x.id) === String(id));
   if (!p) return;
-  const idx = wishlist.findIndex(x => Number(x.id) === Number(id));
+  const idx = wishlist.findIndex(x => String(x.id) === String(id));
   if (idx > -1) {
     wishlist.splice(idx, 1);
   } else {
     wishlist.push(p);
   }
-  localStorage.setItem(getUserKey('wishlist'), JSON.stringify(wishlist));
-  syncUserDataToCloud();
+  saveUserDataDirect();
+  updateCartUI();
   renderDashboardSections();
   renderCatPageProducts();
   renderWishlistUI();
   toast(idx > -1 ? "💔 Removed from Favorites" : "❤️ Added to Favorites!");
+  setTimeout(syncUserDataToCloud, 50);
 }
 
 function renderWishlistUI() {
@@ -2549,8 +2503,8 @@ function renderWishlistUI() {
     return;
   }
   grid.innerHTML = wishlist.map(p => `
-    <div class="product-card" onclick="openProductDetail(${p.id})">
-      <button class="wish-heart-btn active" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">❤️</button>
+    <div class="product-card" onclick="openProductDetail('${p.id}')">
+      <button type="button" class="wish-heart-btn active" onclick="event.stopPropagation(); toggleWishlistProduct('${p.id}')">❤️</button>
       <div class="product-img-wrap"><img src="${getProductPhoto(p)}"></div>
       <div class="product-info">
         <div class="product-title">${p.name}</div>
@@ -2593,11 +2547,14 @@ function logoutUser() {
   }
 }
 
+let toastTimer = null;
 function toast(m) {
   const t = document.getElementById('toast');
   if(!t) return;
-  t.textContent = m; t.style.display = 'block';
-  setTimeout(() => t.style.display = 'none', 2500);
+  if (toastTimer) clearTimeout(toastTimer);
+  t.textContent = m; 
+  t.style.display = 'block';
+  toastTimer = setTimeout(() => { t.style.display = 'none'; }, 2200);
 }
 </script>
 </body>
