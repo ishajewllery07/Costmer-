@@ -923,7 +923,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     </div>
 
     <div id="coStep3Container" style="display:none;">
-      <div style="background:var(--bg-main);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:9px;">
+      <div style="background:var(--bg-main);border:1.5px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:9px;">
         <label style="font-size:10.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:5px;">💰 Choose Payment & Apply Promo:</label>
         
         <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:7px;">
@@ -974,7 +974,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- RAMBAN STABLE PDF / INVOICE VIEWER MODAL -->
+<!-- STABLE PRINT / SAVE PDF MODAL VIEWER -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice</b>
@@ -2191,7 +2191,7 @@ function renderDrawerOrderHistory() {
 }
 
 // ----------------------------------------------------
-// RAMBAN STABLE INVOICE MODAL VIEWER (100% WORKING IN APP)
+// UPDATED APP-FRIENDLY MODAL VIEWER WITH DIRECT PRINT TRIGGER
 // ----------------------------------------------------
 function downloadPdfBlob(htmlContent, filename) {
   const modal = document.getElementById('pdfViewerModal');
@@ -2211,15 +2211,21 @@ function closePdfModal() {
 function triggerModalPrint() {
   const contentBox = document.getElementById('pdfModalContentBox');
   if (!contentBox) return;
-  const printWin = window.open('', '_blank');
-  if (printWin) {
-    printWin.document.open();
-    printWin.document.write('<html><head><title>Print Invoice</title></head><body>' + contentBox.innerHTML + '</body></html>');
-    printWin.document.close();
+
+  // Yeh code direct browser/app ke print or save as PDF menu ko active karega
+  const printWindow = window.open('', '_blank', 'height=650,width=800');
+  if (printWindow) {
+    printWindow.document.write('<html><head><title>Isha_Jewellers_Slip</title>');
+    printWindow.document.write('<style>body{font-family:Arial,sans-serif;padding:20px;color:#000;background:#fff;} table{width:100%;border-collapse:collapse;} th,td{border:1px solid #d4af37;padding:8px;text-align:center;font-size:12px;}</style>');
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(contentBox.innerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    
     setTimeout(() => {
-      printWin.focus();
-      printWin.print();
-    }, 400);
+      printWindow.focus();
+      printWindow.print();
+    }, 600);
   } else {
     window.print();
   }
