@@ -42,15 +42,20 @@ body.light-mode {
 }
 
 body.dark-mode {
-  --bg-main: #0c0a0f;
-  --card-bg: #16121b;
-  --card-border: #2d2336;
-  --text-main: #faedcd;
-  --text-muted: #d4af37;
-  --gold-glow: #ffd700;
-  --theme-color: #d4af37;
-  --theme-subtle: rgba(212,175,55,0.2);
-  --accent-theme: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #9a7b20 100%);
+  --bg-main: #0c0a0f !important;
+  --card-bg: #16121b !important;
+  --card-border: #2d2336 !important;
+  --text-main: #faedcd !important;
+  --text-muted: #d4af37 !important;
+  --gold-glow: #ffd700 !important;
+  --theme-color: #d4af37 !important;
+  --theme-subtle: rgba(212,175,55,0.2) !important;
+  --accent-theme: linear-gradient(135deg, #ffd700 0%, #d4af37 50%, #9a7b20 100%) !important;
+}
+
+body.theme-silver.dark-mode, body.theme-diamond.dark-mode, body.dark-mode {
+  background: var(--bg-main) !important;
+  color: var(--text-main) !important;
 }
 
 body.theme-silver {
@@ -82,7 +87,7 @@ body.theme-diamond {
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html, body{width:100%;min-height:100vh;margin:0;padding:0;overflow-x:hidden;}
+html, body{width:100%;max-width:100vw;min-height:100vh;margin:0;padding:0;overflow-x:hidden;}
 body{
   font-family:'Plus Jakarta Sans', sans-serif;
   background:var(--bg-main);
@@ -93,10 +98,15 @@ body{
   transition:background 0.3s ease, color 0.3s ease;
 }
 
+/* RESPONSIVE DEVICE AUTO-FIT (Point 1) */
 .app{
-  width:100% !important;max-width:100% !important;min-height:100vh;
-  background:var(--bg-main);position:relative;margin:0;display:flex;
-  flex-direction:column;box-shadow:none;padding-bottom:80px;
+  width:100% !important;max-width:600px !important;min-height:100vh;
+  background:var(--bg-main);position:relative;margin:0 auto;display:flex;
+  flex-direction:column;box-shadow:0 0 25px rgba(0,0,0,0.15);padding-bottom:80px;
+}
+@media(min-width:768px){
+  .app{max-width:720px !important;border-left:1px solid var(--card-border);border-right:1px solid var(--card-border);}
+  .bottom-nav{max-width:720px !important;}
 }
 
 #splashScreen{
@@ -249,9 +259,10 @@ main{padding:8px 10px 85px;flex:1;}
 }
 .wish-heart-btn.active{color:#ff334b;}
 
-.product-img-wrap{width:100%;height:125px;background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;}
+/* FIXED IMAGE CROPPING / ASPECT RATIO (Point 5) */
+.product-img-wrap{width:100%;height:150px;background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
 body.theme-diamond .product-img-wrap{background:#e0f2fe;}
-.product-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.product-img-wrap img{width:100%;height:100%;object-fit:contain;background:#111;}
 .product-info{padding:8px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
 .product-title{font-size:11px;font-weight:600;margin-bottom:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .product-price{font-size:12.5px;font-weight:800;color:var(--gold-glow);}
@@ -282,7 +293,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 .about-contact-row{font-size:10px;margin-bottom:2px;display:flex;gap:6px;}
 
 .bottom-nav{
-  position:fixed;bottom:0;left:0;right:0;max-width:420px;margin:0 auto;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:7px 4px 10px;z-index:50;box-shadow:0 -4px 15px rgba(0,0,0,0.05);
+  position:fixed;bottom:0;left:0;right:0;max-width:600px;margin:0 auto;background:var(--card-bg);border-top:1px solid var(--card-border);display:flex;justify-content:space-around;padding:7px 4px 10px;z-index:50;box-shadow:0 -4px 15px rgba(0,0,0,0.05);
 }
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9.5px;color:var(--text-muted);cursor:pointer;width:25%;position:relative;}
 .nav-item.active{color:var(--theme-color);}
@@ -486,7 +497,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div class="search-dropdown-box" id="searchDropdownBox">
         <div style="font-size:9.5px;color:var(--gold);font-weight:700;margin-bottom:3px;">⏳ Recent Searches:</div>
         <div id="recentSearchesList" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px;"></div>
-        <div style="font-size:9.5px;color:var(--gold);font-weight:700;margin-bottom:3px;">🔥 Trending Products:</div>
+        <div style="font-size:9.5px;color:var(--gold);font-weight:700;margin-bottom:3px;">🔥 Trending Products & Search Results:</div>
         <div id="trendingSearchList" style="display:flex;flex-direction:column;gap:4px;"></div>
       </div>
     </div>
@@ -500,7 +511,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 
   <main>
     <section id="home" class="page active">
-      <!-- Top Carousel Banner (Admin Controlled with Product Link) -->
+      <!-- Top Carousel Banner (Admin Controlled with Product Link - Point 4 Fixed) -->
       <div class="ads-carousel" id="customerAdsCarousel"></div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;">
@@ -524,7 +535,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div class="section-title-bar" style="margin-top:14px;"><h2>👑 Most Viewed & Buy</h2></div>
       <div class="product-grid" id="gridMostBuy"></div>
 
-      <!-- Bottom Promotion Banner (Admin Controlled Static Poster) -->
+      <!-- Bottom Promotion Banner -->
       <div style="background:var(--card-bg); border:1.5px solid var(--gold); border-radius:14px; padding:5px; margin:14px 0 8px 0; text-align:center; box-shadow:0 4px 15px rgba(212,175,55,0.15); overflow:hidden;">
         <div style="width:100%; height:150px; border-radius:10px; overflow:hidden; border:1px solid var(--card-border); position:relative;">
           <img id="bottomPromoImageTag" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600" style="width:100%; height:100%; object-fit:cover;" alt="Jewellery Poster">
@@ -587,10 +598,9 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <button class="btn-outline" style="margin-bottom:8px;" onclick="showPage('home')">‹ Back</button>
       
       <div style="height:230px;border-radius:12px;overflow:hidden;border:1px solid var(--card-border);background:var(--card-bg);position:relative;display:flex;align-items:center;justify-content:center;">
-        <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:cover;">
+        <img id="detailMainImg" src="" style="width:100%;height:100%;object-fit:contain;background:#111;">
         <div id="detailStockBadge" style="position:absolute;top:8px;left:8px;background:#2ecc71;color:#000;font-size:9px;font-weight:800;padding:3px 8px;border-radius:6px;z-index:2;">In Stock</div>
       </div>
-      <!-- Thumbnails row for Multiple Images -->
       <div id="detailThumbnailsRow" style="display:flex;gap:6px;margin-top:7px;overflow-x:auto;"></div>
 
       <div style="margin-top:8px;">
@@ -722,7 +732,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
         <div id="folderSettingsBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;display:flex;flex-direction:column;gap:7px;" onclick="event.stopPropagation()">
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
-            <span style="font-size:10.5px;font-weight:600;">🌓 Mode (Dark / Light)</span>
+            <span style="font-size:10.5px;font-weight:600;">🌓 Dark / Light Mode</span>
             <button class="btn-outline" style="padding:4px 8px;font-size:9px;" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
@@ -740,32 +750,40 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
+      <!-- SILVER TANCH RATE ESTIMATOR WITH DEDUCTION SLABS (Point 8) -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderExchangeCalcBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">⚖️ Live Sona / Chandi Rate Estimator</span>
+          <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">🪙 Live Silver Tanch Estimator</span>
           <span>▾</span>
         </div>
         <div id="folderExchangeCalcBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;" onclick="event.stopPropagation()">
-          <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:5px;">Ghar baithe apne purane sona ya chandi ka live market price calculate karein:</p>
+          <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:5px;">Purane Chandi ka Tanch aur Katoti ke hisab se live rate calculate karein:</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
             <div>
-              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Silver (Gross g):</label>
+              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Silver Gross Wt (g):</label>
               <input type="number" id="calcOldSilver" step="0.01" class="input-control" placeholder="e.g. 116.64" oninput="runStandaloneExchangeCalc()">
             </div>
             <div>
-              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Old Gold (Gross g):</label>
-              <input type="number" id="calcOldGold" step="0.01" class="input-control" placeholder="e.g. 10.0" oninput="runStandaloneExchangeCalc()">
+              <label style="font-size:8.5px;color:var(--gold);display:block;margin-bottom:2px;">Select Tanch Purity:</label>
+              <select id="calcSilverTanchSelect" class="input-control" onchange="runStandaloneExchangeCalc()">
+                <option value="55">55% Tanch (2.912g Katoti)</option>
+                <option value="65">65% Tanch (2.912g Katoti)</option>
+                <option value="70">70% Tanch (1.456g Katoti)</option>
+                <option value="80">80% Tanch (1.456g Katoti)</option>
+                <option value="90">90% Tanch (1.456g Katoti)</option>
+                <option value="100">Pure Silver (0g Katoti)</option>
+              </select>
             </div>
           </div>
           <div class="price-breakup-box" style="margin:5px 0;">
-            <div class="breakup-row"><span>Silver Katoti (2.916g / 11.664g):</span><span id="calcDispSilverDeduct">0 g</span></div>
-            <div class="breakup-row"><span>Silver Net Wt & Value:</span><span id="calcDispSilverNetVal">₹0</span></div>
-            <div class="breakup-row"><span>Gold Net Valuation (92% Assayed):</span><span id="calcDispGoldNetVal">₹0</span></div>
-            <div class="breakup-row total"><span>Total Estimated Credit:</span><span id="calcDispGrandTotal" style="color:#2ecc71;">₹0</span></div>
+            <div class="breakup-row"><span>Katoti / Melting Deduction:</span><span id="calcDispSilverDeduct">0 g</span></div>
+            <div class="breakup-row"><span>Silver Net Weight:</span><span id="calcDispSilverNetWt">0 g</span></div>
+            <div class="breakup-row total"><span>Total Estimated Silver Value:</span><span id="calcDispGrandTotal" style="color:#2ecc71;">₹0</span></div>
           </div>
         </div>
       </div>
 
+      <!-- ORDER HISTORY (DISPLAYED ONLY AFTER SUCCESSFUL ORDERS - Point 6) -->
       <div style="background:var(--card-bg);border:1px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderOrdersBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">📦 My Orders History & Invoices</span>
@@ -776,6 +794,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
+      <!-- REWARD SCRATCH CARDS (PERSISTENT STATE - Point 9) -->
       <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:12px;padding:10px;margin-bottom:8px;cursor:pointer;" onclick="toggleFolderSection('folderRewardBox')">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <span style="font-family:'Cinzel',serif;font-weight:700;color:var(--gold-glow);font-size:11px;">🎁 My Reward Scratch Cards</span>
@@ -903,6 +922,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 
       <div style="display:flex;gap:5px;">
         <button type="button" class="btn-danger" style="flex:1;padding:10px;font-size:11px;font-weight:700;" onclick="goToCheckoutStep2()">❌ Cancel</button>
+        <!-- FIXED UNLIMITED RE-ORDER FREEZE (Point 2) -->
         <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:10px;font-size:11px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;position:relative;z-index:99999;cursor:pointer;pointer-events:auto;" onclick="executeOrderPlacement()">
           ✓ CONFIRM ORDER
         </button>
@@ -923,7 +943,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
-<!-- Preview Only Modal -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice Preview</b>
@@ -1051,11 +1070,11 @@ let currentCalYear = new Date().getFullYear();
 let activeCatSubFilter = "all";
 
 const fallbackHdImages = {
-  "Rings": ["https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500", "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=500", "https://images.unsplash.com/photo-1603561596112-0f13ddb18353?w=500"],
-  "Chain": ["https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500", "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500", "https://images.unsplash.com/photo-1611591475878-189f7f45a0e5?w=500"],
-  "Bali": ["https://images.unsplash.com/photo-1611591475878-189f7f45a0e5?w=500", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500"],
+  "Rings": ["https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500"],
+  "Chain": ["https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500"],
+  "Bali": ["https://images.unsplash.com/photo-1611591475878-189f7f45a0e5?w=500"],
   "SilverPayal": ["https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500"],
-  "DiamondRing": ["https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=500", "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500"],
+  "Diamond": ["https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=500"],
   "default": ["https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500"]
 };
 
@@ -1068,11 +1087,7 @@ let circularIconsDef = [
 ];
 
 let allProducts = JSON.parse(localStorage.getItem('isha_products')) || [
-  { id: 101, code: "IJ-RING-01", name: "Royal Wedding 22K Ring", metal: "22K", category: "Rings", weight: 4, availableWeights: [3, 4, 5, 6.5], making: 1500, inStock: true, type: "trending", image: fallbackHdImages["Rings"] },
-  { id: 102, code: "IJ-CHAIN-02", name: "Traditional Hallmark Chain", metal: "22K", category: "Chain", weight: 8, availableWeights: [6, 8, 10, 14], making: 2400, inStock: true, type: "trending", image: fallbackHdImages["Chain"] },
-  { id: 103, code: "IJ-BALI-03", name: "Classic Balurgram Bali", metal: "22K", category: "Bali", weight: 4, availableWeights: [3, 4, 5], making: 1800, inStock: false, type: "curated", image: fallbackHdImages["Bali"] },
-  { id: 104, code: "IJ-PAYAL-04", name: "Dulhan Silver Ghungroo Payal", metal: "Silver55", category: "SilverPayal", weight: 25, availableWeights: [15, 20, 25, 35, 50], making: 450, customTanchAllowed: true, inStock: true, type: "curated", image: fallbackHdImages["SilverPayal"] },
-  { id: 105, code: "IJ-DIA-01", name: "Solitaire Diamond Ring", metal: "Diamond", category: "Diamond", weight: 1.5, availableWeights: [1.0, 1.5, 2.0, 3.0], making: 5000, inStock: true, type: "trending", image: fallbackHdImages["DiamondRing"] }
+  { id: 101, code: "IJ-RING-01", name: "Royal Wedding 22K Ring", metal: "22K", category: "Rings", weight: 4, availableWeights: [3, 4, 5, 6.5], making: 1500, inStock: true, type: "trending", image: fallbackHdImages["Rings"] }
 ];
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -1087,11 +1102,9 @@ window.addEventListener('DOMContentLoaded', () => {
   initAdminCloudListeners();
 });
 
-// Admin Live Sync Listeners for App
+// INSTANT PRODUCT & RATE SYNC (Point 3)
 function initAdminCloudListeners() {
   if (!db) return;
-  
-  // 1. Live Rates Sync
   db.ref('rates').on('value', (snapshot) => {
     const cloudRates = snapshot.val();
     if (cloudRates) {
@@ -1102,18 +1115,16 @@ function initAdminCloudListeners() {
     }
   });
 
-  // 2. Live Products Sync
   db.ref('products').on('value', (snapshot) => {
     const cloudProducts = snapshot.val();
     if (cloudProducts) {
-      allProducts = Object.values(cloudProducts);
+      allProducts = Object.values(cloudProducts).reverse(); // New products appear instantly on top
       localStorage.setItem('isha_products', JSON.stringify(allProducts));
       renderDashboardSections();
       renderCatPageProducts();
     }
   });
 
-  // 3. Admin Controlled Banners Sync
   db.ref('storeBanners').on('value', (snapshot) => {
     const banners = snapshot.val();
     if (banners) {
@@ -1348,12 +1359,20 @@ function switchMetalSegment(seg) {
   renderCatPageProducts();
 }
 
+// FULL GLOBAL DARK MODE SUPPORT (Point 7)
 function toggleTheme() {
-  document.body.classList.toggle('dark-mode');
-  const isDark = document.body.classList.contains('dark-mode');
-  document.getElementById('btnThemeMode').textContent = isDark ? "Light Mode" : "Dark Mode";
-  localStorage.setItem('isha_dark_mode', isDark);
-  toast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
+  const isCurrentlyDark = document.body.classList.contains('dark-mode');
+  const newDarkState = !isCurrentlyDark;
+  
+  if (newDarkState) {
+    document.body.classList.add('dark-mode');
+    document.getElementById('btnThemeMode').textContent = "Light Mode";
+  } else {
+    document.body.classList.remove('dark-mode');
+    document.getElementById('btnThemeMode').textContent = "Dark Mode";
+  }
+  localStorage.setItem('isha_dark_mode', newDarkState);
+  toast(newDarkState ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -1383,7 +1402,7 @@ function getProductDesc(p) {
     return `Certified SI-IJ diamond set in 18K Hallmarked gold mountings with brilliant sparkle and shine.`;
   }
   if (p.metal && p.metal.includes('Silver')) {
-    return `Authentic handcrafted silver article assayed for 55% local purity with high-buff gloss lustre.`;
+    return `Authentic handcrafted silver article assayed for local purity with high-buff gloss lustre.`;
   }
   return `Govt. Registered 100% BIS 916 Hallmarked Pure Gold with HUID purity certification.`;
 }
@@ -1405,7 +1424,7 @@ function getProductLivePrice(p, customWeight) {
 }
 
 function openProductDetail(id) {
-  const p = allProducts.find(x => x.id === id);
+  const p = allProducts.find(x => Number(x.id) === Number(id));
   if (!p) return;
   currentProduct = p;
 
@@ -1430,7 +1449,7 @@ function openProductDetail(id) {
   document.getElementById('detailDescription').textContent = getProductDesc(p);
 
   document.getElementById('specCaratVal').textContent = p.metal === 'Diamond' ? '18 Carat (18K)' : (p.metal === '24K' ? '24 Carat (24K)' : '22 Carat (22K)');
-  document.getElementById('specGoldQuality').textContent = p.metal.includes('Silver') ? '55% Assayed Silver' : (p.metal === 'Diamond' ? '18K Certified Gold Mount' : '100% BIS 916 Hallmarked');
+  document.getElementById('specGoldQuality').textContent = p.metal.includes('Silver') ? 'Assayed Silver' : (p.metal === 'Diamond' ? '18K Certified Gold Mount' : '100% BIS 916 Hallmarked');
   document.getElementById('specCertVal').textContent = p.metal === 'Diamond' ? 'IGI / SGL Certified' : 'BIS 916 HUID Assured';
   document.getElementById('specMakingVal').textContent = '₹' + (p.making || 1500) + ' (Standard Slab)';
 
@@ -1454,7 +1473,7 @@ function openProductDetail(id) {
       const t = getProductLivePrice(sim);
       return `
         <div class="product-card" onclick="openProductDetail(${sim.id})">
-          <button class="wish-heart-btn ${wishlist.some(x=>x.id===sim.id)?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${sim.id})">${wishlist.some(x=>x.id===sim.id)?'❤️':'🤍'}</button>
+          <button class="wish-heart-btn ${wishlist.some(x=>Number(x.id)===Number(sim.id))?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${sim.id})">${wishlist.some(x=>Number(x.id)===Number(sim.id))?'❤️':'🤍'}</button>
           <div class="product-img-wrap"><img src="${getProductPhoto(sim)}"></div>
           <div class="product-info">
             <div class="product-title">${sim.name}</div>
@@ -1510,7 +1529,7 @@ function showDashboardHome(navEl) {
   showPage('home', navEl);
 }
 
-// Render Admin-Controlled Top Carousel & Bottom Promo Banner
+// BANNER PRODUCT CLICK FIX (Point 4)
 function renderCustomerAdsCarousel() {
   const carousel = document.getElementById('customerAdsCarousel');
   const bottomImgTag = document.getElementById('bottomPromoImageTag');
@@ -1525,7 +1544,7 @@ function renderCustomerAdsCarousel() {
 
   if (carousel) {
     carousel.innerHTML = topAds.map(ad => `
-      <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetail(${ad.productId || 101})">
+      <div class="ad-poster-card" style="background-image:url('${ad.image}');" onclick="openProductDetailFromBanner(${ad.productId || 101})">
         <div class="ad-card-content">
           <span style="font-size:8px;font-weight:900;background:#ff334b;padding:2px 6px;border-radius:4px;color:#fff;">${ad.tag || 'OFFER'}</span>
           <div style="font-family:'Cinzel',serif;font-size:14.5px;font-weight:900;color:#ffd57e;margin-top:2px;">${ad.title}</div>
@@ -1537,6 +1556,17 @@ function renderCustomerAdsCarousel() {
 
   if (bottomImgTag) {
     bottomImgTag.src = bottomPromo.image;
+  }
+}
+
+function openProductDetailFromBanner(productId) {
+  const found = allProducts.find(x => Number(x.id) === Number(productId) || String(x.code) === String(productId));
+  if (found) {
+    openProductDetail(found.id);
+  } else if (allProducts.length > 0) {
+    openProductDetail(allProducts[0].id);
+  } else {
+    toast("📦 Product details loading...");
   }
 }
 
@@ -1592,7 +1622,7 @@ function renderDashboardSections(customList) {
 
   const renderCard = (p) => {
     const total = getProductLivePrice(p);
-    const isWished = wishlist.some(x => x.id === p.id);
+    const isWished = wishlist.some(x => Number(x.id) === Number(p.id));
     return `
       <div class="product-card" onclick="openProductDetail(${p.id})">
         <button class="wish-heart-btn ${isWished?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">${isWished?'❤️':'🤍'}</button>
@@ -1636,7 +1666,7 @@ function renderCatPageProducts(catId = 'All') {
 
   grid.innerHTML = list.map(p => {
     const total = getProductLivePrice(p);
-    const isWished = wishlist.some(x => x.id === p.id);
+    const isWished = wishlist.some(x => Number(x.id) === Number(p.id));
     return `
       <div class="product-card" onclick="openProductDetail(${p.id})">
         <button class="wish-heart-btn ${isWished?'active':''}" onclick="event.stopPropagation(); toggleWishlistProduct(${p.id})">${isWished?'❤️':'🤍'}</button>
@@ -1651,6 +1681,7 @@ function renderCatPageProducts(catId = 'All') {
   }).join('');
 }
 
+// FIXED ADD TO CART (Point 4)
 function addCurrentToCart() {
   if (!currentProduct) return;
   const itemToCart = { ...currentProduct, weight: currentCustomWeight, customSize: currentCustomSize };
@@ -1662,7 +1693,7 @@ function addCurrentToCart() {
 }
 
 function addToCartDirect(id) {
-  const p = allProducts.find(x => x.id === id);
+  const p = allProducts.find(x => Number(x.id) === Number(id));
   if (!p) return;
   cart.push({ ...p, customSize: 'Standard Size', weight: p.weight || 4 });
   localStorage.setItem(getUserKey('cart'), JSON.stringify(cart));
@@ -1672,9 +1703,13 @@ function addToCartDirect(id) {
 }
 
 function updateCartUI() {
-  document.getElementById('navCartBadge').textContent = cart.length;
+  const badge = document.getElementById('navCartBadge');
+  if (badge) badge.textContent = cart.length;
+  
   const listEl = document.getElementById('cartItemsList');
   const sumBox = document.getElementById('cartSummaryBox');
+  if (!listEl) return;
+
   if (!cart.length) {
     listEl.innerHTML = `<div style="text-align:center;padding:30px 10px;color:var(--text-muted);font-size:11.5px;">Cart is empty.</div>`;
     if (sumBox) sumBox.style.display = 'none';
@@ -1720,10 +1755,11 @@ function renderSearchHistoryDropdown() {
   const history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || ["Rings", "Chain", "Diamond", "Payal"];
   recentBox.innerHTML = history.slice(0, 4).map(h => `<span style="font-size:9px;background:var(--theme-subtle);color:var(--gold-glow);padding:3px 8px;border-radius:6px;cursor:pointer;" onclick="document.getElementById('searchInput').value='${h}';handleSearch('${h}')">${h}</span>`).join('');
 
-  const trendingItems = allProducts.slice(0, 3);
+  // SHOW ALL TRENDING PRODUCTS IN SEARCH DROPDOWN (Point 10)
+  const trendingItems = allProducts.slice(0, 6);
   trendingBox.innerHTML = trendingItems.map(t => `
-    <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
-      <span>🔥 ${t.name}</span>
+    <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
+      <span>🔥 ${t.name} (${t.metal})</span>
       <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(t).toLocaleString('en-IN')}</span>
     </div>
   `).join('');
@@ -1731,6 +1767,7 @@ function renderSearchHistoryDropdown() {
 
 function handleSearch(val) {
   const q = val.toLowerCase().trim();
+  const trendingBox = document.getElementById('trendingSearchList');
   if (q.length > 1) {
     let history = JSON.parse(localStorage.getItem(getUserKey('search_history'))) || [];
     if (!history.includes(q)) {
@@ -1738,8 +1775,21 @@ function handleSearch(val) {
       localStorage.setItem(getUserKey('search_history'), JSON.stringify(history));
     }
   }
-  if (!q) { renderDashboardSections(); return; }
-  renderDashboardSections(allProducts.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q)));
+  if (!q) { 
+    renderSearchHistoryDropdown();
+    renderDashboardSections(); 
+    return; 
+  }
+  const matched = allProducts.filter(p => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q) || p.code.toLowerCase().includes(q));
+  if(trendingBox) {
+    trendingBox.innerHTML = matched.length ? matched.map(t => `
+      <div style="font-size:10.5px;cursor:pointer;display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--card-border);" onclick="openProductDetail(${t.id})">
+        <span>🔍 ${t.name}</span>
+        <span style="color:var(--gold-glow);font-weight:bold;">₹${getProductLivePrice(t).toLocaleString('en-IN')}</span>
+      </div>
+    `).join('') : `<div style="font-size:10px;color:var(--text-muted);">No matching product found.</div>`;
+  }
+  renderDashboardSections(matched);
 }
 
 window.addEventListener('click', (e) => {
@@ -1898,6 +1948,7 @@ function selectPaymentModeOption(mode) {
   }
 }
 
+// FIXED ORDER BUTTON FREEZE FOR UNLIMITED RE-ORDERS (Point 2)
 function executeOrderPlacement() {
   const fName = document.getElementById('coFirstName').value.trim() || "Customer";
   const lName = document.getElementById('coLastName').value.trim();
@@ -2031,7 +2082,7 @@ function initSuccessModalScratchCanvas(orderId, code) {
     ctx.fill();
 
     count++;
-    if (count > 12) {
+    if (count > 8) {
       scratchedStateMap[orderId] = true;
       localStorage.setItem(getUserKey('scratched'), JSON.stringify(scratchedStateMap));
       syncUserDataToCloud();
@@ -2144,35 +2195,44 @@ function toggleOrderStatusTimeline(id) {
   el.style.display = el.style.display === 'block' ? 'none' : 'block';
 }
 
+// SILVER TANCH ESTIMATOR WITH DEDUCTION SLABS (Point 8)
 function runStandaloneExchangeCalc() {
   const oldSilverGross = Number(document.getElementById('calcOldSilver').value) || 0;
-  const oldGoldGross = Number(document.getElementById('calcOldGold').value) || 0;
+  const tanchVal = Number(document.getElementById('calcSilverTanchSelect').value) || 55;
 
-  const silverDeductionGrams = oldSilverGross * (2.916 / 11.664);
-  const netSilverGrams = oldSilverGross - silverDeductionGrams;
-  const silverTotalVal = Math.round(netSilverGrams * (rates.silverRate55PerG || 53.90));
+  let katotiGrams = 2.912;
+  if (tanchVal === 70 || tanchVal === 80 || tanchVal === 90) {
+    katotiGrams = 1.456;
+  } else if (tanchVal === 100) {
+    katotiGrams = 0;
+  }
 
-  const netGoldVal = Math.round(oldGoldGross * 0.92 * (rates.gold22k || 9050));
-  const grandTotal = silverTotalVal + netGoldVal;
+  const netSilverGrams = Math.max(0, oldSilverGross - katotiGrams);
+  const purePerG = (rates.silverPureKg || 98000) / 1000;
+  const effectiveRate = purePerG * (tanchVal / 100);
+  const totalVal = Math.round(netSilverGrams * effectiveRate);
 
-  document.getElementById('calcDispSilverDeduct').textContent = silverDeductionGrams.toFixed(2) + " g";
-  document.getElementById('calcDispSilverNetVal').textContent = `${netSilverGrams.toFixed(2)}g = ₹${silverTotalVal.toLocaleString('en-IN')}`;
-  document.getElementById('calcDispGoldNetVal').textContent = `${oldGoldGross.toFixed(2)}g (Net 92%) = ₹${netGoldVal.toLocaleString('en-IN')}`;
-  document.getElementById('calcDispGrandTotal').textContent = "₹" + grandTotal.toLocaleString('en-IN');
+  document.getElementById('calcDispSilverDeduct').textContent = katotiGrams.toFixed(3) + " g";
+  document.getElementById('calcDispSilverNetWt').textContent = netSilverGrams.toFixed(2) + " g";
+  document.getElementById('calcDispGrandTotal').textContent = "₹" + totalVal.toLocaleString('en-IN');
 }
 
+// ORDER HISTORY DISPLAYED ONLY AFTER SUCCESSFUL ORDERS (Point 6)
 function renderDrawerOrderHistory() {
   const c = document.getElementById('drawerOrdersHistoryList');
   if (!c) return;
-  if (!myOrders.length) {
-    c.innerHTML = `<div style="font-size:10px;color:var(--text-muted);text-align:center;padding:7px;">Abhi koi purana order record nahi mila.</div>`;
+  
+  const completedOrDelivered = myOrders.filter(o => o.statusStage === 5 || o.isDelivered);
+  
+  if (!completedOrDelivered.length) {
+    c.innerHTML = `<div style="font-size:10px;color:var(--text-muted);text-align:center;padding:7px;">🔒 Invoice history order delivery ke baad yahan dikhegi.</div>`;
     return;
   }
-  c.innerHTML = myOrders.map(o => `
+  c.innerHTML = completedOrDelivered.map(o => `
     <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:5px;">
       <div style="display:flex;justify-content:space-between;align-items:center;">
         <strong style="color:var(--gold-glow);font-size:11px;">Order #${o.id}</strong>
-        <span style="font-size:8.5px;color:#2ecc71;font-weight:700;">✓ Saved</span>
+        <span style="font-size:8.5px;color:#2ecc71;font-weight:700;">✓ Delivered</span>
       </div>
       <div style="font-size:10px;color:var(--text-main);margin:2px 0;">📦 <b>Products:</b> ${o.specs}</div>
       <div style="margin-top:6px;">
@@ -2338,108 +2398,104 @@ function downloadProductEstimatePdfDirect() {
   downloadPdfBlob(estimateHtml);
 }
 
+// PERSISTENT SCRATCH CARDS (Point 9)
 function renderDynamicRewardCards() {
   const c = document.getElementById('dynamicCouponCardContainer');
   if (!c) return;
-  if (!myOrders.length) {
-    c.innerHTML = `
-      <div style="text-align:center; padding:8px;">
-        <span style="font-size:8.5px; color:var(--gold); display:block; margin-bottom:3px;">WELCOME REWARD:</span>
+  
+  let cardsHtml = `
+    <div style="text-align:center; padding:8px;">
+      <span style="font-size:8.5px; color:var(--gold); display:block; margin-bottom:3px;">WELCOME REWARD:</span>
+      <div class="scratch-card-box">
+        <div class="scratch-underlay" id="underlay_default">
+          <span style="font-size:8px;color:var(--gold);">COUPON CODE:</span>
+          <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;">ISHA2004</b>
+          <small style="color:#2ecc71;font-size:8px;">Flat ₹200 OFF</small>
+        </div>
+        <canvas class="scratch-canvas" id="scratchCanvas_default"></canvas>
+      </div>
+    </div>
+  `;
+
+  if (myOrders.length) {
+    cardsHtml += myOrders.map((o, idx) => `
+      <div style="text-align:center;">
+        <span style="font-size:8px;color:#2ecc71;font-weight:800;display:block;">ORDER #${o.id}</span>
         <div class="scratch-card-box">
           <div class="scratch-underlay">
-            <span style="font-size:8px;color:var(--gold);">COUPON CODE:</span>
-            <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;">ISHA2004</b>
-            <small style="color:#2ecc71;font-size:8px;">Flat ₹200 OFF</small>
+            <span style="font-size:8px;color:var(--gold);">REWARD CODE:</span>
+            <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;">${o.couponEarned || 'ISHA-GOLD100'}</b>
           </div>
-          <canvas class="scratch-canvas" id="scratchCanvas_default"></canvas>
+          <canvas class="scratch-canvas" id="scratchCanvas_${idx}"></canvas>
         </div>
       </div>
-    `;
-    setTimeout(() => {
-      const canvas = document.getElementById('scratchCanvas_default');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#c59b48';
-      ctx.fillRect(0, 0, canvas.width || 130, canvas.height || 130);
-      ctx.fillStyle = '#120b02';
-      ctx.font = 'bold 10px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('✨ SCRATCH ✨', (canvas.width || 130)/2, (canvas.height || 130)/2 + 3);
-      
-      let isDr = false;
-      canvas.addEventListener('mousedown', () => isDr = true);
-      window.addEventListener('mouseup', () => isDr = false);
-      canvas.addEventListener('mousemove', (e) => {
-        if (!isDr) return;
-        const r = canvas.getBoundingClientRect();
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(e.clientX - r.left, e.clientY - r.top, 12, 0, Math.PI*2);
-        ctx.fill();
-      });
-      canvas.addEventListener('touchstart', () => isDr = true, {passive:true});
-      window.addEventListener('touchend', () => isDr = false);
-      canvas.addEventListener('touchmove', (e) => {
-        if (!isDr) return;
-        const r = canvas.getBoundingClientRect();
-        const t = e.touches[0];
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(t.clientX - r.left, t.clientY - r.top, 12, 0, Math.PI*2);
-        ctx.fill();
-      }, {passive:true});
-    }, 100);
-    return;
+    `).join('');
   }
-  c.innerHTML = myOrders.map((o, idx) => `
-    <div style="text-align:center;">
-      <span style="font-size:8px;color:#2ecc71;font-weight:800;display:block;">ORDER #${o.id}</span>
-      <div class="scratch-card-box">
-        <div class="scratch-underlay">
-          <span style="font-size:8px;color:var(--gold);">REWARD CODE:</span>
-          <b style="font-family:'Cinzel',serif;font-size:11.5px;color:#ffd57e;" id="codeText_${idx}">${o.couponEarned || 'ISHA-GOLD100'}</b>
-        </div>
-        <canvas class="scratch-canvas" id="scratchCanvas_${idx}"></canvas>
-      </div>
-      <button class="btn-outline" style="font-size:8.5px;padding:3px 6px;margin-top:3px;" onclick="copyRewardCode('${o.couponEarned || 'ISHA-GOLD100'}')">📋 Copy</button>
-    </div>
-  `).join('');
-  setTimeout(() => {
-    myOrders.forEach((o, idx) => {
-      const canvas = document.getElementById(`scratchCanvas_${idx}`);
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      ctx.fillStyle = '#c59b48';
-      ctx.fillRect(0, 0, canvas.width || 130, canvas.height || 130);
-      ctx.fillStyle = '#120b02';
-      ctx.font = 'bold 10px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('✨ SCRATCH ✨', (canvas.width || 130)/2, (canvas.height || 130)/2 + 3);
 
-      let isDr = false;
-      canvas.addEventListener('mousedown', () => isDr = true);
-      window.addEventListener('mouseup', () => isDr = false);
-      canvas.addEventListener('mousemove', (e) => {
-        if (!isDr) return;
-        const r = canvas.getBoundingClientRect();
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(e.clientX - r.left, e.clientY - r.top, 14, 0, Math.PI*2);
-        ctx.fill();
+  c.innerHTML = cardsHtml;
+
+  setTimeout(() => {
+    setupScratchCanvas('scratchCanvas_default', 'default_scratched');
+    if (myOrders.length) {
+      myOrders.forEach((o, idx) => {
+        setupScratchCanvas(`scratchCanvas_${idx}`, `order_${o.id}_scratched`);
       });
-      canvas.addEventListener('touchstart', () => isDr = true, {passive:true});
-      window.addEventListener('touchend', () => isDr = false);
-      canvas.addEventListener('touchmove', (e) => {
-        if (!isDr) return;
-        const r = canvas.getBoundingClientRect();
-        const t = e.touches[0];
-        ctx.globalCompositeOperation = 'destination-out';
-        ctx.beginPath();
-        ctx.arc(t.clientX - r.left, t.clientY - r.top, 14, 0, Math.PI*2);
-        ctx.fill();
-      }, {passive:true});
-    });
+    }
   }, 100);
+}
+
+function setupScratchCanvas(canvasId, storageKey) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width || 130;
+  canvas.height = rect.height || 130;
+
+  const isAlreadyScratched = localStorage.getItem(getUserKey(storageKey)) === 'true';
+
+  if (isAlreadyScratched) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  } else {
+    const g = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    g.addColorStop(0, '#c59b48'); g.addColorStop(1, '#ffd57e');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#120b02';
+    ctx.font = 'bold 10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('✨ SCRATCH ✨', canvas.width / 2, canvas.height / 2 + 3);
+  }
+
+  let isDr = false;
+  let scratchedPixels = 0;
+
+  function doScratch(e) {
+    if (!isDr || isAlreadyScratched) return;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const r = canvas.getBoundingClientRect();
+    const x = clientX - r.left;
+    const y = clientY - r.top;
+
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath();
+    ctx.arc(x, y, 15, 0, Math.PI * 2);
+    ctx.fill();
+
+    scratchedPixels++;
+    if (scratchedPixels > 10) {
+      localStorage.setItem(getUserKey(storageKey), 'true');
+    }
+  }
+
+  canvas.addEventListener('mousedown', () => isDr = true);
+  window.addEventListener('mouseup', () => isDr = false);
+  canvas.addEventListener('mousemove', doScratch);
+  canvas.addEventListener('touchstart', (e) => { isDr = true; doScratch(e); }, { passive: true });
+  window.addEventListener('touchend', () => isDr = false);
+  canvas.addEventListener('touchmove', doScratch, { passive: true });
 }
 
 function flipMonth(delta) {
@@ -2467,17 +2523,22 @@ function renderCalendarUI(month, year) {
   grid.innerHTML = html;
 }
 
+// FIXED FAVORITE / WISHLIST TOGGLE (Point 4)
 function toggleWishlistProduct(id) {
-  const p = allProducts.find(x => x.id === id);
+  const p = allProducts.find(x => Number(x.id) === Number(id));
   if (!p) return;
-  const idx = wishlist.findIndex(x => x.id === id);
-  if (idx > -1) wishlist.splice(idx, 1);
-  else wishlist.push(p);
+  const idx = wishlist.findIndex(x => Number(x.id) === Number(id));
+  if (idx > -1) {
+    wishlist.splice(idx, 1);
+  } else {
+    wishlist.push(p);
+  }
   localStorage.setItem(getUserKey('wishlist'), JSON.stringify(wishlist));
   syncUserDataToCloud();
   renderDashboardSections();
   renderCatPageProducts();
   renderWishlistUI();
+  toast(idx > -1 ? "💔 Removed from Favorites" : "❤️ Added to Favorites!");
 }
 
 function renderWishlistUI() {
@@ -2534,6 +2595,7 @@ function logoutUser() {
 
 function toast(m) {
   const t = document.getElementById('toast');
+  if(!t) return;
   t.textContent = m; t.style.display = 'block';
   setTimeout(() => t.style.display = 'none', 2500);
 }
