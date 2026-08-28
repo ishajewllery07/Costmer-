@@ -173,6 +173,14 @@ body{
 }
 .scratch-canvas{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2;touch-action:none;cursor:grab;}
 
+/* UPI SHEET STYLING */
+.upi-app-btn{
+  background:#181222;border:1.5px solid var(--card-border);border-radius:10px;padding:10px 12px;
+  display:flex;align-items:center;justify-content:space-between;color:var(--text-main);font-size:11.5px;
+  font-weight:700;cursor:pointer;transition:all 0.2s;text-decoration:none;
+}
+.upi-app-btn:hover{border-color:var(--gold);background:var(--theme-subtle);}
+
 header{
   padding:10px 14px 8px;background:var(--card-bg);backdrop-filter:blur(12px);
   position:sticky;top:0;z-index:20;border-bottom:1px solid var(--card-border);box-shadow:0 4px 12px rgba(0,0,0,0.1);
@@ -359,6 +367,52 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
   <div class="splash-title">ISHA JEWELLERS</div>
   <div class="splash-sub">ESTD 2004 • BALURGRAM BAZZAR, UDHWA</div>
+</div>
+
+<!-- 100% NATIVE ANDROID UPI SELECTOR MODAL -->
+<div id="upiPaymentSheetModal" style="position:fixed;inset:0;background:rgba(5,4,8,0.96);z-index:999999999;display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(14px);">
+  <div style="background:#14111c;border:2px solid var(--gold);border-radius:20px;padding:20px 16px;width:100%;max-width:350px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,0.9);">
+    <div style="font-size:24px;margin-bottom:2px;">⚡</div>
+    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:var(--gold-glow);margin-bottom:2px;">UPI INSTANT PAYMENT</h2>
+    <p style="font-size:10px;color:var(--text-muted);margin-bottom:10px;">Select your installed UPI App to complete Advance Payment:</p>
+
+    <div style="background:#0c0a10;border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:12px;">
+      <span style="font-size:9px;color:var(--gold);">Payable Advance:</span>
+      <div id="upiSheetAmountDisp" style="font-size:22px;font-weight:900;color:#2ecc71;margin:2px 0;">₹500.00</div>
+      <small id="upiSheetOrderTag" style="font-size:9px;color:var(--text-muted);">For Order #IJ-000000</small>
+    </div>
+
+    <!-- Direct Universal Intents (No Webpage Error) -->
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px;">
+      <button type="button" class="upi-app-btn" onclick="openAndroidAppIntent('phonepe')">
+        <span>🟣 Pay via PhonePe</span>
+        <span style="font-size:9.5px;color:#2ecc71;">Open App ➔</span>
+      </button>
+      <button type="button" class="upi-app-btn" onclick="openAndroidAppIntent('gpay')">
+        <span>🔵 Pay via Google Pay (GPay)</span>
+        <span style="font-size:9.5px;color:#2ecc71;">Open App ➔</span>
+      </button>
+      <button type="button" class="upi-app-btn" onclick="openAndroidAppIntent('paytm')">
+        <span>🟦 Pay via Paytm / BHIM</span>
+        <span style="font-size:9.5px;color:#2ecc71;">Open App ➔</span>
+      </button>
+      <button type="button" class="upi-app-btn" style="background:var(--accent-theme);color:#000;" onclick="openAndroidAppIntent('generic')">
+        <span>⚡ Open Any Default UPI App</span>
+        <span>➔</span>
+      </button>
+    </div>
+
+    <!-- Dynamic Live QR Code -->
+    <div style="background:#fff;border-radius:10px;padding:8px;display:inline-block;margin-bottom:10px;">
+      <img id="upiSheetQrImg" src="" style="width:115px;height:115px;display:block;" alt="UPI QR Code">
+      <small style="font-size:8px;color:#000;display:block;font-weight:bold;margin-top:2px;">Scan with Any Scanner</small>
+    </div>
+
+    <div style="display:flex;gap:6px;">
+      <button type="button" class="btn-outline" style="flex:1;padding:8px;font-size:10px;" onclick="copyStoreUpiId()">📋 Copy UPI ID</button>
+      <button type="button" class="btn-gold" style="flex:1.2;padding:8px;font-size:10.5px;background:#2ecc71;color:#000;font-weight:900;" onclick="closeUpiPaymentSheet()">✓ Done / Next</button>
+    </div>
+  </div>
 </div>
 
 <div id="orderSuccessAnimModal">
@@ -2162,14 +2216,74 @@ function selectPaymentModeOption(mode) {
   }
 }
 
-// 100% RELIABLE UPI LAUNCHER
-function launchDirectUpiPayment(amount, orderId) {
+// ================= 100% RELIABLE ANDROID INTENT UPI CONTROLLER ================= //
+let activeUpiPaymentParams = { amount: "500.00", orderId: "IJ-000000" };
+
+function openUpiPaymentSheet(amount, orderId) {
   const cleanAmount = parseFloat(amount).toFixed(2);
   const cleanOrderId = String(orderId).replace(/[^a-zA-Z0-9]/g, '');
-  const upiUrl = `upi://pay?pa=9113774515@ybl&pn=ISHA%20JEWELLERS&am=${cleanAmount}&cu=INR&tn=AdvanceOrder${cleanOrderId}`;
+  activeUpiPaymentParams = { amount: cleanAmount, orderId: cleanOrderId };
 
-  // Direct app trigger
-  window.location.href = upiUrl;
+  document.getElementById('upiSheetAmountDisp').textContent = `₹${cleanAmount}`;
+  document.getElementById('upiSheetOrderTag').textContent = `For Order #${orderId}`;
+
+  // Real-time Dynamic QR Fallback
+  const note = `AdvanceOrder${cleanOrderId}`;
+  const rawUpiUri = `upi://pay?pa=9113774515@ybl&pn=ISHA%20JEWELLERS&am=${cleanAmount}&cu=INR&tn=${encodeURIComponent(note)}`;
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(rawUpiUri)}`;
+  document.getElementById('upiSheetQrImg').src = qrUrl;
+
+  document.getElementById('upiPaymentSheetModal').style.display = 'flex';
+}
+
+function openAndroidAppIntent(targetApp) {
+  const amount = activeUpiPaymentParams.amount || "500.00";
+  const orderId = activeUpiPaymentParams.orderId || "IJ0000";
+  const note = `AdvanceOrder${orderId}`;
+  
+  const pa = "9113774515@ybl";
+  const pn = "ISHA JEWELLERS";
+  
+  // Standard formatted query
+  const upiQuery = `pa=${pa}&pn=${encodeURIComponent(pn)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+  const genericUpiUri = `upi://pay?${upiQuery}`;
+
+  let targetUri = genericUpiUri;
+
+  // Android Specific Intent Scheme (Bypasses ERR_UNKNOWN_URL_SCHEME completely)
+  if (targetApp === 'phonepe') {
+    targetUri = `intent://pay?${upiQuery}#Intent;scheme=upi;package=com.phonepe.app;end`;
+  } else if (targetApp === 'gpay') {
+    targetUri = `intent://pay?${upiQuery}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end`;
+  } else if (targetApp === 'paytm') {
+    targetUri = `intent://pay?${upiQuery}#Intent;scheme=upi;package=net.one97.paytm;end`;
+  }
+
+  // Safe launcher with generic fallback
+  const a = document.createElement('a');
+  a.href = targetUri;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // Fallback to standard UPI in case specific app package is missing
+  setTimeout(() => {
+    try {
+      window.location.href = genericUpiUri;
+    } catch (e) {}
+  }, 700);
+}
+
+function copyStoreUpiId() {
+  navigator.clipboard.writeText(STORE_UPI_ID).then(() => {
+    toast("📋 UPI ID Copied: " + STORE_UPI_ID);
+  }).catch(() => {
+    toast("UPI ID: " + STORE_UPI_ID);
+  });
+}
+
+function closeUpiPaymentSheet() {
+  document.getElementById('upiPaymentSheetModal').style.display = 'none';
 }
 
 function executeOrderPlacement() {
@@ -2262,12 +2376,9 @@ function executeOrderPlacement() {
     scratchContainer.innerHTML = `
       <div style="text-align:center;">
         ${(isUpiSelected && adv > 0) ? `
-          <div style="background:rgba(46,204,113,0.12);border:1.5px solid #2ecc71;border-radius:12px;padding:10px;margin-bottom:10px;">
-            <span style="font-size:10px;color:#2ecc71;font-weight:bold;display:block;margin-bottom:6px;">⚡ Advance Payment Pending</span>
-            <button type="button" class="btn-gold" style="width:100%;padding:10px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;font-size:11.5px;" onclick="launchDirectUpiPayment(${adv}, '${orderId}')">
-              📱 Open PhonePe / GPay (Pay ₹${adv})
-            </button>
-          </div>
+          <button type="button" class="btn-gold" style="width:100%;margin-bottom:10px;padding:9px;background:#25d366;color:#000;font-weight:900;" onclick="openUpiPaymentSheet(${adv}, '${orderId}')">
+            ⚡ Pay ₹${adv} via UPI Apps (PhonePe / GPay)
+          </button>
         ` : ''}
         <div style="font-size:9.5px;color:var(--gold);margin-bottom:4px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
         <div class="scratch-card-box" id="successScratchBox">
@@ -2286,9 +2397,11 @@ function executeOrderPlacement() {
 
   document.getElementById('orderSuccessAnimModal').style.display = 'flex';
 
-  // Immediate Click-bound Intent Launch
+  // Open Direct Fast UPI Sheet immediately
   if (isUpiSelected && adv > 0) {
-    launchDirectUpiPayment(adv, orderId);
+    setTimeout(() => {
+      openUpiPaymentSheet(adv, orderId);
+    }, 300);
   }
 }
 
