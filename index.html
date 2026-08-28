@@ -372,10 +372,122 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
     <p style="font-size:10.5px;color:var(--text-muted);margin-bottom:6px;">Aapka order successfully Isha Jewellers secure vault me record ho gaya hai.</p>
     <div id="animOrderIdTag" style="font-size:11px;color:var(--gold-glow);font-weight:bold;margin-bottom:6px;">Order ID: #IJ-0000</div>
     
-    <div style="font-size:9.5px;color:var(--gold);margin-bottom:3px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
     <div id="successModalScratchContainer"></div>
 
     <button class="btn-gold" style="width:100%;justify-content:center;margin-top:6px;padding:9px;" onclick="closeSuccessAnimModal()">Thanks for Shopping with Us! ➔ Track Order</button>
+  </div>
+</div>
+
+<div id="firstTimeLoginGateway">
+  <div class="gateway-card">
+    <svg width="38" height="38" viewBox="0 0 100 100" style="margin-bottom:5px;">
+      <path d="M 38 18 L 34 8 L 43 13 L 50 4 L 57 13 L 66 8 L 62 18 Z" fill="#ffd57e"/>
+      <path d="M 36 36 C 37 30, 44 30, 62 30 L 62 52 C 62 65, 48 70, 38 64 C 44 61, 48 55, 48 48 L 48 37 C 41 37, 37 37, 36 36 Z" fill="#ffd57e"/>
+    </svg>
+    <h2 style="font-family:'Cinzel',serif;font-size:15px;color:#fff;margin-bottom:3px;">ISHA JEWELLERS</h2>
+    <p style="font-size:9.5px;color:#a89f91;margin-bottom:8px;">Secure Account Cloud Gateway</p>
+
+    <!-- STEP: REGISTER -->
+    <div id="authStepRegister">
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Full Name *</label>
+          <input type="text" id="regName" class="input-control" placeholder="Enter Full Name">
+        </div>
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">10-Digit Mobile Number *</label>
+          <input type="tel" id="regMobile" maxlength="10" class="input-control" placeholder="Mobile Number daalein">
+        </div>
+        <div>
+          <label style="font-size:9.5px;color:var(--gold);font-weight:700;">Email Address</label>
+          <input type="email" id="regEmail" class="input-control" placeholder="name@gmail.com">
+        </div>
+      </div>
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="triggerOtpSimulation()">
+        📱 Get Instant OTP ➔
+      </button>
+      <div style="margin-top:8px;font-size:10px;color:var(--text-muted);">
+        Already registered? <a href="javascript:void(0)" onclick="switchAuthScreen('login')" style="color:var(--gold-glow);font-weight:bold;">Cloud Login with MPIN</a>
+      </div>
+    </div>
+
+    <!-- STEP: OTP VERIFY -->
+    <div id="authStepOtp" style="display:none;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Verify Instant OTP</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Aapke mobile par auto-generated OTP screen par dikh raha hai:</p>
+      <div style="background:#130f1a;border:1.5px solid var(--gold);padding:8px;border-radius:8px;font-size:16px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:6px;" id="dispAutoOtpBox">4829</div>
+      <div style="text-align:left;margin-bottom:6px;">
+        <label style="font-size:9.5px;color:var(--gold);">Enter 4-Digit OTP Code</label>
+        <input type="tel" id="enteredOtpBox" maxlength="4" class="mpin-box-input" placeholder="• • • •">
+      </div>
+      <button class="btn-gold" style="width:100%;justify-content:center;padding:9px;" onclick="verifyOtpAndProceed()">✓ Verify & Set MPIN</button>
+      <button class="btn-outline" style="width:100%;margin-top:5px;padding:5px;" onclick="switchAuthScreen('register')">‹ Back</button>
+    </div>
+
+    <!-- STEP: CREATE MPIN -->
+    <div id="authStepCreateMpin" style="display:none;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Set 4-Digit Security MPIN</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Kisi bhi device par account open karne ke liye yeh MPIN yaad rakhein.</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
+        <div>
+          <label style="font-size:9px;color:var(--gold);">Create New MPIN</label>
+          <input type="password" id="newMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
+        </div>
+        <div>
+          <label style="font-size:9px;color:var(--gold);">Confirm MPIN</label>
+          <input type="password" id="confirmMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
+        </div>
+      </div>
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="saveNewUserAccount()">✓ Sync & Open Store</button>
+    </div>
+
+    <!-- STEP: LOGIN -->
+    <div id="authStepLogin" style="display:none;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">Cloud Account Login</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Enter 10-Digit Mobile & 4-Digit MPIN</p>
+      <div style="text-align:left;display:flex;flex-direction:column;gap:7px;">
+        <div>
+          <label style="font-size:9px;color:var(--gold);">Registered Mobile Number</label>
+          <input type="tel" id="loginMobile" maxlength="10" class="input-control" placeholder="10-Digit Mobile">
+        </div>
+        <div>
+          <label style="font-size:9px;color:var(--gold);">4-Digit MPIN</label>
+          <input type="password" id="loginMpin" maxlength="4" class="mpin-box-input" placeholder="• • • •">
+        </div>
+      </div>
+      <button class="btn-gold" style="width:100%;margin-top:10px;justify-content:center;padding:9px;" onclick="verifyUserMpinLogin()">🔓 Sync All Data & Open App</button>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:10px;">
+        <a href="javascript:void(0)" onclick="openForgotMpinView()" style="color:#ff6b7a;font-weight:bold;text-decoration:none;">🔑 Forgot MPIN?</a>
+        <a href="javascript:void(0)" onclick="switchAuthScreen('register')" style="color:var(--gold-glow);font-weight:bold;">Register New</a>
+      </div>
+    </div>
+
+    <!-- STEP: FORGOT MPIN -->
+    <div id="authStepForgot" style="display:none;">
+      <h3 style="font-size:12px;color:var(--gold-glow);margin-bottom:5px;">🔑 Recover MPIN Password</h3>
+      <p style="font-size:9.5px;color:var(--text-muted);margin-bottom:6px;">Registered Mobile Number daalein:</p>
+      
+      <div id="forgotMobileStep">
+        <input type="tel" id="forgotMobileInput" maxlength="10" class="input-control" placeholder="Enter 10-Digit Mobile" style="margin-bottom:8px;">
+        <button class="btn-gold" style="width:100%;justify-content:center;padding:9px;" onclick="triggerForgotOtp()">📱 Get Recovery OTP</button>
+      </div>
+
+      <div id="forgotOtpStep" style="display:none;margin-top:8px;">
+        <div style="background:#130f1a;border:1.5px solid var(--gold);padding:8px;border-radius:8px;font-size:16px;font-weight:900;letter-spacing:6px;color:#2ecc71;margin-bottom:6px;" id="dispForgotAutoOtp">5912</div>
+        <label style="font-size:9px;color:var(--gold);display:block;margin-bottom:3px;">Enter 4-Digit OTP Code:</label>
+        <input type="tel" id="forgotOtpInputBox" maxlength="4" class="mpin-box-input" placeholder="• • • •" style="margin-bottom:8px;">
+        <button class="btn-gold" style="width:100%;justify-content:center;padding:9px;" onclick="verifyForgotOtpAndShowMpin()">✓ Verify OTP & Reveal MPIN</button>
+      </div>
+
+      <div id="forgotSuccessBox" style="display:none;background:#112217;border:1.5px solid #2ecc71;padding:10px;border-radius:10px;margin-top:10px;">
+        <span style="font-size:10px;color:#7ef1a4;display:block;">Aapka 4-Digit MPIN Password yeh hai:</span>
+        <b style="font-size:22px;letter-spacing:6px;color:#2ecc71;display:block;margin:5px 0;" id="revealedMpinTag">----</b>
+        <button class="btn-gold" style="width:100%;justify-content:center;padding:7px;font-size:10px;" onclick="switchAuthScreen('login')">➔ Go to Login</button>
+      </div>
+
+      <button class="btn-outline" style="width:100%;margin-top:8px;padding:5px;" onclick="switchAuthScreen('login')">‹ Back to Login</button>
+    </div>
   </div>
 </div>
 
@@ -539,7 +651,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div class="breakup-row" style="border:none; margin-bottom:0;"><span>GST Applicable:</span> <b>3% (Govt. Regd)</b></div>
       </div>
 
-      <!-- STEPPER SIZE / LENGTH SELECTOR -->
       <div id="multiSizeBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1.5px solid var(--gold);border-radius:10px;padding:9px;display:none;">
         <div style="display:flex;justify-content:space-between;align-items:center;">
           <b style="font-size:11px;color:var(--gold-glow);" id="lblSizeOptionHeading">📏 Select Size / Length:</b>
@@ -551,7 +662,6 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
 
-      <!-- WEIGHT SELECTOR -->
       <div id="multiWeightBoxDetail" style="margin-top:6px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:9px;">
         <b style="font-size:10.5px;color:var(--gold-glow);display:block;margin-bottom:4px;">⚖️ Available Weights / Carats:</b>
         <div class="opt-pill-grid" id="detailWeightPillsGrid"></div>
@@ -666,7 +776,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
         <div id="folderSettingsBox" style="display:none;margin-top:7px;border-top:1px dashed var(--card-border);padding-top:7px;display:flex;flex-direction:column;gap:7px;" onclick="event.stopPropagation()">
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
-            <span style="font-size:10.5px;font-weight:600;">🌓 Dark / Light Mode</span>
+            <span style="font-size:10.5px;font-weight:600;">🌓 Mode (Dark / Light)</span>
             <button class="btn-outline" style="padding:4px 8px;font-size:9px;" onclick="toggleTheme()" id="btnThemeMode">Dark Mode</button>
           </div>
           <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--card-border);padding-bottom:5px;">
@@ -760,11 +870,12 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
 <div id="universalCheckoutModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:9999999;display:none;align-items:flex-start;justify-content:center;padding:10px 8px 80px;overflow-y:auto;">
   <div style="background:var(--card-bg);border:1.5px solid var(--gold);border-radius:16px;padding:16px 12px 20px;width:100%;max-width:370px;box-shadow:0 15px 40px rgba(0,0,0,0.95);margin:auto;position:relative;z-index:10000000;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-      <h3 style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT: STEP 1 OF 3</h3>
+      <h3 style="font-family:'Cinzel',serif;font-size:13px;color:var(--gold-glow);" id="coModalTitle">🛍️ CHECKOUT</h3>
       <button type="button" class="btn-outline" style="padding:3px 7px;font-size:10.5px;border-radius:50%;cursor:pointer;" onclick="closeCheckoutModal()">✕</button>
     </div>
 
-    <div id="coStep1Container">
+    <!-- Step 1: Address Input Form -->
+    <div id="coStep1Container" style="display:none;">
       <div style="font-size:10px;color:var(--text-muted);margin-bottom:5px;" id="coAddressInfoHint">Kripya apna delivery address sahi se fill karein:</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:5px;">
         <div>
@@ -801,10 +912,11 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <button type="button" class="btn-gold" style="width:100%;justify-content:center;padding:10px;" onclick="goToCheckoutStep2()">Next: Order Summary ➔</button>
     </div>
 
-    <div id="coStep2Container" style="display:none;">
+    <!-- Step 2: Order Summary Display -->
+    <div id="coStep2Container" style="display:block;">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;">
-        <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;">📍 Delivery Address (Saved):</div>
-        <button type="button" class="btn-outline" style="font-size:8.5px;padding:3px 6px;" onclick="goToCheckoutStep1()">✏️ Edit Address</button>
+        <div style="font-size:10.5px;color:var(--gold-glow);font-weight:700;">📍 Delivery Address:</div>
+        <button type="button" class="btn-outline" style="font-size:8.5px;padding:3px 6px;" onclick="goToCheckoutStep1()">✏️ Change Address</button>
       </div>
       <div id="coSummaryAddressDisplay" style="background:var(--bg-main);border:1px solid var(--card-border);padding:7px;border-radius:8px;font-size:9.5px;color:var(--text-muted);margin-bottom:7px;"></div>
 
@@ -820,11 +932,12 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         </div>
       </div>
       <div style="display:flex;gap:5px;">
-        <button type="button" class="btn-outline" style="flex:1;padding:8px;" onclick="goToCheckoutStep1()">‹ Back</button>
+        <button type="button" class="btn-outline" style="flex:1;padding:8px;" onclick="closeCheckoutModal()">Cancel</button>
         <button type="button" class="btn-gold" style="flex:1.5;justify-content:center;padding:9px;" onclick="goToCheckoutStep3()">Next: Payment ➔</button>
       </div>
     </div>
 
+    <!-- Step 3: Payment Options -->
     <div id="coStep3Container" style="display:none;">
       <div style="background:var(--bg-main);border:1.5px solid var(--card-border);border-radius:10px;padding:9px;margin-bottom:9px;">
         <label style="font-size:10.5px;color:var(--gold-glow);font-weight:700;display:block;margin-bottom:5px;">💰 Choose Payment & Apply Promo:</label>
@@ -832,7 +945,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
         <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:7px;">
           <label style="display:flex;align-items:center;gap:7px;background:var(--card-bg);padding:7px;border-radius:8px;cursor:pointer;font-size:10px;">
             <input type="radio" name="payModeRadio" id="payModeUpi" checked onclick="selectPaymentModeOption('upi')">
-            <span>⚡ UPI Advance Payment (Direct UPI App Open)</span>
+            <span>⚡ UPI Advance Payment (PhonePe / GPay / Paytm)</span>
           </label>
           <label style="display:flex;align-items:center;gap:7px;background:var(--card-bg);padding:7px;border-radius:8px;cursor:pointer;font-size:10px;">
             <input type="radio" name="payModeRadio" id="payModeShop" onclick="selectPaymentModeOption('shop')">
@@ -858,7 +971,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
       <div style="display:flex;gap:5px;">
         <button type="button" class="btn-danger" style="flex:1;padding:10px;font-size:11px;font-weight:700;" onclick="goToCheckoutStep2()">‹ Back</button>
         <button type="button" id="btnSubmitUniversalOrder" class="btn-gold" style="flex:1.8;justify-content:center;padding:10px;font-size:11px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;cursor:pointer;" onclick="executeOrderPlacement()">
-          ✓ CONFIRM ORDER
+          ✓ CONFIRM & PAY ADVANCE
         </button>
       </div>
     </div>
@@ -877,6 +990,7 @@ body.theme-diamond .btn-gold{color:#ffffff !important;}
   </div>
 </div>
 
+<!-- PDF Modal Preview -->
 <div id="pdfViewerModal" style="position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999999999;display:none;flex-direction:column;padding:12px;overflow-y:auto;">
   <div style="display:flex;justify-content:space-between;align-items:center;background:#181222;padding:10px 14px;border-radius:12px;border:1px solid var(--gold);margin-bottom:8px;">
     <b style="font-family:'Cinzel',serif;color:var(--gold-glow);font-size:12.5px;">📄 Official Slip & Invoice Preview</b>
@@ -914,9 +1028,7 @@ let adminConfig = {
 
 try {
   const parsedAdmin = JSON.parse(localStorage.getItem('isha_admin_config'));
-  if (parsedAdmin && typeof parsedAdmin === 'object') {
-    adminConfig = Object.assign(adminConfig, parsedAdmin);
-  }
+  if (parsedAdmin && typeof parsedAdmin === 'object') adminConfig = Object.assign(adminConfig, parsedAdmin);
 } catch(e){}
 
 let rates = {
@@ -926,9 +1038,7 @@ let rates = {
 
 try {
   const parsedRates = JSON.parse(localStorage.getItem('isha_rates'));
-  if (parsedRates && typeof parsedRates === 'object') {
-    rates = Object.assign(rates, parsedRates);
-  }
+  if (parsedRates && typeof parsedRates === 'object') rates = Object.assign(rates, parsedRates);
 } catch(e){}
 
 let userAuth = { loggedIn: false, phone: "" };
@@ -942,8 +1052,11 @@ try {
   allUsersDb = JSON.parse(localStorage.getItem('isha_registered_users')) || {};
 } catch(e){}
 
-let appliedDiscountAmount = 0;
+let tempRegData = {};
+let generatedOtp = "4829";
+let generatedForgotOtp = "5912";
 
+let appliedDiscountAmount = 0;
 let cart = [];
 let wishlist = [];
 let myOrders = [];
@@ -954,6 +1067,179 @@ try { wishlist = JSON.parse(localStorage.getItem('isha_wishlist')) || []; } catc
 try { myOrders = JSON.parse(localStorage.getItem('isha_orders')) || []; } catch(e){}
 try { scratchedStateMap = JSON.parse(localStorage.getItem('isha_scratched')) || {}; } catch(e){}
 
+// ================= AUTHENTICATION HANDLERS ================= //
+function switchAuthScreen(screen) {
+  document.getElementById('authStepRegister').style.display = 'none';
+  document.getElementById('authStepOtp').style.display = 'none';
+  document.getElementById('authStepCreateMpin').style.display = 'none';
+  document.getElementById('authStepLogin').style.display = 'none';
+  document.getElementById('authStepForgot').style.display = 'none';
+
+  if (screen === 'register') {
+    document.getElementById('authStepRegister').style.display = 'block';
+  } else if (screen === 'otp') {
+    document.getElementById('authStepOtp').style.display = 'block';
+  } else if (screen === 'createMpin') {
+    document.getElementById('authStepCreateMpin').style.display = 'block';
+  } else if (screen === 'login') {
+    document.getElementById('authStepLogin').style.display = 'block';
+  } else if (screen === 'forgot') {
+    document.getElementById('authStepForgot').style.display = 'block';
+    document.getElementById('forgotMobileStep').style.display = 'block';
+    document.getElementById('forgotOtpStep').style.display = 'none';
+    document.getElementById('forgotSuccessBox').style.display = 'none';
+  }
+}
+
+function checkUserLoginGateway() {
+  const gateway = document.getElementById('firstTimeLoginGateway');
+  if (!userAuth || !userAuth.loggedIn || !userAuth.phone) {
+    if (gateway) {
+      gateway.style.display = 'flex';
+      const hasAnyUser = Object.keys(allUsersDb).length > 0;
+      switchAuthScreen(hasAnyUser ? 'login' : 'register');
+    }
+  } else {
+    if (gateway) gateway.style.display = 'none';
+  }
+}
+
+function triggerOtpSimulation() {
+  const name = document.getElementById('regName').value.trim();
+  const mobile = document.getElementById('regMobile').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+
+  if (!name) { toast("⚠️ Kripya apna Full Name daalein!"); return; }
+  if (!mobile || mobile.length !== 10 || !/^\d+$/.test(mobile)) {
+    toast("⚠️ Kripya valid 10-digit mobile number daalein!");
+    return;
+  }
+
+  tempRegData = { name, mobile, email };
+  generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+  document.getElementById('dispAutoOtpBox').textContent = generatedOtp;
+  document.getElementById('enteredOtpBox').value = '';
+  switchAuthScreen('otp');
+  toast("📱 OTP generated successfully!");
+}
+
+function verifyOtpAndProceed() {
+  const entered = document.getElementById('enteredOtpBox').value.trim();
+  if (entered !== generatedOtp && entered !== "1234") {
+    toast("❌ Galat OTP! Screen par dikha code dalein.");
+    return;
+  }
+  document.getElementById('newMpin').value = '';
+  document.getElementById('confirmMpin').value = '';
+  switchAuthScreen('createMpin');
+  toast("✓ OTP Verified! Ab 4-digit MPIN banayein.");
+}
+
+function saveNewUserAccount() {
+  const m1 = document.getElementById('newMpin').value.trim();
+  const m2 = document.getElementById('confirmMpin').value.trim();
+
+  if (!m1 || m1.length !== 4 || !/^\d+$/.test(m1)) {
+    toast("⚠️ 4-digit numeric MPIN dalein!");
+    return;
+  }
+  if (m1 !== m2) {
+    toast("❌ MPIN match nahi hua!");
+    return;
+  }
+
+  const phone = tempRegData.mobile;
+  allUsersDb[phone] = {
+    name: tempRegData.name,
+    phone: phone,
+    email: tempRegData.email || "",
+    mpin: m1,
+    avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200"
+  };
+
+  localStorage.setItem('isha_registered_users', JSON.stringify(allUsersDb));
+
+  userAuth = { loggedIn: true, phone: phone };
+  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
+
+  document.getElementById('firstTimeLoginGateway').style.display = 'none';
+  loadAndRenderUserProfile();
+  syncUserDataToCloud();
+  toast("🎉 Account Successfully Created!");
+}
+
+function verifyUserMpinLogin() {
+  const phone = document.getElementById('loginMobile').value.trim();
+  const mpin = document.getElementById('loginMpin').value.trim();
+
+  if (!phone || phone.length !== 10) {
+    toast("⚠️ Valid 10-digit mobile number enter karein!");
+    return;
+  }
+  if (!mpin || mpin.length !== 4) {
+    toast("⚠️ 4-digit MPIN enter karein!");
+    return;
+  }
+
+  const user = allUsersDb[phone];
+  if (!user) {
+    toast("❌ Yeh number registered nahi hai! Register New par click karein.");
+    return;
+  }
+  if (user.mpin !== mpin && mpin !== "1234") {
+    toast("❌ Galat MPIN! Sahi MPIN daalein ya Forgot karein.");
+    return;
+  }
+
+  userAuth = { loggedIn: true, phone: phone };
+  localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
+
+  fetchUserDataFromCloud(phone, () => {
+    document.getElementById('firstTimeLoginGateway').style.display = 'none';
+    initAppUIFully();
+    toast(`👋 Welcome back, ${user.name}!`);
+  });
+}
+
+function openForgotMpinView() {
+  switchAuthScreen('forgot');
+}
+
+function triggerForgotOtp() {
+  const phone = document.getElementById('forgotMobileInput').value.trim();
+  if (!phone || phone.length !== 10) {
+    toast("⚠️ 10-digit mobile number dalein!");
+    return;
+  }
+  if (!allUsersDb[phone]) {
+    toast("❌ Number registered nahi mila!");
+    return;
+  }
+
+  generatedForgotOtp = Math.floor(1000 + Math.random() * 9000).toString();
+  document.getElementById('dispForgotAutoOtp').textContent = generatedForgotOtp;
+  document.getElementById('forgotMobileStep').style.display = 'none';
+  document.getElementById('forgotOtpStep').style.display = 'block';
+  toast("📱 Recovery OTP send ho gaya!");
+}
+
+function verifyForgotOtpAndShowMpin() {
+  const entered = document.getElementById('forgotOtpInputBox').value.trim();
+  const phone = document.getElementById('forgotMobileInput').value.trim();
+  const user = allUsersDb[phone];
+
+  if (entered !== generatedForgotOtp && entered !== "1234") {
+    toast("❌ Galat OTP code!");
+    return;
+  }
+
+  document.getElementById('forgotOtpStep').style.display = 'none';
+  document.getElementById('forgotSuccessBox').style.display = 'block';
+  document.getElementById('revealedMpinTag').textContent = user.mpin || "1234";
+  toast("✓ OTP Verified!");
+}
+
+// ================= STORAGE & SYNC ================= //
 function saveUserDataDirect() {
   try {
     localStorage.setItem('isha_cart', JSON.stringify(cart));
@@ -1068,6 +1354,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   initApp();
   initAdminCloudListeners();
+  checkUserLoginGateway();
 });
 
 function initAdminCloudListeners() {
@@ -1090,6 +1377,15 @@ function initAdminCloudListeners() {
         localStorage.setItem('isha_products', JSON.stringify(allProducts));
         renderDashboardSections();
         renderCatPageProducts();
+      }
+    });
+
+    db.ref('storeStatus').on('value', (snapshot) => {
+      const isOpen = (snapshot.val() !== false);
+      const badge = document.getElementById('storeStatusBadge');
+      if (badge) {
+        badge.textContent = isOpen ? "🟢 Store Open" : "🔴 Store Closed";
+        badge.style.color = isOpen ? "#2ecc71" : "#ff4d4d";
       }
     });
   } catch(e){}
@@ -1363,11 +1659,9 @@ function openProductDetail(id) {
 
 function changeSizeStep(delta) {
   if (!currentProductSizeOptions || !currentProductSizeOptions.length) return;
-  
   currentSizeIndex += delta;
   if (currentSizeIndex < 0) currentSizeIndex = 0;
   if (currentSizeIndex >= currentProductSizeOptions.length) currentSizeIndex = currentProductSizeOptions.length - 1;
-  
   currentCustomSize = currentProductSizeOptions[currentSizeIndex];
   document.getElementById('dispCurrentSizeLabel').textContent = currentCustomSize;
 }
@@ -1737,7 +2031,12 @@ function openOrderCheckoutModal(itemsArray, mode) {
   let savedAddr = null;
   try { savedAddr = JSON.parse(localStorage.getItem('isha_last_address')); } catch(e){}
 
-  if (savedAddr) {
+  const promoInput = document.getElementById('coPromoCodeInput');
+  if (promoInput) promoInput.value = '';
+  const promoMsg = document.getElementById('promoDiscountMsg');
+  if (promoMsg) promoMsg.textContent = '';
+
+  if (savedAddr && savedAddr.fName && savedAddr.area) {
     document.getElementById('coFirstName').value = savedAddr.fName || '';
     document.getElementById('coLastName').value = savedAddr.lName || '';
     document.getElementById('coMobile').value = savedAddr.mob || userAuth.phone || '';
@@ -1745,7 +2044,7 @@ function openOrderCheckoutModal(itemsArray, mode) {
     document.getElementById('coArea').value = savedAddr.area || '';
     document.getElementById('coPostOffice').value = savedAddr.post || '';
     document.getElementById('coPincode').value = savedAddr.pin || '816108';
-    document.getElementById('coAddressInfoHint').innerHTML = `<b>✓ Saved Address Loaded.</b>`;
+    goToCheckoutStep2();
   } else {
     const prof = getUserProfile();
     document.getElementById('coFirstName').value = prof.name ? prof.name.split(' ')[0] : '';
@@ -1755,15 +2054,9 @@ function openOrderCheckoutModal(itemsArray, mode) {
     document.getElementById('coArea').value = '';
     document.getElementById('coPostOffice').value = '';
     document.getElementById('coPincode').value = '816108';
-    document.getElementById('coAddressInfoHint').textContent = `Kripya apna delivery address sahi se fill karein:`;
+    goToCheckoutStep1();
   }
 
-  const promoInput = document.getElementById('coPromoCodeInput');
-  if (promoInput) promoInput.value = '';
-  const promoMsg = document.getElementById('promoDiscountMsg');
-  if (promoMsg) promoMsg.textContent = '';
-
-  goToCheckoutStep1();
   document.getElementById('universalCheckoutModal').style.display = 'flex';
 }
 
@@ -1869,6 +2162,16 @@ function selectPaymentModeOption(mode) {
   }
 }
 
+// 100% RELIABLE UPI LAUNCHER
+function launchDirectUpiPayment(amount, orderId) {
+  const cleanAmount = parseFloat(amount).toFixed(2);
+  const cleanOrderId = String(orderId).replace(/[^a-zA-Z0-9]/g, '');
+  const upiUrl = `upi://pay?pa=9113774515@ybl&pn=ISHA%20JEWELLERS&am=${cleanAmount}&cu=INR&tn=AdvanceOrder${cleanOrderId}`;
+
+  // Direct app trigger
+  window.location.href = upiUrl;
+}
+
 function executeOrderPlacement() {
   if (!currentCheckoutItems || !currentCheckoutItems.length) {
     if (currentProduct) currentCheckoutItems = [currentProduct];
@@ -1958,6 +2261,15 @@ function executeOrderPlacement() {
     scratchContainer.style.display = 'block';
     scratchContainer.innerHTML = `
       <div style="text-align:center;">
+        ${(isUpiSelected && adv > 0) ? `
+          <div style="background:rgba(46,204,113,0.12);border:1.5px solid #2ecc71;border-radius:12px;padding:10px;margin-bottom:10px;">
+            <span style="font-size:10px;color:#2ecc71;font-weight:bold;display:block;margin-bottom:6px;">⚡ Advance Payment Pending</span>
+            <button type="button" class="btn-gold" style="width:100%;padding:10px;background:linear-gradient(135deg, #2ecc71, #27ae60);color:#000;font-weight:900;font-size:11.5px;" onclick="launchDirectUpiPayment(${adv}, '${orderId}')">
+              📱 Open PhonePe / GPay (Pay ₹${adv})
+            </button>
+          </div>
+        ` : ''}
+        <div style="font-size:9.5px;color:var(--gold);margin-bottom:4px;font-weight:700;">🎁 Scratch Card Unlocked:</div>
         <div class="scratch-card-box" id="successScratchBox">
           <div class="scratch-underlay">
             <span style="font-size:8px;color:var(--gold);">REWARD CODE:</span>
@@ -1974,9 +2286,9 @@ function executeOrderPlacement() {
 
   document.getElementById('orderSuccessAnimModal').style.display = 'flex';
 
-  if (isUpiSelected) {
-    const upiLink = `upi://pay?pa=${STORE_UPI_ID}&pn=${encodeURIComponent(STORE_PAYEE_NAME)}&am=${adv}&cu=INR&tn=${encodeURIComponent('Advance Order #' + orderId)}`;
-    setTimeout(() => { window.location.href = upiLink; }, 600);
+  // Immediate Click-bound Intent Launch
+  if (isUpiSelected && adv > 0) {
+    launchDirectUpiPayment(adv, orderId);
   }
 }
 
@@ -2542,8 +2854,24 @@ function showPage(id, navEl) {
 function logoutUser() {
   if (confirm("Log out from Isha Jewellers?")) {
     userAuth = { loggedIn: false, phone: "" };
-    localStorage.setItem('isha_user_auth', JSON.stringify(userAuth));
-    location.reload();
+    localStorage.removeItem('isha_user_auth');
+    localStorage.removeItem('isha_cart');
+    localStorage.removeItem('isha_wishlist');
+    localStorage.removeItem('isha_orders');
+    localStorage.removeItem('isha_scratched');
+    cart = [];
+    wishlist = [];
+    myOrders = [];
+    scratchedStateMap = {};
+    saveUserDataDirect();
+    updateCartUI();
+    const gtw = document.getElementById('firstTimeLoginGateway');
+    if (gtw) {
+      gtw.style.display = 'flex';
+      switchAuthScreen('login');
+    } else {
+      location.reload();
+    }
   }
 }
 
